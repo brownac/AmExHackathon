@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'hackathon',
+    podModulePrefix: 'hackathon/pods',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
