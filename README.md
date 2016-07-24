@@ -13,19 +13,30 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* change into the new directory
-* `npm install`
-* `bower install`
+```
+$ git clone <repository-url>
+```
+```sh
+$ cd AmExHackathon/
+```
+```sh
+$ npm install && bower install
+```
+
 
 ## Running / Development
 
-* `ember server`
+```sh
+$ ember serve --proxy http://localhost:4500/api
+```
 * Visit your app at [http://localhost:4200](http://localhost:4200).
 
 ### Code Generators
 
 Make use of the many generators for code, try `ember help generate` for more details
 
-## Server
-Check back soon!
+## Mongo
+You will have to download the dependencies for the server - side: for example, Mongoose and Express.
+```sh
+$ cd api/ && npm install
+```

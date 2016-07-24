@@ -33,7 +33,7 @@ app.get('/api/notes', function(req,res) {
 			res.send({error:err});
 		}
 		else {
-			res.send({note:docs});
+			res.send({data:docs});
 		}
 	});
 });

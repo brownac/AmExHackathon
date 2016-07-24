@@ -6,10 +6,10 @@ module.exports = function(environment) {
     podModulePrefix: 'hackathon/pods',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
     contentSecurityPolicy: {
-     'connect-src' : "'self' http://localhost:4500"
+     'connect-src' : "'self' http://localhost:4500/"
    },
+    locationType: 'auto',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
