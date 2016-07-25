@@ -1,5 +1,5 @@
-import JSONAPISerializer from 'ember-data/serializers/json-api';
+import RESTSerializer from 'ember-data/serializers/rest';
 
-export default JSONAPISerializer.extend({
+export default RESTSerializer.extend({
   primaryKey: '_id'
 });

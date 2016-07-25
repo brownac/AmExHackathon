@@ -27,9 +27,12 @@ $ npm install && bower install
 ## Running / Development
 
 ```sh
-$ ember serve --proxy http://localhost:4500/api
+$ ember serve --proxy http://localhost:4500
 ```
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+CD into the api directory.
+```sh
+$ nodemon server.js
+```
 
 ### Code Generators
 
@@ -40,3 +43,23 @@ You will have to download the dependencies for the server - side: for example, M
 ```sh
 $ cd api/ && npm install
 ```
+To install mongo, either download and install the binaries from [Mongo's website](https://www.mongodb.com/download-center?jmp=nav) or, for Mac
+```sh
+$ brew install mongodb
+```
+### Inserting entries into Mongo/Running
+To open the Mongo shell,
+```sh
+$ mongo
+```
+```sh
+$ use emberData #or whatever the name of the database is
+```
+```sh
+$ db.modelName.insert(#insert JSON data here)
+```
+To run Mongo,
+```sh
+$ mongod
+```
+Finally, visit your app at [http://localhost:4200](http://localhost:4200).
