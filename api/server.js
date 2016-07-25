@@ -2,34 +2,18 @@ var express = require('express');
 var mongoose = require('mongoose');
 var expressLogging = require('express-logging');
 var logger = require('logops');
-var models = require('./models');
+
+var controllers = require('./controllers');
+var middleware = require('./middleware');
 
 var app = express();
-mongoose.connect('mongodb://localhost/emberData');
 
+// mount middlewares
 app.use(expressLogging(logger));
+app.use(middleware.emberHeadersMiddleware);
 
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-  	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
-    next();
-});
-
-app.get('/api/',function(req,res) {
-	res.send('Working');
-});
-
-app.get('/api/notes', function(req,res) {
-	models.Note.find({},function(err,docs) {
-		if(err) {
-			res.send({error:err});
-		}
-		else {
-			res.send({notes:docs});
-		}
-	});
-});
+// mount the controllers router
+app.use('/api', controllers);
 
 let port = 4500;
 app.listen(port, () => {
