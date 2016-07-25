@@ -11,14 +11,3 @@ var noteSchema = new mongoose.Schema({
 
 
 module.exports.Note = mongoose.model('note', noteSchema);
-
-module.exports.createOne = () => {
-  let note = new module.exports.Note({
-    title: "A Note",
-    content: "The note has some cool content",
-    author: "Drake"
-  });
-
-  note.save();
-}
-
