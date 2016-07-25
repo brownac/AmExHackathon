@@ -2,8 +2,11 @@ var express = require('express');
 var mongoose = require('mongoose');
 var expressLogging = require('express-logging');
 var logger = require('logops');
+var models = require('./models');
 
 var app = express();
+mongoose.connect('mongodb://localhost/emberData');
+
 app.use(expressLogging(logger));
 
 app.use(function(req, res, next) {
@@ -13,22 +16,12 @@ app.use(function(req, res, next) {
     next();
 });
 
-mongoose.connect('mongodb://localhost/emberData');
-
-var noteSchema = new mongoose.Schema({
-	title: 'string',
-	content: 'string',
-	author: 'string'
-});
-
-var NoteModel = mongoose.model('note',noteSchema);
-
 app.get('/api/',function(req,res) {
 	res.send('Working');
 });
 
 app.get('/api/notes', function(req,res) {
-	NoteModel.find({},function(err,docs) {
+	models.Note.find({},function(err,docs) {
 		if(err) {
 			res.send({error:err});
 		}
@@ -38,4 +31,7 @@ app.get('/api/notes', function(req,res) {
 	});
 });
 
-app.listen('4500');
+let port = 4500;
+app.listen(port, () => {
+  console.log("Express server running on port " + port);
+});
