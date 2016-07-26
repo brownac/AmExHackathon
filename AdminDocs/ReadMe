@@ -1,1 +1,36 @@
-This is a ReadMe File for AdminDocs.
+# Amex2016InternHackathon
+
+This is a web application designed for American Express Recruiting.
+
+The purpose of this project is to digitalize the paper based process currently used by the recruiting team.
+-------------------------------------------------------------------------------------------------------------------------
+Project: Amex Digitized Recruiting
+
+Summary:
+During college campus recruiting visits, recruiting teams from American Express currently use a largely paper-based process to screen and interview candidates for positions within the company. This involves a first-tier team armed with clipboards and printed questions, who screen out candidates and pass the assessment and resumes to the second-tier team to perform subsequent in-depth interviews, schedule follow-ups, etc.
+This process needs to be modernized; below are the requirements for updating the process arranged in three categories: Critical (requirement must be met), Important (requirement should be met) Desired (requirement may or may not be met).
+
+Critical:
+1.      Move the recruiting process to an all-digital platform including:
+a.      Back-end:
+                                                    i.     Web-Application and Database for collecting and processing candidate packages upon submission.
+                                                   ii.     Entire application must be self-contained in Raspberry Pi unit.
+b.      Front-End (First Tier):
+                                                    i.     First-Tier screening via tablet/RaspberryPi, with ability to capture resume images from applicants.
+                                                   ii.     Dynamic, user-loadable front-end screening questionnaires to present to potential recruits, along with a scoring/ranking and memo field for each question.
+                                                  iii.     Ability to “package” each candidate into a single candidate profile. Each package may or may not contain the following: Candidate details (name, school, major, graduation date, gpa, etc.), candidate resume, completed questionnaire, and candidate score. Additionally must have field to flag candidate as “Ready for Second Tier.” Other fields may be present for completion by second-tier evaluators.
+                                                  iv.     Ability to have completed package routed and saved to back-end database and flagged as ready for second tier evaluator.
+c.      Front-End (Second Tier):
+                                                    i.     Second-Tier screening via tablet/RaspberryPi, with ability to add the following fields as part of this stage: {tbd}
+
+Important:
+1.      Ability to {tbd}
+
+Desired:
+1.      Ability to perform OCR on candidate resumes for parsing and storing relevant pieces of data.
+
+Notes:
+•        For this effort, development team will be provided with up to six Raspberry Pi3 units and up to 2 iPad/Galaxy Pro tablets (1 each) for software development and testing.
+•        Choice of DBMS is at the discretion of development team (MySQL, Postgres, etc.) Please note that while NoSQL can also be used (CouchDB, MongoDB,) as these DBMS’ were made for 64-bit systems, performance may be impacted.
+•        Choice of development/presentation platform is at the discretion of the development team (Python, NodeJS, java).
+
