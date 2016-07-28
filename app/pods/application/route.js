@@ -3,5 +3,12 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   model() {
     return this.store.findAll('note');
+  },
+  actions: {
+    toggle(id) {
+      Ember.$('#' + id)
+      .sidebar('toggle')
+      ;
+    }
   }
 });
