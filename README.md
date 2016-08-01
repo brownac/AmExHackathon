@@ -8,38 +8,36 @@ You will need the following things properly installed on your computer.
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM)
 * [Bower](http://bower.io/)
-* [Ember CLI](http://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+* Grunt
 
 ## Installation
 
-```
-$ git clone <repository-url>
-```
 ```sh
-$ cd AmExHackathon/
+git clone <repository-url>
+cd AmExHackathon-frontend/
+npm install && bower install
+cd ../api
+npm install
 ```
-```sh
-$ npm install && bower install
-```
-
 
 ## Running / Development
 
+Frontend
 ```sh
-$ ember serve --proxy http://localhost:4500
+cd AmExHackathon-frontend
+grunt serve
 ```
-CD into the api directory.
+
+Backend
 ```sh
-$ nodemon server.js
+cd api
+npm install
+nodemon server.js
 ```
 
 ### Code Generators
+The frontend was generated with [Yeoman's generator angular](https://github.com/yeoman/generator-angular). It has a few generators if you `npm install -g` `yo` and `generator-angular`.
 
-Make use of the many generators for code, try `ember help generate` for more details
-
-## Mongo
-You will have to download the dependencies for the server - side: for example, Mongoose and Express.
 ```sh
 $ cd api/ && npm install
 ```
