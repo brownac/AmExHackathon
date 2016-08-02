@@ -29,6 +29,11 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/screener/candidateForm', {
+        templateUrl: 'views/candidateForm.html',
+        controller: 'CandidateFormCtrl',
+        controllerAs: 'candidateForm'
+      })
       .otherwise({
         redirectTo: '/'
       });
