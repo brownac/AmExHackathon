@@ -10,7 +10,9 @@
 angular.module('amExHackathonApp')
   .controller('CalendarCtrl', function ($scope) {
   	$scope.calendarView = 'month';
-  	$scope.calendarDate = new Date();
+  	var date = new Date();
+  	$scope.calendarDate = calDate;
+  	$scope.calendarTitle = calDate.getMonth() + " " + calDate.getFullYear();
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

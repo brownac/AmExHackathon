@@ -1,40 +1,43 @@
 <div>
-<div> 
-<button
-  class="btn btn-primary"
-  mwl-date-modifier
-  date="calendarDay"
-  decrement="calendarView">
-  Previous
-</button>
+    <div> 
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="calendarDate"
+          decrement="calendarView">
+          Previous
+        </button>
 
-<button
-  class="btn btn-default"
-  mwl-date-modifier
-  date="calendarDay"
-  set-to-today>
-  Today
-</button>
+        <button
+          class="btn btn-default"
+          mwl-date-modifier
+          date="calendarDate"
+          set-to-today>
+          Today
+        </button>
 
-<button
-  class="btn btn-primary"
-  mwl-date-modifier
-  date="calendarDay"
-  increment="calendarView">
-  Next
-</button> 
-</div> 
-  <mwl-calendar
-    view="calendarView"
-    view-date="calendarDate"
-    events="events"
-    view-title="calendarTitle"
-    on-event-click="eventClicked(calendarEvent)"
-    on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-    edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
-    delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-    on-edit-event-click="eventEdited(calendarEvent)"
-    on-delete-event-click="eventDeleted(calendarEvent)"
-    cell-is-open="true">
-  </mwl-calendar>
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="calendarDate"
+          increment="calendarView">
+          Next
+        </button> 
+    </div> 
+    <div>
+      <h2>{{calendarTitle}}</h2>
+      <mwl-calendar
+        view="calendarView"
+        view-date="calendarDate"
+        events="events"
+        view-title="calendarTitle"
+        on-event-click="eventClicked(calendarEvent)"
+        on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+        edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+        delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+        on-edit-event-click="eventEdited(calendarEvent)"
+        on-delete-event-click="eventDeleted(calendarEvent)"
+        cell-is-open="true">
+      </mwl-calendar>
+  </div>
 </div>
