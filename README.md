@@ -8,58 +8,50 @@ You will need the following things properly installed on your computer.
 * [Git](http://git-scm.com/)
 * [Node.js](http://nodejs.org/) (with NPM)
 * [Bower](http://bower.io/)
-* [Ember CLI](http://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+* Grunt
 
 ## Installation
 
-```
-$ git clone <repository-url>
-```
 ```sh
-$ cd AmExHackathon/
+git clone <repository-url>
+cd AmExHackathon-frontend/
+npm install && bower install
+cd ../api
+npm install
 ```
-```sh
-$ npm install && bower install
-```
-
 
 ## Running / Development
 
+Frontend
 ```sh
-$ ember serve --proxy http://localhost:4500
+cd AmExHackathon-frontend
+grunt serve
 ```
-CD into the api directory.
+
+Backend
 ```sh
-$ nodemon server.js
+cd api
+npm install
+nodemon server.js
 ```
 
 ### Code Generators
+The frontend was generated with [Yeoman's generator angular](https://github.com/yeoman/generator-angular). It has a few generators if you `npm install -g` `yo` and `generator-angular`.
 
-Make use of the many generators for code, try `ember help generate` for more details
-
-## Mongo
-You will have to download the dependencies for the server - side: for example, Mongoose and Express.
 ```sh
 $ cd api/ && npm install
 ```
-To install mongo, either download and install the binaries from [Mongo's website](https://www.mongodb.com/download-center?jmp=nav) or, for Mac
+To install the SQLite shell, download and install the binaries from [SQLite's download page](https://www.sqlite.org/download.html)
+
+### Inserting entries into SQLite/Running
+To open the SQLite shell,
 ```sh
-$ brew install mongodb
-```
-### Inserting entries into Mongo/Running
-To open the Mongo shell,
-```sh
-$ mongo
+$ sqlite3
 ```
 ```sh
-$ use emberData #or whatever the name of the database is
+$ .open database.sqlite #or whatever the name of the database is
 ```
 ```sh
-$ db.modelName.insert(#insert JSON data here)
+$ INSERT INTO table_name(columns) VALUES(data); #standard SQL insert query
 ```
-To run Mongo,
-```sh
-$ mongod
-```
-Finally, visit your app at [http://localhost:4200](http://localhost:4200).
+Finally, visit your app at [http://localhost:4500](http://localhost:4500).
