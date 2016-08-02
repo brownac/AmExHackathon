@@ -87,6 +87,9 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
+              // proxy fronted requests to /api to the backend's server
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
+
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -188,6 +191,18 @@ module.exports = function (grunt) {
         options: {
           map: true
         },
+
+        // proxy to the backend express server
+        proxies: [
+          {
+            context: '/api',
+            host: 'localhost',
+            port: 4500,
+            https: false,
+            xforward: false
+          }
+        ],
+
         files: [{
           expand: true,
           cwd: '.tmp/styles/',
@@ -442,6 +457,8 @@ module.exports = function (grunt) {
     }
   });
 
+  // proxy the frontend to backend during dev
+  grunt.loadNpmTasks('grunt-connect-proxy');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
