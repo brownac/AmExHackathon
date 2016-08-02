@@ -31,6 +31,13 @@ module.exports = function (grunt) {
     // Project settings
     yeoman: appConfig,
 
+    // Run the express backend
+    nodemon: {
+      dev: {
+        script: 'api/server.js'
+      }
+    },
+
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
@@ -404,9 +411,18 @@ module.exports = function (grunt) {
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
-      server: [
-        'copy:styles'
-      ],
+      server: {
+        tasks: [
+          'copy:styles',
+          'nodemon', // the express backend (api) needs to run as well
+          'connect:livereload:keepalive',
+          'watch'
+        ],
+        options: {
+          limit: 6,
+          logConcurrentOutput: true
+        }
+      },
       test: [
         'copy:styles'
       ],
@@ -435,10 +451,8 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
-      'concurrent:server',
       'postcss:server',
-      'connect:livereload',
-      'watch'
+      'concurrent:server'
     ]);
   });
 
@@ -472,7 +486,7 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'htmlmin'
-  ]);
+]);
 
   grunt.registerTask('default', [
     'newer:jshint',
