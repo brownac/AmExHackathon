@@ -41,23 +41,17 @@ The frontend was generated with [Yeoman's generator angular](https://github.com/
 ```sh
 $ cd api/ && npm install
 ```
-To install mongo, either download and install the binaries from [Mongo's website](https://www.mongodb.com/download-center?jmp=nav) or, for Mac
+To install the SQLite shell, download and install the binaries from [SQLite's download page](https://www.sqlite.org/download.html)
+
+### Inserting entries into SQLite/Running
+To open the SQLite shell,
 ```sh
-$ brew install mongodb
-```
-### Inserting entries into Mongo/Running
-To open the Mongo shell,
-```sh
-$ mongo
+$ sqlite3
 ```
 ```sh
-$ use emberData #or whatever the name of the database is
+$ .open database.sqlite #or whatever the name of the database is
 ```
 ```sh
-$ db.modelName.insert(#insert JSON data here)
+$ INSERT INTO table_name(columns) VALUES(data); #standard SQL insert query
 ```
-To run Mongo,
-```sh
-$ mongod
-```
-Finally, visit your app at [http://localhost:4200](http://localhost:4200).
+Finally, visit your app at [http://localhost:4500](http://localhost:4500).
