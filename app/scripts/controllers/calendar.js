@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name amExHackathonApp.controller:MainCtrl
+ * @name amExHackathonApp.controller:CalendarCtrl
  * @description
- * # MainCtrl
+ * # CalendarCtrl
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('MainCtrl', function ($scope, calendarConfig) {
+  .controller('CalendarCtrl', function ($scope) {
   	$scope.calendarView = 'month';
   	$scope.calendarDate = new Date();
     this.awesomeThings = [
