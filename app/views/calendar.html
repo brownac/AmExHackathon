@@ -24,6 +24,12 @@
           Next
         </button> 
     </div> 
+    <div class="btn-group">
+        <label class="btn btn-primary" ng-click="changeView('year')">Year</label>
+        <label class="btn btn-primary" ng-click="changeView('month')">Month</label>
+        <label class="btn btn-primary" ng-click="changeView('week')">Week</label>
+        <label class="btn btn-primary" ng-click="changeView('day')">Day</label>
+    </div>
     <div>
       <h2>{{calendarTitle}}</h2>
       <mwl-calendar
