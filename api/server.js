@@ -4,6 +4,7 @@ var expressLogging = require('express-logging');
 var logger = require('logops');
 
 var path = require('path');
+var process = require('process');
 
 var models = require("./models");
 var routes = require('./routes/index');
@@ -11,13 +12,26 @@ var routes = require('./routes/index');
 
 var app = express();
 
+let dev = false;
+if (process.argv[2] === 'dev') {
+  dev = true;
+  console.log("Running in development mode");
+}
+
 /** Middlewares */
 // logging
 app.use(expressLogging(logger));
 
-// static assets for angular app and bower deps
-app.use(express.static(path.join(__dirname, '../app')));
-app.use('/bower_components', express.static(path.join(__dirname, '../bower_components')));
+// static assets 
+// for angular app and bower deps if development mode
+if (dev) {
+  app.use(express.static(path.join(__dirname, '../app')));
+  app.use('/bower_components', express.static(path.join(__dirname, '../bower_components')));
+}
+// otherwise (production) just use ../dist as the static directory
+else {
+  app.use(express.static(path.join(__dirname, '../dist')));
+}
 
 /** Other routes and controllers */
 // mount the controllers router

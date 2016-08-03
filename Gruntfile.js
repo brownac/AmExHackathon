@@ -36,6 +36,9 @@ module.exports = function (grunt) {
       dev: {
         script: 'api/server.js',
         options: {
+          // pass dev arg
+          args: ['dev'],
+
           callback: function(nodemon) {
             nodemon.on('log', function (event) {
               console.log(event.colour);
@@ -57,6 +60,13 @@ module.exports = function (grunt) {
               }, 1000);
             });
           }
+        }
+      },
+      dist: {
+        script: 'api/server.js',
+        options: {
+          // pass the dist arg
+          args: ['dist']
         }
       }
     },
@@ -438,7 +448,7 @@ module.exports = function (grunt) {
       server: {
         tasks: [
           'copy:styles',
-          'nodemon', // the express backend (api) needs to run as well
+          'nodemon:dev', // the express backend (api) needs to run as well
           'watch'
         ],
         options: {
@@ -515,5 +525,12 @@ module.exports = function (grunt) {
     'newer:jscs',
     'test',
     'build'
+  ]);
+
+  // run for production -- use this for testing dist probably,
+  // since production doesn't really need grunt overhead
+  grunt.registerTask('runprod', [
+    'build',
+    'nodemon:dist'
   ]);
 };
