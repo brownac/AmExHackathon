@@ -1,18 +1,24 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var test = sequelize.define("test", {
+  var candidateInfo = sequelize.define("candidateInfo", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    data: {
+    name: {
+      type: DataTypes.STRING
+    },
+    email: {
+      type: DataTypes.STRING
+    },
+    major: {
       type: DataTypes.STRING
     }
   }, {
     timestamps: false,
   });
 
-  return test;
+  return candidateInfo;
 };

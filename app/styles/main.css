@@ -23,7 +23,12 @@
 }
 
 .camera-glyph {
+<<<<<<< HEAD
   font-size: 3em;
+=======
+  font-size: 15px;
+  text-align: center;
+>>>>>>> 37d8758f4c601fb3ae0603b5215377fce331a9be
 }
 
 .resumeImageLabel {
@@ -48,9 +53,8 @@
     cursor: pointer;
     display: inline-block;
     overflow: hidden;
-    padding: 0.625rem 1.25rem;
-    margin-bottom: 5px;
-    padding-bottom: 5px;
+    padding: 0.8rem 1.25rem;
+    margin-right: 20px;
 }
 
 .resumeImage:focus + label,
@@ -59,14 +63,6 @@
     outline: -webkit-focus-ring-color auto 5px;
 }
 
-.resumeImage + label svg {
-    width: 1em;
-    height: 1em;
-    vertical-align: middle;
-    fill: currentColor;
-    margin-top: -0.25em;
-    margin-right: 0.25em;
-}
 
 .resumeImage + label {
     color: #f1e5e6;

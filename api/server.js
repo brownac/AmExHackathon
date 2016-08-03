@@ -3,10 +3,14 @@ var express = require('express');
 var expressLogging = require('express-logging');
 var logger = require('logops');
 var models = require("./models");
+var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 
 var app = express();
+
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 // mount middlewares
 app.use(expressLogging(logger));
