@@ -10,12 +10,13 @@
 angular.module('amExHackathonApp')
   .controller('CandidateFormCtrl', function ($scope, $q, candidateService) {
 
-  	$scope.pictureAdded = pictureAdded;
+  	$scope.pictureAdded = false;
 
     $scope.submit = function() {
       $q.all([candidateService.postValue($scope.postCandidate)]).then(values => {});
       location.reload();
     }
+    
   });
 
 angular.module('amExHackathonApp')

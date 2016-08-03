@@ -1,6 +1,4 @@
 <script>
-  var pictureAdded = false;
-
   function readImage(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -10,7 +8,6 @@
           .width(300)
           .height(400);
       };
-      pictureAdded = true;
       reader.readAsDataURL(input.files[0]);
     }
   }
@@ -21,7 +18,7 @@
     <div class='btn-toolbar pull-right'>
       <div class='btn-group'>
         <div class="camera-capture">
-          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" onchange="readImage(this);">
+          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" onchange="readImage(this);" ng-click="pictureAdded = true">
           <label for="resume" class="resumeImageLabel"><span class="glyphicon glyphicon-camera camera-glyph"></span></label>
         </div>
       </div>
