@@ -8,7 +8,6 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var process = require('process');
 
-var models = require("./models");
 var routes = require('./routes/index');
 
 
