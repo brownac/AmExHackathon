@@ -11,10 +11,6 @@ fabric.Image.fromURL(myImage.src, function(img) {
 });
 
 
-
-
-
-/*
 var drawingModeEl = document.getElementById('drawing-mode'),
   drawingOptionsEl = document.getElementById('drawing-mode-options'),
   drawingColorEl = document.getElementById('drawing-color'),
@@ -166,4 +162,3 @@ document.getElementById('canvas-background-picker').addEventListener('change', f
   canvas.backgroundColor = this.value;
   canvas.renderAll();
 });
-*/
