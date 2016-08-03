@@ -9,13 +9,21 @@
 }
 
 /* candidateForm.html */
+#candidate-form-container {
+  margin-bottom:5%;
+}
+
+#thumbnail-preview-area {
+  margin: 20px auto;
+}
+
 .camera-capture {
-  margin: 0 auto;
-  width: 30%;
+  margin: auto;
+  width: auto;
 }
 
 .camera-glyph {
-  font-size: 5em;
+  font-size: 3em;
 }
 
 .resumeImageLabel {
@@ -32,7 +40,7 @@
 }
 
 .resumeImage + label {
-    max-width: 80%;
+    /*max-width: 80%;*/
     font-size: 1.25rem;
     font-weight: 700;
     text-overflow: ellipsis;
@@ -41,6 +49,8 @@
     display: inline-block;
     overflow: hidden;
     padding: 0.625rem 1.25rem;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
 }
 
 .resumeImage:focus + label,
