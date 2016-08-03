@@ -37,7 +37,7 @@ angular
       .when('/interviewer/interviewerForm', {
         templateUrl: 'views/interviewerForm.html',
         controller: 'InterviewerFormCtrl',
-        controllerAs: 'IntervierForm'
+        controllerAs: 'InterviewerForm'
       })
       .otherwise({
         redirectTo: '/'
