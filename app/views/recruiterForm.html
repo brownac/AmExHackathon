@@ -8,40 +8,43 @@
   <div id="recruiter-form-container" class="container">
     <div class="row">
       <div class="col-xs-6 col-md-4 bg-info" id="candidate-queue">
-
-        <h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>
+                <center>
+                  <h4>
+                    Candidates to be Scheduled: {{candidateQueue.length}}
+                  </h4>
+                  <input type="search" ng-model="search" placeholder="search by name" aria-label="search candidates" class="form-control"/>
+                  <br>
+                </center>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="queue-animate-container animate-repeat">
+                  <div ng-repeat="candidate in candidateQueue | filter:search as results">
+                    <button type="button" class="btn btn-primary btn-lg btn-block candidate-queue-person">
+                      {{candidate.lastName}}, {{candidate.firstName}}
+                    </button>
+                  </div>
+                  <div ng-if="results.length == 0">
+                    <strong>No candidates found... Queue Empty</strong>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
           <br>
-          <center>
-            Candidates to be Scheduled: {{candidateQueue.length}}
-          </center>
-          <br
-            <center>
-              <input type="search" ng-model="search" placeholder="search by name" aria-label="search candidates" class="form-control"/>
-            </center>
-          <br>
-        </h4>
-
-        <div class="queue-animate-container">
-
-          <div class="animate-repeat" ng-repeat="candidate in candidateQueue | filter:search as results">
-            <button type="button" class="btn btn-primary btn-lg btn-block candidate-queue-person">
-              {{candidate.lastName}}, {{candidate.firstName}}
-            </button>
-          </div>
-
-          <div class="animate-repeat" ng-if="results.length == 0">
-            <strong>No candidates found... Queue Empty</strong>
-          </div>
-
-        </div>
-
-        <br>
-
+        </table>
       </div>
       <div class="col-xs-12 col-md-8">
         <h4>
           <center>
-            Big Area
+            Calendar Area
           </center>
         </h4>
       </div>
