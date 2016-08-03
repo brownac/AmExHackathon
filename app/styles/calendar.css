@@ -1,0 +1,13 @@
+.calChangeMonth{
+  float: left;
+  padding: 0;
+}
+
+.calChangeView{
+  float: right;
+  padding-right: 2%;
+}
+
+span[data-cal-date]{
+  cursor: pointer;
+}

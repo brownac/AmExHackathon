@@ -1,37 +1,39 @@
 <div>
-    <div> 
-        <button
-          class="btn btn-primary"
-          mwl-date-modifier
-          date="calendarDate"
-          decrement="calendarView">
-          Previous
-        </button>
+    <div class = "container">
+        <h2 class="text-center">{{calendarTitle}}</h2>
+        <div class = "col-md-6 calChangeDate"> 
+            <button
+              class="btn btn-primary"
+              mwl-date-modifier
+              date="calendarDate"
+              decrement="calendarView">
+              Previous
+            </button>
 
-        <button
-          class="btn btn-default"
-          mwl-date-modifier
-          date="calendarDate"
-          set-to-today>
-          Today
-        </button>
+            <button
+              class="btn btn-default"
+              mwl-date-modifier
+              date="calendarDate"
+              set-to-today>
+              Today
+            </button>
 
-        <button
-          class="btn btn-primary"
-          mwl-date-modifier
-          date="calendarDate"
-          increment="calendarView">
-          Next
-        </button> 
-    </div> 
-    <div class="btn-group">
-        <label class="btn btn-primary" ng-click="changeView('year')">Year</label>
-        <label class="btn btn-primary" ng-click="changeView('month')">Month</label>
-        <label class="btn btn-primary" ng-click="changeView('week')">Week</label>
-        <label class="btn btn-primary" ng-click="changeView('day')">Day</label>
+            <button
+              class="btn btn-primary"
+              mwl-date-modifier
+              date="calendarDate"
+              increment="calendarView">
+              Next
+            </button> 
+        </div> 
+        <div class="btn-group calChangeView">
+            <label class="btn btn-primary" ng-click="changeView('year')">Year</label>
+            <label class="btn btn-primary" ng-click="changeView('month')">Month</label>
+            <label class="btn btn-primary" ng-click="changeView('week')">Week</label>
+            <label class="btn btn-primary" ng-click="changeView('day')">Day</label>
+        </div>
     </div>
     <div>
-      <h2>{{calendarTitle}}</h2>
       <mwl-calendar
         view="calendarView"
         view-date="calendarDate"
@@ -43,6 +45,7 @@
         delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
         on-edit-event-click="eventEdited(calendarEvent)"
         on-delete-event-click="eventDeleted(calendarEvent)"
+        on-timespan-click="calendarModal(calendarDate)"
         cell-is-open="true">
       </mwl-calendar>
   </div>
