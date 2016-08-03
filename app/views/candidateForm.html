@@ -1,7 +1,5 @@
 
 <script>
-  var pictureAdded = false;
-
   function readImage(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -11,7 +9,6 @@
           .width(300)
           .height(400 );
       };
-      pictureAdded = true;
       reader.readAsDataURL(input.files[0]);
     }
   }
@@ -93,8 +90,9 @@
             <label class="control-label">Screener Initials</label>
             <input class="form-control" type="text">
           </div>
-          <div id="thumbnail-preview-area" ng-if="pictureAdded">
-            <img id="resume-preview-image" src="#"/>
+          <div id="thumbnail-preview-area">
+            <!-- Blank picture to not show anything in image tag when src is empty -->
+            <img id="resume-preview-image" width="0" height="0" alt="" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="/>
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
           <button type="submit" class="btn btn-warning">Cancel</button>
