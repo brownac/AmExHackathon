@@ -101,7 +101,7 @@
               <img id="resume-preview-image" src="#"/>
             </div>
 
-            <button type="submit" class="btn btn-success" data-ng-click="submit()">Submit</button>
+            <button type="submit" ng-class="submitBtnClasses" data-ng-click="submit()">{{buttonText}}</button>
             <button type="submit" class="btn btn-warning">Cancel</button>
           </div>
         </form>
