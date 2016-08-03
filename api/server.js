@@ -27,7 +27,7 @@ if (process.argv[2] === 'dev') {
 // logging
 app.use(expressLogging(logger));
 
-// static assets 
+// static assets
 // for angular app and bower deps if development mode
 if (dev) {
   app.use(express.static(path.join(__dirname, '../app')));
@@ -45,7 +45,7 @@ app.use('/api', routes);
 //sync the models with the data, will creat the schems if not present
 //starts the server
 let port = 4500;
-models.sequelize.sync().then(function () {
+models.sequelize.sync({force: true}).then(function () {
   var server = app.listen(port, function() {
     console.log('Express server listening on port ' + port);
   });

@@ -9,7 +9,8 @@ var sequelize = new Sequelize('main', 'user', 'password', {
 });
 
 router.post('/insert', function(req, res) {
-    var sql = "INSERT INTO candidateInfos(name,email,major) VALUES('" + req.body.name + "', '" + req.body.email + "', '" + req.body.major + "')";
+    var sql = "INSERT INTO candidateInfos(name,email,phoneNumber,graduationDate) VALUES('"
+    + req.body.name + "', '" + req.body.email + "', '" + req.body.phoneNumber + "', '" + req.body.graduationDate +"')";
     sequelize.query(sql).then(d => res.end());
 });
 

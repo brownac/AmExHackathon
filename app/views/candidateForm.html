@@ -31,22 +31,22 @@
         <form role="form" class="text-left">
           <div class="form-group">
             <label class="control-label">Name:</label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" ng-model="postCandidate.name">
           </div>
 
           <div class="form-group">
             <label class="control-label" for="email">Email Address:</label>
-            <input class="form-control" id="email" type="email">
+            <input class="form-control" id="email" type="email" ng-model="postCandidate.email">
           </div>
 
           <div class="form-group">
             <label class="control-label" for="phoneNumber">Phone Number:</label>
-            <input class="form-control" id="phoneNumber" type="text">
+            <input class="form-control" id="phoneNumber" type="text" ng-model="postCandidate.phoneNumber">
           </div>
 
           <div class="form-group">
             <label class="control-label">Graduation Date:</label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" ng-model="postCandidate.graduationDate">
           </div>
 
           <div class="form-group">
@@ -101,7 +101,7 @@
               <img id="resume-preview-image" src="#"/>
             </div>
 
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-success" data-ng-click="submit()">Submit</button>
             <button type="submit" class="btn btn-warning">Cancel</button>
           </div>
         </form>
