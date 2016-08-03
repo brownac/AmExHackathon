@@ -8,6 +8,7 @@ var sequelize = new Sequelize('main', 'user', 'password', {
   storage: 'db.development.sqlite'
 });
 
+// Insert a candidate
 router.post('/insert', function(req, res) {
   // create an instance
   var candidate = models.candidateInfo.build({
@@ -25,9 +26,23 @@ router.post('/insert', function(req, res) {
   candidate.save();
 });
 
+// Get all candidates
 router.get('/getCandidateInfo', function(req, res) {
   models.candidateInfo.findAll({})
   .then(function(result) {
+    res.send(result);
+  });
+});
+
+// Get candidate by id
+router.get('/getCandidateInfo/:id', function(req, res) {
+  var id = req.params.id;
+
+  models.candidateInfo.findAll({
+    where: {
+      id: id
+    }
+  }).then(function(result) {
     res.send(result);
   });
 });
