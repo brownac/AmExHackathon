@@ -48,7 +48,7 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all', 'newer:jscs:all'],
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: true
         }
       },
       jsTest: {
@@ -64,7 +64,7 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: true
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // The actual grunt server settings
+    // The actual grunt server for tests only (I believe)
     connect: {
       options: {
         port: 9000,
@@ -87,9 +87,6 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              // proxy fronted requests to /api to the backend's server
-              require('grunt-connect-proxy/lib/utils').proxyRequest,
-
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -191,17 +188,6 @@ module.exports = function (grunt) {
         options: {
           map: true
         },
-
-        // proxy to the backend express server
-        proxies: [
-          {
-            context: '/api',
-            host: 'localhost',
-            port: 4500,
-            https: false,
-            xforward: false
-          }
-        ],
 
         files: [{
           expand: true,
@@ -430,7 +416,6 @@ module.exports = function (grunt) {
         tasks: [
           'copy:styles',
           'nodemon', // the express backend (api) needs to run as well
-          'connect:livereload:keepalive',
           'watch'
         ],
         options: {
@@ -456,9 +441,6 @@ module.exports = function (grunt) {
       }
     }
   });
-
-  // proxy the frontend to backend during dev
-  grunt.loadNpmTasks('grunt-connect-proxy');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
