@@ -1,30 +1,25 @@
 <script>
-function readImage(input) {
-  var pictureAdded = false;
-
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      $('#resume-preview-image')
-        .attr('src', e.target.result)
-        .width(300)
-        .height(400);
-    };
-    pictureAdded = true;
-    reader.readAsDataURL(input.files[0]);
+  function readImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#resume-preview-image')
+          .attr('src', e.target.result)
+          .width(300)
+          .height(400);
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
   }
-}
 </script>
 
-<div ng-controller="CandidateFormCtrl">
-  <div class="text-center">
-    <div class="page-header">
-      <div class="pull-right">
-          <div class="camera-capture">
-            <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" onchange="readImage(this)">
-            <label for="resume" class="resumeImageLabel"><span class="glyphicon glyphicon-camera camera-glyph"></span></label>
-          </div>
-      </div>
+<div class="text-center">
+  <div class="page-header">
+    <div class="pull-right">
+        <div class="camera-capture">
+          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" onchange="readImage(this);" ng-click="pictureAdded = true">
+          <label for="resume" class="resumeImageLabel"><span class="glyphicon glyphicon-camera camera-glyph"></span></label>
+        </div>
 
       <h1>Add Candidate</h1>
     </div>

@@ -9,6 +9,8 @@
  */
 angular.module('amExHackathonApp')
   .controller('CandidateFormCtrl', function ($scope, $q, candidateService) {
+  	$scope.pictureAdded = false;
+
     $scope.submit = function() {
       $q.all([candidateService.postValue($scope.postCandidate)]).then(values => {});
       location.reload();
