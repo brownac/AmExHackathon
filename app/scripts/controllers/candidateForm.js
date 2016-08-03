@@ -28,7 +28,7 @@ angular.module('amExHackathonApp')
     function postValue(data) {
       var request = $http({
           method: "post",
-          url: "http://localhost:4500/api/insert",
+          url: "/api/insert",
           data: data
       });
       return (request.then(handleSuccess, handleError));
