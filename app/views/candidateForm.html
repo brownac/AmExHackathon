@@ -1,4 +1,6 @@
 <script>
+  var pictureAdded = false;
+
   function readImage(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -8,6 +10,7 @@
           .width(300)
           .height(400);
       };
+      pictureAdded = true;
       reader.readAsDataURL(input.files[0]);
     }
   }
@@ -56,22 +59,22 @@
         </div>
 
         <div class="form-group">
-          <label class="control-label" for="exampleInputEmail1">Needs Sponsorship?</label>
+          <label class="control-label" for="needSponsorship">Needs Sponsorship?</label>
           <div class="radio">
             <label class="radio-inline">
-              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Yes</label>
+              <input type="radio" name="needSponsorship" value="option1">Yes</label>
             <label class="radio-inline">
-              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked="">No</label>
+              <input type="radio" name="needSponsorship" value="option2">No</label>
           </div>
         </div>
 
         <div class="form-group">
-          <label class="control-label" for="exampleInputEmail1">Seeking Internship or Full-Time?</label>
+          <label class="control-label" for="internOrFull">Seeking Internship or Full-Time?</label>
           <div class="radio">
             <label class="radio-inline">
-              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Internship</label>
+              <input type="radio" name="internOrFull" value="option1">Internship</label>
             <label class="radio-inline">
-              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked="">Full-Time</label>
+              <input type="radio" name="internOrFull" value="option2">Full-Time</label>
           </div>
         </div>
 
@@ -86,14 +89,14 @@
         </div>
 
         <div class="form-group">
-          <label class="control-label" for="exampleInputEmail1">Final Evaluation:</label>
+          <label class="control-label" for="finalEval">Final Evaluation:</label>
           <div class="radio">
-            <label class="radio-inline" style="">
-              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Invite to 1st Round Interviews</label>
             <label class="radio-inline">
-              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked="">Tentative</label>
+              <input type="radio" name="finalEval" value="option1">Invite to 1st Round Interviews</label>
             <label class="radio-inline">
-              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked="">Turndown</label>
+              <input type="radio" name="finalEval" value="option2">Tentative</label>
+            <label class="radio-inline">
+              <input type="radio" name="finalEval" value="option3">Turndown</label>
           </div>
         </div>
 
@@ -103,7 +106,7 @@
         </div>
 
         <div class="text-center">
-          <div id="thumbnail-preview-area">
+          <div id="thumbnail-preview-area" ng-if="pictureAdded">
             <img id="resume-preview-image" src="#"/>
           </div>
 
