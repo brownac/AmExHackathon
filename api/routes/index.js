@@ -8,12 +8,12 @@ var sequelize = new Sequelize('main', 'user', 'password', {
   storage: 'db.development.sqlite'
 });
 
-router.post('/api/insert', function(req, res) {
+router.post('/insert', function(req, res) {
     var sql = "INSERT INTO candidateInfos(name,email,major) VALUES('" + req.body.name + "', '" + req.body.email + "', '" + req.body.major + "')";
     sequelize.query(sql).then(d => res.end());
 });
 
-router.get('/api/getCandidateInfo', function(req, res) {
+router.get('/getCandidateInfo', function(req, res) {
   models.candidateInfo.findAll({})
   .then(function(result) {
     res.send(result);
