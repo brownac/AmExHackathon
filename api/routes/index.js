@@ -9,9 +9,20 @@ var sequelize = new Sequelize('main', 'user', 'password', {
 });
 
 router.post('/insert', function(req, res) {
-    var sql = "INSERT INTO candidateInfos(name,email,phoneNumber,graduationDate) VALUES('"
-    + req.body.name + "', '" + req.body.email + "', '" + req.body.phoneNumber + "', '" + req.body.graduationDate +"')";
-    sequelize.query(sql).then(d => res.end());
+  // create an instance
+  var candidate = models.candidateInfo.build({
+    name: req.body.name,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
+    graduationDate: req.body.graduationDate,
+    needSponsorship: req.body.needSponsorship,
+    internOrFull: req.body.internOrFull,
+    areaOfInterest: req.body.areaOfInterest,
+    preferredLanguages: req.body.preferredLanguages,
+    finalEvaluation: req.body.finalEvaluation
+  })
+  // persist an instance
+  candidate.save();
 });
 
 router.get('/getCandidateInfo', function(req, res) {
