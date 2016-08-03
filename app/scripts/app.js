@@ -39,6 +39,16 @@ angular
         controller: 'InterviewerFormCtrl',
         controllerAs: 'InterviewerForm'
       })
+      .when('/viewCandidates', {
+        templateUrl: 'views/viewCandidates.html',
+        controller: 'ViewCandidatesCtrl',
+        controllerAs: 'ViewCandidates'
+      })
+      .when('/viewCandidate/:candidateId', {
+        templateUrl: 'views/viewCandidate.html',
+        controller: 'viewCandidateCtrl',
+        controllerAs: 'viewCandidate'
+      })
       .otherwise({
         redirectTo: '/'
       });
