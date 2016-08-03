@@ -10,7 +10,7 @@
 angular.module('amExHackathonApp')
   .controller('CandidateFormCtrl', function ($scope, $q, candidateService) {
     $scope.submit = function() {
-      $q.all([service.postValue($scope.postRecord)]).then(values => {});
+      $q.all([candidateService.postValue($scope.postCandidate)]).then(values => {});
       location.reload();
     }
   });
@@ -26,7 +26,7 @@ angular.module('amExHackathonApp')
     function postValue(data) {
       var request = $http({
           method: "post",
-          url: "http://localhost:3000/api/insert",
+          url: "http://localhost:4500/api/insert",
           data: data
       });
       return (request.then(handleSuccess, handleError));
