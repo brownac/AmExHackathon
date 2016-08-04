@@ -8,9 +8,9 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('ViewCandidatesCtrl', function ($scope, $q, viewCandidatesService) {
+  .controller('ViewCandidatesCtrl', function ($scope, $q, candidateService) {
       $scope.init = function() {
-        $q.all([viewCandidatesService.getCandidates()]).then(values => {
+        candidateService.query().$promise.then(values => {
             $scope.candidates = values[0];
         });
       };
