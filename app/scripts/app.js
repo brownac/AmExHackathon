@@ -46,7 +46,7 @@ angular
       })
       .when('/viewCandidate/:candidateId', {
         templateUrl: 'views/viewCandidate.html',
-        controller: 'viewCandidateCtrl',
+        controller: 'ViewCandidateCtrl',
         controllerAs: 'viewCandidate'
       })
       .otherwise({

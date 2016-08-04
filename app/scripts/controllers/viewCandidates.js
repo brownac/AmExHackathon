@@ -10,7 +10,7 @@
 angular.module('amExHackathonApp')
   .controller('ViewCandidatesCtrl', function ($scope, $q, viewCandidatesService) {
       $scope.init = function() {
-        $q.all([viewCandidatesService.getValues()]).then(values => {
+        $q.all([viewCandidatesService.getCandidates()]).then(values => {
             $scope.testRows = values[0];
         });
       };
@@ -22,11 +22,11 @@ angular.module('amExHackathonApp')
   .service('viewCandidatesService', function($http, $q) {
     // Return public API
     return ({
-      getValues: getValues
+      getCandidates: getCandidates
     });
 
     // get from db
-    function getValues() {
+    function getCandidates() {
       var request = $http({
           method: "get",
           url: "http://localhost:4500/api/getCandidateInfo"

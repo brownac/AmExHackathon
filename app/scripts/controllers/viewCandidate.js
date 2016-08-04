@@ -8,27 +8,41 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('viewCandidateCtrl', function ($scope, $q, $routeParams, viewCandidateService) {
+  .controller('ViewCandidateCtrl', function ($scope, $q, $routeParams, viewCandidatesService) {
       var candidateId = $routeParams.candidateId;
-    
+
       $scope.init = function() {
-        $q.all([viewCandidateService.getValues(candidateId)]).then(values => {
-            $scope.testRows = values[0];
+        $q.all([viewCandidatesService.getCandidates()]).then(values => {
+            $scope.candidates = values[0];
         });
+        console.log(candidateId);
+        // $q.all([viewCandidatesService.getCandidateById(candidateId)]).then(values => {
+        //     $scope.candidate = values[0];
+        // });
       };
 
       $scope.init();
   });
 
 angular.module('amExHackathonApp')
-  .service('viewCandidateService', function($http, $q) {
+  .service('viewCandidatesService', ['$http', '$q', function($http, $q) {
     // Return public API
     return ({
-      getValues: getValues
+      getCandidates: getCandidates,
+      getCandidateById: getCandidateById
     });
 
     // get from db
-    function getValues(id) {
+    function getCandidates() {
+      var request = $http({
+          method: "get",
+          url: "http://localhost:4500/api/getCandidateInfo"
+      });
+      return (request.then(handleSuccess, handleError));
+    }
+
+    // update record in db
+    function getCandidateById(id) {
       var request = $http({
           method: "get",
           url: "http://localhost:4500/api/getCandidateInfo/" + id
@@ -55,4 +69,4 @@ angular.module('amExHackathonApp')
     function handleSuccess(response) {
       return response.data;
     }
-  });
+}]);
