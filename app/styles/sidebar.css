@@ -11,6 +11,7 @@
 }
 
 #sidebar-wrapper {
+    margin-top: -20px;
     z-index: 1000;
     position: fixed;
     left: 250px;
@@ -18,7 +19,8 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #0072CF;
+    background: #F8F8F8;
+    border-right: 1px solid #F1F1F1;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -51,17 +53,25 @@
     list-style: none;
 }
 
+
+.sidebarHeader {
+    text-align: center;
+    font-size: 105%;
+    margin-top: 20px;
+    margin-left: -35px;
+}
+
 .sidebar-nav li > .input-group {
-    margin: 20px 10px;
+    margin: 10px 10px;
 }
 
 .sidebar-nav li > .input-group > input{
-    border-radius: 15px;
+    border-radius: 5px;
 }
 
 .sidebar-nav li > .input-group > span {
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .sidebar-nav li a {
@@ -69,13 +79,18 @@
     line-height: 40px;
     display: block;
     text-decoration: none;
-    color: #fff;
+    color: #777;
 }
 
 .sidebar-nav li a:hover {
     text-decoration: none;
-    color: #0072CF;
+    color: #F1F1F1;
     background: #fff;
+}
+
+.form-control:focus {
+    border: 1px #C1C1C1 solid;
+    box-shadow: 0 0 10px #F1F1F1;
 }
 
 .sidebar-nav li a:active,
@@ -90,17 +105,18 @@
 }
 
 .sidebar-nav > .sidebar-brand a {
-    color: #fff;
+    color: #777;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
+    color: #777;
     background: none;
 }
 
 #candidate-list {
   list-style: none;
   padding: 0;
+  margin-top: -5px
 }
 
 @media(min-width:768px) {
@@ -130,3 +146,24 @@
         margin-right: 0;
     }
 }
+
+.sortHeader {
+    margin-left: 17px;
+    font-size: 110%;
+    color: #777;
+}
+
+.sortInput {
+    width:auto;
+    margin-left: 10px;
+}
+
+select {
+    color: #999999!important;
+    margin-top: 3px;
+}
+
+#candidate-list a {
+    margin-left: -5px;
+}
+
