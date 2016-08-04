@@ -41,9 +41,8 @@
           <br>
         </table>
       </div>
-      <div class="col-xs-12 col-md-8">
+      <div class="col-xs-6 col-md-8">
         <div ng-controller="CalendarCtrl">
-            <div class = "container">
                 <h2 class="text-center">{{calendarTitle}}</h2>
 
                 <div class="row">
@@ -62,7 +61,6 @@
                     </div>
 
                     <div class="modal-body">
-                      <form ng-submit="addEvent()">
                       <div class="">
                           <label for="myName">Candidate Name: </label><br>
                           <input ng-model="candidateName" type="text" id="myName"/>
@@ -85,9 +83,8 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button id="submit1" type="submit" class="btn btn-primary" value="Submit">Set Up Interview</button>
+                      <button ng-click="addEvent()" type="submit" class="btn btn-primary" value="Submit">Set Up Interview</button>
                     </div>
-                    </form>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->
@@ -142,9 +139,8 @@
                 cell-is-open="true">
               </mwl-calendar>
           </div>
-
-        </div>
-
+          <div style="margin-bottom:20px;">
+          </div>
       </div>
     </div>
   </div>

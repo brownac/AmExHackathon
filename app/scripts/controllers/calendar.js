@@ -40,21 +40,28 @@ angular.module('amExHackathonApp')
   	$scope.calendarModal = function(){
       $("#schedulerModal").modal();
   	}
-    $('#submit1').click(function() {
-      console.log("hi");
-    });
+
+  	function getCorrectTime (time){
+  		var offset = 1;
+  		if($scope.interviewTime.substring(0,2).includes(":")){
+  			offset = 0;
+  		}
+  		$scope.hour = $scope.interviewTime.substring(0,1+offset);
+  		$scope.min = $scope.interviewTime.substring(2+offset,4+offset);
+  	}
+
     $scope.addEvent = function() {
       var time = new Date($scope.interviewDate);
-      console.log("hello");
-      time.setTime($scope.interviewTime);
-      events.push({
+      getCorrectTime($scope.interviewTime)
+      time.setHours($scope.hour,$scope.min);
+      $scope.events.push({
         title: $scope.location,
         startsAt: time,
         color: {
           primary: '#e3bc08',
           secondary: '#fdf1ba'
         }
-      })
+      });
         console.log($scope.events);
     }
 
