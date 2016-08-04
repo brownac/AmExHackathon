@@ -40,11 +40,6 @@ angular
         controller: 'InterviewerFormCtrl',
         controllerAs: 'IntervierForm'
       })
-      .when('/calendar', {
-        templateUrl: 'views/calendar.html',
-        controller: 'CalendarCtrl',
-        controllerAs: 'calendar'
-      })
       .otherwise({
         redirectTo: '/'
       });
