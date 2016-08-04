@@ -1,4 +1,3 @@
-
 <script>
   function readImage(input) {
     if (input.files && input.files[0]) {
@@ -7,7 +6,7 @@
         $('#resume-preview-image')
           .attr('src', e.target.result)
           .width(300)
-          .height(400 );
+          .height(400);
       };
       reader.readAsDataURL(input.files[0]);
     }
@@ -16,87 +15,97 @@
 
 <div class="text-center">
   <div class="page-header">
-    <div class='btn-toolbar pull-right'>
-      <div class='btn-group'>
+    <div class="pull-right">
         <div class="camera-capture">
-          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" onchange="readImage(this);">
+          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" onchange="readImage(this);" ng-click="pictureAdded = true">
           <label for="resume" class="resumeImageLabel"><span class="glyphicon glyphicon-camera camera-glyph"></span></label>
         </div>
-      </div>
     </div>
+
     <h1>Add Candidate</h1>
   </div>
-</div>
 
-  <div class="modal fade"><div class="modal-dialog"></div></div>
   <div id="candidate-form-container" class="container">
     <div class="row">
       <div class="col-md-12">
         <form role="form" class="text-left">
           <div class="form-group">
             <label class="control-label">Name:</label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" ng-model="postCandidate.name">
           </div>
-          <div class="form-group has-feedback">
-            <label class="control-label" for="exampleInputEmail1">Email Address:</label>
-            <input class="form-control" id="exampleInputEmail1" type="email">
-          </div>
+
           <div class="form-group">
-            <label class="control-label" for="exampleInputPassword1">Phone Number:</label>
-            <input class="form-control" id="exampleInputPassword1" type="text">
+            <label class="control-label" for="email">Email Address:</label>
+            <input class="form-control" id="email" type="email" ng-model="postCandidate.email">
           </div>
+
+          <div class="form-group">
+            <label class="control-label" for="phoneNumber">Phone Number:</label>
+            <input class="form-control" id="phoneNumber" type="text" ng-model="postCandidate.phoneNumber">
+          </div>
+
           <div class="form-group">
             <label class="control-label">Graduation Date:</label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" ng-model="postCandidate.graduationDate">
           </div>
+
           <div class="form-group">
-            <label class="control-label" for="exampleInputEmail1">Needs Sponsorship?</label>
+            <label class="control-label" for="needSponsorship">Needs Sponsorship?</label>
             <div class="radio">
               <label class="radio-inline">
-                <input type="radio" name="sponsorship" value="option1">Yes</label>
+              <input type="radio" name="needSponsorship" ng-model="postCandidate.needSponsorship" value="yes">Yes</label>
               <label class="radio-inline">
-                <input type="radio" name="sponsorship" value="option2">No</label>
+              <input type="radio" name="needSponsorship" ng-model="postCandidate.needSponsorship" value="no">No</label>
             </div>
           </div>
+
           <div class="form-group">
-            <label class="control-label" for="exampleInputEmail1">Seeking Internship or Full-Time?</label>
+            <label class="control-label" for="internOrFull">Seeking Internship or Full-Time?</label>
             <div class="radio">
               <label class="radio-inline">
-                <input type="radio" name="internOrFull" value="option1">Internship</label>
+                <input type="radio" name="internOrFull" ng-model="postCandidate.internOrFull" value="internship">Internship</label>
               <label class="radio-inline">
-                <input type="radio" name="internOrFull" value="option2">Full-Time</label>
+                <input type="radio" name="internOrFull" ng-model="postCandidate.internOrFull" value="full-time">Full-Time</label>
             </div>
           </div>
+
           <div class="form-group">
             <label class="control-label">Areas of Interest (i.e. front end, back end, iOS, Android, etc.)</label>
-            <textarea class="form-control"></textarea>
+            <textarea ng-model="postCandidate.areaOfInterest" class="form-control"></textarea>
           </div>
+
           <div class="form-group">
             <label class="control-label">Preferred Language(s) (i.e. Java, C, C++, etc.)</label>
-            <textarea class="form-control"></textarea>
+            <textarea ng-model="postCandidate.preferredLanguages" class="form-control"></textarea>
           </div>
+
           <div class="form-group">
-            <label class="control-label" for="exampleInputEmail1">Final Evaluation:</label>
+            <label class="control-label" for="finalEvaluation">Final Evaluation:</label>
             <div class="radio">
-              <label class="radio-inline" style="">
-                <input type="radio" name="finalEval"  value="option1">Invite to 1st Round Interviews</label>
               <label class="radio-inline">
-                <input type="radio" name="finalEval"  value="option2">Tentative</label>
+                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="invite">Invite to 1st Round Interviews</label>
               <label class="radio-inline">
-                <input type="radio" name="finalEval"  value="option3">Turndown</label>
+                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="tentative">Tentative</label>
+              <label class="radio-inline">
+                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="turndown">Turndown</label>
             </div>
           </div>
-          <div class="form-group has-feedback">
+
+          <div class="form-group">
             <label class="control-label">Screener Initials</label>
             <input class="form-control" type="text">
           </div>
-          <div id="thumbnail-preview-area">
-            <!-- Blank picture to not show anything in image tag when src is empty -->
-            <img id="resume-preview-image" width="0" height="0" alt="" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="/>
+
+          <div class="text-center">
+            <div id="thumbnail-preview-area" ng-if="pictureAdded">
+              <img id="resume-preview-image" src="#"/>
+            </div>
+
+            <button type="submit" ng-class="submitBtnClasses" data-ng-click="submit()">{{buttonText}}</button>
+            <button type="submit" class="btn btn-warning">Cancel</button>
           </div>
-          <button type="submit" class="btn btn-success">Submit</button>
-          <button type="submit" class="btn btn-warning">Cancel</button>
         </form>
       </div>
     </div>
   </div>
+</div>

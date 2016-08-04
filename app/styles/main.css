@@ -1,7 +1,7 @@
 /* main.html */
 .role-btn {
-  width: 60%;
   height: 150px;
+  width: 60%;
 }
 
 .role-glyph {
@@ -11,7 +11,7 @@
 /* candidateForm.html */
 
 #candidate-form-container {
-  margin-bottom:5%;
+  margin-bottom: 5%;
 }
 
 #thumbnail-preview-area {
@@ -19,12 +19,13 @@
 }
 
 .camera-capture {
-  margin: auto;
+  margin: -10% auto;
   width: auto;
 }
 
 .camera-glyph {
   font-size: 3em;
+  text-align: center;
 }
 
 .resumeImageLabel {
@@ -58,7 +59,6 @@
     outline: 1px dotted #000;
     outline: -webkit-focus-ring-color auto 5px;
 }
-
 
 .resumeImage + label {
     color: #f1e5e6;

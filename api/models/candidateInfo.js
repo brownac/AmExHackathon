@@ -13,7 +13,25 @@ module.exports = function(sequelize, DataTypes) {
     email: {
       type: DataTypes.STRING
     },
-    major: {
+    phoneNumber: {
+      type: DataTypes.STRING
+    },
+    graduationDate: {
+      type: DataTypes.STRING
+    },
+    needSponsorship: {
+      type: DataTypes.STRING
+    },
+    internOrFull: {
+      type: DataTypes.STRING
+    },
+    areaOfInterest: {
+      type: DataTypes.STRING
+    },
+    preferredLanguages: {
+      type: DataTypes.STRING
+    },
+    finalEvaluation: {
       type: DataTypes.STRING
     }
   }, {

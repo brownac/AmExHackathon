@@ -8,43 +8,28 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('CandidateFormCtrl', function ($scope, $q, $timeout, candidateService) {
-    $scope.init = function() {
-      $scope.pictureAdded = false;
-      $scope.buttonText = "Submit";
-      $scope.submitBtnClasses = "btn btn-primary";
-    };
+  .controller('InterviewerFormCtrl', function ($scope, $q, interviewerService) {
+      $scope.init = function() {
+        $q.all([interviewerService.getValues()]).then(values => {
+            $scope.testRows = values[0];
+        });
+      };
 
-    $scope.submit = function() {
-      $q.all([candidateService.postValue($scope.postCandidate)]).then(values => {});
-
-      // show success by changing submit button class and value
-      $scope.postCandidate = {};
-      $scope.buttonText = "Successfully Submitted";
-      $scope.submitBtnClasses = "btn btn-success";
-
-      $timeout(() => {
-        // re-initialize the scope
-        $scope.init();
-      }, 1500);
-    }
-
-    $scope.init();
+      $scope.init();
   });
 
 angular.module('amExHackathonApp')
-  .service('candidateService', function($http, $q) {
+  .service('interviewerService', function($http, $q) {
     // Return public API
     return ({
-      postValue: postValue
+      getValues: getValues
     });
 
-    // post to db
-    function postValue(data) {
+    // get from db
+    function getValues() {
       var request = $http({
-          method: "post",
-          url: "/api/insert",
-          data: data
+          method: "get",
+          url: "http://localhost:4500/api/getCandidateInfo"
       });
       return (request.then(handleSuccess, handleError));
     }

@@ -34,7 +34,40 @@ module.exports = function (grunt) {
     // Run the express backend
     nodemon: {
       dev: {
-        script: 'api/server.js'
+        script: 'api/server.js',
+        options: {
+          // pass dev arg
+          args: ['dev'],
+
+          callback: function(nodemon) {
+            nodemon.on('log', function (event) {
+              console.log(event.colour);
+            });
+
+            // opens browser on initial server start 
+            nodemon.on('config:update', function () {
+              // Delay before server listens on port 
+              setTimeout(function() {
+                require('open')('http://localhost:4500');
+              }, 250);
+            });
+
+            // refreshes browser when server reboots 
+            nodemon.on('restart', function () {
+              // Delay before server listens on port 
+              setTimeout(function() {
+                require('fs').writeFileSync('.rebooted', 'rebooted');
+              }, 1000);
+            });
+          }
+        }
+      },
+      dist: {
+        script: 'api/server.js',
+        options: {
+          // pass the dist arg
+          args: ['dist']
+        }
       }
     },
 
@@ -48,7 +81,7 @@ module.exports = function (grunt) {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all', 'newer:jscs:all'],
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: true
         }
       },
       jsTest: {
@@ -64,7 +97,7 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: true
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
@@ -74,12 +107,12 @@ module.exports = function (grunt) {
       }
     },
 
-    // The actual grunt server settings
+    // The actual grunt server for tests only (I believe)
     connect: {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
       livereload: {
@@ -87,9 +120,6 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              // proxy fronted requests to /api to the backend's server
-              require('grunt-connect-proxy/lib/utils').proxyRequest,
-
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -191,17 +221,6 @@ module.exports = function (grunt) {
         options: {
           map: true
         },
-
-        // proxy to the backend express server
-        proxies: [
-          {
-            context: '/api',
-            host: 'localhost',
-            port: 4500,
-            https: false,
-            xforward: false
-          }
-        ],
 
         files: [{
           expand: true,
@@ -429,8 +448,7 @@ module.exports = function (grunt) {
       server: {
         tasks: [
           'copy:styles',
-          'nodemon', // the express backend (api) needs to run as well
-          'connect:livereload:keepalive',
+          'nodemon:dev', // the express backend (api) needs to run as well
           'watch'
         ],
         options: {
@@ -456,9 +474,6 @@ module.exports = function (grunt) {
       }
     }
   });
-
-  // proxy the frontend to backend during dev
-  grunt.loadNpmTasks('grunt-connect-proxy');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -510,5 +525,12 @@ module.exports = function (grunt) {
     'newer:jscs',
     'test',
     'build'
+  ]);
+
+  // run for production -- use this for testing dist probably,
+  // since production doesn't really need grunt overhead
+  grunt.registerTask('runprod', [
+    'build',
+    'nodemon:dist'
   ]);
 };
