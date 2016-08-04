@@ -1,6 +1,10 @@
 var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
+var fs = require('fs');
+var path = require('path');
+
+const appDir = path.join(__dirname, '../../app');
 
 // Insert a candidate
 router.post('/', function(req, res) {
@@ -20,7 +24,26 @@ router.post('/', function(req, res) {
   })
   // persist an instance
   candidate.save().then(() => {
-    res.json(candidate);
+
+    // a slash goes before this in the database uri
+    const imgRelativePath = `uploads/${candidate.id}.resume.png`;
+    const imgAbsPath = path.join(appDir, imgRelativePath);
+
+    let base64Png = req.body.resumeBase64.split(',')[1];
+
+    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
+      if (err) {
+        res.status(500).json({
+          errors: [
+            "Could not save image to disk! Node.js threw an error",
+            err
+          ]
+        });
+      }
+      else {
+        res.json(candidate);
+      }
+    });
   });
 });
 
