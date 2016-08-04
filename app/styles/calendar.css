@@ -4,7 +4,7 @@
 }
 
 .calChangeView{
-  float: right;
+  /*float: right;*/
   padding-right: 2%;
 }
 
@@ -32,7 +32,7 @@ span[data-cal-date]{
 }
 
 #ui-datepicker-div{
-  z-index: 1000 !important;
+  z-index: 9999 !important;
 }
 
 input.input-group-addon {
@@ -41,4 +41,15 @@ input.input-group-addon {
 
 span.input-group-addon{
   cursor: pointer;
+}
+
+.scheduler {
+  float: right;
+  background-color: #ffa500;
+  margin-right: 8%;
+  margin-bottom: 5%;
+}
+
+.bootstrap-timepicker-widget{
+  z-index: 9999 !important;
 }
