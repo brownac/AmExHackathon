@@ -20,9 +20,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: 'views/home.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'Home'
       })
       .when('/screener/candidateForm', {
         templateUrl: 'views/candidateForm.html',
