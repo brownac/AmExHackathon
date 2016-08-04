@@ -85,7 +85,7 @@
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #F1F1F1;
-    background: #fff;
+    background: #007BAA;
 }
 
 .form-control:focus {
@@ -166,4 +166,3 @@ select {
 #candidate-list a {
     margin-left: -5px;
 }
-
