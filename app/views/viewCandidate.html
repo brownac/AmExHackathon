@@ -1,0 +1,58 @@
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <div ng-include src="'views/sidebar.html'"></div>
+
+  <!-- Candidate info -->
+  <div id="page-content-wrapper">
+    <div class="page-header" data>
+      <h1>{{candidate.name}}</h1>
+    </div>
+
+    <div class="container-fluid">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Information</a></li>
+        <li role="presentation"><a href="#">Notes</a></li>
+      </ul>
+
+      <div class="info-tab-content" ng-model="selectedCandidate">
+        <div class="info-group">
+          <label>Email Address:</label> {{candidate.email}}
+        </div>
+        <div class="info-group">
+          <label>Phone Number:</label> {{candidate.phoneNumber}}
+        </div>
+        <div class="info-group">
+          <label>School:</label> {{candidate.school}}
+        </div>
+        <div class="info-group">
+          <label>Major:</label> {{candidate.major}}
+        </div>
+        <div class="info-group">
+          <label>Graduation Date:</label> {{candidate.graduationDate}}
+        </div>
+        <div class="info-group">
+          <label>Sponsorship:</label> {{candidate.needSponsorship}}
+        </div>
+        <div class="info-group">
+          <label>Internship/Full-Time:</label> {{candidate.internOrFull}}
+        </div>
+        <div class="info-group">
+          <label>Areas of Interest:</label> {{candidate.areaOfInterest}}
+        </div>
+        <div class="info-group">
+          <label>Preferred Languages:</label> {{candidate.preferredLanguages}}
+        </div>
+        <div class="info-group">
+          <label>Status:</label> {{candidate.finalEvaluation}}
+        </div>
+        <div class="info-group">
+          <label>Screener:</label>
+        </div>
+        <div class="info-group">
+          <label>Interviewers:</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

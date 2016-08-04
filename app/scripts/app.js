@@ -15,19 +15,40 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'mwl.calendar'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: 'views/home.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'Home'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/screener/candidateForm', {
+        templateUrl: 'views/candidateForm.html',
+        controller: 'CandidateFormCtrl',
+        controllerAs: 'candidateForm'
+      })
+      .when('/recruiter/recruiterForm', {
+        templateUrl: 'views/recruiterForm.html',
+        controller: 'RecruiterFormCtrl',
+        controllerAs: 'recruiterForm'
+      })
+      .when('/interviewer/interviewerForm', {
+        templateUrl: 'views/interviewerForm.html',
+        controller: 'InterviewerFormCtrl',
+        controllerAs: 'InterviewerForm'
+      })
+      .when('/viewCandidates', {
+        templateUrl: 'views/viewCandidates.html',
+        controller: 'ViewCandidatesCtrl',
+        controllerAs: 'ViewCandidates'
+      })
+      .when('/viewCandidate/:candidateId', {
+        templateUrl: 'views/viewCandidate.html',
+        controller: 'ViewCandidateCtrl',
+        controllerAs: 'ViewCandidate'
       })
       .otherwise({
         redirectTo: '/'

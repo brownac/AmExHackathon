@@ -22,17 +22,8 @@ npm install
 
 ## Running / Development
 
-Frontend
 ```sh
-cd AmExHackathon-frontend
-grunt serve
-```
-
-Backend
-```sh
-cd api
-npm install
-nodemon server.js
+$ grunt serve
 ```
 
 ### Code Generators

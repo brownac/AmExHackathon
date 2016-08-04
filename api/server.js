@@ -2,16 +2,21 @@
 var express = require('express');
 var expressLogging = require('express-logging');
 var logger = require('logops');
+var models = require("./models");
+var bodyParser = require('body-parser');
 
 var path = require('path');
 var process = require('process');
 
-var models = require("./models");
 var routes = require('./routes/index');
 
 
 var app = express();
 
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+// mount middlewares
 let dev = false;
 if (process.argv[2] === 'dev') {
   dev = true;
@@ -22,7 +27,7 @@ if (process.argv[2] === 'dev') {
 // logging
 app.use(expressLogging(logger));
 
-// static assets 
+// static assets
 // for angular app and bower deps if development mode
 if (dev) {
   app.use(express.static(path.join(__dirname, '../app')));
