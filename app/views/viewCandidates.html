@@ -1,16 +1,57 @@
-<div class="col-md-10 col-md-offset-1">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th> Number </th>
-        <th> Data </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr data-ng-repeat="row in testRows">
-        <td> <a href="#/viewCandidate/{{row.id}}"> {{ row.id }} </a></td>
-        <td> {{ row.name }} </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Candidate List
+                    </a>
+                </li>
+                <li>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
+                    <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>
+                  </div>
+                </li>
+                <ul id="candidate-list">
+                  <li>
+                      <a href="#">Adam Coverstone</a>
+                  </li>
+                  <li>
+                      <a href="#">Austin Brown</a>
+                  </li>
+                  <li>
+                      <a href="#">Eric Suarez</a>
+                  </li>
+                  <li>
+                      <a href="#">Gonzalo Ziadi</a>
+                  </li>
+                </ul>
+            </ul>
+        </div>
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-10 col-md-offset-1">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th> Number </th>
+                          <th> Data </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr data-ng-repeat="row in testRows">
+                          <td> <a href="#/viewCandidate/{{row.id}}"> {{ row.id }} </a></td>
+                          <td> {{ row.name }} </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
