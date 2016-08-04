@@ -28,34 +28,34 @@
   <div id="candidate-form-container" class="container">
     <div class="row">
       <div class="col-md-12">
-        <form role="form" class="text-left">
+        <form name="candidateForm" class="text-left">
           <div class="form-group">
             <label class="control-label">Name:</label>
-            <input class="form-control" type="text" ng-model="postCandidate.name">
+            <input class="form-control" type="text" ng-model="postCandidate.name" required>
           </div>
 
           <div class="form-group">
             <label class="control-label" for="email">Email Address:</label>
-            <input class="form-control" id="email" type="email" ng-model="postCandidate.email">
+            <input class="form-control" id="email" type="email" ng-model="postCandidate.email" required>
           </div>
 
           <div class="form-group">
             <label class="control-label" for="phoneNumber">Phone Number:</label>
-            <input class="form-control" id="phoneNumber" type="text" ng-model="postCandidate.phoneNumber">
+            <input class="form-control" id="phoneNumber" type="tel" ng-model="postCandidate.phoneNumber" required>
           </div>
 
           <div class="form-group">
             <label class="control-label">Graduation Date:</label>
-            <input class="form-control" type="text" ng-model="postCandidate.graduationDate">
+            <input class="form-control" type="text" ng-model="postCandidate.graduationDate" required>
           </div>
 
           <div class="form-group">
             <label class="control-label" for="needSponsorship">Needs Sponsorship?</label>
             <div class="radio">
               <label class="radio-inline">
-              <input type="radio" name="needSponsorship" ng-model="postCandidate.needSponsorship" value="yes">Yes</label>
+              <input type="radio" name="needSponsorship" ng-model="postCandidate.needSponsorship" value="yes" required>Yes</label>
               <label class="radio-inline">
-              <input type="radio" name="needSponsorship" ng-model="postCandidate.needSponsorship" value="no">No</label>
+              <input type="radio" name="needSponsorship" ng-model="postCandidate.needSponsorship" value="no" required>No</label>
             </div>
           </div>
 
@@ -63,37 +63,37 @@
             <label class="control-label" for="internOrFull">Seeking Internship or Full-Time?</label>
             <div class="radio">
               <label class="radio-inline">
-                <input type="radio" name="internOrFull" ng-model="postCandidate.internOrFull" value="internship">Internship</label>
+                <input type="radio" name="internOrFull" ng-model="postCandidate.internOrFull" value="internship" required>Internship</label>
               <label class="radio-inline">
-                <input type="radio" name="internOrFull" ng-model="postCandidate.internOrFull" value="full-time">Full-Time</label>
+                <input type="radio" name="internOrFull" ng-model="postCandidate.internOrFull" value="full-time" required>Full-Time</label>
             </div>
           </div>
 
           <div class="form-group">
             <label class="control-label">Areas of Interest (i.e. front end, back end, iOS, Android, etc.)</label>
-            <textarea ng-model="postCandidate.areaOfInterest" class="form-control"></textarea>
+            <textarea ng-model="postCandidate.areaOfInterest" class="form-control" required></textarea>
           </div>
 
           <div class="form-group">
             <label class="control-label">Preferred Language(s) (i.e. Java, C, C++, etc.)</label>
-            <textarea ng-model="postCandidate.preferredLanguages" class="form-control"></textarea>
+            <textarea ng-model="postCandidate.preferredLanguages" class="form-control" required></textarea>
           </div>
 
           <div class="form-group">
             <label class="control-label" for="finalEvaluation">Final Evaluation:</label>
             <div class="radio">
               <label class="radio-inline">
-                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="invite">Invite to 1st Round Interviews</label>
+                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="invite" required>Invite to 1st Round Interviews</label>
               <label class="radio-inline">
-                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="tentative">Tentative</label>
+                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="tentative" required>Tentative</label>
               <label class="radio-inline">
-                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="turndown">Turndown</label>
+                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="turndown" required>Turndown</label>
             </div>
           </div>
 
           <div class="form-group">
             <label class="control-label">Screener Initials</label>
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" required>
           </div>
 
           <div class="text-center">
@@ -101,7 +101,7 @@
               <img id="resume-preview-image" src="#"/>
             </div>
 
-            <button type="submit" ng-class="submitBtnClasses" data-ng-click="submit()">{{buttonText}}</button>
+            <button type="submit" ng-class="submitBtnClasses" data-ng-click="submit()" ng-disabled="candidateForm.$invalid">{{buttonText}}</button>
             <button type="submit" class="btn btn-warning">Cancel</button>
           </div>
         </form>

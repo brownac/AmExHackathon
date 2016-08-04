@@ -39,10 +39,15 @@ angular
         controller: 'InterviewerFormCtrl',
         controllerAs: 'InterviewerForm'
       })
-      .when('/interviewer/viewCandidates', {
-        templateUrl: 'views/candidates.html',
+      .when('/viewCandidates', {
+        templateUrl: 'views/viewCandidates.html',
         controller: 'ViewCandidatesCtrl',
-        controllerAs: 'ViewCandidatesForm'
+        controllerAs: 'ViewCandidates'
+      })
+      .when('/viewCandidate/:candidateId', {
+        templateUrl: 'views/viewCandidate.html',
+        controller: 'viewCandidateCtrl',
+        controllerAs: 'viewCandidate'
       })
       .otherwise({
         redirectTo: '/'
