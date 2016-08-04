@@ -5,3 +5,4 @@
 /bower_components
 *.sqlite
 .rebooted
+/api/images/*
