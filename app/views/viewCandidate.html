@@ -1,18 +1,43 @@
-<div class="col-md-10 col-md-offset-1">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th> Name </th>
-        <th> Email </th>
-        <th> Graduation Date </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr data-ng-repeat="row in testRows">
-        <td> {{ row.name }} </td>
-        <td> {{ row.email }} </td>
-        <td> {{ row.graduationDate }} </td>
-      </tr>
-    </tbody>
-  </table>
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="#">
+                Candidate List
+            </a>
+        </li>
+        <li>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
+            <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>
+          </div>
+        </li>
+        <ul id="candidate-list" data-ng-repeat="row in candidates">
+          <li>
+              <a <a href="#/viewCandidate/{{row.id}}">{{ row.name }}</a>
+          </li>
+        </ul>
+    </ul>
+  </div>
+Hello: {{ candidate.name }}
+  <!-- <div class="col-md-10 col-md-offset-1">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th> Name </th>
+          <th> Email </th>
+          <th> Graduation Date </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> {{ candidate.name }} </td>
+          <td> {{ candidate.email }} </td>
+          <td> {{ candidate.graduationDate }} </td>
+        </tr>
+      </tbody>
+    </table>
+  </div> -->
 </div>

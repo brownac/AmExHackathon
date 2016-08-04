@@ -9,27 +9,27 @@
  */
 angular.module('amExHackathonApp')
   .controller('CandidateFormCtrl', function ($scope, $q, $timeout, candidateService) {
-    $scope.init = function() {
+    const init = function() {
       $scope.pictureAdded = false;
       $scope.buttonText = "Submit";
       $scope.submitBtnClasses = "btn btn-primary";
     };
 
     $scope.submit = function() {
-      $q.all([candidateService.postValue($scope.postCandidate)]).then(values => {});
+      $q.all([candidateService.postValue($scope.postCandidate)]).then(values => {
+        // show success by changing submit button class and value
+        $scope.postCandidate = {};
+        $scope.buttonText = "Successfully Submitted";
+        $scope.submitBtnClasses = "btn btn-success";
 
-      // show success by changing submit button class and value
-      $scope.postCandidate = {};
-      $scope.buttonText = "Successfully Submitted";
-      $scope.submitBtnClasses = "btn btn-success";
-
-      $timeout(() => {
-        // re-initialize the scope
-        $scope.init();
-      }, 1500);
+        $timeout(() => {
+          // re-initialize the scope
+          init();
+        }, 1500);
+      });
     }
 
-    $scope.init();
+    init();
   });
 
 angular.module('amExHackathonApp')

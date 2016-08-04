@@ -23,14 +23,16 @@ router.post('/insert', function(req, res) {
     finalEvaluation: req.body.finalEvaluation
   })
   // persist an instance
-  candidate.save();
+  candidate.save().then(() => {
+    res.json(candidate);
+  });
 });
 
 // Get all candidates
 router.get('/getCandidateInfo', function(req, res) {
   models.candidateInfo.findAll({})
   .then(function(result) {
-    res.send(result);
+    res.json(result);
   });
 });
 
@@ -43,7 +45,7 @@ router.get('/getCandidateInfo/:id', function(req, res) {
       id: id
     }
   }).then(function(result) {
-    res.send(result);
+    res.json(result);
   });
 });
 
