@@ -72,8 +72,8 @@
 
 /* Recruiter form styles */
 #recruiter-form-container {
-  position: absolute;
-  left: 0px;
+  /*position: absolute;
+  left: 0px;*/
 }
 
 #candidate-queue {
