@@ -9,5 +9,5 @@
  */
 angular.module('amExHackathonApp')
   .factory('candidateService', function ($resource) {
-    return $resource('/api/candidateInfo');
+    return $resource('/api/candidateInfo/:id');
   });
