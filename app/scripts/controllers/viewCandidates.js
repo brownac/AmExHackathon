@@ -11,7 +11,7 @@ angular.module('amExHackathonApp')
   .controller('ViewCandidatesCtrl', function ($scope, $q, viewCandidatesService) {
       $scope.init = function() {
         $q.all([viewCandidatesService.getCandidates()]).then(values => {
-            $scope.testRows = values[0];
+            $scope.candidates = values[0];
         });
       };
 

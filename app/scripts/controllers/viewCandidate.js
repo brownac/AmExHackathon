@@ -8,24 +8,24 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('ViewCandidateCtrl', function ($scope, $q, $routeParams, viewCandidatesService) {
+  .controller('ViewCandidateCtrl', function ($scope, $q, $routeParams, $timeout, viewCandidateService) {
       var candidateId = $routeParams.candidateId;
 
       $scope.init = function() {
-        $q.all([viewCandidatesService.getCandidates()]).then(values => {
+        $q.all([viewCandidateService.getCandidateById(candidateId)]).then(values => {
+            $scope.candidate = values[0];
+        });
+
+        $q.all([viewCandidateService.getCandidates()]).then(values => {
             $scope.candidates = values[0];
         });
-        console.log(candidateId);
-        // $q.all([viewCandidatesService.getCandidateById(candidateId)]).then(values => {
-        //     $scope.candidate = values[0];
-        // });
       };
 
       $scope.init();
   });
 
 angular.module('amExHackathonApp')
-  .service('viewCandidatesService', ['$http', '$q', function($http, $q) {
+  .service('viewCandidateService', ['$http', '$q', function($http, $q) {
     // Return public API
     return ({
       getCandidates: getCandidates,

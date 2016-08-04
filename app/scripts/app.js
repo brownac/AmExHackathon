@@ -47,7 +47,7 @@ angular
       .when('/viewCandidate/:candidateId', {
         templateUrl: 'views/viewCandidate.html',
         controller: 'ViewCandidateCtrl',
-        controllerAs: 'viewCandidate'
+        controllerAs: 'ViewCandidate'
       })
       .otherwise({
         redirectTo: '/'
