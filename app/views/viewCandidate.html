@@ -2,14 +2,16 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th> Number </th>
-        <th> Data </th>
+        <th> Name </th>
+        <th> Email </th>
+        <th> Graduation Date </th>
       </tr>
     </thead>
     <tbody>
       <tr data-ng-repeat="row in testRows">
-        <td> {{ row.id }} </td>
         <td> {{ row.name }} </td>
+        <td> {{ row.email }} </td>
+        <td> {{ row.graduationDate }} </td>
       </tr>
     </tbody>
   </table>

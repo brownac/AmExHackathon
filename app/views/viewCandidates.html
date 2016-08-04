@@ -2,14 +2,12 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th> Number </th>
-        <th> Data </th>
+        <th> Name </th>
       </tr>
     </thead>
     <tbody>
       <tr data-ng-repeat="row in testRows">
-        <td> <a href="#/viewCandidate/{{row.id}}"> {{ row.id }} </a></td>
-        <td> {{ row.name }} </td>
+        <td><a href="#/viewCandidate/{{row.id}}"> {{ row.name }} </a></td>
       </tr>
     </tbody>
   </table>
