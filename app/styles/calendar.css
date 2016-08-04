@@ -11,3 +11,34 @@
 span[data-cal-date]{
   cursor: pointer;
 }
+
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+.right-addon .glyphicon { 
+  right: 0px;
+}
+
+.right-addon input { 
+  padding-right: 30px; 
+}
+
+#ui-datepicker-div{
+  z-index: 1000 !important;
+}
+
+input.input-group-addon {
+  background-color: white;
+}
+
+span.input-group-addon{
+  cursor: pointer;
+}

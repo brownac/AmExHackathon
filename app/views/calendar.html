@@ -1,52 +1,60 @@
 <div>
-    <div class = "container">
-        <h2 class="text-center">{{calendarTitle}}</h2>
-        <div class = "col-md-6 calChangeDate"> 
-            <button
-              class="btn btn-primary"
-              mwl-date-modifier
-              date="calendarDate"
-              decrement="calendarView">
-              Previous
-            </button>
-
-            <button
-              class="btn btn-default"
-              mwl-date-modifier
-              date="calendarDate"
-              set-to-today>
-              Today
-            </button>
-
-            <button
-              class="btn btn-primary"
-              mwl-date-modifier
-              date="calendarDate"
-              increment="calendarView">
-              Next
-            </button> 
-        </div> 
-        <div class="btn-group calChangeView">
-            <label class="btn btn-primary" ng-click="changeView('year')">Year</label>
-            <label class="btn btn-primary" ng-click="changeView('month')">Month</label>
-            <label class="btn btn-primary" ng-click="changeView('week')">Week</label>
-            <label class="btn btn-primary" ng-click="changeView('day')">Day</label>
-        </div>
+  <div class = "container">
+    <div class="inner-addon right-addon" id="calendarSelectArrow">
+      <i class="glyphicon glyphicon-calendar"></i>   
+      <input type="text" class="form-control" id ="datepicker">
     </div>
-    <div>
-      <mwl-calendar
-        view="calendarView"
-        view-date="calendarDate"
-        events="events"
-        view-title="calendarTitle"
-        on-event-click="eventClicked(calendarEvent)"
-        on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-        edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
-        delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-        on-edit-event-click="eventEdited(calendarEvent)"
-        on-delete-event-click="eventDeleted(calendarEvent)"
-        on-timespan-click="calendarModal(calendarDate)"
-        cell-is-open="true">
-      </mwl-calendar>
+    <div class="input-group bootstrap-timepicker timepicker">
+      <input id="timepicker1" type="text" class="form-control input-small input-group-addon">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+    </div>
+    <h2 class="text-center">{{calendarTitle}}</h2>
+    <div class = "col-md-6 calChangeDate"> 
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="calendarDate"
+          decrement="calendarView">
+          Previous
+        </button>
+
+        <button
+          class="btn btn-default"
+          mwl-date-modifier
+          date="calendarDate"
+          set-to-today>
+          Today
+        </button>
+
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="calendarDate"
+          increment="calendarView">
+          Next
+        </button> 
+    </div> 
+    <div class="btn-group calChangeView">
+      <label class="btn btn-primary" ng-click="changeView('year')">Year</label>
+      <label class="btn btn-primary" ng-click="changeView('month')">Month</label>
+      <label class="btn btn-primary" ng-click="changeView('week')">Week</label>
+      <label class="btn btn-primary" ng-click="changeView('day')">Day</label>
+    </div>
+  </div>
+  <div>
+    <mwl-calendar
+      view="calendarView"
+      view-date="calendarDate"
+      events="events"
+      view-title="calendarTitle"
+      on-event-click="eventClicked(calendarEvent)"
+      on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+      edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+      delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+      on-edit-event-click="eventEdited(calendarEvent)"
+      on-delete-event-click="eventDeleted(calendarEvent)"
+      on-timespan-click="calendarModal(calendarDate)"
+      cell-is-open="true">
+    </mwl-calendar>
   </div>
 </div>

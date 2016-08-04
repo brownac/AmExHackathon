@@ -13,6 +13,27 @@ angular.module('amExHackathonApp')
   	var calDate = new Date();
   	$scope.calendarDate = calDate;
   	$scope.calendarTitle = calDate.getMonth() + " " + calDate.getFullYear();
+  	//$('#datetimepicker1').datepicker();
+  	$('#datepicker').datepicker({
+    	todayHighlight: true
+	});
+	$('#calendarSelectArrow').click(function(){
+		setTimeout(function(){
+			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
+        	document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
+			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className= "glyphicon glyphicon-chevron-left select-arrow";
+			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
+        },200);
+	});
+	$('.ui-corner-all').click(function(){
+		setTimeout(function(){
+			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
+        	document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
+			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className= "glyphicon glyphicon-chevron-left select-arrow";
+			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
+        },200);
+	});
+	$('#timepicker1').timepicker();
   	$scope.changeView = function(newView){
   		$scope.calendarView = newView;
   	};
