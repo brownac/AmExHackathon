@@ -34,12 +34,17 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
   var id = req.params.id;
 
-  models.candidateInfo.findAll({
-    where: {
-      id: id
+  models.candidateInfo.findById(id).then(function(result) {
+    if (result !== null) {
+      res.json(result);
     }
-  }).then(function(result) {
-    res.json(result);
+    else {
+      res.status(404).json({
+        errors: [
+          "Could not find candidate with id " + id
+        ]
+      });
+    }
   });
 });
 
