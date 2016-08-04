@@ -25,10 +25,20 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/screener/candidateForm', {
+        templateUrl: 'views/candidateForm.html',
+        controller: 'CandidateFormCtrl',
+        controllerAs: 'candidateForm'
+      })
+      .when('/recruiter/recruiterForm', {
+        templateUrl: 'views/recruiterForm.html',
+        controller: 'RecruiterFormCtrl',
+        controllerAs: 'recruiterForm'
+      })
+      .when('/interviewer/interviewerForm', {
+        templateUrl: 'views/interviewerForm.html',
+        controller: 'InterviewerFormCtrl',
+        controllerAs: 'IntervierForm'
       })
       .when('/calendar', {
         templateUrl: 'views/calendar.html',

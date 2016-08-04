@@ -1,0 +1,104 @@
+
+<script>
+  var pictureAdded = false;
+
+  function readImage(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#resume-preview-image')
+          .attr('src', e.target.result)
+          .width(300)
+          .height(400 );
+      };
+      pictureAdded = true;
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+
+<div class="text-center">
+  <div class="page-header">
+    <div class='btn-toolbar pull-right'>
+      <div class='btn-group'>
+        <div class="camera-capture">
+          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" onchange="readImage(this);">
+          <label for="resume" class="resumeImageLabel"><span class="glyphicon glyphicon-camera camera-glyph"></span></label>
+        </div>
+      </div>
+    </div>
+    <h1>Add Candidate</h1>
+  </div>
+</div>
+
+  <div class="modal fade"><div class="modal-dialog"></div></div>
+  <div id="candidate-form-container" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form role="form" class="text-left">
+          <div class="form-group">
+            <label class="control-label">Name:</label>
+            <input class="form-control" type="text">
+          </div>
+          <div class="form-group has-feedback">
+            <label class="control-label" for="exampleInputEmail1">Email Address:</label>
+            <input class="form-control" id="exampleInputEmail1" type="email">
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="exampleInputPassword1">Phone Number:</label>
+            <input class="form-control" id="exampleInputPassword1" type="text">
+          </div>
+          <div class="form-group">
+            <label class="control-label">Graduation Date:</label>
+            <input class="form-control" type="text">
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="exampleInputEmail1">Needs Sponsorship?</label>
+            <div class="radio">
+              <label class="radio-inline">
+                <input type="radio" name="sponsorship" value="option1">Yes</label>
+              <label class="radio-inline">
+                <input type="radio" name="sponsorship" value="option2">No</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="exampleInputEmail1">Seeking Internship or Full-Time?</label>
+            <div class="radio">
+              <label class="radio-inline">
+                <input type="radio" name="internOrFull" value="option1">Internship</label>
+              <label class="radio-inline">
+                <input type="radio" name="internOrFull" value="option2">Full-Time</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Areas of Interest (i.e. front end, back end, iOS, Android, etc.)</label>
+            <textarea class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="control-label">Preferred Language(s) (i.e. Java, C, C++, etc.)</label>
+            <textarea class="form-control"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="control-label" for="exampleInputEmail1">Final Evaluation:</label>
+            <div class="radio">
+              <label class="radio-inline" style="">
+                <input type="radio" name="finalEval"  value="option1">Invite to 1st Round Interviews</label>
+              <label class="radio-inline">
+                <input type="radio" name="finalEval"  value="option2">Tentative</label>
+              <label class="radio-inline">
+                <input type="radio" name="finalEval"  value="option3">Turndown</label>
+            </div>
+          </div>
+          <div class="form-group has-feedback">
+            <label class="control-label">Screener Initials</label>
+            <input class="form-control" type="text">
+          </div>
+          <div id="thumbnail-preview-area" ng-if="pictureAdded">
+            <img id="resume-preview-image" src="#"/>
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+          <button type="submit" class="btn btn-warning">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>

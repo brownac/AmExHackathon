@@ -1,0 +1,53 @@
+<div class="text-center">
+  <div class="page-header">
+    <h1>Recruiter Home</h1>
+  </div>
+</div>
+
+  <div class="modal fade"><div class="modal-dialog"></div></div>
+  <div id="recruiter-form-container" class="container">
+    <div class="row">
+      <div class="col-xs-6 col-md-3 bg-info" id="candidate-queue">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>
+                <center>
+                  <h4>
+                    Candidates to be Scheduled: {{candidateQueue.length}}
+                  </h4>
+                  <input type="search" ng-model="search" placeholder="search by name" aria-label="search candidates" class="form-control"/>
+                  <br>
+                </center>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="queue-animate-container animate-repeat">
+                  <div ng-repeat="candidate in candidateQueue | filter:search as results">
+                    <button type="button" class="btn btn-primary btn-lg btn-block candidate-queue-person">
+                      {{candidate.lastName}}, {{candidate.firstName}}
+                    </button>
+                  </div>
+                  <div ng-if="results.length == 0">
+                    <strong>No candidates found... Queue Empty</strong>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <br>
+        </table>
+      </div>
+      <div class="col-xs-12 col-md-8">
+        <h4>
+          <center>
+            Calendar Area
+          </center>
+        </h4>
+      </div>
+    </div>
+  </div>
+</div>
