@@ -42,11 +42,7 @@ router.get('/getCandidateInfo', function(req, res) {
 router.get('/getCandidateInfo/:id', function(req, res) {
   var id = req.params.id;
 
-  models.candidateInfo.findAll({
-    where: {
-      id: id
-    }
-  }).then(function(result) {
+  models.candidateInfo.findById(id).then(function(result) {
     res.json(result);
   });
 });
