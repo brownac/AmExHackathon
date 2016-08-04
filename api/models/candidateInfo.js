@@ -16,6 +16,12 @@ module.exports = function(sequelize, DataTypes) {
     phoneNumber: {
       type: DataTypes.STRING
     },
+    school: {
+      type: DataTypes.STRING
+    },
+    major: {
+      type: DataTypes.STRING
+    },
     graduationDate: {
       type: DataTypes.STRING
     },

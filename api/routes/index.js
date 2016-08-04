@@ -15,6 +15,8 @@ router.post('/insert', function(req, res) {
     name: req.body.name,
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
+    school: req.body.school,
+    major: req.body.major,
     graduationDate: req.body.graduationDate,
     needSponsorship: req.body.needSponsorship,
     internOrFull: req.body.internOrFull,
