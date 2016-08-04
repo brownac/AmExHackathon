@@ -8,11 +8,11 @@
       </li>
       <li>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
+          <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2" ng-model="searchText">
           <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>
         </div>
       </li>
-      <ul id="candidate-list" data-ng-repeat="row in candidates">
+      <ul id="candidate-list" data-ng-repeat="row in candidates | filter:searchText">
         <li>
             <a href="#/viewCandidate/{{row.id}}">{{ row.name }}</a>
         </li>
