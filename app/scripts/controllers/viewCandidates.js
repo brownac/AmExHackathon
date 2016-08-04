@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name amExHackathonApp.controller:CandidateFormCtrl
+ * @name amExHackathonApp.controller:ViewCandidatesCtrl
  * @description
- * # CandidateFormCtrl
+ * # ViewCandidatesCtrl
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
@@ -25,7 +25,7 @@ angular.module('amExHackathonApp')
       getCandidates: getCandidates
     });
 
-    // get from db
+    // Get all candidates
     function getCandidates() {
       var request = $http({
           method: "get",

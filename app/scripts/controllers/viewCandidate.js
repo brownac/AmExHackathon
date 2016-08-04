@@ -2,15 +2,17 @@
 
 /**
  * @ngdoc function
- * @name amExHackathonApp.controller:CandidateFormCtrl
+ * @name amExHackathonApp.controller: iewCandidateCtrl
  * @description
- * # CandidateFormCtrl
+ * # iewCandidateCtrl
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
   .controller('ViewCandidateCtrl', function ($scope, $q, $routeParams, $timeout, viewCandidateService) {
+      // Get the candidate id from the url
       var candidateId = $routeParams.candidateId;
 
+      // Populate candidates with a list of all the candidates and candidate with the candidate indicated by the id
       $scope.init = function() {
         $q.all([viewCandidateService.getCandidateById(candidateId)]).then(values => {
             $scope.candidate = values[0];
@@ -21,6 +23,7 @@ angular.module('amExHackathonApp')
         });
       };
 
+      // Make the call to init to get the candidate info
       $scope.init();
   });
 
@@ -32,7 +35,7 @@ angular.module('amExHackathonApp')
       getCandidateById: getCandidateById
     });
 
-    // get from db
+    // Get all candidates
     function getCandidates() {
       var request = $http({
           method: "get",
@@ -41,7 +44,7 @@ angular.module('amExHackathonApp')
       return (request.then(handleSuccess, handleError));
     }
 
-    // update record in db
+    // Get a candidate given an id
     function getCandidateById(id) {
       var request = $http({
           method: "get",
