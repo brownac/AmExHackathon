@@ -1,27 +1,9 @@
 <div id="wrapper">
 
   <!-- Sidebar -->
-  <div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-        <li class="sidebar-brand">
-            <a href="#">
-                Candidate List
-            </a>
-        </li>
-        <li>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2">
-            <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>
-          </div>
-        </li>
-        <ul id="candidate-list" data-ng-repeat="row in candidates">
-          <li>
-              <a <a href="#/viewCandidate/{{row.id}}">{{ row.name }}</a>
-          </li>
-        </ul>
-    </ul>
-  </div>
+  <div ng-include src="'views/sidebar.html'"></div>
 
+  <!-- Candidate info -->
   <div id="page-content-wrapper">
     <div class="page-header" data>
       <h1>{{candidate[0].name}}</h1>
@@ -68,7 +50,6 @@
           <label>Interviewers:</label>
         </div>
       </div>
-
     </div>
   </div>
 </div>
