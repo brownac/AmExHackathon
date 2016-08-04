@@ -1,7 +1,53 @@
-<div>
+<div ng-controller="CalendarCtrl">
     <div class = "container">
         <h2 class="text-center">{{calendarTitle}}</h2>
-        <div class = "col-md-6 calChangeDate"> 
+
+        <div class="row">
+        <div class= "col-md-offset-9">
+          <button ng-click="calendarModal()" class="btn pull-right scheduler">Schedule Interview</button>
+        </div>
+        </div>
+
+        <!--Modal Info-->
+        <div class="modal fade" tabindex="-1" role="dialog" id="schedulerModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Schedule Interview</h4>
+            </div>
+
+            <div class="modal-body">
+              <form ng-submit="addEvent()">
+              <div class="">
+                  <label for="myName">Candidate Name: </label><br>
+                  <input ng-model="candidateName" type="text" id="myName"/>
+                </div>
+              <div class="">
+                <label for="myDate">Select Interview Date: </label><br>
+                <input ng-model="interviewDate" type="date" id="myDate"/>
+              </div>
+              <div class="">
+                <label for="myTime">Select Interview Time: </label><br>
+                <input ng-model="interviewTime" type="time" id="myTime"/>
+              </div>
+              <div class="">
+                <label for="myLocation">Select Interview Location: </label><br>
+                <input ng-model="location" type="text" id="myLocation"/>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button id="submit1" type="submit" class="btn btn-primary" value="Submit">Set Up Interview</button>
+            </div>
+            </form>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
+
+        <div class="row">
+          <div class = "col-md-6 calChangeDate">
             <button
               class="btn btn-primary"
               mwl-date-modifier
@@ -24,9 +70,9 @@
               date="calendarDate"
               increment="calendarView">
               Next
-            </button> 
-        </div> 
-        <div class="btn-group calChangeView">
+            </button>
+          </div>
+        <div class="btn-group pull-right calChangeView">
             <label class="btn btn-primary" ng-click="changeView('year')">Year</label>
             <label class="btn btn-primary" ng-click="changeView('month')">Month</label>
             <label class="btn btn-primary" ng-click="changeView('week')">Week</label>
@@ -45,8 +91,8 @@
         delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
         on-edit-event-click="eventEdited(calendarEvent)"
         on-delete-event-click="eventDeleted(calendarEvent)"
-        on-timespan-click="calendarModal(calendarDate)"
         cell-is-open="true">
       </mwl-calendar>
   </div>
+
 </div>

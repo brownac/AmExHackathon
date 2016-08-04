@@ -4,10 +4,17 @@
 }
 
 .calChangeView{
-  float: right;
+  /*float: right;*/
   padding-right: 2%;
 }
 
 span[data-cal-date]{
   cursor: pointer;
+}
+
+.scheduler {
+  float: right;
+  background-color: #ffa500;
+  margin-right: 8%;
+  margin-bottom: 5%;
 }
