@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'mwl.calendar'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -38,6 +39,11 @@ angular
         templateUrl: 'views/interviewerForm.html',
         controller: 'InterviewerFormCtrl',
         controllerAs: 'IntervierForm'
+      })
+      .when('/calendar', {
+        templateUrl: 'views/calendar.html',
+        controller: 'CalendarCtrl',
+        controllerAs: 'calendar'
       })
       .otherwise({
         redirectTo: '/'
