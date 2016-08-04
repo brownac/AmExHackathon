@@ -167,3 +167,20 @@ select {
     margin-left: -5px;
 }
 
+.align-glyphicon {
+  float: right !important;
+  margin-right: 70px;
+  margin-top: 12.5px;
+}
+
+.yellow {
+  color: #8a6d3b;
+}
+
+.red {
+  color: #a94442;
+}
+
+.green {
+  color: #3c763d;
+}
