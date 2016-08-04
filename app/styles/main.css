@@ -9,7 +9,6 @@
 }
 
 /* candidateForm.html */
-
 #candidate-form-container {
   margin-bottom: 5%;
 }
@@ -69,4 +68,16 @@
 .resumeImage.has-focus + label,
 .resumeImage + label:hover {
     background-color: #722040;
+}
+
+/* viewCandidate.html */
+.info-tab-content {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.info-tab-content, h1 {
+  color: #005E8C;
+}
+.info-group > label {
+  color: #007BAA;
 }

@@ -22,24 +22,53 @@
     </ul>
   </div>
 
-  <div class="col-md-10 col-md-offset-1">
-    <div class="page-header">
-      <h1 class="text-center">{{ candidate[0].name }}</h1>
+  <div id="page-content-wrapper">
+    <div class="page-header" data>
+      <h1>{{candidate[0].name}}</h1>
     </div>
 
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th> Email </th>
-          <th> Graduation Date </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td> {{ candidate[0].email }} </td>
-          <td> {{ candidate[0].graduationDate }} </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="container-fluid">
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Information</a></li>
+        <li role="presentation"><a href="#">Notes</a></li>
+      </ul>
+
+      <div class="info-tab-content" ng-model="selectedCandidate">
+        <div class="info-group">
+          <label>Email Address:</label> {{candidate[0].email}}
+        </div>
+        <div class="info-group">
+          <label>Phone Number:</label> {{candidate[0].phoneNumber}}
+        </div>
+        <div class="info-group">
+          <label>Major:</label> {{candidate[0].major}}
+        </div>
+        <div class="info-group">
+          <label>Graduation Date:</label> {{candidate[0].graduationDate}}
+        </div>
+        <div class="info-group">
+          <label>Sponsorship:</label> {{candidate[0].needSponsorship}}
+        </div>
+        <div class="info-group">
+          <label>Internship/Full-Time:</label> {{candidate[0].internOrFull}}
+        </div>
+        <div class="info-group">
+          <label>Areas of Interest:</label> {{candidate[0].areaOfInterest}}
+        </div>
+        <div class="info-group">
+          <label>Preferred Languages:</label> {{candidate[0].preferredLanguages}}
+        </div>
+        <div class="info-group">
+          <label>Status:</label>
+        </div>
+        <div class="info-group">
+          <label>Screener:</label>
+        </div>
+        <div class="info-group">
+          <label>Interviewers:</label>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
