@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc function
- * @name amExHackathonApp.controller:RecruiterFormCtrl
+ * @name amExHackathonApp.controller:RecruiterHomeCtrl
  * @description
- * # RecruiterFormCtrl
+ * # RecruiterHomeCtrl
  * Controller of the amExHackathonApp
  */
 
 
-angular.module('amExHackathonApp').controller('RecruiterFormCtrl', function($scope) {
+angular.module('amExHackathonApp').controller('RecruiterHomeCtrl', function($scope) {
   $scope.candidateQueue = [
     {firstName:'John', lastName:'Doe', age:25, gender:'boy'},
     {firstName:'Jessie', lastName:'Adams', age:30, gender:'girl'},
