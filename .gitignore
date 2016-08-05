@@ -6,3 +6,4 @@
 *.sqlite
 .rebooted
 .DS_Store
+/api/images/*
