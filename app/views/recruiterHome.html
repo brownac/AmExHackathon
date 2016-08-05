@@ -1,0 +1,147 @@
+<div class="text-center">
+  <div class="page-header">
+    <h1>Recruiter Home</h1>
+  </div>
+</div>
+
+  <div class="modal fade"><div class="modal-dialog"></div></div>
+  <div id="recruiter-form-container" class="container">
+    <div class="row">
+      <div class="col-xs-6 col-md-3 bg-info" id="candidate-queue">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>
+                <center>
+                  <h4>
+                    Candidates to be Scheduled: {{candidateQueue.length}}
+                  </h4>
+                  <input type="search" ng-model="search" placeholder="search by name" aria-label="search candidates" class="form-control"/>
+                  <br>
+                </center>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="queue-animate-container animate-repeat">
+                  <div ng-repeat="candidate in candidateQueue | filter:search as results">
+                    <button type="button" class="btn btn-primary btn-lg btn-block candidate-queue-person">
+                      {{candidate.name}}
+                    </button>
+                  </div>
+                  <div ng-if="results.length == 0">
+                    <strong>No candidates found... Queue Empty</strong>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <br>
+        </table>
+      </div>
+      <div class="col-xs-6 col-md-8">
+        <div ng-controller="CalendarCtrl">
+                <h2 class="text-center">{{calendarTitle}}</h2>
+
+                <div class="row">
+                <div class= "col-md-offset-9">
+                  <button ng-click="calendarModal()" class="btn pull-right scheduler">Schedule Interview</button>
+                </div>
+                </div>
+
+                <!--Modal Info-->
+                <div class="modal fade" tabindex="-1" role="dialog" id="schedulerModal">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Schedule Interview</h4>
+                    </div>
+
+                    <div class="modal-body">
+                      <div class="">
+                          <label for="myName">Candidate Name: </label><br>
+                          <input ng-model="candidateName" type="text" id="myName"/>
+                        </div>
+                      <p><strong>Select Interview Date: <strong></p>
+                      <div class="inner-addon right-addon" id="calendarSelectArrow">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                        <input type="text" class="form-control" ng-model="interviewDate" id ="datepicker">
+                      </div>
+                      <p><strong>Select Interview Time: </strong></p>
+                      <div class="input-group bootstrap-timepicker timepicker">
+                        <input id="timepicker1" ng-model="interviewTime" type="text" class="form-control input-small input-group-addon">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                      </div>
+                      <div>
+                        <label for="myLocation">Select Interview Location: </label><br>
+                        <input ng-model="location" type="text" id="myLocation"/>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button ng-click="addEvent()" type="submit" class="btn btn-primary" value="Submit">Set Up Interview</button>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+
+              <div class="row">
+                <div class = "col-md-6 calChangeDate">
+                  <button
+                    class="btn btn-primary"
+                    mwl-date-modifier
+                    date="calendarDate"
+                    decrement="calendarView">
+                    Previous
+                  </button>
+
+
+                  <button
+                    class="btn btn-default"
+                    mwl-date-modifier
+                    date="calendarDate"
+                    set-to-today>
+                    Today
+                  </button>
+
+
+                  <button
+                    class="btn btn-primary"
+                    mwl-date-modifier
+                    date="calendarDate"
+                    increment="calendarView">
+                    Next
+                  </button>
+                </div>
+                <div class="btn-group pull-right calChangeView">
+                    <label class="btn btn-primary" ng-click="changeView('year')">Year</label>
+                    <label class="btn btn-primary" ng-click="changeView('month')">Month</label>
+                    <label class="btn btn-primary" ng-click="changeView('week')">Week</label>
+                    <label class="btn btn-primary" ng-click="changeView('day')">Day</label>
+                </div>
+            </div>
+            <div>
+              <mwl-calendar
+                view="calendarView"
+                view-date="calendarDate"
+                events="events"
+                view-title="calendarTitle"
+                on-event-click="eventClicked(calendarEvent)"
+                on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+                edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+                delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+                on-edit-event-click="eventEdited(calendarEvent)"
+                on-delete-event-click="eventDeleted(calendarEvent)"
+                cell-is-open="true">
+              </mwl-calendar>
+          </div>
+          <div style="margin-bottom:20px;">
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

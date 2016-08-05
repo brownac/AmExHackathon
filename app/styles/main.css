@@ -84,6 +84,23 @@
   color: #007BAA;
 }
 
+
+/* Recruiter form styles */
+#recruiter-form-container {
+  /*position: absolute;
+  left: 0px;*/
+}
+
+#candidate-queue {
+
+}
+
+button.candidate-queue-person {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  border: 10px;
+}
+
 .button-link, .button-link:hover {
   text-decoration: none;
   color: white;

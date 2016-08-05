@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'mwl.calendar'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -38,6 +39,10 @@ angular
         templateUrl: 'views/recruiterForm.html',
         controller: 'RecruiterFormCtrl',
         controllerAs: 'recruiterForm'
+      .when('/recruiter/recruiterHome', {
+        templateUrl: 'views/recruiterHome.html',
+        controller: 'RecruiterHomeCtrl',
+        controllerAs: 'recruiterHome'
       })
       .when('/interviewer/interviewerForm', {
         templateUrl: 'views/interviewerForm.html',
