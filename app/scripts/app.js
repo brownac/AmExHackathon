@@ -39,6 +39,7 @@ angular
         templateUrl: 'views/recruiterForm.html',
         controller: 'RecruiterFormCtrl',
         controllerAs: 'recruiterForm'
+      })
       .when('/recruiter/recruiterHome', {
         templateUrl: 'views/recruiterHome.html',
         controller: 'RecruiterHomeCtrl',
