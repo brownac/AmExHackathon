@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="container">
-		<div class="row" style="position: fixed; z-index: 2" id="options" >
+		<div class="row tools-bar" " id="options" >
 			<div class="btn-group" role="group" aria-label="...">
 			  	<button value="black" type="button" class="btn btn-default color-button active">
 			  		<span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
@@ -47,12 +47,22 @@
 			</div>
 			<div class="btn-group" role="group" aria-label="...">
 			  	<button id="undo" type="button" class="btn btn-default">
-			  		<span class="glyphicon glyphicon glyphicon-share-alt icon-flip " aria-hidden="true"></span>
+			  		<span class="glyphicon glyphicon-share-alt icon-flip " aria-hidden="true"></span>
 			  	</button>
 			  	<button id="redo" type="button" class="btn btn-default">
-			  		<span class="glyphicon glyphicon glyphicon-share-alt " aria-hidden="true"></span>
+			  		<span class="glyphicon glyphicon-share-alt " aria-hidden="true"></span>
 			  	</button>
 			</div>
+			<div class="btn-group" role="group" aria-label="...">
+			  	<button id="undo" type="button" class="btn btn-default">
+			  		<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+			  	</button>
+			  	<button id="redo" type="button" class="btn btn-default">
+			  		<span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
+			  	</button>
+			</div>
+			<!-- <button class="btn btn-info" style="margin-left: 50px">Stop</button> -->
+			<button class="btn btn-danger" style="margin-left: 50px">Save</button>
 		</div>
 		<div class="row" style="margin-top: 50px">
 			<canvas class="" id="c" height="995" width="775" style="border: 1px solid black"></canvas>
@@ -65,7 +75,15 @@
 			-o-transform: scale(-1, 1);
 			-ms-transform: scale(-1, 1);
 			transform: scale(-1, 1);
-		}	
+		}
+		.btn-group{
+			margin-left: 10px;
+		}
+		.tools-bar{
+			position: fixed;
+			z-index: 2;
+			background-color: white;
+		}
 	</style>
 	<script src="fabric.js"></script>
 	<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
