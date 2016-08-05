@@ -8,7 +8,7 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('CandidateFormCtrl', function ($scope, $q, $timeout, $routeParams, candidateService) {
+  .controller('CandidateFormCtrl', function ($scope, $q, $timeout, $routeParams, $location, candidateService) {
     if($routeParams.candidateId) {
       // Get the candidate id from the url
       var candidateId = $routeParams.candidateId;
@@ -31,8 +31,7 @@ angular.module('amExHackathonApp')
           $scope.submitBtnClasses = "btn btn-success";
 
           $timeout(() => {
-            // re-initialize the scope
-            init();
+            $location.path('viewCandidate/' + $routeParams.candidateId);
           }, 1500);
         });
       }

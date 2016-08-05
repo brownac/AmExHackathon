@@ -43,7 +43,7 @@ router.put('/', function(req, res) {
 		where: { id : req.body.id }
 	})
 	.then(function(result) {
-    res.json(result);
+    res.send("Success");
 	}, function(rejectedPromiseError){
     res.status(404).json({
       errors: [
