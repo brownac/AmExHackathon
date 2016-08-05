@@ -51,7 +51,7 @@
                 </div>
                 </div>
 
-                <!--Modal Info-->
+                <!--Modal Info: Pop-Up Menu for CREATING Interview Times-->
                 <div class="modal fade" tabindex="-1" role="dialog" id="schedulerModal">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -83,11 +83,50 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button ng-click="addEvent()" type="submit" class="btn btn-primary" value="Submit">Set Up Interview</button>
+                      <button ng-click="addEvent()" type="submit" class="btn btn-primary" value="Submit" data-dismiss="modal">Set Up Interview</button>
                     </div>
                   </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
               </div><!-- /.modal -->
+
+
+              <!--Modal Info: Pop-Up Menu for EDITING Interview Times-->
+              <div class="modal fade" tabindex="-1" role="dialog" id="editingModal">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Update Interview</h4>
+                  </div>
+
+                  <div class="modal-body">
+                    <div class="">
+                        <label for="myName">Candidate Name: </label><br>
+                        <input ng-model="editCandidateName" type="text" id="myName"/>
+                      </div>
+                    <p><strong>Select Interview Date: <strong></p>
+                    <div class="inner-addon right-addon" id="calendarSelectArrow2">
+                      <i class="glyphicon glyphicon-calendar"></i>
+                      <input type="text" class="form-control" ng-model="editInterviewDate" id ="datepicker2">
+                    </div>
+                    <p><strong>Select Interview Time: </strong></p>
+                    <div class="input-group bootstrap-timepicker timepicker">
+                      <input id="timepicker2" ng-model="editInterviewTime" type="text" class="form-control input-small input-group-addon">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                    </div>
+                    <div>
+                      <label for="myLocation">Select Interview Location: </label><br>
+                      <input ng-model="editLocation" type="text" id="myLocation"/>
+                    </div>
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button ng-click="editEvent(calendarEvent)" type="submit" class="btn btn-primary" value="Submit" data-dismiss="modal">Update Interview</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
 
               <div class="row">
                 <div class = "col-md-6 calChangeDate">
@@ -134,8 +173,8 @@
                 on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
                 edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
                 delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-                on-edit-event-click="eventEdited(calendarEvent)"
-                on-delete-event-click="eventDeleted(calendarEvent)"
+                on-edit-event-click="getEditingForm(calendarEvent)"
+                on-delete-event-click="deleteEvent(calendarEvent)"
                 cell-is-open="true">
               </mwl-calendar>
           </div>
