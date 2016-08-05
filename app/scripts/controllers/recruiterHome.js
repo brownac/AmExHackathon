@@ -9,8 +9,13 @@
  */
 
 
-angular.module('amExHackathonApp').controller('RecruiterHomeCtrl', function($scope) {
-  $scope.candidateQueue = [
+angular.module('amExHackathonApp').controller('RecruiterHomeCtrl', function($scope, candidateService) {
+
+  candidateService.query().$promise.then(values => {
+    $scope.candidateQueue = values;
+  });
+
+  /*$scope.candidateQueue = [
     {firstName:'John', lastName:'Doe', age:25, gender:'boy'},
     {firstName:'Jessie', lastName:'Adams', age:30, gender:'girl'},
     {firstName:'Johanna', lastName:'Davids', age:28, gender:'girl'},
@@ -21,5 +26,5 @@ angular.module('amExHackathonApp').controller('RecruiterHomeCtrl', function($sco
     {firstName:'Erika', lastName:'Fish', age:27, gender:'girl'},
     {firstName:'Patrick', lastName:'Cat', age:40, gender:'boy'},
     {firstName:'Samantha', lastName:'Dog', age:60, gender:'girl'}
-  ];
+  ];*/
 });
