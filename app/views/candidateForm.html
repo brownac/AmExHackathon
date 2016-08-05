@@ -93,9 +93,11 @@
 
           <div class="text-center">
             <div id="thumbnail-preview-area" ng-show="pictureAdded">
-              <img ng-src="{{postCandidate.resumeBase64}}" />
+              <img ng-src="{{postCandidate.resumeBase64}}" width=300 height="400" />
             </div>
 
+            <span class="glyphicon glyphicon-refresh" ng-show="sendingData" aria-hidden="true"></span>
+            <span class="glyphicon-class" ng-show="sendingData"></span>
             <button type="submit" ng-class="submitBtnClasses" data-ng-click="submit()" ng-disabled="candidateForm.$invalid">{{buttonText}}</button>
             <button type="submit" class="btn btn-warning">Cancel</button>
           </div>

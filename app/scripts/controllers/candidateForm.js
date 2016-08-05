@@ -14,6 +14,9 @@ angular.module('amExHackathonApp')
       $scope.pictureAdded = false;
       $scope.buttonText = "Submit";
       $scope.submitBtnClasses = "btn btn-primary";
+
+      // this goes true while the file is uploading
+      $scope.sendingData = false;
     };
 
     $scope.readImage = function(event) {
@@ -32,16 +35,19 @@ angular.module('amExHackathonApp')
     };
 
     $scope.submit = function() {
+      $scope.sendingData = true;
+
       candidateService.save($scope.postCandidate).$promise.then(values => {
         // show success by changing submit button class and value
         $scope.postCandidate = {};
+        $scope.sendingData = false;
         $scope.buttonText = "Successfully Submitted";
         $scope.submitBtnClasses = "btn btn-success";
 
         $timeout(() => {
           // re-initialize the scope
           init();
-        }, 1500);
+        }, 1000);
       });
     }
 
