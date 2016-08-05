@@ -42,6 +42,10 @@
     <div class="info-group">
       <label>Interviewers:</label>
     </div>
+
+    <button class="btn btn-primary">
+      <a class="button-link" href="#/screener/candidateForm/{{candidate.id}}">Edit</a>
+    </button>
 	</div>
 </script>
 
@@ -67,8 +71,6 @@
       </ul>
 
       <div id="tab-content-div" class="tab-content" ng-include="currentTab"></div>
-
-      <button class="btn btn-primary"><a class="button-link" href="#/screener/candidateForm/{{candidate.id}}">Edit</a></button>
     </div>
   </div>
 </div>
