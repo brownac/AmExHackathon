@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name amExHackathonApp.controller:RecruiterFormCtrl
+ * @name amExHackathonApp.controller:RecruiterHomeCtrl
  * @description
- * # RecruiterFormCtrl
+ * # RecruiterHomeCtrl
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
@@ -183,7 +183,7 @@ angular.module('amExHackathonApp')
     //delete interview time
     $scope.deleteEvent = function(calendarEvent) {
       $("#deletingModal").modal();
-      $scope.deleteCalendarEvent = calendarEvent; 
+      $scope.deleteCalendarEvent = calendarEvent;
     };
 
     $scope.deleteInterview = function() {

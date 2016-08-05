@@ -21,11 +21,16 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: 'views/home.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'Home'
       })
       .when('/screener/candidateForm', {
+        templateUrl: 'views/candidateForm.html',
+        controller: 'CandidateFormCtrl',
+        controllerAs: 'candidateForm'
+      })
+      .when('/screener/candidateForm/:candidateId', {
         templateUrl: 'views/candidateForm.html',
         controller: 'CandidateFormCtrl',
         controllerAs: 'candidateForm'
@@ -35,10 +40,25 @@ angular
         controller: 'RecruiterFormCtrl',
         controllerAs: 'recruiterForm'
       })
+      .when('/recruiter/recruiterHome', {
+        templateUrl: 'views/recruiterHome.html',
+        controller: 'RecruiterHomeCtrl',
+        controllerAs: 'recruiterHome'
+      })
       .when('/interviewer/interviewerForm', {
         templateUrl: 'views/interviewerForm.html',
         controller: 'InterviewerFormCtrl',
-        controllerAs: 'IntervierForm'
+        controllerAs: 'InterviewerForm'
+      })
+      .when('/viewCandidates', {
+        templateUrl: 'views/viewCandidates.html',
+        controller: 'ViewCandidatesCtrl',
+        controllerAs: 'ViewCandidates'
+      })
+      .when('/viewCandidate/:candidateId', {
+        templateUrl: 'views/viewCandidate.html',
+        controller: 'ViewCandidateCtrl',
+        controllerAs: 'ViewCandidate'
       })
       .otherwise({
         redirectTo: '/'
