@@ -24,5 +24,5 @@ module.exports = function(sequelize, DataTypes) {
   });
   calendarInfo.belongsTo(candidateInfo);
 
-  return candidateInfo;
+  return calendarInfo;
 };
