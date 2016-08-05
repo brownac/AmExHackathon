@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 'use strict'
 var models  = require('../models');
 var express = require('express');
