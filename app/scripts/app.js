@@ -17,7 +17,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -28,6 +28,11 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
+      })
+      .when('/softpen', {
+        templateUrl: 'views/softpen.html',
+        controller: 'SoftPenCtrl',
+        controllerAs: 'softpen'
       })
       .otherwise({
         redirectTo: '/'
