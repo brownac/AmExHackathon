@@ -29,7 +29,6 @@ router.post('/', function(req, res) {
     // a slash goes before this in the database uri
     const imgRelativePath = `uploads/${candidate.id}.resume.png`;
     const imgAbsPath = path.join(appDir, imgRelativePath);
-    console.log(imgAbsPath);
 
     let base64Png = req.body.resumeBase64.split(',')[1];
 
@@ -46,8 +45,10 @@ router.post('/', function(req, res) {
         //save image uri into database
         var resume_table = models.resume.build({
           id: candidate.id,
-          img_uri: imgRelativePath
-        })
+
+          // add the preceding forwardslash
+          img_uri: '/' + imgRelativePath
+        });
         resume_table.save();
 
         res.json(candidate);
@@ -59,14 +60,6 @@ router.post('/', function(req, res) {
 // Get all candidates
 router.get('/', function(req, res) {
   models.candidateInfo.findAll({})
-  .then(function(result) {
-    res.json(result);
-  });
-});
-
-// Get all candidates
-router.get('/images', function(req, res) {
-  models.resume.findAll({})
   .then(function(result) {
     res.json(result);
   });
