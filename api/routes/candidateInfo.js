@@ -6,7 +6,8 @@ var router	= express.Router();
 router.post('/', function(req, res) {
 	// create an instance
 	var candidate = models.candidateInfo.build({
-		name: req.body.name,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
 		email: req.body.email,
 		phoneNumber: req.body.phoneNumber,
 		school: req.body.school,
@@ -27,7 +28,8 @@ router.post('/', function(req, res) {
 // Update a candidate by id
 router.put('/', function(req, res) {
 	models.candidateInfo.update({
-		name: req.body.name,
+		firstName: req.body.name,
+		lastName: req.body.name,
 		email: req.body.email,
 		phoneNumber: req.body.phoneNumber,
 		school: req.body.school,
