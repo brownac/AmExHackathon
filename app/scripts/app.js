@@ -30,10 +30,10 @@ angular
         controller: 'CandidateFormCtrl',
         controllerAs: 'candidateForm'
       })
-      .when('/recruiter/recruiterForm', {
-        templateUrl: 'views/recruiterForm.html',
-        controller: 'RecruiterFormCtrl',
-        controllerAs: 'recruiterForm'
+      .when('/recruiter/recruiterHome', {
+        templateUrl: 'views/recruiterHome.html',
+        controller: 'RecruiterHomeCtrl',
+        controllerAs: 'recruiterHome'
       })
       .when('/interviewer/interviewerForm', {
         templateUrl: 'views/interviewerForm.html',
