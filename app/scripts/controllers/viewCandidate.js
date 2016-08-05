@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc function
- * @name amExHackathonApp.controller: iewCandidateCtrl
+ * @name amExHackathonApp.controller: ViewCandidateCtrl
  * @description
  * # iewCandidateCtrl
  * Controller of the amExHackathonApp
