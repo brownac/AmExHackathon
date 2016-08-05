@@ -13,8 +13,8 @@ var routes = require('./routes/index');
 
 var app = express();
 
-app.use(bodyParser.json({limit: '50mb'})); // for parsing application/json
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json({ limit: "30mb" })); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 // mount middlewares
 let dev = false;
