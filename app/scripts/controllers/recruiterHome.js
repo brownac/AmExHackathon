@@ -8,7 +8,7 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('RecruiterFormCtrl', function ($scope) {
+  .controller('RecruiterHomeCtrl', function ($scope) {
   	$scope.candidateQueue = [
 	    {firstName:'John', lastName:'Doe', age:25, gender:'boy'},
 	    {firstName:'Jessie', lastName:'Adams', age:30, gender:'girl'},
