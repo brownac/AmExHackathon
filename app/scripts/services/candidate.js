@@ -9,5 +9,7 @@
  */
 angular.module('amExHackathonApp')
   .factory('candidateService', function ($resource) {
-    return $resource('/api/candidateInfo/:id');
+    return $resource('/api/candidateInfo/:id', null, {
+      update: { method: 'PUT'}
+    });
   });

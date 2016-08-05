@@ -71,13 +71,15 @@
 }
 
 /* viewCandidate.html */
-.info-tab-content {
+.tab-content {
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
 .info-tab-content, h1 {
   color: #005E8C;
 }
+
 .info-group > label {
   color: #007BAA;
 }
@@ -97,4 +99,9 @@ button.candidate-queue-person {
   margin-top: 7px;
   margin-bottom: 7px;
   border: 10px;
+}
+
+.button-link, .button-link:hover {
+  text-decoration: none;
+  color: white;
 }
