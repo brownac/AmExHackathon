@@ -54,7 +54,7 @@ span.input-group-addon{
   z-index: 9999 !important;
 }
 
-#sel1{
+.select-box{
   width: 30%;
   height: 30px;
 }
