@@ -29,6 +29,11 @@ angular
         controller: 'CandidateFormCtrl',
         controllerAs: 'candidateForm'
       })
+      .when('/screener/candidateForm/:candidateId', {
+        templateUrl: 'views/candidateForm.html',
+        controller: 'CandidateFormCtrl',
+        controllerAs: 'candidateForm'
+      })
       .when('/recruiter/recruiterForm', {
         templateUrl: 'views/recruiterForm.html',
         controller: 'RecruiterFormCtrl',
