@@ -11,7 +11,11 @@ angular.module('amExHackathonApp')
   .controller('RecruiterHomeCtrl', function ($scope, candidateService) {
 
     /*Query DB for candidates with finalDecision == scheduleInterview*/
-    candidateService.query().$promise.then(values => {
+    var query = {
+      //currently the schema does not support the column finalDecision
+      //finalDecision: 'scheduleInterview'
+    };
+    candidateService.query(query).$promise.then(values => {
       $scope.candidateQueue = values;
       console.log(values);
     });
