@@ -1,23 +1,8 @@
-<script>
-  function readImage(input) {
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        $('#resume-preview-image')
-          .attr('src', e.target.result)
-          .width(300)
-          .height(400);
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
-  }
-</script>
-
 <div class="text-center">
   <div class="page-header">
     <div class="pull-right">
         <div class="camera-capture">
-          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" onchange="readImage(this);" ng-click="pictureAdded = true">
+          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" custom-on-change="readImage">
           <label for="resume" class="resumeImageLabel"><span class="glyphicon glyphicon-camera camera-glyph"></span></label>
         </div>
     </div>
@@ -30,8 +15,13 @@
       <div class="col-md-12">
         <form name="candidateForm" class="text-left">
           <div class="form-group">
-            <label class="control-label">Name:</label>
-            <input class="form-control" type="text" ng-model="postCandidate.name" required>
+            <label class="control-label">First Name:</label>
+            <input class="form-control" type="text" ng-model="postCandidate.firstName" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Last Name:</label>
+            <input class="form-control" type="text" ng-model="postCandidate.lastName" required>
           </div>
 
           <div class="form-group">
@@ -107,10 +97,12 @@
           </div>
 
           <div class="text-center">
-            <div id="thumbnail-preview-area" ng-if="pictureAdded">
-              <img id="resume-preview-image" src="#"/>
+            <div id="thumbnail-preview-area" ng-show="pictureAdded">
+              <img ng-src="{{postCandidate.resumeBase64}}" width="300" height="400" />
             </div>
 
+            <span class="glyphicon glyphicon-refresh" ng-show="sendingData" aria-hidden="true"></span>
+            <span class="glyphicon-class" ng-show="sendingData"></span>
             <button type="submit" ng-class="submitBtnClasses" data-ng-click="submit()" ng-disabled="candidateForm.$invalid">{{buttonText}}</button>
             <button type="submit" class="btn btn-warning">Cancel</button>
           </div>
