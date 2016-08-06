@@ -44,8 +44,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     }
   }, {
+    classMethods: {
+      associate: function(models) {
+        candidateInfo.hasMany(models.image_uri,{
+          foreignKey: 'id',
+          targetKey: 'id'
+        });
+      }
+    }
+  }, {
     timestamps: false,
   });
-
   return candidateInfo;
 };

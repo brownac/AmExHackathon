@@ -42,7 +42,7 @@ else {
 // mount the controllers router
 app.use('/api', routes);
 
-//sync the models with the data, will creat the schems if not present
+//sync the models with the data, will creat the schemas if not present
 //starts the server
 let port = 4500;
 models.sequelize.sync().then(function () {

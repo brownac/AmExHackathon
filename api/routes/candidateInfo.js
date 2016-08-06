@@ -45,13 +45,15 @@ router.post('/', function(req, res) {
       }
       else {
         //save image uri into database
-        var resume_table = models.resume.build({
+        var image_type = 'resume';
+        var image_table = models.image_uri.build({
           id: candidate.id,
 
           // add the preceding forwardslash
-          img_uri: '/' + imgRelativePath
+          img_uri: '/' + imgRelativePath,
+          type: image_type
         });
-        resume_table.save();
+        image_table.save();
 
         res.json(candidate);
       }
@@ -91,7 +93,7 @@ router.put('/', function(req, res) {
 
 // Get all candidates
 router.get('/', function(req, res) {
-	models.candidateInfo.findAll({})
+	models.candidateInfo.findAll({include: [ {model: models.image_uri} ]})
 	.then(function(result) {
 		res.json(result);
 	});
@@ -101,7 +103,7 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
 	var id = req.params.id;
 
-	models.candidateInfo.findById(id).then(function(result) {
+	models.candidateInfo.findById(id, {include: [ {model: models.image_uri} ]}).then(function(result) {
 		if (result !== null) {
 			res.json(result);
 		}
