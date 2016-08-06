@@ -13,6 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     }
   }, {
+    timestamps: false,
     classMethods: {
       associate: function(models) {
         image_uri.belongsTo(models.candidateInfo, {
@@ -21,8 +22,6 @@ module.exports = function(sequelize, DataTypes) {
         });
       }
     }
-  }, {
-    timestamps: false,
   });
   return image_uri;
 };

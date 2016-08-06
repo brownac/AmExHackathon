@@ -44,6 +44,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     }
   }, {
+    timestamps: false,
     classMethods: {
       associate: function(models) {
         candidateInfo.hasMany(models.image_uri,{
@@ -52,8 +53,6 @@ module.exports = function(sequelize, DataTypes) {
         });
       }
     }
-  }, {
-    timestamps: false,
   });
   return candidateInfo;
 };
