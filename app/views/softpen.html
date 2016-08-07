@@ -58,6 +58,9 @@
     </div>
     <div class="row" style="margin-top: 50px">
       <canvas class="" id="c" height="995" width="775" style="border: 1px solid black"></canvas>
+      <div ng-controller="SoftPenCtrl">
+       <img id="resume-image" ng-src="{{src}}" imageonload />
+</div>
     </div>
   </div>
   <style>
@@ -114,8 +117,10 @@
     var eventStack = [];
     var isRedoing = false;
     canvas.isDrawingMode = true;
+    var input = document.getElementById('song-image');
 
     fabric.Image.fromURL("../images/resume.png", function(img) {
+      var input = document.getElementById('resume-image');
       canvas.add(img);
     });
 

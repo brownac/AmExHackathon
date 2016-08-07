@@ -1,0 +1,987 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'grunt-connect-proxy',
+1 verbose cli   '--save-dev' ]
+2 info using npm@2.15.8
+3 info using node@v4.4.7
+4 verbose install initial load of /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/package.json
+5 warn package.json server@1.0.0 No repository field.
+6 warn package.json server@1.0.0 No README data
+7 verbose installManyTop reading scoped package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/body-parser/package.json
+8 verbose installManyTop reading scoped package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/express/package.json
+9 verbose installManyTop reading scoped package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/express-logging/package.json
+10 verbose installManyTop reading scoped package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt/package.json
+11 verbose installManyTop reading scoped package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/package.json
+12 verbose installManyTop reading scoped package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/logops/package.json
+13 verbose installManyTop reading scoped package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/sequelize/package.json
+14 verbose installManyTop reading scoped package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/sequelize-cli/package.json
+15 verbose installManyTop reading scoped package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/sqlite3/package.json
+16 info package.json grunt-connect-proxy@0.2.0 No license field.
+17 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/package.json
+18 verbose install grunt-connect-proxy is installed as 0.2.0
+19 silly cache add args [ 'grunt-connect-proxy', null ]
+20 verbose cache add spec grunt-connect-proxy
+21 silly cache add parsed spec Result {
+21 silly cache add   raw: 'grunt-connect-proxy',
+21 silly cache add   scope: null,
+21 silly cache add   name: 'grunt-connect-proxy',
+21 silly cache add   rawSpec: '',
+21 silly cache add   spec: 'latest',
+21 silly cache add   type: 'tag' }
+22 silly addNamed grunt-connect-proxy@latest
+23 verbose addNamed "latest" is being treated as a dist-tag for grunt-connect-proxy
+24 info addNameTag [ 'grunt-connect-proxy', 'latest' ]
+25 silly mapToRegistry name grunt-connect-proxy
+26 silly mapToRegistry using default registry
+27 silly mapToRegistry registry https://registry.npmjs.org/
+28 silly mapToRegistry data Result {
+28 silly mapToRegistry   raw: 'grunt-connect-proxy',
+28 silly mapToRegistry   scope: null,
+28 silly mapToRegistry   name: 'grunt-connect-proxy',
+28 silly mapToRegistry   rawSpec: '',
+28 silly mapToRegistry   spec: 'latest',
+28 silly mapToRegistry   type: 'tag' }
+29 silly mapToRegistry uri https://registry.npmjs.org/grunt-connect-proxy
+30 verbose addNameTag registry:https://registry.npmjs.org/grunt-connect-proxy not in flight; fetching
+31 verbose request uri https://registry.npmjs.org/grunt-connect-proxy
+32 verbose request no auth needed
+33 info attempt registry request try #1 at 7:02:08 PM
+34 verbose request id a59d02875765cead
+35 verbose etag "7T50PU98TPZQ42R96XNXOH3P0"
+36 http request GET https://registry.npmjs.org/grunt-connect-proxy
+37 http 304 https://registry.npmjs.org/grunt-connect-proxy
+38 verbose headers { date: 'Sun, 07 Aug 2016 23:02:09 GMT',
+38 verbose headers   via: '1.1 varnish',
+38 verbose headers   'cache-control': 'max-age=300',
+38 verbose headers   etag: '"7T50PU98TPZQ42R96XNXOH3P0"',
+38 verbose headers   age: '100',
+38 verbose headers   connection: 'keep-alive',
+38 verbose headers   'x-served-by': 'cache-atl6248-ATL',
+38 verbose headers   'x-cache': 'HIT',
+38 verbose headers   'x-cache-hits': '1',
+38 verbose headers   'x-timer': 'S1470610929.147807,VS0,VE0',
+38 verbose headers   vary: 'Accept-Encoding' }
+39 silly get cb [ 304,
+39 silly get   { date: 'Sun, 07 Aug 2016 23:02:09 GMT',
+39 silly get     via: '1.1 varnish',
+39 silly get     'cache-control': 'max-age=300',
+39 silly get     etag: '"7T50PU98TPZQ42R96XNXOH3P0"',
+39 silly get     age: '100',
+39 silly get     connection: 'keep-alive',
+39 silly get     'x-served-by': 'cache-atl6248-ATL',
+39 silly get     'x-cache': 'HIT',
+39 silly get     'x-cache-hits': '1',
+39 silly get     'x-timer': 'S1470610929.147807,VS0,VE0',
+39 silly get     vary: 'Accept-Encoding' } ]
+40 verbose etag https://registry.npmjs.org/grunt-connect-proxy from cache
+41 verbose get saving grunt-connect-proxy to /Users/anthonycolas/.npm/registry.npmjs.org/grunt-connect-proxy/.cache.json
+42 verbose correctMkdir /Users/anthonycolas/.npm correctMkdir not in flight; initializing
+43 silly addNameTag next cb for grunt-connect-proxy with tag latest
+44 silly addNamed grunt-connect-proxy@0.2.0
+45 verbose addNamed "0.2.0" is a plain semver version for grunt-connect-proxy
+46 silly cache afterAdd grunt-connect-proxy@0.2.0
+47 verbose afterAdd /Users/anthonycolas/.npm/grunt-connect-proxy/0.2.0/package/package.json not in flight; writing
+48 verbose correctMkdir /Users/anthonycolas/.npm correctMkdir not in flight; initializing
+49 verbose afterAdd /Users/anthonycolas/.npm/grunt-connect-proxy/0.2.0/package/package.json written
+50 silly install resolved [ { name: 'grunt-connect-proxy',
+50 silly install resolved     description: 'Provides a http proxy as middleware for grunt connect.',
+50 silly install resolved     version: '0.2.0',
+50 silly install resolved     homepage: 'https://github.com/drewzboto/grunt-connect-proxy',
+50 silly install resolved     author: { name: 'Drewz', email: 'drewz@2mod5.com' },
+50 silly install resolved     repository:
+50 silly install resolved      { type: 'git',
+50 silly install resolved        url: 'git://github.com/drewzboto/grunt-connect-proxy.git' },
+50 silly install resolved     bugs: { url: 'https://github.com/drewzboto/grunt-connect-proxy/issues' },
+50 silly install resolved     licenses: [ [Object] ],
+50 silly install resolved     main: 'Gruntfile.js',
+50 silly install resolved     engines: { node: '>= 0.10.0' },
+50 silly install resolved     scripts: { test: 'grunt test' },
+50 silly install resolved     dependencies: { 'http-proxy': '~1.11.0', lodash: '~0.9.0' },
+50 silly install resolved     devDependencies:
+50 silly install resolved      { 'grunt-contrib-jshint': '~0.1.1',
+50 silly install resolved        'grunt-contrib-clean': '~0.4.0',
+50 silly install resolved        'grunt-contrib-nodeunit': '~0.1.2',
+50 silly install resolved        grunt: '~0.4.1',
+50 silly install resolved        'grunt-contrib-connect': '~0.5.0' },
+50 silly install resolved     peerDependencies: { grunt: '~0.4.1' },
+50 silly install resolved     keywords: [ 'gruntplugin', 'proxy', 'connect', 'http', 'grunt' ],
+50 silly install resolved     gitHead: 'fcd37bdb7f96717a4b03770fcd2a071f43ebc130',
+50 silly install resolved     _id: 'grunt-connect-proxy@0.2.0',
+50 silly install resolved     _shasum: '5d4ce827b55080a8f5d55360c80f4ab5626f46f8',
+50 silly install resolved     _from: 'grunt-connect-proxy@latest',
+50 silly install resolved     _npmVersion: '2.6.0',
+50 silly install resolved     _nodeVersion: '0.10.36',
+50 silly install resolved     _npmUser: { name: 'ruiaraujo', email: 'ruka.araujo@gmail.com' },
+50 silly install resolved     dist:
+50 silly install resolved      { shasum: '5d4ce827b55080a8f5d55360c80f4ab5626f46f8',
+50 silly install resolved        tarball: 'https://registry.npmjs.org/grunt-connect-proxy/-/grunt-connect-proxy-0.2.0.tgz' },
+50 silly install resolved     maintainers: [ [Object], [Object], [Object] ],
+50 silly install resolved     directories: {},
+50 silly install resolved     _resolved: 'https://registry.npmjs.org/grunt-connect-proxy/-/grunt-connect-proxy-0.2.0.tgz',
+50 silly install resolved     readme: 'ERROR: No README data found!' } ]
+51 info install grunt-connect-proxy@0.2.0 into /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api
+52 info installOne grunt-connect-proxy@0.2.0
+53 verbose installOne of grunt-connect-proxy to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api not in flight; installing
+54 verbose correctMkdir /Users/anthonycolas/.npm/_locks correctMkdir not in flight; initializing
+55 verbose lock using /Users/anthonycolas/.npm/_locks/grunt-connect-proxy-ac0c4ce75d659a34.lock for /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy
+56 silly install write writing grunt-connect-proxy 0.2.0 to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy
+57 verbose unbuild node_modules/grunt-connect-proxy
+58 info preuninstall grunt-connect-proxy@0.2.0
+59 info uninstall grunt-connect-proxy@0.2.0
+60 verbose unbuild rmStuff grunt-connect-proxy@0.2.0 from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules
+61 info postuninstall grunt-connect-proxy@0.2.0
+62 silly gentlyRm /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy is being purged from base /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api
+63 verbose gentlyRm don't care about contents; nuking /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy
+64 silly vacuum-fs purging /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy
+65 silly vacuum-fs quitting because other entries in /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules
+66 verbose tar unpack /Users/anthonycolas/.npm/grunt-connect-proxy/0.2.0/package.tgz
+67 verbose tar unpacking to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy
+68 silly gentlyRm /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy is being purged
+69 verbose gentlyRm don't care about contents; nuking /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy
+70 silly gunzTarPerm modes [ '755', '644' ]
+71 silly gunzTarPerm extractEntry package.json
+72 silly gunzTarPerm extractEntry .npmignore
+73 silly gunzTarPerm extractEntry README.md
+74 silly gunzTarPerm extractEntry Gruntfile.js
+75 silly gunzTarPerm extractEntry LICENSE-MIT
+76 silly gunzTarPerm extractEntry .jshintrc
+77 silly gunzTarPerm extractEntry examples/sample.yeoman.grunt.js
+78 silly gunzTarPerm extractEntry lib/utils.js
+79 silly gunzTarPerm extractEntry .editorconfig
+80 silly gunzTarPerm extractEntry tasks/connect_proxy.js
+81 silly gunzTarPerm extractEntry test/connect_proxy_test.js
+82 silly gunzTarPerm extractEntry test/hide_headers_test.js
+83 silly gunzTarPerm extractEntry test/request_test.js
+84 silly gunzTarPerm extractEntry test/server2_proxy_test.js
+85 silly gunzTarPerm extractEntry test/server3_proxy_test.js
+86 silly gunzTarPerm extractEntry test/utils_test.js
+87 verbose write writing to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/package.json
+88 info preinstall grunt-connect-proxy@0.2.0
+89 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/package.json
+90 silly prepareForInstallMany adding http-proxy@~1.11.0 from grunt-connect-proxy dependencies
+91 silly prepareForInstallMany adding lodash@~0.9.0 from grunt-connect-proxy dependencies
+92 silly prepareForInstallMany adding grunt@~0.4.1 from grunt-connect-proxy peerDependencies
+93 warn peerDependencies The peer dependency grunt@~0.4.1 included from grunt-connect-proxy will no
+94 warn peerDependencies longer be automatically installed to fulfill the peerDependency
+95 warn peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+96 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/package.json
+97 silly cache add args [ 'http-proxy@~1.11.0', null ]
+98 verbose cache add spec http-proxy@~1.11.0
+99 silly cache add args [ 'lodash@~0.9.0', null ]
+100 verbose cache add spec lodash@~0.9.0
+101 silly cache add parsed spec Result {
+101 silly cache add   raw: 'http-proxy@~1.11.0',
+101 silly cache add   scope: null,
+101 silly cache add   name: 'http-proxy',
+101 silly cache add   rawSpec: '~1.11.0',
+101 silly cache add   spec: '>=1.11.0 <1.12.0',
+101 silly cache add   type: 'range' }
+102 silly addNamed http-proxy@>=1.11.0 <1.12.0
+103 verbose addNamed ">=1.11.0 <1.12.0" is a valid semver range for http-proxy
+104 silly addNameRange { name: 'http-proxy', range: '>=1.11.0 <1.12.0', hasData: false }
+105 silly mapToRegistry name http-proxy
+106 silly mapToRegistry using default registry
+107 silly mapToRegistry registry https://registry.npmjs.org/
+108 silly mapToRegistry data Result {
+108 silly mapToRegistry   raw: 'http-proxy',
+108 silly mapToRegistry   scope: null,
+108 silly mapToRegistry   name: 'http-proxy',
+108 silly mapToRegistry   rawSpec: '',
+108 silly mapToRegistry   spec: 'latest',
+108 silly mapToRegistry   type: 'tag' }
+109 silly mapToRegistry uri https://registry.npmjs.org/http-proxy
+110 verbose addNameRange registry:https://registry.npmjs.org/http-proxy not in flight; fetching
+111 silly cache add parsed spec Result {
+111 silly cache add   raw: 'lodash@~0.9.0',
+111 silly cache add   scope: null,
+111 silly cache add   name: 'lodash',
+111 silly cache add   rawSpec: '~0.9.0',
+111 silly cache add   spec: '>=0.9.0 <0.10.0',
+111 silly cache add   type: 'range' }
+112 silly addNamed lodash@>=0.9.0 <0.10.0
+113 verbose addNamed ">=0.9.0 <0.10.0" is a valid semver range for lodash
+114 silly addNameRange { name: 'lodash', range: '>=0.9.0 <0.10.0', hasData: false }
+115 silly mapToRegistry name lodash
+116 silly mapToRegistry using default registry
+117 silly mapToRegistry registry https://registry.npmjs.org/
+118 silly mapToRegistry data Result {
+118 silly mapToRegistry   raw: 'lodash',
+118 silly mapToRegistry   scope: null,
+118 silly mapToRegistry   name: 'lodash',
+118 silly mapToRegistry   rawSpec: '',
+118 silly mapToRegistry   spec: 'latest',
+118 silly mapToRegistry   type: 'tag' }
+119 silly mapToRegistry uri https://registry.npmjs.org/lodash
+120 verbose addNameRange registry:https://registry.npmjs.org/lodash not in flight; fetching
+121 verbose request uri https://registry.npmjs.org/lodash
+122 verbose request no auth needed
+123 info attempt registry request try #1 at 7:02:09 PM
+124 verbose etag "500LZXB0XTR2LUFQZX0S4CK0K"
+125 http request GET https://registry.npmjs.org/lodash
+126 verbose request uri https://registry.npmjs.org/http-proxy
+127 verbose request no auth needed
+128 info attempt registry request try #1 at 7:02:09 PM
+129 verbose etag "4SQGB6DQUTD6KCZMEVUBDF301"
+130 http request GET https://registry.npmjs.org/http-proxy
+131 http 304 https://registry.npmjs.org/lodash
+132 verbose headers { date: 'Sun, 07 Aug 2016 23:02:09 GMT',
+132 verbose headers   via: '1.1 varnish',
+132 verbose headers   'cache-control': 'max-age=300',
+132 verbose headers   etag: '"500LZXB0XTR2LUFQZX0S4CK0K"',
+132 verbose headers   age: '24',
+132 verbose headers   connection: 'keep-alive',
+132 verbose headers   'x-served-by': 'cache-atl6248-ATL',
+132 verbose headers   'x-cache': 'HIT',
+132 verbose headers   'x-cache-hits': '1',
+132 verbose headers   'x-timer': 'S1470610929.395492,VS0,VE0',
+132 verbose headers   vary: 'Accept-Encoding' }
+133 silly get cb [ 304,
+133 silly get   { date: 'Sun, 07 Aug 2016 23:02:09 GMT',
+133 silly get     via: '1.1 varnish',
+133 silly get     'cache-control': 'max-age=300',
+133 silly get     etag: '"500LZXB0XTR2LUFQZX0S4CK0K"',
+133 silly get     age: '24',
+133 silly get     connection: 'keep-alive',
+133 silly get     'x-served-by': 'cache-atl6248-ATL',
+133 silly get     'x-cache': 'HIT',
+133 silly get     'x-cache-hits': '1',
+133 silly get     'x-timer': 'S1470610929.395492,VS0,VE0',
+133 silly get     vary: 'Accept-Encoding' } ]
+134 verbose etag https://registry.npmjs.org/lodash from cache
+135 verbose get saving lodash to /Users/anthonycolas/.npm/registry.npmjs.org/lodash/.cache.json
+136 verbose correctMkdir /Users/anthonycolas/.npm correctMkdir not in flight; initializing
+137 silly addNameRange number 2 { name: 'lodash', range: '>=0.9.0 <0.10.0', hasData: true }
+138 silly addNameRange versions [ 'lodash',
+138 silly addNameRange   [ '0.1.0',
+138 silly addNameRange     '0.2.0',
+138 silly addNameRange     '0.2.1',
+138 silly addNameRange     '0.2.2',
+138 silly addNameRange     '0.3.0',
+138 silly addNameRange     '0.3.1',
+138 silly addNameRange     '0.3.2',
+138 silly addNameRange     '0.4.0',
+138 silly addNameRange     '0.4.1',
+138 silly addNameRange     '0.4.2',
+138 silly addNameRange     '0.5.0-rc.1',
+138 silly addNameRange     '0.5.0',
+138 silly addNameRange     '0.5.1',
+138 silly addNameRange     '0.5.2',
+138 silly addNameRange     '0.6.0',
+138 silly addNameRange     '0.6.1',
+138 silly addNameRange     '0.7.0',
+138 silly addNameRange     '0.8.0',
+138 silly addNameRange     '0.8.1',
+138 silly addNameRange     '0.8.2',
+138 silly addNameRange     '0.9.0',
+138 silly addNameRange     '0.9.1',
+138 silly addNameRange     '0.9.2',
+138 silly addNameRange     '0.10.0',
+138 silly addNameRange     '1.0.0-rc.1',
+138 silly addNameRange     '1.0.0-rc.2',
+138 silly addNameRange     '1.0.0-rc.3',
+138 silly addNameRange     '1.0.0',
+138 silly addNameRange     '1.0.1',
+138 silly addNameRange     '1.1.0',
+138 silly addNameRange     '1.1.1',
+138 silly addNameRange     '1.2.0',
+138 silly addNameRange     '1.2.1',
+138 silly addNameRange     '1.3.0',
+138 silly addNameRange     '1.3.1',
+138 silly addNameRange     '2.0.0',
+138 silly addNameRange     '2.1.0',
+138 silly addNameRange     '2.2.0',
+138 silly addNameRange     '2.2.1',
+138 silly addNameRange     '2.3.0',
+138 silly addNameRange     '2.4.0',
+138 silly addNameRange     '2.4.1',
+138 silly addNameRange     '3.0.0',
+138 silly addNameRange     '3.0.1',
+138 silly addNameRange     '3.1.0',
+138 silly addNameRange     '3.2.0',
+138 silly addNameRange     '3.3.0',
+138 silly addNameRange     '3.3.1',
+138 silly addNameRange     '3.4.0',
+138 silly addNameRange     '3.5.0',
+138 silly addNameRange     '3.6.0',
+138 silly addNameRange     '1.0.2',
+138 silly addNameRange     '3.7.0',
+138 silly addNameRange     '2.4.2',
+138 silly addNameRange     '3.8.0',
+138 silly addNameRange     '3.9.0',
+138 silly addNameRange     '3.9.1',
+138 silly addNameRange     '3.9.2',
+138 silly addNameRange     '3.9.3',
+138 silly addNameRange     '3.10.0',
+138 silly addNameRange     '3.10.1',
+138 silly addNameRange     '4.0.0',
+138 silly addNameRange     '4.0.1',
+138 silly addNameRange     '4.1.0',
+138 silly addNameRange     '4.2.0',
+138 silly addNameRange     '4.2.1',
+138 silly addNameRange     '4.3.0',
+138 silly addNameRange     '4.4.0',
+138 silly addNameRange     '4.5.0',
+138 silly addNameRange     '4.5.1',
+138 silly addNameRange     '4.6.0',
+138 silly addNameRange     '4.6.1',
+138 silly addNameRange     '4.7.0',
+138 silly addNameRange     '4.8.0',
+138 silly addNameRange     '4.8.1',
+138 silly addNameRange     '4.8.2',
+138 silly addNameRange     '4.9.0',
+138 silly addNameRange     '4.10.0',
+138 silly addNameRange     '4.11.0',
+138 silly addNameRange     '4.11.1',
+138 silly addNameRange     '4.11.2',
+138 silly addNameRange     '4.12.0',
+138 silly addNameRange     '4.13.0',
+138 silly addNameRange     '4.13.1',
+138 silly addNameRange     '4.14.0',
+138 silly addNameRange     '4.14.1' ] ]
+139 silly addNamed lodash@0.9.2
+140 verbose addNamed "0.9.2" is a plain semver version for lodash
+141 silly cache afterAdd lodash@0.9.2
+142 verbose afterAdd /Users/anthonycolas/.npm/lodash/0.9.2/package/package.json not in flight; writing
+143 verbose correctMkdir /Users/anthonycolas/.npm correctMkdir not in flight; initializing
+144 verbose afterAdd /Users/anthonycolas/.npm/lodash/0.9.2/package/package.json written
+145 http 304 https://registry.npmjs.org/http-proxy
+146 verbose headers { date: 'Sun, 07 Aug 2016 23:02:09 GMT',
+146 verbose headers   via: '1.1 varnish',
+146 verbose headers   'cache-control': 'max-age=300',
+146 verbose headers   etag: '"4SQGB6DQUTD6KCZMEVUBDF301"',
+146 verbose headers   age: '241',
+146 verbose headers   connection: 'keep-alive',
+146 verbose headers   'x-served-by': 'cache-atl6229-ATL',
+146 verbose headers   'x-cache': 'HIT',
+146 verbose headers   'x-cache-hits': '1',
+146 verbose headers   'x-timer': 'S1470610929.520660,VS0,VE0',
+146 verbose headers   vary: 'Accept-Encoding' }
+147 silly get cb [ 304,
+147 silly get   { date: 'Sun, 07 Aug 2016 23:02:09 GMT',
+147 silly get     via: '1.1 varnish',
+147 silly get     'cache-control': 'max-age=300',
+147 silly get     etag: '"4SQGB6DQUTD6KCZMEVUBDF301"',
+147 silly get     age: '241',
+147 silly get     connection: 'keep-alive',
+147 silly get     'x-served-by': 'cache-atl6229-ATL',
+147 silly get     'x-cache': 'HIT',
+147 silly get     'x-cache-hits': '1',
+147 silly get     'x-timer': 'S1470610929.520660,VS0,VE0',
+147 silly get     vary: 'Accept-Encoding' } ]
+148 verbose etag https://registry.npmjs.org/http-proxy from cache
+149 verbose get saving http-proxy to /Users/anthonycolas/.npm/registry.npmjs.org/http-proxy/.cache.json
+150 verbose correctMkdir /Users/anthonycolas/.npm correctMkdir not in flight; initializing
+151 silly addNameRange number 2 { name: 'http-proxy', range: '>=1.11.0 <1.12.0', hasData: true }
+152 silly addNameRange versions [ 'http-proxy',
+152 silly addNameRange   [ '0.5.9',
+152 silly addNameRange     '0.5.10',
+152 silly addNameRange     '0.5.11',
+152 silly addNameRange     '0.6.0',
+152 silly addNameRange     '0.6.1',
+152 silly addNameRange     '0.6.2',
+152 silly addNameRange     '0.6.4',
+152 silly addNameRange     '0.6.5',
+152 silly addNameRange     '0.6.6',
+152 silly addNameRange     '0.7.0',
+152 silly addNameRange     '0.7.2',
+152 silly addNameRange     '0.7.3',
+152 silly addNameRange     '0.7.4',
+152 silly addNameRange     '0.7.5',
+152 silly addNameRange     '0.7.6',
+152 silly addNameRange     '0.8.0',
+152 silly addNameRange     '0.8.1',
+152 silly addNameRange     '0.8.2',
+152 silly addNameRange     '0.8.3',
+152 silly addNameRange     '0.8.4',
+152 silly addNameRange     '0.8.5',
+152 silly addNameRange     '0.8.6',
+152 silly addNameRange     '0.8.7',
+152 silly addNameRange     '0.9.0',
+152 silly addNameRange     '0.9.1',
+152 silly addNameRange     '0.10.0',
+152 silly addNameRange     '0.10.1',
+152 silly addNameRange     '0.10.2',
+152 silly addNameRange     '0.10.3',
+152 silly addNameRange     '0.10.4',
+152 silly addNameRange     '1.0.0',
+152 silly addNameRange     '1.0.1',
+152 silly addNameRange     '1.0.2',
+152 silly addNameRange     '1.0.3',
+152 silly addNameRange     '1.1.0',
+152 silly addNameRange     '1.1.1',
+152 silly addNameRange     '1.1.2',
+152 silly addNameRange     '1.1.3',
+152 silly addNameRange     '1.1.4',
+152 silly addNameRange     '1.1.5',
+152 silly addNameRange     '1.1.6',
+152 silly addNameRange     '1.2.0',
+152 silly addNameRange     '1.2.1',
+152 silly addNameRange     '1.3.0',
+152 silly addNameRange     '1.4.0',
+152 silly addNameRange     '1.4.1',
+152 silly addNameRange     '1.4.2',
+152 silly addNameRange     '1.4.3',
+152 silly addNameRange     '1.5.0',
+152 silly addNameRange     '1.5.1',
+152 silly addNameRange     '1.5.2',
+152 silly addNameRange     '1.5.3',
+152 silly addNameRange     '1.6.0',
+152 silly addNameRange     '1.6.1',
+152 silly addNameRange     '1.6.2',
+152 silly addNameRange     '1.7.0',
+152 silly addNameRange     '1.7.1',
+152 silly addNameRange     '1.7.2',
+152 silly addNameRange     '1.7.3',
+152 silly addNameRange     '1.8.0',
+152 silly addNameRange     '1.8.1',
+152 silly addNameRange     '1.9.0',
+152 silly addNameRange     '1.9.1',
+152 silly addNameRange     '1.10.0',
+152 silly addNameRange     '1.10.1',
+152 silly addNameRange     '1.11.0',
+152 silly addNameRange     '1.11.1',
+152 silly addNameRange     '1.11.2',
+152 silly addNameRange     '1.11.3',
+152 silly addNameRange     '1.12.0',
+152 silly addNameRange     '1.12.1',
+152 silly addNameRange     '1.13.0',
+152 silly addNameRange     '1.13.1',
+152 silly addNameRange     '1.13.2',
+152 silly addNameRange     '1.13.3',
+152 silly addNameRange     '1.14.0' ] ]
+153 silly addNamed http-proxy@1.11.3
+154 verbose addNamed "1.11.3" is a plain semver version for http-proxy
+155 silly cache afterAdd http-proxy@1.11.3
+156 verbose afterAdd /Users/anthonycolas/.npm/http-proxy/1.11.3/package/package.json not in flight; writing
+157 verbose correctMkdir /Users/anthonycolas/.npm correctMkdir not in flight; initializing
+158 verbose afterAdd /Users/anthonycolas/.npm/http-proxy/1.11.3/package/package.json written
+159 silly install resolved [ { name: 'lodash',
+159 silly install resolved     version: '0.9.2',
+159 silly install resolved     description: 'A utility library delivering consistency, customization, performance, and extras.',
+159 silly install resolved     homepage: 'http://lodash.com',
+159 silly install resolved     license: 'MIT',
+159 silly install resolved     main: './lodash.js',
+159 silly install resolved     keywords:
+159 silly install resolved      [ 'browser',
+159 silly install resolved        'client',
+159 silly install resolved        'functional',
+159 silly install resolved        'performance',
+159 silly install resolved        'server',
+159 silly install resolved        'speed',
+159 silly install resolved        'util' ],
+159 silly install resolved     author:
+159 silly install resolved      { name: 'John-David Dalton',
+159 silly install resolved        email: 'john.david.dalton@gmail.com',
+159 silly install resolved        url: 'http://allyoucanleet.com/' },
+159 silly install resolved     contributors: [ [Object], [Object], [Object], [Object] ],
+159 silly install resolved     bugs: { url: 'https://github.com/lodash/lodash/issues' },
+159 silly install resolved     repository: { type: 'git', url: 'git+https://github.com/lodash/lodash.git' },
+159 silly install resolved     engines: [ 'node', 'rhino' ],
+159 silly install resolved     jam: { main: './lodash.js' },
+159 silly install resolved     _id: 'lodash@0.9.2',
+159 silly install resolved     dist:
+159 silly install resolved      { shasum: '8f3499c5245d346d682e5b0d3b40767e09f1a92c',
+159 silly install resolved        tarball: 'https://registry.npmjs.org/lodash/-/lodash-0.9.2.tgz' },
+159 silly install resolved     _from: 'lodash@>=0.9.0 <0.10.0',
+159 silly install resolved     _npmVersion: '1.2.24',
+159 silly install resolved     _npmUser: { name: 'jdalton', email: 'john.david.dalton@gmail.com' },
+159 silly install resolved     maintainers: [ [Object] ],
+159 silly install resolved     directories: {},
+159 silly install resolved     _shasum: '8f3499c5245d346d682e5b0d3b40767e09f1a92c',
+159 silly install resolved     _resolved: 'https://registry.npmjs.org/lodash/-/lodash-0.9.2.tgz',
+159 silly install resolved     readme: 'ERROR: No README data found!' },
+159 silly install resolved   { name: 'http-proxy',
+159 silly install resolved     version: '1.11.3',
+159 silly install resolved     repository:
+159 silly install resolved      { type: 'git',
+159 silly install resolved        url: 'git+https://github.com/nodejitsu/node-http-proxy.git' },
+159 silly install resolved     description: 'HTTP proxying for the masses',
+159 silly install resolved     author: { name: 'Nodejitsu Inc.', email: 'info@nodejitsu.com' },
+159 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object] ],
+159 silly install resolved     main: 'index.js',
+159 silly install resolved     dependencies: { eventemitter3: '1.x.x', 'requires-port': '0.x.x' },
+159 silly install resolved     devDependencies:
+159 silly install resolved      { async: '*',
+159 silly install resolved        blanket: '*',
+159 silly install resolved        coveralls: '*',
+159 silly install resolved        dox: '*',
+159 silly install resolved        'expect.js': '*',
+159 silly install resolved        mocha: '*',
+159 silly install resolved        'mocha-lcov-reporter': '*',
+159 silly install resolved        semver: '^4.3.3',
+159 silly install resolved        'socket.io': '*',
+159 silly install resolved        'socket.io-client': '*',
+159 silly install resolved        ws: '~0.5.0' },
+159 silly install resolved     scripts:
+159 silly install resolved      { coveralls: 'mocha --require blanket --reporter mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js',
+159 silly install resolved        test: 'mocha -R landing test/*-test.js',
+159 silly install resolved        'test-cov': 'mocha --require blanket -R html-cov > cov/coverage.html' },
+159 silly install resolved     engines: { node: '>=0.10.0' },
+159 silly install resolved     license: 'MIT',
+159 silly install resolved     gitHead: '60baca5aed4f45ef1d7b3f7edd909375853d344b',
+159 silly install resolved     bugs: { url: 'https://github.com/nodejitsu/node-http-proxy/issues' },
+159 silly install resolved     homepage: 'https://github.com/nodejitsu/node-http-proxy#readme',
+159 silly install resolved     _id: 'http-proxy@1.11.3',
+159 silly install resolved     _shasum: '1915dc888751e2a6bf3c2abfcb1808fa86c72353',
+159 silly install resolved     _from: 'http-proxy@>=1.11.0 <1.12.0',
+159 silly install resolved     _npmVersion: '2.14.7',
+159 silly install resolved     _nodeVersion: '4.2.1',
+159 silly install resolved     _npmUser: { name: 'jcrugzz', email: 'jcrugzz@gmail.com' },
+159 silly install resolved     dist:
+159 silly install resolved      { shasum: '1915dc888751e2a6bf3c2abfcb1808fa86c72353',
+159 silly install resolved        tarball: 'https://registry.npmjs.org/http-proxy/-/http-proxy-1.11.3.tgz' },
+159 silly install resolved     directories: {},
+159 silly install resolved     _resolved: 'https://registry.npmjs.org/http-proxy/-/http-proxy-1.11.3.tgz',
+159 silly install resolved     readme: 'ERROR: No README data found!' } ]
+160 info install lodash@0.9.2 into /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy
+161 info install http-proxy@1.11.3 into /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy
+162 info installOne lodash@0.9.2
+163 verbose installOne of lodash to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy not in flight; installing
+164 verbose correctMkdir /Users/anthonycolas/.npm/_locks correctMkdir not in flight; initializing
+165 info installOne http-proxy@1.11.3
+166 verbose installOne of http-proxy to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy not in flight; installing
+167 verbose correctMkdir /Users/anthonycolas/.npm/_locks correctMkdir not in flight; initializing
+168 verbose lock using /Users/anthonycolas/.npm/_locks/lodash-9cb0311041e16855.lock for /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash
+169 verbose lock using /Users/anthonycolas/.npm/_locks/http-proxy-90f17e91de2af1b7.lock for /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy
+170 silly install write writing lodash 0.9.2 to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash
+171 silly install write writing http-proxy 1.11.3 to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy
+172 verbose unbuild node_modules/grunt-connect-proxy/node_modules/lodash
+173 verbose unbuild node_modules/grunt-connect-proxy/node_modules/http-proxy
+174 silly gentlyRm /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash is being purged from base /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api
+175 verbose gentlyRm don't care about contents; nuking /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash
+176 verbose tar unpack /Users/anthonycolas/.npm/lodash/0.9.2/package.tgz
+177 verbose tar unpacking to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash
+178 silly gentlyRm /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash is being purged
+179 verbose gentlyRm don't care about contents; nuking /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash
+180 silly gentlyRm /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy is being purged from base /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api
+181 verbose gentlyRm don't care about contents; nuking /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy
+182 silly gunzTarPerm modes [ '755', '644' ]
+183 verbose tar unpack /Users/anthonycolas/.npm/http-proxy/1.11.3/package.tgz
+184 verbose tar unpacking to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy
+185 silly gentlyRm /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy is being purged
+186 verbose gentlyRm don't care about contents; nuking /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy
+187 silly gunzTarPerm modes [ '755', '644' ]
+188 silly gunzTarPerm extractEntry package.json
+189 silly gunzTarPerm extractEntry package.json
+190 silly gunzTarPerm extractEntry README.md
+191 silly gunzTarPerm extractEntry lodash.js
+192 silly gunzTarPerm extractEntry .npmignore
+193 silly gunzTarPerm extractEntry README.md
+194 silly gunzTarPerm extractEntry lodash.min.js
+195 silly gunzTarPerm extractEntry LICENSE
+196 silly gunzTarPerm extractEntry lodash.underscore.js
+197 silly gunzTarPerm extractEntry lodash.underscore.min.js
+198 silly gunzTarPerm extractEntry index.js
+199 silly gunzTarPerm extractEntry lib/http-proxy.js
+200 silly gunzTarPerm extractEntry lib/http-proxy/common.js
+201 silly gunzTarPerm extractEntry lib/http-proxy/index.js
+202 silly gunzTarPerm extractEntry lib/http-proxy/passes/web-incoming.js
+203 silly gunzTarPerm extractEntry lib/http-proxy/passes/web-outgoing.js
+204 silly gunzTarPerm extractEntry lib/http-proxy/passes/ws-incoming.js
+205 verbose write writing to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash/package.json
+206 info preinstall lodash@0.9.2
+207 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash/package.json
+208 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash/package.json
+209 silly install resolved []
+210 verbose about to build /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash
+211 info build /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash
+212 info linkStuff lodash@0.9.2
+213 silly linkStuff lodash@0.9.2 has /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules as its parent node_modules
+214 verbose linkBins lodash@0.9.2
+215 verbose linkMans lodash@0.9.2
+216 verbose rebuildBundles lodash@0.9.2
+217 info install lodash@0.9.2
+218 verbose write writing to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/package.json
+219 info postinstall lodash@0.9.2
+220 info preinstall http-proxy@1.11.3
+221 verbose unlock done using /Users/anthonycolas/.npm/_locks/lodash-9cb0311041e16855.lock for /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/lodash
+222 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/package.json
+223 silly prepareForInstallMany adding eventemitter3@1.x.x from http-proxy dependencies
+224 silly prepareForInstallMany adding requires-port@0.x.x from http-proxy dependencies
+225 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/package.json
+226 silly cache add args [ 'eventemitter3@1.x.x', null ]
+227 verbose cache add spec eventemitter3@1.x.x
+228 silly cache add args [ 'requires-port@0.x.x', null ]
+229 verbose cache add spec requires-port@0.x.x
+230 silly cache add parsed spec Result {
+230 silly cache add   raw: 'eventemitter3@1.x.x',
+230 silly cache add   scope: null,
+230 silly cache add   name: 'eventemitter3',
+230 silly cache add   rawSpec: '1.x.x',
+230 silly cache add   spec: '>=1.0.0 <2.0.0',
+230 silly cache add   type: 'range' }
+231 silly addNamed eventemitter3@>=1.0.0 <2.0.0
+232 verbose addNamed ">=1.0.0 <2.0.0" is a valid semver range for eventemitter3
+233 silly addNameRange { name: 'eventemitter3',
+233 silly addNameRange   range: '>=1.0.0 <2.0.0',
+233 silly addNameRange   hasData: false }
+234 silly mapToRegistry name eventemitter3
+235 silly mapToRegistry using default registry
+236 silly mapToRegistry registry https://registry.npmjs.org/
+237 silly mapToRegistry data Result {
+237 silly mapToRegistry   raw: 'eventemitter3',
+237 silly mapToRegistry   scope: null,
+237 silly mapToRegistry   name: 'eventemitter3',
+237 silly mapToRegistry   rawSpec: '',
+237 silly mapToRegistry   spec: 'latest',
+237 silly mapToRegistry   type: 'tag' }
+238 silly mapToRegistry uri https://registry.npmjs.org/eventemitter3
+239 verbose addNameRange registry:https://registry.npmjs.org/eventemitter3 not in flight; fetching
+240 silly cache add parsed spec Result {
+240 silly cache add   raw: 'requires-port@0.x.x',
+240 silly cache add   scope: null,
+240 silly cache add   name: 'requires-port',
+240 silly cache add   rawSpec: '0.x.x',
+240 silly cache add   spec: '>=0.0.0 <1.0.0',
+240 silly cache add   type: 'range' }
+241 silly addNamed requires-port@>=0.0.0 <1.0.0
+242 verbose addNamed ">=0.0.0 <1.0.0" is a valid semver range for requires-port
+243 silly addNameRange { name: 'requires-port',
+243 silly addNameRange   range: '>=0.0.0 <1.0.0',
+243 silly addNameRange   hasData: false }
+244 silly mapToRegistry name requires-port
+245 silly mapToRegistry using default registry
+246 silly mapToRegistry registry https://registry.npmjs.org/
+247 silly mapToRegistry data Result {
+247 silly mapToRegistry   raw: 'requires-port',
+247 silly mapToRegistry   scope: null,
+247 silly mapToRegistry   name: 'requires-port',
+247 silly mapToRegistry   rawSpec: '',
+247 silly mapToRegistry   spec: 'latest',
+247 silly mapToRegistry   type: 'tag' }
+248 silly mapToRegistry uri https://registry.npmjs.org/requires-port
+249 verbose addNameRange registry:https://registry.npmjs.org/requires-port not in flight; fetching
+250 verbose request uri https://registry.npmjs.org/requires-port
+251 verbose request no auth needed
+252 info attempt registry request try #1 at 7:02:09 PM
+253 verbose etag "E0O0T58ME0HOXF1OX00AGM99O"
+254 http request GET https://registry.npmjs.org/requires-port
+255 verbose request uri https://registry.npmjs.org/eventemitter3
+256 verbose request no auth needed
+257 info attempt registry request try #1 at 7:02:09 PM
+258 verbose etag "81S7LUVQAUV7UCFTJ2ZZG35YG"
+259 http request GET https://registry.npmjs.org/eventemitter3
+260 http 304 https://registry.npmjs.org/requires-port
+261 verbose headers { date: 'Sun, 07 Aug 2016 23:02:09 GMT',
+261 verbose headers   via: '1.1 varnish',
+261 verbose headers   'cache-control': 'max-age=300',
+261 verbose headers   etag: '"E0O0T58ME0HOXF1OX00AGM99O"',
+261 verbose headers   age: '49',
+261 verbose headers   connection: 'keep-alive',
+261 verbose headers   'x-served-by': 'cache-atl6248-ATL',
+261 verbose headers   'x-cache': 'HIT',
+261 verbose headers   'x-cache-hits': '1',
+261 verbose headers   'x-timer': 'S1470610929.723800,VS0,VE0',
+261 verbose headers   vary: 'Accept-Encoding' }
+262 silly get cb [ 304,
+262 silly get   { date: 'Sun, 07 Aug 2016 23:02:09 GMT',
+262 silly get     via: '1.1 varnish',
+262 silly get     'cache-control': 'max-age=300',
+262 silly get     etag: '"E0O0T58ME0HOXF1OX00AGM99O"',
+262 silly get     age: '49',
+262 silly get     connection: 'keep-alive',
+262 silly get     'x-served-by': 'cache-atl6248-ATL',
+262 silly get     'x-cache': 'HIT',
+262 silly get     'x-cache-hits': '1',
+262 silly get     'x-timer': 'S1470610929.723800,VS0,VE0',
+262 silly get     vary: 'Accept-Encoding' } ]
+263 verbose etag https://registry.npmjs.org/requires-port from cache
+264 verbose get saving requires-port to /Users/anthonycolas/.npm/registry.npmjs.org/requires-port/.cache.json
+265 verbose correctMkdir /Users/anthonycolas/.npm correctMkdir not in flight; initializing
+266 silly addNameRange number 2 { name: 'requires-port', range: '>=0.0.0 <1.0.0', hasData: true }
+267 silly addNameRange versions [ 'requires-port', [ '0.0.0', '0.0.1', '1.0.0' ] ]
+268 silly addNamed requires-port@0.0.1
+269 verbose addNamed "0.0.1" is a plain semver version for requires-port
+270 http 304 https://registry.npmjs.org/eventemitter3
+271 verbose headers { date: 'Sun, 07 Aug 2016 23:02:09 GMT',
+271 verbose headers   via: '1.1 varnish',
+271 verbose headers   'cache-control': 'max-age=300',
+271 verbose headers   etag: '"81S7LUVQAUV7UCFTJ2ZZG35YG"',
+271 verbose headers   age: '49',
+271 verbose headers   connection: 'keep-alive',
+271 verbose headers   'x-served-by': 'cache-atl6229-ATL',
+271 verbose headers   'x-cache': 'HIT',
+271 verbose headers   'x-cache-hits': '1',
+271 verbose headers   'x-timer': 'S1470610929.729576,VS0,VE0',
+271 verbose headers   vary: 'Accept-Encoding' }
+272 silly get cb [ 304,
+272 silly get   { date: 'Sun, 07 Aug 2016 23:02:09 GMT',
+272 silly get     via: '1.1 varnish',
+272 silly get     'cache-control': 'max-age=300',
+272 silly get     etag: '"81S7LUVQAUV7UCFTJ2ZZG35YG"',
+272 silly get     age: '49',
+272 silly get     connection: 'keep-alive',
+272 silly get     'x-served-by': 'cache-atl6229-ATL',
+272 silly get     'x-cache': 'HIT',
+272 silly get     'x-cache-hits': '1',
+272 silly get     'x-timer': 'S1470610929.729576,VS0,VE0',
+272 silly get     vary: 'Accept-Encoding' } ]
+273 verbose etag https://registry.npmjs.org/eventemitter3 from cache
+274 verbose get saving eventemitter3 to /Users/anthonycolas/.npm/registry.npmjs.org/eventemitter3/.cache.json
+275 verbose correctMkdir /Users/anthonycolas/.npm correctMkdir not in flight; initializing
+276 silly cache afterAdd requires-port@0.0.1
+277 verbose afterAdd /Users/anthonycolas/.npm/requires-port/0.0.1/package/package.json not in flight; writing
+278 verbose correctMkdir /Users/anthonycolas/.npm correctMkdir not in flight; initializing
+279 verbose afterAdd /Users/anthonycolas/.npm/requires-port/0.0.1/package/package.json written
+280 silly addNameRange number 2 { name: 'eventemitter3', range: '>=1.0.0 <2.0.0', hasData: true }
+281 silly addNameRange versions [ 'eventemitter3',
+281 silly addNameRange   [ '0.0.0',
+281 silly addNameRange     '0.0.1',
+281 silly addNameRange     '0.1.0',
+281 silly addNameRange     '0.1.1',
+281 silly addNameRange     '0.1.2',
+281 silly addNameRange     '0.1.3',
+281 silly addNameRange     '0.1.4',
+281 silly addNameRange     '0.1.5',
+281 silly addNameRange     '0.1.6',
+281 silly addNameRange     '1.0.0',
+281 silly addNameRange     '1.0.1',
+281 silly addNameRange     '1.0.2',
+281 silly addNameRange     '1.0.3',
+281 silly addNameRange     '1.1.0',
+281 silly addNameRange     '1.1.1',
+281 silly addNameRange     '1.2.0' ] ]
+282 silly addNamed eventemitter3@1.2.0
+283 verbose addNamed "1.2.0" is a plain semver version for eventemitter3
+284 silly cache afterAdd eventemitter3@1.2.0
+285 verbose afterAdd /Users/anthonycolas/.npm/eventemitter3/1.2.0/package/package.json not in flight; writing
+286 verbose correctMkdir /Users/anthonycolas/.npm correctMkdir not in flight; initializing
+287 verbose afterAdd /Users/anthonycolas/.npm/eventemitter3/1.2.0/package/package.json written
+288 silly install resolved [ { name: 'requires-port',
+288 silly install resolved     version: '0.0.1',
+288 silly install resolved     description: 'Check if a protocol requires a certain port number to be added to an URL.',
+288 silly install resolved     main: 'index.js',
+288 silly install resolved     scripts:
+288 silly install resolved      { '100%': 'istanbul check-coverage --statements 100 --functions 100 --lines 100 --branches 100',
+288 silly install resolved        test: 'mocha test.js',
+288 silly install resolved        watch: 'mocha --watch test.js',
+288 silly install resolved        coverage: 'istanbul cover ./node_modules/.bin/_mocha -- test.js',
+288 silly install resolved        'test-travis': 'istanbul cover node_modules/.bin/_mocha --report lcovonly -- test.js' },
+288 silly install resolved     repository:
+288 silly install resolved      { type: 'git',
+288 silly install resolved        url: 'git+https://github.com/unshiftio/requires-port.git' },
+288 silly install resolved     keywords:
+288 silly install resolved      [ 'port',
+288 silly install resolved        'require',
+288 silly install resolved        'http',
+288 silly install resolved        'https',
+288 silly install resolved        'ws',
+288 silly install resolved        'wss',
+288 silly install resolved        'gopher',
+288 silly install resolved        'file',
+288 silly install resolved        'ftp',
+288 silly install resolved        'requires',
+288 silly install resolved        'requried',
+288 silly install resolved        'portnumber',
+288 silly install resolved        'url',
+288 silly install resolved        'parsing',
+288 silly install resolved        'validation',
+288 silly install resolved        'cows' ],
+288 silly install resolved     author: { name: 'Arnout Kazemier' },
+288 silly install resolved     license: 'MIT',
+288 silly install resolved     bugs: { url: 'https://github.com/unshiftio/requires-port/issues' },
+288 silly install resolved     homepage: 'https://github.com/unshiftio/requires-port',
+288 silly install resolved     devDependencies:
+288 silly install resolved      { assume: '1.1.x',
+288 silly install resolved        istanbul: '0.3.x',
+288 silly install resolved        mocha: '2.1.x',
+288 silly install resolved        'pre-commit': '1.0.x' },
+288 silly install resolved     gitHead: 'd6235df7aa7e8d08e9ac72c842e1e2c6c366376f',
+288 silly install resolved     _id: 'requires-port@0.0.1',
+288 silly install resolved     _shasum: '4b4414411d9df7c855995dd899a8c78a2951c16d',
+288 silly install resolved     _from: 'requires-port@>=0.0.0 <1.0.0',
+288 silly install resolved     _npmVersion: '2.9.1',
+288 silly install resolved     _nodeVersion: '0.12.3',
+288 silly install resolved     _npmUser: { name: '3rdeden', email: 'npm@3rd-Eden.com' },
+288 silly install resolved     maintainers: [ [Object], [Object] ],
+288 silly install resolved     dist:
+288 silly install resolved      { shasum: '4b4414411d9df7c855995dd899a8c78a2951c16d',
+288 silly install resolved        tarball: 'http://registry.npmjs.org/requires-port/-/requires-port-0.0.1.tgz' },
+288 silly install resolved     directories: {},
+288 silly install resolved     _resolved: 'https://registry.npmjs.org/requires-port/-/requires-port-0.0.1.tgz',
+288 silly install resolved     readme: 'ERROR: No README data found!' },
+288 silly install resolved   { name: 'eventemitter3',
+288 silly install resolved     version: '1.2.0',
+288 silly install resolved     description: 'EventEmitter3 focuses on performance while maintaining a Node.js AND browser compatible interface.',
+288 silly install resolved     main: 'index.js',
+288 silly install resolved     scripts:
+288 silly install resolved      { 'test-node': 'istanbul cover _mocha --report lcovonly -- test.js',
+288 silly install resolved        coverage: 'istanbul cover _mocha -- test.js',
+288 silly install resolved        'test-browser': 'zuul -- test.js',
+288 silly install resolved        sync: 'node versions.js',
+288 silly install resolved        test: 'mocha test.js' },
+288 silly install resolved     repository:
+288 silly install resolved      { type: 'git',
+288 silly install resolved        url: 'git://github.com/primus/eventemitter3.git' },
+288 silly install resolved     keywords:
+288 silly install resolved      [ 'EventEmitter',
+288 silly install resolved        'EventEmitter2',
+288 silly install resolved        'EventEmitter3',
+288 silly install resolved        'Events',
+288 silly install resolved        'addEventListener',
+288 silly install resolved        'addListener',
+288 silly install resolved        'emit',
+288 silly install resolved        'emits',
+288 silly install resolved        'emitter',
+288 silly install resolved        'event',
+288 silly install resolved        'once',
+288 silly install resolved        'pub/sub',
+288 silly install resolved        'publish',
+288 silly install resolved        'reactor',
+288 silly install resolved        'subscribe' ],
+288 silly install resolved     author: { name: 'Arnout Kazemier' },
+288 silly install resolved     license: 'MIT',
+288 silly install resolved     bugs: { url: 'https://github.com/primus/eventemitter3/issues' },
+288 silly install resolved     'pre-commit': 'sync, test',
+288 silly install resolved     devDependencies:
+288 silly install resolved      { assume: '1.3.x',
+288 silly install resolved        istanbul: '0.4.x',
+288 silly install resolved        mocha: '2.4.x',
+288 silly install resolved        'pre-commit': '1.1.x',
+288 silly install resolved        zuul: '3.10.x' },
+288 silly install resolved     gitHead: 'c78d597fed80952c259b916c0a1f4dca91d940e4',
+288 silly install resolved     homepage: 'https://github.com/primus/eventemitter3#readme',
+288 silly install resolved     _id: 'eventemitter3@1.2.0',
+288 silly install resolved     _shasum: '1c86991d816ad1e504750e73874224ecf3bec508',
+288 silly install resolved     _from: 'eventemitter3@>=1.0.0 <2.0.0',
+288 silly install resolved     _npmVersion: '3.8.0',
+288 silly install resolved     _nodeVersion: '4.3.1',
+288 silly install resolved     _npmUser: { name: '3rdeden', email: 'npm@3rd-Eden.com' },
+288 silly install resolved     maintainers: [ [Object], [Object], [Object] ],
+288 silly install resolved     dist:
+288 silly install resolved      { shasum: '1c86991d816ad1e504750e73874224ecf3bec508',
+288 silly install resolved        tarball: 'https://registry.npmjs.org/eventemitter3/-/eventemitter3-1.2.0.tgz' },
+288 silly install resolved     _npmOperationalInternal:
+288 silly install resolved      { host: 'packages-12-west.internal.npmjs.com',
+288 silly install resolved        tmp: 'tmp/eventemitter3-1.2.0.tgz_1458148661717_0.1867425285745412' },
+288 silly install resolved     directories: {},
+288 silly install resolved     _resolved: 'https://registry.npmjs.org/eventemitter3/-/eventemitter3-1.2.0.tgz',
+288 silly install resolved     readme: 'ERROR: No README data found!' } ]
+289 info install requires-port@0.0.1 into /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy
+290 info install eventemitter3@1.2.0 into /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy
+291 info installOne requires-port@0.0.1
+292 verbose installOne of requires-port to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy not in flight; installing
+293 verbose correctMkdir /Users/anthonycolas/.npm/_locks correctMkdir not in flight; initializing
+294 info installOne eventemitter3@1.2.0
+295 verbose installOne of eventemitter3 to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy not in flight; installing
+296 verbose correctMkdir /Users/anthonycolas/.npm/_locks correctMkdir not in flight; initializing
+297 verbose lock using /Users/anthonycolas/.npm/_locks/requires-port-b8fb9dd731b59d60.lock for /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port
+298 silly install write writing requires-port 0.0.1 to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port
+299 verbose lock using /Users/anthonycolas/.npm/_locks/eventemitter3-f47d67793fbad891.lock for /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3
+300 silly install write writing eventemitter3 1.2.0 to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3
+301 verbose unbuild node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port
+302 verbose unbuild node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3
+303 silly gentlyRm /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port is being purged from base /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api
+304 verbose gentlyRm don't care about contents; nuking /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port
+305 verbose tar unpack /Users/anthonycolas/.npm/requires-port/0.0.1/package.tgz
+306 verbose tar unpacking to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port
+307 silly gentlyRm /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port is being purged
+308 verbose gentlyRm don't care about contents; nuking /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port
+309 silly gentlyRm /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3 is being purged from base /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api
+310 verbose gentlyRm don't care about contents; nuking /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3
+311 silly gunzTarPerm modes [ '755', '644' ]
+312 verbose tar unpack /Users/anthonycolas/.npm/eventemitter3/1.2.0/package.tgz
+313 verbose tar unpacking to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3
+314 silly gentlyRm /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3 is being purged
+315 verbose gentlyRm don't care about contents; nuking /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3
+316 silly gunzTarPerm modes [ '755', '644' ]
+317 silly gunzTarPerm extractEntry package.json
+318 silly gunzTarPerm extractEntry package.json
+319 silly gunzTarPerm extractEntry .npmignore
+320 silly gunzTarPerm extractEntry README.md
+321 silly gunzTarPerm extractEntry README.md
+322 silly gunzTarPerm extractEntry LICENSE
+323 silly gunzTarPerm extractEntry LICENSE
+324 silly gunzTarPerm extractEntry index.js
+325 silly gunzTarPerm extractEntry index.js
+326 silly gunzTarPerm extractEntry test.js
+327 silly gunzTarPerm extractEntry .travis.yml
+328 verbose write writing to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3/package.json
+329 info preinstall eventemitter3@1.2.0
+330 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3/package.json
+331 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3/package.json
+332 silly install resolved []
+333 verbose about to build /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3
+334 info build /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3
+335 info linkStuff eventemitter3@1.2.0
+336 silly linkStuff eventemitter3@1.2.0 has /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules as its parent node_modules
+337 verbose linkBins eventemitter3@1.2.0
+338 verbose linkMans eventemitter3@1.2.0
+339 verbose rebuildBundles eventemitter3@1.2.0
+340 verbose write writing to /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port/package.json
+341 info install eventemitter3@1.2.0
+342 info postinstall eventemitter3@1.2.0
+343 info preinstall requires-port@0.0.1
+344 verbose unlock done using /Users/anthonycolas/.npm/_locks/eventemitter3-f47d67793fbad891.lock for /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/eventemitter3
+345 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port/package.json
+346 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port/package.json
+347 silly install resolved []
+348 verbose about to build /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port
+349 info build /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port
+350 info linkStuff requires-port@0.0.1
+351 silly linkStuff requires-port@0.0.1 has /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules as its parent node_modules
+352 verbose linkBins requires-port@0.0.1
+353 verbose linkMans requires-port@0.0.1
+354 verbose rebuildBundles requires-port@0.0.1
+355 info install requires-port@0.0.1
+356 info postinstall requires-port@0.0.1
+357 verbose unlock done using /Users/anthonycolas/.npm/_locks/requires-port-b8fb9dd731b59d60.lock for /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy/node_modules/requires-port
+358 verbose about to build /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy
+359 info build /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy
+360 info linkStuff http-proxy@1.11.3
+361 silly linkStuff http-proxy@1.11.3 has /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules as its parent node_modules
+362 verbose linkBins http-proxy@1.11.3
+363 verbose linkMans http-proxy@1.11.3
+364 verbose rebuildBundles http-proxy@1.11.3
+365 verbose rebuildBundles [ 'eventemitter3', 'requires-port' ]
+366 info install http-proxy@1.11.3
+367 info postinstall http-proxy@1.11.3
+368 verbose unlock done using /Users/anthonycolas/.npm/_locks/http-proxy-90f17e91de2af1b7.lock for /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/node_modules/http-proxy
+369 verbose about to build /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy
+370 info build /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy
+371 info linkStuff grunt-connect-proxy@0.2.0
+372 silly linkStuff grunt-connect-proxy@0.2.0 has /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules as its parent node_modules
+373 verbose linkBins grunt-connect-proxy@0.2.0
+374 verbose linkMans grunt-connect-proxy@0.2.0
+375 verbose rebuildBundles grunt-connect-proxy@0.2.0
+376 verbose rebuildBundles [ 'http-proxy', 'lodash' ]
+377 info install grunt-connect-proxy@0.2.0
+378 info postinstall grunt-connect-proxy@0.2.0
+379 verbose readDependencies loading dependencies from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/package.json
+380 verbose targetResolver reading package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/body-parser/package.json
+381 verbose targetResolver reading package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/express/package.json
+382 verbose targetResolver reading package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/express-logging/package.json
+383 verbose targetResolver reading package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt/package.json
+384 verbose targetResolver reading package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy/package.json
+385 verbose targetResolver reading package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/logops/package.json
+386 verbose targetResolver reading package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/sequelize/package.json
+387 verbose targetResolver reading package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/sequelize-cli/package.json
+388 verbose targetResolver reading package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/sqlite3/package.json
+389 verbose targetResolver reading package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/.bin/grunt/package.json
+390 verbose targetResolver reading package data from /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/.bin/sequelize/package.json
+391 verbose already installed skipping grunt@~0.4.1 /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api
+392 silly install resolved []
+393 verbose unlock done using /Users/anthonycolas/.npm/_locks/grunt-connect-proxy-ac0c4ce75d659a34.lock for /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/node_modules/grunt-connect-proxy
+394 verbose validateInstall loading /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api/package.json for validation
+395 verbose stack Error: The package grunt@1.0.1 does not satisfy its siblings' peerDependencies requirements!
+395 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:125:32
+395 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:268:7
+395 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:142:5
+395 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+395 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+395 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+395 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+395 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+395 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+395 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+396 verbose cwd /Users/anthonycolas/Desktop/Amex_test2/AmExHackathon/api
+397 error Darwin 14.5.0
+398 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "grunt-connect-proxy" "--save-dev"
+399 error node v4.4.7
+400 error npm  v2.15.8
+401 error code EPEERINVALID
+402 error peerinvalid The package grunt@1.0.1 does not satisfy its siblings' peerDependencies requirements!
+402 error peerinvalid Peer grunt-connect-proxy@0.2.0 wants grunt@~0.4.1
+403 verbose exit [ 1, true ]
