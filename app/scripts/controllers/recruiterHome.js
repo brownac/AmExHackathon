@@ -63,7 +63,7 @@ angular.module('amExHackathonApp')
   	};
   	$scope.calendarModal = function(){
       $("#schedulerModal").modal();
-  	}
+  	};
 
   	function getCorrectTime (time){
   		var offset = 1;
@@ -101,10 +101,10 @@ angular.module('amExHackathonApp')
   			beforeNoon = "PM";
   			offset= 12;
   		}
-  		if(fullDate.getHours() == 0){
+  		if(fullDate.getHours() === 0){
   			offset = -12;
   		}
-  		if(fullDate.getHours() == 12){
+  		if(fullDate.getHours() === 12){
   			offset = 0;
   		}
   		var addZero = "";
@@ -116,8 +116,8 @@ angular.module('amExHackathonApp')
 
     $scope.addEvent = function() {
       var time = new Date($scope.interviewDate);
-      getCorrectTime($scope.interviewTime)
-      if($scope.interviewTime.includes("PM") && $scope.hour != "12"){
+      getCorrectTime($scope.interviewTime);
+      if($scope.interviewTime.includes("PM") && $scope.hour !== "12"){
       	var newHour = parseInt($scope.hour) + 12;
       	$scope.hour = newHour;
       }
@@ -164,7 +164,7 @@ angular.module('amExHackathonApp')
       //get edited info and add it to calendar
       var time = new Date($scope.editInterviewDate);
       getCorrectTime2($scope.editInterviewTime);
-      if($scope.editInterviewTime.includes("PM") && $scope.hour != "12"){
+      if($scope.editInterviewTime.includes("PM") && $scope.hour !== "12"){
       	var newHour = parseInt($scope.hour) + 12;
       	$scope.hour = newHour;
       }
