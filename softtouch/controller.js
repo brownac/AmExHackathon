@@ -11,7 +11,7 @@ defaultPenColor = "black";
 defaultMarkerColor = "yellow";
 penThickOptions = [1, 5, 10];
 markerThickOptions = [20, 35, 50];
-markerOppacity = 0.5;
+markerOppacity = 0.2;
 penSelectedThickness = 0;
 markerSelectedThickness = 0;
 
