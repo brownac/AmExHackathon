@@ -1,7 +1,6 @@
 'use strict'
 var express = require('express');
-var expressLogging = require('express-logging');
-var logger = require('logops');
+var morgan = require('morgan');
 var models = require("./models");
 var bodyParser = require('body-parser');
 
@@ -13,9 +12,6 @@ var routes = require('./routes/index');
 
 var app = express();
 
-app.use(bodyParser.json({ limit: "30mb" })); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
 // mount middlewares
 let dev = false;
 if (process.argv[2] === 'dev') {
@@ -25,7 +21,11 @@ if (process.argv[2] === 'dev') {
 
 /** Middlewares */
 // logging
-app.use(expressLogging(logger));
+app.use(morgan('dev'));
+
+// request parsing
+app.use(bodyParser.json({ limit: "30mb" })); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 // static assets
 // for angular app and bower deps if development mode
