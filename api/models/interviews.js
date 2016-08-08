@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var calendarInfo = sequelize.define("calendarInfo", {
+  var Interviews = sequelize.define("Interviews", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        calendarInfo.belongsTo(models.Candidates,{ // CHANGE TO CANDIDATES
+        Interviews.belongsTo(models.Candidates,{
           foreignkey: 'id',
           targetkey: 'id'
         });
@@ -37,5 +37,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  return calendarInfo;
+  return Interviews;
 };

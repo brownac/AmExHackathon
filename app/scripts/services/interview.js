@@ -9,7 +9,7 @@
  */
 angular.module('amExHackathonApp')
   .factory('calendarService', function ($resource) {
-    return $resource('/api/calendarInfo/:id', null, {
+    return $resource('/api/interviews/:id', null, {
       update: { method: 'PUT'}
     });
   });

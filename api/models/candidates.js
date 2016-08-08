@@ -53,6 +53,10 @@ module.exports = function(sequelize, DataTypes) {
         Candidates.hasMany(models.Images,{
           foreignKey: 'id',
           targetKey: 'id'
+        }),
+        Candidates.hasMany(models.Interviews,{
+          foreignKey: 'id',
+          targetKey: 'id'
         });
       }
     }

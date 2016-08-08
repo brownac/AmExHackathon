@@ -10,7 +10,7 @@ const appDir = path.join(__dirname, '../../app');
 // Insert an interview
 router.post('/', function(req, res) {
 	// create an instance
-	var interview = models.calendarInfo.build({
+	var interview = models.Interviews.build({
     first_name: req.body.firstName,
     last_name: req.body.lastName,
     interviewDate: req.body.interviewDate,
@@ -25,7 +25,7 @@ router.post('/', function(req, res) {
 
 // Update an interview by id
 router.put('/', function(req, res) {
-	models.calendarInfo.update({
+	models.Interviews.update({
 	first_name: req.body.firstName,
 	last_name: req.body.lastName,
     interviewDate: req.body.interviewDate,
@@ -57,7 +57,7 @@ router.get('/', function(req, res) {
 				where:
 				   query
 			  };
-	models.Candidates.findAll(sql)
+	models.Interviews.findAll(sql)
 	.then(function(result) {
 		res.json(result);
 	});
@@ -67,7 +67,7 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
 	var id = req.params.id;
 
-	models.Candidates.findById(id, {
+	models.Interviews.findById(id, {
 		include: [{
 			model: models.Candidates
 		}]

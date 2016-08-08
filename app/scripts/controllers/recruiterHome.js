@@ -8,24 +8,18 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('RecruiterHomeCtrl', function ($scope, candidateService) {
+  .controller('RecruiterHomeCtrl', function ($scope, calendarService) {
 
-    /*Query DB for candidates with finalDecision == scheduleInterview*/
     var query = {
-      //currently the schema does not support the column finalDecision
       sequelize:{
-        //finalDecision: 'scheduleInterview'
-        id:{
-          //gets all ids > 0, essentially all candidates
-          $gt: 0
-        }
+        interview_Date: null,
+        interview_Time: null
       }
     };
-    candidateService.query(query).$promise.then(values => {
+    calendarService.query(query).$promise.then(values => {
       $scope.candidateQueue = values;
       console.log(values);
     });
-    /*End Query*/
 
   	$scope.interviewTime = '9:00 AM';
   	$scope.scheduledCandidates = [];
