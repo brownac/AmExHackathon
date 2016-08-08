@@ -44,17 +44,17 @@ module.exports = function (grunt) {
               console.log(event.colour);
             });
 
-            // opens browser on initial server start 
+            // opens browser on initial server start
             nodemon.on('config:update', function () {
-              // Delay before server listens on port 
+              // Delay before server listens on port
               setTimeout(function() {
                 require('open')('http://localhost:4500');
               }, 250);
             });
 
-            // refreshes browser when server reboots 
+            // refreshes browser when server reboots
             nodemon.on('restart', function () {
-              // Delay before server listens on port 
+              // Delay before server listens on port
               setTimeout(function() {
                 require('fs').writeFileSync('.rebooted', 'rebooted');
               }, 1000);
@@ -67,6 +67,18 @@ module.exports = function (grunt) {
         options: {
           // pass the dist arg
           args: ['dist']
+        }
+      }
+    },
+
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['es2015']
+      },
+      dist: {
+        files: {
+          ".tmp/concat/scripts/scripts.js": ".tmp/concat/scripts/scripts.js"
         }
       }
     },
@@ -261,7 +273,7 @@ module.exports = function (grunt) {
             }
           }
       }
-    }, 
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -514,6 +526,10 @@ module.exports = function (grunt) {
     'copy:dist',
     'cdnify',
     'cssmin',
+
+    // run babel before uglify
+    'babel',
+
     'uglify',
     'filerev',
     'usemin',
