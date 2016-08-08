@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var candidateInfo = sequelize.define("candidateInfo", {
+  var Candidates = sequelize.define("Candidates", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     needSponsorship: {
-      type: DataTypes.STRING
+      type: DataTypes.BOOLEAN
     },
     internOrFull: {
       type: DataTypes.STRING
@@ -47,12 +47,12 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        candidateInfo.hasMany(models.image_uri,{
+        Candidates.hasMany(models.Images,{
           foreignKey: 'id',
           targetKey: 'id'
         });
       }
     }
   });
-  return candidateInfo;
+  return Candidates;
 };

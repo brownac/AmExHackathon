@@ -2,8 +2,8 @@ var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
 
-var candidateInfoRoutes = require('./candidateInfo');
+var candidateRoutes = require('./candidates');
 
-router.use('/candidateInfo', candidateInfoRoutes);
+router.use('/candidates', candidateRoutes);
 
 module.exports = router;

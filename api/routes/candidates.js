@@ -9,8 +9,9 @@ const appDir = path.join(__dirname, '../../app');
 
 // Insert a candidate
 router.post('/', function(req, res) {
+	console.log("Posting: " + req);
 	// create an instance
-	var candidate = models.candidateInfo.build({
+	var candidate = models.Candidates.build({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		email: req.body.email,
@@ -46,14 +47,14 @@ router.post('/', function(req, res) {
       else {
         //save image uri into database
         var image_type = 'resume';
-        var image_table = models.image_uri.build({
+        var image = models.Images.build({
           id: candidate.id,
 
           // add the preceding forwardslash
           img_uri: '/' + imgRelativePath,
           type: image_type
         });
-        image_table.save();
+        image.save();
 
         res.json(candidate);
       }
@@ -63,7 +64,7 @@ router.post('/', function(req, res) {
 
 // Update a candidate by id
 router.put('/', function(req, res) {
-	models.candidateInfo.update({
+	models.Candidates.update({
 		firstName: req.body.name,
 		lastName: req.body.name,
 		email: req.body.email,
@@ -93,15 +94,15 @@ router.put('/', function(req, res) {
 
 // Get all candidates
 router.get('/', function(req, res) {
-	var query = req.query;
+	var query = JSON.parse(req.query.sequelize);
 	var sql = {
 				include: [{
-					model: models.image_uri
+					model: models.Images,
+					required: true
 				}],
-				where:
-				   query
+				where: query
 			  };
-	models.candidateInfo.findAll(sql)
+	models.Candidates.findAll(sql)
 	.then(function(result) {
 		res.json(result);
 	});
@@ -111,9 +112,10 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
 	var id = req.params.id;
 
-	models.candidateInfo.findById(id, {
+	models.Candidates.findById(id, {
 		include: [{
-			model: models.image_uri
+			model: models.Images,
+			required: true
 		}]
 	}).then(function(result) {
 		if (result !== null) {

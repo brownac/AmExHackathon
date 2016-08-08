@@ -13,7 +13,13 @@ angular.module('amExHackathonApp')
     /*Query DB for candidates with finalDecision == scheduleInterview*/
     var query = {
       //currently the schema does not support the column finalDecision
-      //finalDecision: 'scheduleInterview'
+      sequelize:{
+        //finalDecision: 'scheduleInterview'
+        id:{
+          //gets all ids > 0, essentially all candidates
+          $gt: 0
+        }
+      }
     };
     candidateService.query(query).$promise.then(values => {
       $scope.candidateQueue = values;
