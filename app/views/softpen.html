@@ -58,7 +58,7 @@
     </div>
     <div class="row" style="margin-top: 50px">
       <div ng-controller="SoftPenCtrl">
-        <img id="resume-image" ng-src="{{src}}" imageonload style="display: none;" />
+        <img class="mustLoad" id="resume-image" ng-src="{{src}}" imageonload style="display: none;" />
       <canvas class="" id="c" height="995" width="775" style="border: 1px solid black"></canvas>
 
 
@@ -121,22 +121,10 @@
     var isRedoing = false;
     canvas.isDrawingMode = true;
     var imgObj = new Image();
-    setTimeout(function(){
-      var input = document.getElementById('resume-image');
-      var img = input;
-
-      imgObj.src = img.src;
-
-
-  }, 3000);
+    var input = document.getElementById('resume-image');
 
 
 
-
-    imgObj.onload = function () {
-      var image = new fabric.Image(imgObj);
-    	 canvas.add(image);
-    }
     /*fabric.Image.fromURL("../images/resume.png", function(img) {
       var input = document.getElementById('resume-image');
       canvas.add(img);
@@ -232,6 +220,12 @@
 
     //Event Listeners
     // --------------------------------------------------------------------------------
+    $(window).on("load", function() {
+      imgObj.src = input.src;
+      var image = new fabric.Image(imgObj);
+    	 canvas.add(image);
+    });
+    
     $("#undo").on("click", function() {
       undo();
     });
