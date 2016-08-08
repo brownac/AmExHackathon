@@ -15,12 +15,12 @@
       <div class="col-md-12">
         <form name="candidateForm" class="text-left">
           <div class="form-group">
-            <label class="control-label">First name:</label>
+            <label class="control-label">First Name:</label>
             <input class="form-control" type="text" ng-model="postCandidate.firstName" required>
           </div>
 
           <div class="form-group">
-            <label class="control-label">Last name:</label>
+            <label class="control-label">Last Name:</label>
             <input class="form-control" type="text" ng-model="postCandidate.lastName" required>
           </div>
 
@@ -98,7 +98,7 @@
 
           <div class="text-center">
             <div id="thumbnail-preview-area" ng-show="pictureAdded">
-              <img ng-src="{{postCandidate.resumeBase64}}" width=300 height="400" />
+              <img ng-src="{{postCandidate.resumeBase64}}" width="300" height="400" />
             </div>
 
             <span class="glyphicon glyphicon-refresh" ng-show="sendingData" aria-hidden="true"></span>

@@ -17,6 +17,7 @@ angular.module('amExHackathonApp')
       $scope.init = function() {
         candidateService.get({ id: candidateId }).$promise.then(value => {
           $scope.candidate = value;
+          $scope.hideResume = true;
         });
 
         candidateService.query().$promise.then(values => {
@@ -29,7 +30,9 @@ angular.module('amExHackathonApp')
           title: 'Information',
           url: 'tabInfo.html'
       }, {
-          title: 'Notes',
+          //title: 'Notes',
+          //temporary. Just to show image
+          title: 'Resume',
           url: 'tabNotes.html'
       }];
 
