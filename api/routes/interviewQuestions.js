@@ -12,7 +12,6 @@ const appDir = path.join(__dirname, '../../app');
 router.post('/', function(req, res) {
 	// create an instance
 	var intQuest = models.interviewQuestions.build({
-		form_Id: req.body.form_Id,
 		form_type: req.body.form_type,
 		version: req.body.version,
 		page_1: req.body.page_1,
@@ -61,20 +60,15 @@ router.post('/', function(req, res) {
 // Update a question by id
 router.put('/', function(req, res) {
 	models.interviewQuestions.update({
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		email: req.body.email,
-		phoneNumber: req.body.phoneNumber,
-		school: req.body.school,
-		major: req.body.major,
-		graduationDate: req.body.graduationDate,
-		needSponsorship: req.body.needSponsorship,
-		internOrFull: req.body.internOrFull,
-		areaOfInterest: req.body.areaOfInterest,
-		preferredLanguages: req.body.preferredLanguages,
-		finalEvaluation: req.body.finalEvaluation,
-		screenerInitials: req.body.screenerInitials
-	},
+		form_type: req.body.form_type,
+		version: req.body.version,
+		page_1: req.body.page_1,
+		page_2: req.body.page_2,
+		page_3: req.body.page_3,
+		page_4: req.body.page_4,
+		page_5: req.body.page_5,
+		active: req.body.active
+		},
 	{
 		where: { id : req.body.id }
 	})
