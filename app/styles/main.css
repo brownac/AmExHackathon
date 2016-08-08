@@ -1,83 +1,240 @@
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+/* Header Bar */
+.navbar {
+  background-color: #13548E;
+  color: white;
 }
 
-body {
-  padding: 0;
+.navbar-brand {
+  color: white !important;
+  position: absolute;
+  left: 30px;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+.navbar-nav {
+  position: absolute;
+  left: 275px;
 }
 
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-}
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 40px;
-  padding-bottom: 19px;
+.navbar-nav > li > a {
+  color: white !important;
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+.navbar-toggle {
+  background-color: white !important;
 }
 
-.container-narrow > hr {
-  margin: 30px 0;
+/* main.html */
+.role-btn {
+  height: 150px;
+  width: 60%;
 }
 
-/* Main marketing message and sign up button */
-.jumbotron {
+.role-glyph {
+  font-size: 5em;
+}
+
+/* candidateForm.html */
+#candidate-form-container {
+  margin-bottom: 5%;
+}
+
+#thumbnail-preview-area {
+  margin: 20px auto;
+}
+
+.camera-capture {
+  margin: -10% auto;
+  width: auto;
+}
+
+.camera-glyph {
+  font-size: 3em;
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-}
-.jumbotron .btn {
-  font-size: 21px;
-  padding: 14px 24px;
 }
 
-/* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-}
-.marketing p + h4 {
-  margin-top: 28px;
+.resumeImageLabel {
+  border-radius: 15%;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
+.resumeImage {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
 
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+.resumeImage + label {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.8rem 1.25rem;
+    margin-right: 20px;
+}
+
+.resumeImage:focus + label,
+.resumeImage.has-focus + label {
+    outline: 1px dotted #000;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+.resumeImage + label {
+    color: #f1e5e6;
+    background-color: #d3394c;
+}
+
+.resumeImage:focus + label,
+.resumeImage.has-focus + label,
+.resumeImage + label:hover {
+    background-color: #722040;
+}
+
+#amexLogo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+}
+
+#slogan {
+  text-align: center;
+  color: #4F5056;
+}
+
+#title {
+  color: #4F5056;
+  margin-left: 12% !important;
+}
+
+.submitBtn {
+  backround-color: red !important
+}
+
+/* viewCandidate.html */
+.candidate-name {
+  color:#494949;  
+}
+
+.tab-content {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.info-tab-content, h1 {
+  color: #005E8C;
+}
+
+.info-group > label {
+  color: #007BAA;
+}
+
+#candidateStatus {
+  display: block;
+  margin-left: 17%;
+  color: #505050;
+}
+
+button.candidate-queue-person {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  border: 10px;
+}
+
+.button-link, .button-link:hover {
+  text-decoration: none;
+  color: white;
+}
+
+/* Modal Styling */
+#tab-resume-img {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#tab-resume-img:hover {
+    opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#imageCaption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #imageCaption {
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)}
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: fixed;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
 }

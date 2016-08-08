@@ -1,0 +1,175 @@
+<div class="modal fade"><div class="modal-dialog"></div></div>
+
+<div ng-include src="'views/calendarSidebar.html'"></div>
+
+<div id="recruiter-form-container" class="container">
+    <!--Modal Info-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="schedulerModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Schedule Interview</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="sel1">Select Candidate:</label><br>
+              <select ng-model="selectedCandidate" id ="sel1" class="select-box">
+                <option ng-repeat="candidate in candidateQueue" value="{{candidate.lastName}}, {{candidate.firstName}}">{{candidate.lastName}}, {{candidate.firstName}}</option>
+              </select>
+            </div>
+            <p><strong>Select Interview Date: <strong></p>
+            <div class="inner-addon right-addon" id="calendarSelectArrow">
+              <i class="glyphicon glyphicon-calendar"></i>
+              <input type="text" class="form-control" ng-model="interviewDate" id ="datepicker">
+            </div>
+            <p><strong>Select Interview Time: </strong></p>
+            <div class="input-group bootstrap-timepicker timepicker">
+              <input id="timepicker1" ng-model="interviewTime" type="text" class="form-control input-small input-group-addon">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+            </div>
+            <div>
+              <label for="myLocation">Select Interview Location: </label><br>
+              <input ng-model="location" type="text" id="myLocation"/>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button ng-click="addEvent()" type="submit" class="btn btn-primary" data-dismiss="modal" value="Submit">Set Up Interview</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+
+    <!--Modal Info: Pop-Up Menu for EDITING Interview Times-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="editingModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Update Interview</h4>
+          </div>
+
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="sel2">Select Candidate:</label><br>
+              <select ng-model="editCandidateName" id ="sel2" class="select-box">
+                <option ng-repeat="candidate in scheduledCandidates" value="{{candidate.lastName}}, {{candidate.firstName}}">{{candidate.lastName}}, {{candidate.firstName}}</option>
+              </select>
+            </div>
+            <!-- <div class="">
+                <label for="myName">Candidate Name: </label><br>
+                <input ng-model="editCandidateName" type="text" id="myName"/>
+              </div> -->
+            <p><strong>Select Interview Date: <strong></p>
+            <div class="inner-addon right-addon" id="calendarSelectArrow2">
+              <i class="glyphicon glyphicon-calendar"></i>
+              <input type="text" class="form-control" ng-model="editInterviewDate" id ="datepicker2">
+            </div>
+            <p><strong>Select Interview Time: </strong></p>
+            <div class="input-group bootstrap-timepicker timepicker">
+              <input id="timepicker2" ng-model="editInterviewTime" type="text" class="form-control input-small input-group-addon">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+            </div>
+            <div>
+              <label for="myLocation">Select Interview Location: </label><br>
+              <input ng-model="editLocation" type="text" id="myLocation"/>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button ng-click="editEvent(calendarEvent)" type="submit" class="btn btn-primary" value="Submit" data-dismiss="modal">Update Interview</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+     <!--Modal Info: Pop-Up Menu for DELETING Interview Times-->
+    <div class="modal fade" tabindex="-1" role="dialog" id="deletingModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Delete Interview</h4>
+          </div>
+
+          <div class="modal-body">
+            <h3>Are you sure you want to delete this scheduled interview?</h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button ng-click="deleteInterview()" type="submit" class="btn btn-danger" value="Submit" data-dismiss="modal">Delete</button>
+            <button ng-click="updateQueue()" type="button" class="btn btn-warning" data-dismiss="modal">Add to Queue</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <!-- Calendar -->
+  <div class="">
+    <h2 class="text-center">{{calendarTitle}}</h2>
+    <div class="row">
+      <div class= "col-md-offset-9">
+        <button ng-click="calendarModal()" class="btn pull-right scheduler">Schedule Interview</button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class = "col-md-6 calChangeDate">
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="calendarDate"
+          decrement="calendarView">
+          Previous
+        </button>
+
+
+        <button
+          class="btn btn-default"
+          mwl-date-modifier
+          date="calendarDate"
+          set-to-today>
+          Today
+        </button>
+
+
+        <button
+          class="btn btn-primary"
+          mwl-date-modifier
+          date="calendarDate"
+          increment="calendarView">
+          Next
+        </button>
+      </div>
+      <div class="btn-group pull-right calChangeView">
+          <label class="btn btn-primary" ng-click="changeView('year')">Year</label>
+          <label class="btn btn-primary" ng-click="changeView('month')">Month</label>
+          <label class="btn btn-primary" ng-click="changeView('week')">Week</label>
+          <label class="btn btn-primary" ng-click="changeView('day')">Day</label>
+      </div>
+    </div>
+    <div>
+      <mwl-calendar
+        view="calendarView"
+        view-date="calendarDate"
+        events="events"
+        view-title="calendarTitle"
+        on-event-click="eventClicked(calendarEvent)"
+        on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+        edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
+        delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+        on-edit-event-click="getEditingForm(calendarEvent)"
+        on-delete-event-click="deleteEvent(calendarEvent)"
+        cell-is-open="true">
+      </mwl-calendar>
+    </div>
+    <div style="margin-bottom:20px;"></div>
+  </div>
+
+</div>

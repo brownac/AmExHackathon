@@ -1,0 +1,113 @@
+<div class="text-center">
+  <div class="page-header">
+    <div class="pull-right">
+        <div class="camera-capture">
+          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" custom-on-change="readImage">
+          <label for="resume" class="resumeImageLabel"><span class="glyphicon glyphicon-camera camera-glyph"></span></label>
+        </div>
+    </div>
+
+    <h1 id="title">Add Candidate</h1>
+  </div>
+
+  <div id="candidate-form-container" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form name="candidateForm" class="text-left">
+          <div class="form-group">
+            <label class="control-label">First Name:</label>
+            <input class="form-control" type="text" ng-model="postCandidate.firstName" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Last Name:</label>
+            <input class="form-control" type="text" ng-model="postCandidate.lastName" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="email">Email Address:</label>
+            <input class="form-control" id="email" type="email" ng-model="postCandidate.email" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="phoneNumber">Phone Number:</label>
+            <input class="form-control" id="phoneNumber" type="tel" ng-model="postCandidate.phoneNumber" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="school">School:</label>
+            <input class="form-control" id="school" type="text" ng-model="postCandidate.school" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="major">Major:</label>
+            <input class="form-control" id="major" type="text" ng-model="postCandidate.major" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Graduation Date:</label>
+            <input class="form-control" type="text" ng-model="postCandidate.graduationDate" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="needSponsorship">Needs Sponsorship?</label>
+            <div class="radio">
+              <label class="radio-inline">
+              <input type="radio" name="needSponsorship" ng-model="postCandidate.needSponsorship" value="yes" required>Yes</label>
+              <label class="radio-inline">
+              <input type="radio" name="needSponsorship" ng-model="postCandidate.needSponsorship" value="no" required>No</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="internOrFull">Seeking Internship or Full-Time?</label>
+            <div class="radio">
+              <label class="radio-inline">
+                <input type="radio" name="internOrFull" ng-model="postCandidate.internOrFull" value="internship" required>Internship</label>
+              <label class="radio-inline">
+                <input type="radio" name="internOrFull" ng-model="postCandidate.internOrFull" value="full-time" required>Full-Time</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Areas of Interest (i.e. front end, back end, iOS, Android, etc.)</label>
+            <textarea ng-model="postCandidate.areaOfInterest" class="form-control" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Preferred Language(s) (i.e. Java, C, C++, etc.)</label>
+            <textarea ng-model="postCandidate.preferredLanguages" class="form-control" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="finalEvaluation">Final Evaluation:</label>
+            <div class="radio">
+              <label class="radio-inline">
+                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="invite" required>Invite to 1st Round Interviews</label>
+              <label class="radio-inline">
+                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="tentative" required>Tentative</label>
+              <label class="radio-inline">
+                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="turndown" required>Turndown</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Screener Initials</label>
+            <input class="form-control" type="text" ng-model="postCandidate.screenerInitials" required>
+          </div>
+
+          <div class="text-center">
+            <div id="thumbnail-preview-area" ng-show="pictureAdded">
+              <img ng-src="{{postCandidate.resumeBase64}}" width="300" height="400" />
+            </div>
+
+            <span class="glyphicon glyphicon-refresh" ng-show="sendingData" aria-hidden="true"></span>
+            <span class="glyphicon-class" ng-show="sendingData"></span>
+            <button type="submit submitBtn" ng-class="submitBtnClasses" data-ng-click="submit()" ng-disabled="candidateForm.$invalid">{{buttonText}}</button>
+            <button type="submit" class="btn btn-warning">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

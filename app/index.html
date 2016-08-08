@@ -2,17 +2,22 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>AMEX Campus Recruitment</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/jquery.ui.css" />
+    <link rel="stylesheet" href="styles/bootstrap.timepicker.min.css" />
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/sidebar.css">
+    <link rel="stylesheet" href="styles/calendar.css">
     <!-- endbuild -->
   </head>
   <body ng-app="amExHackathonApp">
@@ -33,15 +38,17 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#/">amExHackathon</a>
+            <a class="navbar-brand" href="#/">Campus Recruitment Tool</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              <li><a href="#/">Home</a></li>
+              <li><a ng-href="#/screener/candidateForm">Screener</a></li>
+              <li><a ng-href="#/recruiter/recruiterHome">Recruiter</a></li>
+              <li><a ng-href="#/interviewer/interviewerForm">Interviewer</a></li>
+              <li><a ng-href="#/viewCandidates">Candidates</a></li>
             </ul>
           </div>
         </div>
@@ -49,27 +56,10 @@
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
+      <div ng-view=""></div>
     </div>
-
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
-    </div>
-
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
-
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -82,15 +72,29 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/fabric.js/dist/fabric.min.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/softpen.js"></script>
         <script src="scripts/services/softpenimage.js"></script>
+        <script src="scripts/controllers/viewCandidate.js"></script>
+        <script src="scripts/controllers/viewCandidates.js"></script>
+        <script src="scripts/controllers/sidebar.js"></script>
+        <script src="scripts/services/candidate.js"></script>
+        <script src="scripts/controllers/recruiterHome.js"></script>
+        <script src="scripts/controllers/candidateForm.js"></script>
+        <script src="scripts/controllers/calendar.js"></script>
+        <script src="scripts/directives/customonchange.js"></script>
+
+          <!-- leave this here, livereload will be removed during a real build -->
+        <script src="//localhost:35729/livereload.js"></script>
         <!-- endbuild -->
 </body>
 </html>

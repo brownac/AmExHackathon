@@ -4,3 +4,6 @@
 /.sass-cache
 /bower_components
 *.sqlite
+.rebooted
+.DS_Store
+/api/images/*

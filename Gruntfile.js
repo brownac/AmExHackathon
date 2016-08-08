@@ -16,7 +16,10 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+
+    /* see below -- not using cdn's
+     * cdnify: 'grunt-google-cdn'
+     */
   });
 
   // Configurable paths for the application
@@ -34,7 +37,52 @@ module.exports = function (grunt) {
     // Run the express backend
     nodemon: {
       dev: {
-        script: 'api/server.js'
+        script: 'api/server.js',
+        options: {
+          // pass dev arg
+          args: ['dev'],
+
+          callback: function(nodemon) {
+            nodemon.on('log', function (event) {
+              console.log(event.colour);
+            });
+
+            // opens browser on initial server start
+            nodemon.on('config:update', function () {
+              // Delay before server listens on port
+              setTimeout(function() {
+                require('open')('http://localhost:4500');
+              }, 250);
+            });
+
+            // refreshes browser when server reboots
+            nodemon.on('restart', function () {
+              // Delay before server listens on port
+              setTimeout(function() {
+                require('fs').writeFileSync('.rebooted', 'rebooted');
+              }, 1000);
+            });
+          }
+        }
+      },
+      dist: {
+        script: 'api/server.js',
+        options: {
+          // pass the dist arg
+          args: ['dist']
+        }
+      }
+    },
+
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['es2015']
+      },
+      dist: {
+        files: {
+          ".tmp/concat/scripts/scripts.js": ".tmp/concat/scripts/scripts.js"
+        }
       }
     },
 
@@ -45,10 +93,10 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'api/**/*.js'],
         tasks: ['newer:jshint:all', 'newer:jscs:all'],
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: true
         }
       },
       jsTest: {
@@ -64,7 +112,7 @@ module.exports = function (grunt) {
       },
       livereload: {
         options: {
-          livereload: '<%= connect.options.livereload %>'
+          livereload: true
         },
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
@@ -74,12 +122,12 @@ module.exports = function (grunt) {
       }
     },
 
-    // The actual grunt server settings
+    // The actual grunt server for tests only (I believe)
     connect: {
       options: {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
-        hostname: 'localhost',
+        hostname: '0.0.0.0',
         livereload: 35729
       },
       livereload: {
@@ -87,9 +135,6 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              // proxy fronted requests to /api to the backend's server
-              require('grunt-connect-proxy/lib/utils').proxyRequest,
-
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
@@ -132,12 +177,18 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        reporter: require('jshint-stylish'),
+
+        // don't kill the build process if linting errors
+        force: true
       },
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/{,*/}*.js',
+
+          // the node app should be linted as well
+          'api/**/*.js'
         ]
       },
       test: {
@@ -152,12 +203,16 @@ module.exports = function (grunt) {
     jscs: {
       options: {
         config: '.jscsrc',
-        verbose: true
+        verbose: true,
+
+        // don't kill the build process if linting errors
+        force: true
       },
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/{,*/}*.js',
+          'api/**/*.js'
         ]
       },
       test: {
@@ -191,17 +246,6 @@ module.exports = function (grunt) {
         options: {
           map: true
         },
-
-        // proxy to the backend express server
-        proxies: [
-          {
-            context: '/api',
-            host: 'localhost',
-            port: 4500,
-            https: false,
-            xforward: false
-          }
-        ],
 
         files: [{
           expand: true,
@@ -242,7 +286,7 @@ module.exports = function (grunt) {
             }
           }
       }
-    }, 
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -296,6 +340,7 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
+    // // request parsing
     // cssmin: {
     //   dist: {
     //     files: {
@@ -384,11 +429,13 @@ module.exports = function (grunt) {
     },
 
     // Replace Google CDN references
+    /* not using cdn's, see comment in build definition
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
       }
     },
+    */
 
     // Copies remaining files to places other tasks can use
     copy: {
@@ -429,8 +476,7 @@ module.exports = function (grunt) {
       server: {
         tasks: [
           'copy:styles',
-          'nodemon', // the express backend (api) needs to run as well
-          'connect:livereload:keepalive',
+          'nodemon:dev', // the express backend (api) needs to run as well
           'watch'
         ],
         options: {
@@ -457,9 +503,6 @@ module.exports = function (grunt) {
     }
   });
 
-  // proxy the frontend to backend during dev
-  grunt.loadNpmTasks('grunt-connect-proxy');
-
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
@@ -468,6 +511,8 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'newer:jshint',
+      'newer:jscs',
       'postcss:server',
       'concurrent:server'
     ]);
@@ -497,8 +542,16 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
+
+    /* don't use cdns since our code may be offline on raspi
     'cdnify',
+    */
+    
     'cssmin',
+
+    // run babel before uglify
+    'babel',
+
     'uglify',
     'filerev',
     'usemin',
@@ -510,5 +563,12 @@ module.exports = function (grunt) {
     'newer:jscs',
     'test',
     'build'
+  ]);
+
+  // run for production -- use this for testing dist probably,
+  // since production doesn't really need grunt overhead
+  grunt.registerTask('runprod', [
+    'build',
+    'nodemon:dist'
   ]);
 };

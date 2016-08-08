@@ -1,0 +1,81 @@
+.calChangeMonth{
+  float: left;
+  padding: 0;
+}
+
+.calChangeView{
+  padding-right: 2%;
+}
+
+span[data-cal-date]{
+  cursor: pointer;
+}
+
+.inner-addon {
+  position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+.right-addon .glyphicon { 
+  right: 0px;
+}
+
+.right-addon input { 
+  padding-right: 30px; 
+}
+
+#ui-datepicker-div{
+  z-index: 9999 !important;
+}
+
+input.input-group-addon {
+  background-color: white;
+}
+
+span.input-group-addon{
+  cursor: pointer;
+}
+
+.scheduler {
+  float: right;
+  background-color: #ffa500;
+  margin-right: 8%;
+  margin-bottom: 5%;
+}
+
+.bootstrap-timepicker-widget{
+  z-index: 9999 !important;
+}
+
+.select-box{
+  width: 30%;
+  height: 30px;
+}
+
+/* Recruiter form styles */
+
+#recruiter-form-container {
+  float: right;
+  display: block;
+  width: 67%;
+  right: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button.candidate-queue-person {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  border: 10px;
+}
+
+.button-link, .button-link:hover {
+  text-decoration: none;
+  color: white;
+}

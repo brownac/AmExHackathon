@@ -8,7 +8,9 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('MainCtrl', function() {
+  .controller('MainCtrl', function ($scope, calendarConfig) {
+  	$scope.calendarView = 'month';
+  	$scope.calendarDate = new Date();
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
