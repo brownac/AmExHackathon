@@ -8,11 +8,20 @@
       </li>
       <li>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2" ng-model="searchText">
-          <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>
+          <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon1" ng-model="search[property]">
+          <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+        </div>
+        <div class="input-group">
+          <select class="form-control" aria-describedby="sizing-addon2" ng-model="property">
+            <option value="firstName">First Name</option>
+            <option value="lastName">Last Name</option>
+            <option value="school">School</option>
+            <option value="major">Major</option>
+          </select>
+          <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-filter"></span></span>
         </div>
       </li>
-      <ul id="candidate-list" data-ng-repeat="row in candidates | filter:searchText">
+      <ul id="candidate-list" data-ng-repeat="row in candidates | filter:search">
         <li>
           <a href="#/viewCandidate/{{row.id}}">{{ row.lastName }}, {{ row.firstName }} <span class="align-glyphicon" ng-class="statusIconClass(row.finalEvaluation)"></span></a>
         </li>
