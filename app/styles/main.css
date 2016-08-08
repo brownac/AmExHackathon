@@ -108,11 +108,20 @@ button.candidate-queue-person {
 
 /* Modal Styling */
 
+#tab-resume-img {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#tab-resume-img:hover {
+    opacity: 0.7;
+}
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    position: fixed;
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -163,7 +172,7 @@ button.candidate-queue-person {
 
 /* The Close Button */
 .close {
-    position: absolute;
+    position: fixed;
     top: 15px;
     right: 35px;
     color: #f1f1f1;
