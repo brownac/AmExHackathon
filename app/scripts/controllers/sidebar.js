@@ -10,7 +10,8 @@
 angular.module('amExHackathonApp')
   .controller('SidebarCtrl', function ($scope) {
     $scope.property = "firstName";
-    
+    $scope.order = "firstName";
+
     $scope.clear = function() {
       $scope.search = "";
     }
