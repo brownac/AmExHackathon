@@ -54,12 +54,14 @@
           </button>
       </div>
       <!-- <button class="btn btn-info" style="margin-left: 50px">Stop</button> -->
-      <button class="btn btn-danger" style="margin-left: 50px">Save</button>
+      <button id="save" class="btn btn-danger" style="margin-left: 50px">Save</button>
     </div>
     <div class="row" style="margin-top: 50px">
       <div ng-controller="SoftPenCtrl">
         <img class="mustLoad" id="resume-image" ng-src="{{src}}" imageonload style="display: none;" />
       <canvas class="" id="c" height="995" width="775" style="border: 1px solid black"></canvas>
+      <img id="edited-image" style="display: none;"/>
+
 
 
 </div>
@@ -216,7 +218,12 @@
       }
     }
 
+function convertCanvasToImage(canvas) {
+	var image = new Image();
+	image.src = canvas.toDataURL("image/png");
+  $("#edited-image").attr('src', image.src);
 
+}
 
     //Event Listeners
     // --------------------------------------------------------------------------------
@@ -225,7 +232,7 @@
       var image = new fabric.Image(imgObj);
     	 canvas.add(image);
     });
-    
+
     $("#undo").on("click", function() {
       undo();
     });
@@ -267,6 +274,10 @@
         changeColor(defaultMarkerColor);
         activateTag(findTagByColor(defaultMarkerColor));
       }
+    });
+
+    $("#save").on("click", function() {
+      convertCanvasToImage(canvas);
     });
   </script>
 </div>
