@@ -40,6 +40,9 @@ module.exports = function(sequelize, DataTypes) {
     preferredLanguages: {
       type: DataTypes.STRING
     },
+    isScheduled: {
+      type: DataTypes.BOOLEAN
+    },
     finalEvaluation: {
       type: DataTypes.STRING
     }

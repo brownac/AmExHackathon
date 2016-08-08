@@ -23,6 +23,7 @@ router.post('/', function(req, res) {
 		internOrFull: req.body.internOrFull,
 		areaOfInterest: req.body.areaOfInterest,
 		preferredLanguages: req.body.preferredLanguages,
+		isScheduled: req.body.isScheduled,
 		finalEvaluation: req.body.finalEvaluation
 	});
 
@@ -76,6 +77,7 @@ router.put('/', function(req, res) {
 		internOrFull: req.body.internOrFull,
 		areaOfInterest: req.body.areaOfInterest,
 		preferredLanguages: req.body.preferredLanguages,
+		isScheduled: req.body.isScheduled,
 		finalEvaluation: req.body.finalEvaluation
 	},
 	{
@@ -94,7 +96,11 @@ router.put('/', function(req, res) {
 
 // Get all candidates
 router.get('/', function(req, res) {
-	var query = JSON.parse(req.query.sequelize);
+	var query = {};
+	if(req.query.sequelize !== undefined) {
+		query = JSON.parse(req.query.sequelize);
+	}
+	
 	var sql = {
 				include: [{
 					model: models.Images,
