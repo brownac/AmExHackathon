@@ -44,9 +44,6 @@
       <label>Interviewers:</label>
     </div>
 
-    <button class="btn btn-primary">
-      <a class="button-link" href="#/screener/candidateForm/{{candidate.id}}">Edit</a>
-    </button>
 	</div>
 </script>
 
@@ -58,10 +55,12 @@
   <!-- Candidate info -->
   <div id="page-content-wrapper">
     <div class="page-header">
-      <div class="pull-right">
-          <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-file"></span> View Resume</button>
+      <h1 style="color:#494949;">{{candidate.firstName}} {{candidate.lastName}}</h1>
+      <div class="pull-right" style="margin-top:-42px;">
+        <button class="btn btn-primary">
+          <a class="button-link" href="#/screener/candidateForm/{{candidate.id}}">Edit Info</a>
+        </button>
       </div>
-      <h1>{{candidate.firstName}} {{candidate.lastName}}</h1>
     </div>
 
     <div class="container-fluid">

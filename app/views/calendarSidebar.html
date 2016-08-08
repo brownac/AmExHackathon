@@ -1,9 +1,8 @@
-<!-- Sidebar -->
 <div id="sidebar-wrapper" ng-controller="SidebarCtrl">
   <ul class="sidebar-nav">
       <li class="sidebar-brand">
-          <a style="margin-top:15px;">
-              Candidate List
+          <a>
+              Candidates to schedule:
           </a>
       </li>
       <li>
@@ -12,10 +11,13 @@
           <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>
         </div>
       </li>
-      <ul id="candidate-list" data-ng-repeat="row in candidates | filter:searchText">
+      <ul id="candidate-list" ng-repeat="candidate in candidateQueue | filter:search as results">
         <li>
-          <a href="#/viewCandidate/{{row.id}}">{{ row.lastName }}, {{ row.firstName }} <span class="align-glyphicon" ng-class="statusIconClass(row.finalEvaluation)"></span></a>
+          <a href="">{{ candidate.lastName }}, {{ candidate.firstName }}</a>
         </li>
       </ul>
+      <div ng-if="results.length == 0">
+        <strong>No candidates found... Queue Empty</strong>
+      </div>
   </ul>
 </div>

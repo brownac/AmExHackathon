@@ -1,3 +1,31 @@
+/* Header Bar */
+
+.navbar {
+  background-color: #13548E;
+  color: white;
+}
+
+.navbar-brand {
+  color: white !important;
+  position: absolute;
+  left: 30px;
+}
+
+.navbar-nav {
+  position: absolute;
+  left: 275px;
+}
+
+.navbar-nav > li > a {
+  color: white !important;
+}
+
+.navbar-toggle {
+  background-color: white !important;
+}
+
+
+
 /* main.html */
 .role-btn {
   height: 150px;
@@ -9,6 +37,8 @@
 }
 
 /* candidateForm.html */
+
+
 #candidate-form-container {
   margin-bottom: 5%;
 }
@@ -70,6 +100,28 @@
     background-color: #722040;
 }
 
+#amexLogo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+}
+
+#slogan {
+  text-align: center;
+  color: #4F5056;
+}
+
+#title {
+  color: #4F5056;
+  margin-left: 12% !important;
+}
+
+.submitBtn {
+  backround-color: red !important
+}
+
 /* viewCandidate.html */
 .tab-content {
   margin-top: 15px;
@@ -84,24 +136,9 @@
   color: #007BAA;
 }
 
-
-/* Recruiter form styles */
-#recruiter-form-container {
-  /*position: absolute;
-  left: 0px;*/
+#candidateStatus {
+  display: block;
+  margin-left: 17%;  
+  color: #505050;
 }
 
-#candidate-queue {
-
-}
-
-button.candidate-queue-person {
-  margin-top: 7px;
-  margin-bottom: 7px;
-  border: 10px;
-}
-
-.button-link, .button-link:hover {
-  text-decoration: none;
-  color: white;
-}
