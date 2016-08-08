@@ -1,12 +1,11 @@
 'use strict'
 
 var models  = require('../models');
+var utils  = require('../utils');
 var express = require('express');
 var router  = express.Router();
 var fs = require('fs');
 var path = require('path');
-
-const appDir = path.join(__dirname, '../../app');
 
 // Insert a candidate
 router.post('/', function(req, res) {
@@ -29,9 +28,9 @@ router.post('/', function(req, res) {
 
 	// persist an instance
   candidate.save().then(() => {
-    // a slash goes before this in the database uri
-    const imgRelativePath = `uploads/${candidate.id}.resume.png`;
-    const imgAbsPath = path.join(appDir, imgRelativePath);
+    const imageName = `${candidate.id}.resume.png`;
+    const imgUri = `/uploads/${imageName}`;
+    const imgAbsPath = path.join(utils.uploadsDir, imageName);
 
     let base64Png = req.body.resumeBase64.split(',')[1];
 
@@ -51,7 +50,7 @@ router.post('/', function(req, res) {
           id: candidate.id,
 
           // add the preceding forwardslash
-          img_uri: '/' + imgRelativePath,
+          img_uri: imgUri,
           type: image_type
         });
         image_table.save();
