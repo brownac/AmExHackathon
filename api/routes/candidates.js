@@ -1,4 +1,5 @@
 'use strict'
+
 var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
@@ -23,12 +24,12 @@ router.post('/', function(req, res) {
 		internOrFull: req.body.internOrFull,
 		areaOfInterest: req.body.areaOfInterest,
 		preferredLanguages: req.body.preferredLanguages,
-		finalEvaluation: req.body.finalEvaluation
+		finalEvaluation: req.body.finalEvaluation,
+		screenerInitials: req.body.screenerInitials
 	});
 
 	// persist an instance
   candidate.save().then(() => {
-
     // a slash goes before this in the database uri
     const imgRelativePath = `uploads/${candidate.id}.resume.png`;
     const imgAbsPath = path.join(appDir, imgRelativePath);
@@ -76,7 +77,8 @@ router.put('/', function(req, res) {
 		internOrFull: req.body.internOrFull,
 		areaOfInterest: req.body.areaOfInterest,
 		preferredLanguages: req.body.preferredLanguages,
-		finalEvaluation: req.body.finalEvaluation
+		finalEvaluation: req.body.finalEvaluation,
+		screenerInitials: req.body.screenerInitials
 	},
 	{
 		where: { id : req.body.id }

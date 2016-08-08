@@ -9,6 +9,13 @@
  */
 angular.module('amExHackathonApp')
   .controller('SidebarCtrl', function ($scope) {
+    $scope.property = "firstName";
+    $scope.order = "firstName";
+
+    $scope.clear = function() {
+      $scope.search = "";
+    }
+
     $scope.statusIconClass = function(status){
       if(status === "invite") {
         return "glyphicon glyphicon-ok green"

@@ -1,9 +1,7 @@
 <script type="text/ng-template" id="tabNotes.html">
 	<div id="notes-tab-content">
-    Notes
+		<img id="tab-resume-img" ng-src="{{candidate.Images[0].img_uri}}" alt="Resume" width="200" height="275" data-toggle="modal" data-target="#imageModal">
 	</div>
-  <img ng-src="{{candidate.Images[0].img_uri}}"  width="300" height="400">
-  <label>{{candidate.Images[0].img_uri}}</label>
 </script>
 
 <script type="text/ng-template" id="tabInfo.html">
@@ -39,15 +37,11 @@
       <label>Status:</label> {{candidate.finalEvaluation}}
     </div>
     <div class="info-group">
-      <label>Screener:</label>
+      <label>Screener:</label> {{candidate.screenerInitials}}
     </div>
     <div class="info-group">
       <label>Interviewers:</label>
     </div>
-
-    <button class="btn btn-primary">
-      <a class="button-link" href="#/screener/candidateForm/{{candidate.id}}">Edit</a>
-    </button>
 	</div>
 </script>
 
@@ -59,10 +53,12 @@
   <!-- Candidate info -->
   <div id="page-content-wrapper">
     <div class="page-header">
-      <div class="pull-right">
-          <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-file"></span> View Resume</button>
+      <h1 class="candidate-name">{{candidate.firstName}} {{candidate.lastName}}</h1>
+      <div class="pull-right" style="margin-top:-42px;">
+        <button class="btn btn-primary">
+          <a class="button-link" href="#/screener/candidateForm/{{candidate.id}}">Edit Info</a>
+        </button>
       </div>
-      <h1>{{candidate.firstName}} {{candidate.lastName}}</h1>
     </div>
 
     <div class="container-fluid">
@@ -74,5 +70,12 @@
 
       <div id="tab-content-div" class="tab-content" ng-include="currentTab"></div>
     </div>
+
+		<!-- The Modal -->
+		<div id="imageModal" class="modal" role="dialog" aria-labelledby="myModalLabel">
+			<span class="close" data-dismiss="modal" data-target="#imageModal">×</span>
+			<img class="modal-content" id="modalImage" role="document" ng-src="{{candidate.Images[0].img_uri}}" alt="{{candidate.firstName}} {{candidate.lastName}}'s Resume">
+			<div id="imageCaption"></div>
+		</div>
   </div>
 </div>

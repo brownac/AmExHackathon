@@ -42,6 +42,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     finalEvaluation: {
       type: DataTypes.STRING
+    },
+    screenerInitials: {
+      type: DataTypes.STRING
     }
   }, {
     timestamps: false,

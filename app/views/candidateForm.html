@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <h1>Add Candidate</h1>
+    <h1 id="title">Add Candidate</h1>
   </div>
 
   <div id="candidate-form-container" class="container">
@@ -93,7 +93,7 @@
 
           <div class="form-group">
             <label class="control-label">Screener Initials</label>
-            <input class="form-control" type="text" required>
+            <input class="form-control" type="text" ng-model="postCandidate.screenerInitials" required>
           </div>
 
           <div class="text-center">
@@ -103,7 +103,7 @@
 
             <span class="glyphicon glyphicon-refresh" ng-show="sendingData" aria-hidden="true"></span>
             <span class="glyphicon-class" ng-show="sendingData"></span>
-            <button type="submit" ng-class="submitBtnClasses" data-ng-click="submit()" ng-disabled="candidateForm.$invalid">{{buttonText}}</button>
+            <button type="submit submitBtn" ng-class="submitBtnClasses" data-ng-click="submit()" ng-disabled="candidateForm.$invalid">{{buttonText}}</button>
             <button type="submit" class="btn btn-warning">Cancel</button>
           </div>
         </form>
