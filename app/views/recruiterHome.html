@@ -1,10 +1,3 @@
-<!-- <div class="text-center">
-  <div class="page-header">
-    <h1 id="title">Recruiter Home</h1>
-  </div>
-</div> -->
-
-
 <div class="modal fade"><div class="modal-dialog"></div></div>
 
 <div ng-include src="'views/calendarSidebar.html'"></div>
@@ -182,56 +175,4 @@
   </div>
 
 </div>        
-
-
-
-    <!-- <div class="col-xs-6 col-md-3 bg-info" id="candidate-queue">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>
-              <center>
-                <h4>
-                  Candidates to be Scheduled: {{candidateQueue.length}}
-                </h4>
-                <input type="search" ng-model="search" placeholder="search by name" aria-label="search candidates" class="form-control"/>
-                <br>
-              </center>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="queue-animate-container animate-repeat">
-                <div ng-repeat="candidate in candidateQueue | filter:search as results">
-                  <button type="button" class="btn btn-primary btn-lg btn-block candidate-queue-person">
-                    {{candidate.lastName}}, {{candidate.firstName}}
-                  </button>
-                </div>
-                <div ng-if="results.length == 0">
-                  <strong>No candidates found... Queue Empty</strong>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <center>
-                <div>
-                  <button type="button" class="btn btn-default btn-lg" ng-click="sendMail('mailOptions')">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Email
-                  </button>
-                </div>
-              </center>
-            </td>
-          </tr>
-          <tr>
-
-          </tr>
-        </tbody>
-        <br>
-      </table>
-
-    </div> -->
 

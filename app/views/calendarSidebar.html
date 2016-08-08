@@ -1,7 +1,7 @@
 <div id="sidebar-wrapper" ng-controller="SidebarCtrl">
   <ul class="sidebar-nav">
       <li class="sidebar-brand">
-          <a>
+          <a style="margin-top:15px;">
               Candidates to schedule:
           </a>
       </li>
@@ -13,7 +13,7 @@
       </li>
       <ul id="candidate-list" ng-repeat="candidate in candidateQueue | filter:search as results">
         <li>
-          <a href="">{{ candidate.lastName }}, {{ candidate.firstName }}</a>
+          <a href="">{{ candidate.lastName }}, {{ candidate.firstName }} &nbsp;<span class="glyphicon glyphicon-envelope" ng-click="sendMail('mailOptions')"></span></a>
         </li>
       </ul>
       <div ng-if="results.length == 0">
