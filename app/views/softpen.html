@@ -60,8 +60,7 @@
       <div ng-controller="SoftPenCtrl">
         <img class="mustLoad" id="resume-image" ng-src="{{src}}" imageonload style="display: none;" />
       <canvas class="" id="c" height="995" width="775" style="border: 1px solid black"></canvas>
-      <img id="edited-image" style="display: none;"/>
-
+      <img id="edited-image" ng-load="" style=/>
 
 
 </div>
@@ -123,7 +122,7 @@
     var eventStack = [];
     var isRedoing = false;
     canvas.isDrawingMode = true;
-<<<<<<< HEAD
+
     var imgObj = new Image();
     var input = document.getElementById('resume-image');
 
@@ -131,7 +130,6 @@
 
     /*fabric.Image.fromURL("../images/resume.png", function(img) {
       var input = document.getElementById('resume-image');
-=======
 
     fabric.Image.fromURL("../images/resume.png", function(img) {
 >>>>>>> parent of ab1a426... loading image from angular
