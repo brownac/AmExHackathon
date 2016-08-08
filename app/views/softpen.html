@@ -57,6 +57,7 @@
       <button id="save" class="btn btn-danger" style="margin-left: 50px">Save</button>
     </div>
     <div class="row" style="margin-top: 50px">
+<<<<<<< HEAD
       <div ng-controller="SoftPenCtrl">
         <img class="mustLoad" id="resume-image" ng-src="{{src}}" imageonload style="display: none;" />
       <canvas class="" id="c" height="995" width="775" style="border: 1px solid black"></canvas>
@@ -65,6 +66,9 @@
 
 
 </div>
+=======
+      <canvas class="" id="c" height="995" width="775" style="border: 1px solid black"></canvas>
+>>>>>>> parent of ab1a426... loading image from angular
     </div>
   </div>
   <style>
@@ -122,6 +126,7 @@
     var eventStack = [];
     var isRedoing = false;
     canvas.isDrawingMode = true;
+<<<<<<< HEAD
     var imgObj = new Image();
     var input = document.getElementById('resume-image');
 
@@ -129,6 +134,10 @@
 
     /*fabric.Image.fromURL("../images/resume.png", function(img) {
       var input = document.getElementById('resume-image');
+=======
+
+    fabric.Image.fromURL("../images/resume.png", function(img) {
+>>>>>>> parent of ab1a426... loading image from angular
       canvas.add(img);
     });*/
 
