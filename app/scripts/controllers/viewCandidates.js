@@ -12,6 +12,13 @@ angular.module('amExHackathonApp')
       $scope.init = function() {
         candidateService.query().$promise.then(values => {
           $scope.candidates = values;
+
+          if($scope.candidates.length) {
+            $scope.candidateStatus = 'Choose a candidate from the sidebar';
+          }
+          else {
+            $scope.candidateStatus = 'No candidates in database';
+          }
         });
       };
 

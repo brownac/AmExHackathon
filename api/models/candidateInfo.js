@@ -7,7 +7,10 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
-    name: {
+    firstName: {
+      type: DataTypes.STRING
+    },
+    lastName: {
       type: DataTypes.STRING
     },
     email: {
@@ -39,10 +42,20 @@ module.exports = function(sequelize, DataTypes) {
     },
     finalEvaluation: {
       type: DataTypes.STRING
+    },
+    screenerInitials: {
+      type: DataTypes.STRING
     }
   }, {
     timestamps: false,
+    classMethods: {
+      associate: function(models) {
+        candidateInfo.hasMany(models.image_uri,{
+          foreignKey: 'id',
+          targetKey: 'id'
+        });
+      }
+    }
   });
-
   return candidateInfo;
 };

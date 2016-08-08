@@ -53,3 +53,8 @@ span.input-group-addon{
 .bootstrap-timepicker-widget{
   z-index: 9999 !important;
 }
+
+.select-box{
+  width: 30%;
+  height: 30px;
+}

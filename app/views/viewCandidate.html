@@ -1,3 +1,55 @@
+<script type="text/ng-template" id="tabNotes.html">
+	<div id="notes-tab-content">
+    Notes
+	</div>
+  <img ng-src="{{candidate.image_uris[0].img_uri}}"  width="300" height="400">
+</script>
+
+<script type="text/ng-template" id="tabInfo.html">
+	<div id="info-tab-content">
+    <div class="info-group">
+      <label>Email Address:</label> {{candidate.email}}
+    </div>
+    <div class="info-group">
+      <label>Phone Number:</label> {{candidate.phoneNumber}}
+    </div>
+    <div class="info-group">
+      <label>School:</label> {{candidate.school}}
+    </div>
+    <div class="info-group">
+      <label>Major:</label> {{candidate.major}}
+    </div>
+    <div class="info-group">
+      <label>Graduation Date:</label> {{candidate.graduationDate}}
+    </div>
+    <div class="info-group">
+      <label>Sponsorship:</label> {{candidate.needSponsorship}}
+    </div>
+    <div class="info-group">
+      <label>Internship/Full-Time:</label> {{candidate.internOrFull}}
+    </div>
+    <div class="info-group">
+      <label>Areas of Interest:</label> {{candidate.areaOfInterest}}
+    </div>
+    <div class="info-group">
+      <label>Preferred Languages:</label> {{candidate.preferredLanguages}}
+    </div>
+    <div class="info-group">
+      <label>Status:</label> {{candidate.finalEvaluation}}
+    </div>
+    <div class="info-group">
+      <label>Screener:</label> {{candidate.screenerInitials}}
+    </div>
+    <div class="info-group">
+      <label>Interviewers:</label>
+    </div>
+
+    <button class="btn btn-primary">
+      <a class="button-link" href="#/screener/candidateForm/{{candidate.id}}">Edit</a>
+    </button>
+	</div>
+</script>
+
 <div id="wrapper">
 
   <!-- Sidebar -->
@@ -5,54 +57,21 @@
 
   <!-- Candidate info -->
   <div id="page-content-wrapper">
-    <div class="page-header" data>
-      <h1>{{candidate.name}}</h1>
+    <div class="page-header">
+      <div class="pull-right">
+          <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-file"></span> View Resume</button>
+      </div>
+      <h1>{{candidate.firstName}} {{candidate.lastName}}</h1>
     </div>
 
     <div class="container-fluid">
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#">Information</a></li>
-        <li role="presentation"><a href="#">Notes</a></li>
+        <li role="presentation" ng-repeat="tab in tabs">
+          <a ng-class="{active:isActiveTab(tab.url)}" ng-click="onClickTab(tab)" href="#/viewCandidate/{{candidate.id}}">{{tab.title}}</a>
+        </li>
       </ul>
 
-      <div class="info-tab-content" ng-model="selectedCandidate">
-        <div class="info-group">
-          <label>Email Address:</label> {{candidate.email}}
-        </div>
-        <div class="info-group">
-          <label>Phone Number:</label> {{candidate.phoneNumber}}
-        </div>
-        <div class="info-group">
-          <label>School:</label> {{candidate.school}}
-        </div>
-        <div class="info-group">
-          <label>Major:</label> {{candidate.major}}
-        </div>
-        <div class="info-group">
-          <label>Graduation Date:</label> {{candidate.graduationDate}}
-        </div>
-        <div class="info-group">
-          <label>Sponsorship:</label> {{candidate.needSponsorship}}
-        </div>
-        <div class="info-group">
-          <label>Internship/Full-Time:</label> {{candidate.internOrFull}}
-        </div>
-        <div class="info-group">
-          <label>Areas of Interest:</label> {{candidate.areaOfInterest}}
-        </div>
-        <div class="info-group">
-          <label>Preferred Languages:</label> {{candidate.preferredLanguages}}
-        </div>
-        <div class="info-group">
-          <label>Status:</label> {{candidate.finalEvaluation}}
-        </div>
-        <div class="info-group">
-          <label>Screener:</label>
-        </div>
-        <div class="info-group">
-          <label>Interviewers:</label>
-        </div>
-      </div>
+      <div id="tab-content-div" class="tab-content" ng-include="currentTab"></div>
     </div>
   </div>
 </div>

@@ -13,7 +13,7 @@ var routes = require('./routes/index');
 
 var app = express();
 
-app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.json({ limit: "30mb" })); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 // mount middlewares
@@ -42,7 +42,7 @@ else {
 // mount the controllers router
 app.use('/api', routes);
 
-//sync the models with the data, will creat the schems if not present
+//sync the models with the data, will creat the schemas if not present
 //starts the server
 let port = 4500;
 models.sequelize.sync().then(function () {
