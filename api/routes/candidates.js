@@ -23,7 +23,6 @@ router.post('/', function(req, res) {
 		internOrFull: req.body.internOrFull,
 		areaOfInterest: req.body.areaOfInterest,
 		preferredLanguages: req.body.preferredLanguages,
-		isScheduled: req.body.isScheduled,
 		finalEvaluation: req.body.finalEvaluation
 	});
 
@@ -77,7 +76,6 @@ router.put('/', function(req, res) {
 		internOrFull: req.body.internOrFull,
 		areaOfInterest: req.body.areaOfInterest,
 		preferredLanguages: req.body.preferredLanguages,
-		isScheduled: req.body.isScheduled,
 		finalEvaluation: req.body.finalEvaluation
 	},
 	{
