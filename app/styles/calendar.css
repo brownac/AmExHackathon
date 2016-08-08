@@ -4,7 +4,6 @@
 }
 
 .calChangeView{
-  /*float: right;*/
   padding-right: 2%;
 }
 
@@ -57,4 +56,23 @@ span.input-group-addon{
 .select-box{
   width: 30%;
   height: 30px;
+}
+
+/* Recruiter form styles */
+
+#recruiter-form-container {
+  position: absolute;
+  right: 0px;
+  width: 68%;
+}
+
+button.candidate-queue-person {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  border: 10px;
+}
+
+.button-link, .button-link:hover {
+  text-decoration: none;
+  color: white;
 }

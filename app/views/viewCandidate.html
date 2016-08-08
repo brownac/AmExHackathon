@@ -42,29 +42,7 @@
     <div class="info-group">
       <label>Interviewers:</label>
     </div>
-
-    <button class="btn btn-primary">
-      <a class="button-link" href="#/screener/candidateForm/{{candidate.id}}">Edit</a>
-    </button>
 	</div>
-</script>
-
-<script>
-
-	// function showResumeModal() {
-	// 	var imgModal = document.getElementById("imageModal");
-	// 	var modalImg = document.getElementById("modalImage")
-	// 	var imgCaption = document.getElementById("imageCaption");
-	//
-	// 	var resumeImageElement = document.createElement("img");
-	// 	resumeImageElement.src = {{candidate.image_uris[0].img_uri}};
-	// 	resumeImageElement.alt = {{candidate.firstName}} {{candidate.lastName}} + "'s Resume";
-	//
-	// 	imgModal.style.display = "block";
-	// 	modalImg.src = {{candidate.image_uris[0].img_uri}};
-	// 	modalImg.alt = {{candidate.firstName}} {{candidate.lastName}} + "'s Resume";
-	// 	imgCaption.innerHTML = {{candidate.firstName}} {{candidate.lastName}} + "'s Resume";
-	// }
 </script>
 
 <div id="wrapper">
@@ -75,10 +53,12 @@
   <!-- Candidate info -->
   <div id="page-content-wrapper">
     <div class="page-header">
-			<div class="pull-right">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal" ><span class="glyphicon glyphicon-file"></span> View Resume</button>
+      <h1 class="candidate-name">{{candidate.firstName}} {{candidate.lastName}}</h1>
+      <div class="pull-right" style="margin-top:-42px;">
+        <button class="btn btn-primary">
+          <a class="button-link" href="#/screener/candidateForm/{{candidate.id}}">Edit Info</a>
+        </button>
       </div>
-      <h1>{{candidate.firstName}} {{candidate.lastName}}</h1>
     </div>
 
     <div class="container-fluid">
