@@ -66,6 +66,7 @@ angular.module('amExHackathonApp')
         candidateService.save($scope.postCandidate).$promise.then(values => {
           // show success by changing submit button class and value
           $scope.postCandidate = {};
+          $scope.pictureAdded = false;
           $scope.sendingData = false;
           $scope.buttonText = "Successfully Submitted";
           $scope.submitBtnClasses = "btn btn-success";
