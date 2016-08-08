@@ -65,8 +65,8 @@ router.post('/', function(req, res) {
 // Update a candidate by id
 router.put('/', function(req, res) {
 	models.candidateInfo.update({
-		firstName: req.body.name,
-		lastName: req.body.name,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
 		email: req.body.email,
 		phoneNumber: req.body.phoneNumber,
 		school: req.body.school,
@@ -76,7 +76,8 @@ router.put('/', function(req, res) {
 		internOrFull: req.body.internOrFull,
 		areaOfInterest: req.body.areaOfInterest,
 		preferredLanguages: req.body.preferredLanguages,
-		finalEvaluation: req.body.finalEvaluation
+		finalEvaluation: req.body.finalEvaluation,
+		screenerInitials: req.body.screenerInitials
 	},
 	{
 		where: { id : req.body.id }
