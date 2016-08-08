@@ -54,7 +54,6 @@
           </button>
       </div>
       <!-- <button class="btn btn-info" style="margin-left: 50px">Stop</button> -->
-      <button id="save" class="btn btn-danger" style="margin-left: 50px">Save</button>
     </div>
     <div class="row" style="margin-top: 50px">
       <div ng-controller="SoftPenCtrl">
@@ -223,13 +222,6 @@
       }
     }
 
-function convertCanvasToImage(canvas) {
-	var image = new Image();
-	image.src = canvas.toDataURL("image/png");
-  $("#edited-image").attr('src', image.src);
-
-}
-
     //Event Listeners
     // --------------------------------------------------------------------------------
     $(window).on("load", function() {
@@ -279,10 +271,6 @@ function convertCanvasToImage(canvas) {
         changeColor(defaultMarkerColor);
         activateTag(findTagByColor(defaultMarkerColor));
       }
-    });
-
-    $("#save").on("click", function() {
-      convertCanvasToImage(canvas);
     });
   </script>
 </div>
