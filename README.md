@@ -14,10 +14,8 @@ You will need the following things properly installed on your computer.
 
 ```sh
 git clone <repository-url>
-cd AmExHackathon-frontend/
+cd AmExHackathon
 npm install && bower install
-cd ../api
-npm install
 ```
 
 ## Running / Development
@@ -26,13 +24,22 @@ npm install
 $ grunt serve
 ```
 
+To test on iOS devices or Safari, run the production build that does ES6 transpilation with Babel:
+
+```sh
+$ grunt runprod   # you may need --force if there are linting errors
+```
+
+To just build the full production ready app, just run grunt:
+
+```sh
+$ grunt           # you may need --force if there are linting errors
+```
+
 ### Code Generators
 The frontend was generated with [Yeoman's generator angular](https://github.com/yeoman/generator-angular). It has a few generators if you `npm install -g` `yo` and `generator-angular`.
 
-```sh
-$ cd api/ && npm install
-```
-To install the SQLite shell, download and install the binaries from [SQLite's download page](https://www.sqlite.org/download.html)
+To install the SQLite shell, download and install the binaries from [SQLite's download page](https://www.sqlite.org/download.html). Or on linux please use your package manager.
 
 ### Inserting entries into SQLite/Running
 To open the SQLite shell,
