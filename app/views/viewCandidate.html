@@ -1,8 +1,7 @@
 <script type="text/ng-template" id="tabNotes.html">
 	<div id="notes-tab-content">
-    Notes
+		<img id="tab-resume-img" ng-src="{{candidate.image_uris[0].img_uri}}" alt="Resume" width="200" height="275" data-toggle="modal" data-target="#imageModal">
 	</div>
-  <img ng-src="{{candidate.image_uris[0].img_uri}}"  width="300" height="400">
 </script>
 
 <script type="text/ng-template" id="tabInfo.html">
@@ -50,6 +49,24 @@
 	</div>
 </script>
 
+<script>
+
+	// function showResumeModal() {
+	// 	var imgModal = document.getElementById("imageModal");
+	// 	var modalImg = document.getElementById("modalImage")
+	// 	var imgCaption = document.getElementById("imageCaption");
+	//
+	// 	var resumeImageElement = document.createElement("img");
+	// 	resumeImageElement.src = {{candidate.image_uris[0].img_uri}};
+	// 	resumeImageElement.alt = {{candidate.firstName}} {{candidate.lastName}} + "'s Resume";
+	//
+	// 	imgModal.style.display = "block";
+	// 	modalImg.src = {{candidate.image_uris[0].img_uri}};
+	// 	modalImg.alt = {{candidate.firstName}} {{candidate.lastName}} + "'s Resume";
+	// 	imgCaption.innerHTML = {{candidate.firstName}} {{candidate.lastName}} + "'s Resume";
+	// }
+</script>
+
 <div id="wrapper">
 
   <!-- Sidebar -->
@@ -58,8 +75,8 @@
   <!-- Candidate info -->
   <div id="page-content-wrapper">
     <div class="page-header">
-      <div class="pull-right">
-          <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-file"></span> View Resume</button>
+			<div class="pull-right">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal" ><span class="glyphicon glyphicon-file"></span> View Resume</button>
       </div>
       <h1>{{candidate.firstName}} {{candidate.lastName}}</h1>
     </div>
@@ -73,5 +90,12 @@
 
       <div id="tab-content-div" class="tab-content" ng-include="currentTab"></div>
     </div>
+
+		<!-- The Modal -->
+		<div id="imageModal" class="modal" role="dialog" aria-labelledby="myModalLabel">
+			<span class="close" data-dismiss="modal" data-target="#imageModal">×</span>
+			<img class="modal-content" id="modalImage" role="document" ng-src="{{candidate.image_uris[0].img_uri}}" alt="{{candidate.firstName}} {{candidate.lastName}}'s Resume">
+			<div id="imageCaption"></div>
+		</div>
   </div>
 </div>
