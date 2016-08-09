@@ -94,3 +94,7 @@ button.candidate-queue-person {
   margin-top: 7px;
   margin-bottom: 7px;
 }
+
+.admin-option-top-margin {
+  margin-top: 50px;
+}
