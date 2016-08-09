@@ -45,7 +45,12 @@ angular
         controller: 'RecruiterHomeCtrl',
         controllerAs: 'recruiterHome'
       })
-      .when('/interviewer/interviewerForm', {
+      .when('/interviewer/interviews', {
+        templateUrl: 'views/interviews.html',
+        controller: 'InterviewsCtrl',
+        controllerAs: 'Interviews'
+      })
+      .when('/interviewer/:candidateId', {
         templateUrl: 'views/interviewerForm.html',
         controller: 'InterviewerFormCtrl',
         controllerAs: 'InterviewerForm'

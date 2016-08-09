@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc service
- * @name amExHackathonApp.candidate
+ * @name amExHackathonApp.archive
  * @description
- * # candidate
+ * # archive
  * Factory in the amExHackathonApp.
  */
 angular.module('amExHackathonApp')
-  .factory('candidateService', function ($resource) {
-    return $resource('/api/candidates/:id', null, {
+  .factory('archiveService', function ($resource) {
+    return $resource('/api/archives/:id', null, {
       update: { method: 'PUT'}
     });
   });

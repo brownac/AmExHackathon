@@ -47,7 +47,7 @@
               <li><a href="#/">Home</a></li>
               <li><a ng-href="#/screener/candidateForm">Screener</a></li>
               <li><a ng-href="#/recruiter/recruiterHome">Recruiter</a></li>
-              <li><a ng-href="#/interviewer/interviewerForm">Interviewer</a></li>
+              <li><a ng-href="#/interviewer/interviews">Interviewer</a></li>
               <li><a ng-href="#/viewCandidates">Candidates</a></li>
             </ul>
           </div>
@@ -81,16 +81,23 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/interviews.js"></script>
         <script src="scripts/controllers/interviewerForm.js"></script>
         <script src="scripts/controllers/viewCandidate.js"></script>
         <script src="scripts/controllers/viewCandidates.js"></script>
         <script src="scripts/controllers/sidebar.js"></script>
         <script src="scripts/services/candidate.js"></script>
+        <script src="scripts/services/question.js"></script>
         <script src="scripts/services/interviewQuestions.js"></script>
+        <script src="scripts/services/interview.js"></script>
+        <script src="scripts/services/archive.js"></script>
         <script src="scripts/controllers/recruiterHome.js"></script>
         <script src="scripts/controllers/candidateForm.js"></script>
         <script src="scripts/controllers/calendar.js"></script>
         <script src="scripts/directives/customonchange.js"></script>
+
+          <!-- leave this here, livereload will be removed during a real build -->
+        <script src="//localhost:35729/livereload.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -1,30 +1,9 @@
-      <div class="row">
-        <div class = "col-md-6 calChangeDate">
-          <button
-            class="btn btn-primary"
-            mwl-date-modifier
-            date="calendarDate"
-            decrement="calendarView">
-            Previous
-          </button>
-
-
-          <button
-            class="btn btn-default"
-            mwl-date-modifier
-            date="calendarDate"
-            set-to-today>
-            Today
-          </button>
-
-
-          <button
-            class="btn btn-primary"
-            mwl-date-modifier
-            date="calendarDate"
-            increment="calendarView">
-            Next
-          </button>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 input-group date" data-provide="datepicker">
+        <input type="date" class="form-control" ng-model="date">
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
         </div>
         <div class="btn-group pull-right calChangeView">
             <label class="btn btn-primary" ng-click="changeView('year')">Year</label>

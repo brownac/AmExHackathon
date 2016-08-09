@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var image_uri = sequelize.define("image_uri", {
+  var Images = sequelize.define("Images", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true
@@ -16,12 +16,12 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        image_uri.belongsTo(models.candidateInfo, {
+        Images.belongsTo(models.Candidates, {
           foreignKey: 'id',
           targetKey: 'id'
         });
       }
     }
   });
-  return image_uri;
+  return Images;
 };
