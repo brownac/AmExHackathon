@@ -134,13 +134,18 @@ angular.module('amExHackathonApp')
           secondary: '#fdf1ba'
         }
       });
+      var candidate;
       for(var i = 0; i<$scope.candidateQueue.length; i++){
       	if($scope.selectedCandidate.includes($scope.candidateQueue[i].firstName) && $scope.selectedCandidate.includes($scope.candidateQueue[i].lastName)){
       		$scope.scheduledCandidates.push($scope.candidateQueue[i]);
+      		candidate = $scope.candidateQueue.splice(i);
       		$scope.candidateQueue.splice(i,1);
-      		break;
+          break;
       	}
       }
+
+      calendarService.saves(candidate);
+
       console.log($scope.scheduledCandidates);
     };
 

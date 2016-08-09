@@ -9,18 +9,22 @@ const appDir = path.join(__dirname, '../../app');
 
 // Insert an interview
 router.post('/', function(req, res) {
-	// create an instance
-	var interview = models.Interviews.build({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
-    interviewDate: req.body.interviewDate,
-    interviewTime: req.body.interviewTime,
-    interviewLocation: req.body.location,
-    interviewerName: req.body.interviewer
-  });
+	console.log('Testing..................');
+	console.log(req);
+	console.log('Testing..................');
+
+	// // create an instance
+	// var interview = models.Interviews.build({
+ //    first_name: req.body.firstName,
+ //    last_name: req.body.lastName,
+ //    interviewDate: req.body.interviewDate,
+ //    interviewTime: req.body.interviewTime,
+ //    interviewLocation: req.body.location,
+ //    interviewerName: req.body.interviewer
+ //  });
 	
-	// persist an instance
-  interview.save();
+	// // persist an instance
+ //  interview.save();
 });
 
 // Update an interview by id
@@ -49,15 +53,18 @@ router.put('/', function(req, res) {
 
 // Get all interviews
 router.get('/', function(req, res) {
-	var query = req.query;
+	var query = {};
+	if(req.query.sequelize !== undefined) {
+		query = JSON.parse(req.query.sequelize);
+	}
 	var sql = {
 				include: [{
-					model: models.Candidates
-				}],
-				where:
-				   query
-			  };
-	models.Interviews.findAll(sql)
+					model: models.Interviews,
+					where: query,
+					required: true
+				}]
+			};
+	models.Candidates.findAll(sql)
 	.then(function(result) {
 		res.json(result);
 	});

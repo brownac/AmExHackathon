@@ -54,7 +54,7 @@ module.exports = function(sequelize, DataTypes) {
           foreignKey: 'id',
           targetKey: 'id'
         }),
-        Candidates.hasMany(models.Interviews,{
+        Candidates.hasOne(models.Interviews,{
           foreignKey: 'id',
           targetKey: 'id'
         });
