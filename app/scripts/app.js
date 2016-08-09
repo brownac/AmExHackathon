@@ -50,6 +50,11 @@ angular
         controller: 'ViewCandidateCtrl',
         controllerAs: 'ViewCandidate'
       })
+      .when('/admin/adminOptions', {
+        templateUrl: 'views/adminOptions.html',
+        controller: 'adminOptionsCtrl',
+        controllerAs: 'adminOps'
+      })
       .otherwise({
         redirectTo: '/'
       });
