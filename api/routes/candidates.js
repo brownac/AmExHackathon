@@ -10,6 +10,7 @@ const appDir = path.join(__dirname, '../../app');
 
 // Insert a candidate
 router.post('/', function(req, res) {
+	console.log("Posting: " + req);
 	// create an instance
 	var candidate = models.Candidates.build({
 		firstName: req.body.firstName,
@@ -47,14 +48,14 @@ router.post('/', function(req, res) {
       else {
         //save image uri into database
         var image_type = 'resume';
-        var image_table = models.image_uri.build({
+        var image = models.Images.build({
           id: candidate.id,
 
           // add the preceding forwardslash
           img_uri: '/' + imgRelativePath,
           type: image_type
         });
-        image_table.save();
+        image.save();
 
         res.json(candidate);
       }
@@ -95,13 +96,17 @@ router.put('/', function(req, res) {
 
 // Get all candidates
 router.get('/', function(req, res) {
-	var query = req.query;
+	var query = {};
+	if(req.query.sequelize !== undefined) {
+		query = JSON.parse(req.query.sequelize);
+	}
+	
 	var sql = {
 				include: [{
-					model: models.image_uri
+					model: models.Images,
+					required: true
 				}],
-				where:
-				   query
+				where: query
 			  };
 	models.Candidates.findAll(sql)
 	.then(function(result) {
@@ -115,7 +120,8 @@ router.get('/:id', function(req, res) {
 
 	models.Candidates.findById(id, {
 		include: [{
-			model: models.image_uri
+			model: models.Images,
+			required: true
 		}]
 	}).then(function(result) {
 		if (result !== null) {
