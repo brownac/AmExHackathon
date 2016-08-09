@@ -55,6 +55,11 @@ angular
         controller: 'adminOptionsCtrl',
         controllerAs: 'adminOps'
       })
+      .when('/admin/adminOptions/adminOptionsForms', {
+        templateUrl: 'views/adminOptionsForms.html',
+        controller: 'adminOptionsFormsCtrl',
+        controllerAs: 'adminOpsForms'
+      })
       .otherwise({
         redirectTo: '/'
       });
