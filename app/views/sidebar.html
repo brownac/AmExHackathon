@@ -1,53 +1,45 @@
 <!-- Sidebar -->
-<div id="sidebar-wrapper">
+<div id="sidebar-wrapper" ng-controller="SidebarCtrl">
   <ul class="sidebar-nav">
       <li class="sidebar-brand">
-          <a href="#">
+          <a style="margin-top:15px;">
               Candidate List
           </a>
       </li>
       <li>
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon2" ng-model="searchText">
-          <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>
+          <input type="text" class="form-control" placeholder="Search" aria-describedby="sizing-addon1" ng-model="search[property]">
+          <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+        </div>
+
+        <div class="input-group">
+          <select class="form-control" aria-describedby="sizing-addon2" ng-model="property" ng-click="clear()">
+            <option selected disabled>Sort By</option>
+            <option value="firstName">First Name</option>
+            <option value="lastName">Last Name</option>
+            <option value="school">School</option>
+            <option value="major">Major</option>
+            <option value="finalEvaluation">Status</option>
+          </select>
+          <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-filter"></span></span>
+        </div>
+
+        <div class="input-group">
+          <select class="form-control" aria-describedby="sizing-addon2" ng-model="order">
+            <option selected disabled>Order By</option>
+            <option value="firstName">First Name</option>
+            <option value="lastName">Last Name</option>
+            <option value="school">School</option>
+            <option value="major">Major</option>
+            <option value="finalEvaluation">Status</option>
+          </select>
+          <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-sort-by-order"></span></span>
         </div>
       </li>
-      <ul id="candidate-list" data-ng-repeat="row in candidates | filter:searchText">
+      <ul id="candidate-list" data-ng-repeat="row in candidates | filter:search | orderBy: order">
         <li>
-            <a href="#/viewCandidate/{{row.id}}">{{ row.name }}</a>
+          <a href="#/viewCandidate/{{row.id}}">{{ row.lastName }}, {{ row.firstName }} <span class="align-glyphicon" ng-class="statusIconClass(row.finalEvaluation)"></span></a>
         </li>
       </ul>
   </ul>
-</div>
-
-<!-- Sidebar -->
-<!-- <div id="sidebar-wrapper">
-  <ul class="sidebar-nav">
-      <li class="sidebar-brand">
-          <a href="#" class="sidebarHeader">
-              Candidate List
-          </a>
-      </li>
-      <li>
-        <div class="input-group">
-          <input type="text" class="form-control input-sm" placeholder="Search" aria-describedby="sizing-addon2">
-          <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-search"></span></span>
-        </div>
-        <span>
-            <select class="form-control select-form input-sm sortInput" style="" >
-              <option disabled selected>Sort By</option>
-              <option>Name</option>
-              <option>Graduation Date</option>
-              <option>Major</option>
-              <option>Score</option>
-            </select>
-        </span>
-      </li>
-      <ul id="candidate-list" data-ng-repeat="row in candidates">
-      <hr>
-        <li>
-            <a href="#/viewCandidate/{{row.id}}">{{ row.name }}</a>
-        </li>
-      </ul>
-  </ul> -->
 </div>

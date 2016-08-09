@@ -4,7 +4,6 @@
 }
 
 .calChangeView{
-  /*float: right;*/
   padding-right: 2%;
 }
 
@@ -52,4 +51,31 @@ span.input-group-addon{
 
 .bootstrap-timepicker-widget{
   z-index: 9999 !important;
+}
+
+.select-box{
+  width: 30%;
+  height: 30px;
+}
+
+/* Recruiter form styles */
+
+#recruiter-form-container {
+  float: right;
+  display: block;
+  width: 67%;
+  right: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button.candidate-queue-person {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  border: 10px;
+}
+
+.button-link, .button-link:hover {
+  text-decoration: none;
+  color: white;
 }

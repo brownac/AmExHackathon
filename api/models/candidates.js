@@ -1,13 +1,16 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var candidateInfo = sequelize.define("candidateInfo", {
+  var Candidates = sequelize.define("Candidates", {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
     },
-    name: {
+    firstName: {
+      type: DataTypes.STRING
+    },
+    lastName: {
       type: DataTypes.STRING
     },
     email: {
@@ -26,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     needSponsorship: {
-      type: DataTypes.STRING
+      type: DataTypes.BOOLEAN
     },
     internOrFull: {
       type: DataTypes.STRING
@@ -39,10 +42,28 @@ module.exports = function(sequelize, DataTypes) {
     },
     finalEvaluation: {
       type: DataTypes.STRING
+    },
+    screenerInitials: {
+      type: DataTypes.STRING
     }
   }, {
     timestamps: false,
+    classMethods: {
+      associate: function(models) {
+        Candidates.hasMany(models.Images,{
+          foreignKey: 'id',
+          targetKey: 'id'
+        }),
+        Candidates.hasMany(models.Interviews,{
+          foreignKey: 'id',
+          targetKey: 'id'
+        }),
+        Candidates.hasMany(models.Archives,{
+          foreignKey: 'id',
+          targetKey: 'id'
+        });
+      }
+    }
   });
-
-  return candidateInfo;
+  return Candidates;
 };

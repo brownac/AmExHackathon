@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc service
- * @name amExHackathonApp.candidate
+ * @name amExHackathonApp.interviews
  * @description
- * # candidate
+ * # calendar
  * Factory in the amExHackathonApp.
  */
 angular.module('amExHackathonApp')
-  .factory('candidateService', function ($resource) {
-    return $resource('/api/candidates/:id', null, {
+  .factory('calendarService', function ($resource) {
+    return $resource('/api/interviews/:id', null, {
       update: { method: 'PUT'}
     });
   });

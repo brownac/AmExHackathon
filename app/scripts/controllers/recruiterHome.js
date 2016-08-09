@@ -2,13 +2,27 @@
 
 /**
  * @ngdoc function
- * @name amExHackathonApp.controller:CalendarCtrl
+ * @name amExHackathonApp.controller:RecruiterHomeCtrl
  * @description
- * # CalendarCtrl
+ * # RecruiterHomeCtrl
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('CalendarCtrl', function ($scope) {
+  .controller('RecruiterHomeCtrl', function ($scope, calendarService) {
+
+    var query = {
+      sequelize:{
+        interview_Date: null,
+        interview_Time: null
+      }
+    };
+    calendarService.query(query).$promise.then(values => {
+      $scope.candidateQueue = values;
+      console.log(values);
+    });
+
+  	$scope.interviewTime = '9:00 AM';
+  	$scope.scheduledCandidates = [];
   	$scope.calendarView = 'month';
   	var calDate = new Date();
   	$scope.calendarDate = calDate;
@@ -16,9 +30,9 @@ angular.module('amExHackathonApp')
   	//$('#datetimepicker1').datepicker();
   	$('#datepicker').datepicker({
     	todayHighlight: true
-	   });
-    $('#datepicker2').datepicker({
-    todayHighlight: true
+	});
+	$('#datepicker2').datepicker({
+    	todayHighlight: true
     });
 	$('#calendarSelectArrow').click(function(){
 		setTimeout(function(){
@@ -28,7 +42,7 @@ angular.module('amExHackathonApp')
 			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
         },200);
 	});
-  $('#calendarSelectArrow2').click(function(){
+	$('#calendarSelectArrow2').click(function(){
 		setTimeout(function(){
 			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
         	document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
@@ -44,12 +58,14 @@ angular.module('amExHackathonApp')
 			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
         },200);
 	});
-	$('#timepicker1').timepicker();
-  $('#timepicker2').timepicker();
+	$('#timepicker1').timepicker({
+		defaultTime: '9:00 AM'
+	});
+	$('#timepicker2').timepicker();
   	$scope.changeView = function(newView){
   		$scope.calendarView = newView;
   	};
-  	$scope.calendarModal = function() {
+  	$scope.calendarModal = function(){
       $("#schedulerModal").modal();
   	};
 
@@ -58,30 +74,74 @@ angular.module('amExHackathonApp')
   		if($scope.interviewTime.substring(0,2).includes(":")){
   			offset = 0;
   		}
-  		$scope.hour = $scope.interviewTime.substring(0,1+offset);
+  		if($scope.interviewTime.includes("AM") && $scope.interviewTime.substring(0,2).includes("12")){
+  			$scope.hour = '0';
+  		}
+  		else{
+  			$scope.hour = $scope.interviewTime.substring(0,1+offset);
+  		}
   		$scope.min = $scope.interviewTime.substring(2+offset,4+offset);
   	}
-    function getCorrectTime2 (time){
+
+  	function getCorrectTime2 (time){
   		var offset = 1;
   		if($scope.editInterviewTime.substring(0,2).includes(":")){
   			offset = 0;
   		}
-  		$scope.hour = $scope.editInterviewTime.substring(0,1+offset);
+  		if($scope.editInterviewTime.includes("AM") && $scope.editInterviewTime.substring(0,2).includes("12")){
+  			$scope.hour = '0';
+  		}
+  		else{
+  			$scope.hour = $scope.editInterviewTime.substring(0,1+offset);
+  		}
   		$scope.min = $scope.editInterviewTime.substring(2+offset,4+offset);
+  	}
+
+  	function getEditTime (fullDate){
+  		console.log(fullDate.getHours());
+  		var beforeNoon = "AM";
+  		var offset = 0;
+  		if(fullDate.getHours() >= 12){
+  			beforeNoon = "PM";
+  			offset= 12;
+  		}
+  		if(fullDate.getHours() === 0){
+  			offset = -12;
+  		}
+  		if(fullDate.getHours() === 12){
+  			offset = 0;
+  		}
+  		var addZero = "";
+  		if(fullDate.getMinutes() < 10){
+  			addZero ="0";
+  		}
+  		return (fullDate.getHours() - offset).toString() + ":" + addZero + fullDate.getMinutes().toString() + " " + beforeNoon;
   	}
 
     $scope.addEvent = function() {
       var time = new Date($scope.interviewDate);
       getCorrectTime($scope.interviewTime);
+      if($scope.interviewTime.includes("PM") && $scope.hour !== "12"){
+      	var newHour = parseInt($scope.hour) + 12;
+      	$scope.hour = newHour;
+      }
       time.setHours($scope.hour,$scope.min);
       $scope.events.push({
-        title: $scope.candidateName + ": " + $scope.location,
+        title: $scope.selectedCandidate +": "+ $scope.location,
         startsAt: time,
         color: {
           primary: '#e3bc08',
           secondary: '#fdf1ba'
         }
       });
+      for(var i = 0; i<$scope.candidateQueue.length; i++){
+      	if($scope.selectedCandidate.includes($scope.candidateQueue[i].firstName) && $scope.selectedCandidate.includes($scope.candidateQueue[i].lastName)){
+      		$scope.scheduledCandidates.push($scope.candidateQueue[i]);
+      		$scope.candidateQueue.splice(i,1);
+      		break;
+      	}
+      }
+      console.log($scope.scheduledCandidates);
     };
 
     //edit interview time
@@ -99,6 +159,7 @@ angular.module('amExHackathonApp')
       //load preexisting fields to text boxes in editing modal
       $scope.editCandidateName = name;
       $scope.editLocation = location;
+      $scope.editInterviewTime = getEditTime($scope.events[index].startsAt);
     };
 
     $scope.editEvent = function(calendarEvent) {
@@ -107,6 +168,10 @@ angular.module('amExHackathonApp')
       //get edited info and add it to calendar
       var time = new Date($scope.editInterviewDate);
       getCorrectTime2($scope.editInterviewTime);
+      if($scope.editInterviewTime.includes("PM") && $scope.hour !== "12"){
+      	var newHour = parseInt($scope.hour) + 12;
+      	$scope.hour = newHour;
+      }
       time.setHours($scope.hour,$scope.min);
       $scope.events.splice(index,1);
       $scope.events.push({
@@ -117,11 +182,37 @@ angular.module('amExHackathonApp')
 
     //delete interview time
     $scope.deleteEvent = function(calendarEvent) {
-      var index = $scope.events.indexOf(calendarEvent);
-      $scope.events.splice(index,1);
+      $("#deletingModal").modal();
+      $scope.deleteCalendarEvent = calendarEvent;
     };
 
-  	$scope.events  = [];
+    $scope.deleteInterview = function() {
+    	var index = $scope.events.indexOf($scope.deleteCalendarEvent);
+		var colonPos = $scope.events[index].title.search(':');
+		var name = $scope.events[index].title.substring(0,colonPos);
+    	for(var i = 0; i<$scope.scheduledCandidates.length; i++){
+	      	if(name.includes($scope.scheduledCandidates[i].firstName) && name.includes($scope.scheduledCandidates[i].lastName)){
+	      		$scope.scheduledCandidates.splice(i,1);
+	      		break;
+	      	}
+        }
+        $scope.events.splice(index,1);
+    };
+
+    $scope.updateQueue = function() {
+    	var index = $scope.events.indexOf($scope.deleteCalendarEvent);
+		var colonPos = $scope.events[index].title.search(':');
+		var name = $scope.events[index].title.substring(0,colonPos);
+    	for(var i = 0; i<$scope.scheduledCandidates.length; i++){
+	      	if(name.includes($scope.scheduledCandidates[i].firstName) && name.includes($scope.scheduledCandidates[i].lastName)){
+	      		$scope.candidateQueue.push($scope.scheduledCandidates[i]);
+	      		$scope.scheduledCandidates.splice(i,1);
+	      		break;
+	      	}
+        }
+        $scope.events.splice(index,1);
+    };
+
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

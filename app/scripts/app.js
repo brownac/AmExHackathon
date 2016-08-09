@@ -30,12 +30,27 @@ angular
         controller: 'CandidateFormCtrl',
         controllerAs: 'candidateForm'
       })
+      .when('/screener/candidateForm/:candidateId', {
+        templateUrl: 'views/candidateForm.html',
+        controller: 'CandidateFormCtrl',
+        controllerAs: 'candidateForm'
+      })
       .when('/recruiter/recruiterForm', {
         templateUrl: 'views/recruiterForm.html',
         controller: 'RecruiterFormCtrl',
         controllerAs: 'recruiterForm'
       })
-      .when('/interviewer/interviewerForm', {
+      .when('/recruiter/recruiterHome', {
+        templateUrl: 'views/recruiterHome.html',
+        controller: 'RecruiterHomeCtrl',
+        controllerAs: 'recruiterHome'
+      })
+      .when('/interviewer/interviews', {
+        templateUrl: 'views/interviews.html',
+        controller: 'InterviewsCtrl',
+        controllerAs: 'Interviews'
+      })
+      .when('/interviewer/:candidateId', {
         templateUrl: 'views/interviewerForm.html',
         controller: 'InterviewerFormCtrl',
         controllerAs: 'InterviewerForm'
