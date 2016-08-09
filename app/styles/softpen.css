@@ -13,3 +13,14 @@
   z-index: 2;
   background-color: white;
 }
+.pull-right{
+	margin-left: 20px;
+}
+#inactive{
+	border: solid 1px black;
+  height: 995px;
+  width: 775px;
+}
+.hide{
+  display: none;
+}

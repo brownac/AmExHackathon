@@ -30,6 +30,7 @@ $(document).ready(function() {
 
 //Fabric setup and image load
 //-------------------------------------------------------------------------------------
+var h = [];
 var canvas = new fabric.Canvas("c");
 var eventStack = [];
 var isRedoing = false;
