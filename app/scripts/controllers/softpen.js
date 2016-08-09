@@ -21,7 +21,7 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
 
     if (files && files[0]) {
       var reader = new FileReader();
-      reader.onload = function (e) {
+      reader.onload = function(e) {
         $scope.$apply(function() {
           $scope.resumeBase64 = e.target.result;
           $scope.pictureAdded = true;
@@ -69,9 +69,10 @@ var loadFabric = function() {
   //Fabric setup and image load
   //-------------------------------------------------------------------------------------
   var canvas = new fabric.Canvas("c");
-
+  var h;
   var eventStack = [];
   var isRedoing = false;
+  var isPictureLoaded = 0;
   canvas.isDrawingMode = true;
 
   var imgObj = new Image();
@@ -79,7 +80,7 @@ var loadFabric = function() {
 
   canvas.on('object:added', function() {
     if (!isRedoing) {
-      var h = [];
+      h = [];
     }
     isRedoing = false;
   });
@@ -89,7 +90,8 @@ var loadFabric = function() {
   //Tool functions
   //----------------------------------------------------------------------------------
   function undo() {
-    if (canvas._objects.length > 1) {
+    if (canvas._objects.length > isPictureLoaded) {
+      console.log(h);
       h.push(canvas._objects.pop());
       canvas.renderAll();
     }
@@ -97,6 +99,7 @@ var loadFabric = function() {
 
   function redo() {
     if (h.length > 0) {
+
       isRedoing = true;
       canvas.add(h.pop());
     }
@@ -170,6 +173,7 @@ var loadFabric = function() {
     imgObj.src = input.src;
     var image = new fabric.Image(imgObj);
     canvas.add(image);
+    isPictureLoaded = 1;
   });
 
   $("#undo").on("click", function() {
