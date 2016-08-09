@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc service
- * @name amExHackathonApp.calendarUI
+ * @name amExHackathonApp.interviews
  * @description
  * # calendar
  * Factory in the amExHackathonApp.
