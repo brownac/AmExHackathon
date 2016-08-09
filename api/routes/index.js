@@ -2,8 +2,10 @@ var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
 
-var candidateInfoRoutes = require('./candidateInfo');
+var candidateRoutes = require('./candidates');
+var interviewRoutes = require('./interviews');
 
-router.use('/candidateInfo', candidateInfoRoutes);
+router.use('/candidates', candidateRoutes);
+router.use('/interviews', interviewRoutes);
 
 module.exports = router;

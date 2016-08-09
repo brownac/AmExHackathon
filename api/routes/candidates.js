@@ -9,8 +9,9 @@ var path = require('path');
 
 // Insert a candidate
 router.post('/', function(req, res) {
+	console.log("Posting: " + req);
 	// create an instance
-	var candidate = models.candidateInfo.build({
+	var candidate = models.Candidates.build({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		email: req.body.email,
@@ -46,15 +47,22 @@ router.post('/', function(req, res) {
       else {
         //save image uri into database
         var image_type = 'resume';
-        var image_table = models.image_uri.build({
+        var image = models.Images.build({
           id: candidate.id,
 
           // add the preceding forwardslash
           img_uri: imgUri,
           type: image_type
         });
-        image_table.save();
+        image.save();
 
+        //creates an interview spot for the candidate
+        if(req.body.finalEvaluation !== 'turndown'){
+	        var interview = models.Interviews.build({
+	        	id: candidate.id
+	        });
+        }
+        interview.save();
         res.json(candidate);
       }
     });
@@ -63,9 +71,9 @@ router.post('/', function(req, res) {
 
 // Update a candidate by id
 router.put('/', function(req, res) {
-	models.candidateInfo.update({
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
+	models.Candidates.update({
+		firstName: req.body.name,
+		lastName: req.body.name,
 		email: req.body.email,
 		phoneNumber: req.body.phoneNumber,
 		school: req.body.school,
@@ -94,15 +102,19 @@ router.put('/', function(req, res) {
 
 // Get all candidates
 router.get('/', function(req, res) {
-	var query = req.query;
+	var query = {};
+	if(req.query.sequelize !== undefined) {
+		query = JSON.parse(req.query.sequelize);
+	}
+	
 	var sql = {
 				include: [{
-					model: models.image_uri
+					model: models.Images,
+					required: true
 				}],
-				where:
-				   query
+				where: query
 			  };
-	models.candidateInfo.findAll(sql)
+	models.Candidates.findAll(sql)
 	.then(function(result) {
 		res.json(result);
 	});
@@ -112,9 +124,10 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
 	var id = req.params.id;
 
-	models.candidateInfo.findById(id, {
+	models.Candidates.findById(id, {
 		include: [{
-			model: models.image_uri
+			model: models.Images,
+			required: true
 		}]
 	}).then(function(result) {
 		if (result !== null) {
