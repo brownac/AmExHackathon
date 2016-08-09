@@ -8,21 +8,42 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('RecruiterHomeCtrl', function ($scope, candidateService) {
+  .controller('RecruiterHomeCtrl', function ($scope, calendarService) {
 
-    /*Query DB for candidates with finalDecision == scheduleInterview*/
     var query = {
-      //currently the schema does not support the column finalDecision
-      //finalDecision: 'scheduleInterview'
+      sequelize:{
+        interview_Date: null
+      }
     };
-    candidateService.query(query).$promise.then(values => {
+    calendarService.query(query).$promise.then(values => {
       $scope.candidateQueue = values;
-      console.log(values);
     });
-    /*End Query*/
+
+    var query2 = {
+      sequelize:{
+        interview_Date:{
+          $not: null
+        }
+      }
+    };
+    calendarService.query(query2).$promise.then(values => {
+      $scope.scheduledCandidates = values;
+      for (var i = $scope.scheduledCandidates.length - 1; i >= 0; i--) {
+        $scope.events.push({
+          title:       $scope.scheduledCandidates[i].lastName + ', ' + 
+                        $scope.scheduledCandidates[i].firstName + ': ' +       
+                        $scope.scheduledCandidates[i].Interview.interview_Location,
+          startsAt:    $scope.scheduledCandidates[i].Interview.interview_Date,
+          color: {
+            primary: '#e3bc08',
+            secondary: '#fdf1ba'
+          },
+          candidate: $scope.scheduledCandidates[i]
+        });
+    };
+    });
 
   	$scope.interviewTime = '9:00 AM';
-  	$scope.scheduledCandidates = [];
   	$scope.calendarView = 'month';
   	var calDate = new Date();
   	$scope.calendarDate = calDate;
@@ -126,26 +147,43 @@ angular.module('amExHackathonApp')
       	$scope.hour = newHour;
       }
       time.setHours($scope.hour,$scope.min);
+
+      var candidate;
+      for(var i = 0; i<$scope.candidateQueue.length; i++){
+        if($scope.selectedCandidate.includes($scope.candidateQueue[i].firstName) && $scope.selectedCandidate.includes($scope.candidateQueue[i].lastName)){
+          $scope.scheduledCandidates.push($scope.candidateQueue[i]);
+          candidate = $scope.candidateQueue.splice(i)[0];
+          $scope.candidateQueue.splice(i,1);
+          break;
+        }
+      }
+
       $scope.events.push({
         title: $scope.selectedCandidate +": "+ $scope.location,
         startsAt: time,
         color: {
           primary: '#e3bc08',
           secondary: '#fdf1ba'
-        }
+        },
+        candidate: candidate
       });
-      for(var i = 0; i<$scope.candidateQueue.length; i++){
-      	if($scope.selectedCandidate.includes($scope.candidateQueue[i].firstName) && $scope.selectedCandidate.includes($scope.candidateQueue[i].lastName)){
-      		$scope.scheduledCandidates.push($scope.candidateQueue[i]);
-      		$scope.candidateQueue.splice(i,1);
-      		break;
-      	}
-      }
-      console.log($scope.scheduledCandidates);
+
+      //adds the interview information into the database
+      var interviewInfo = {
+        Interview_Date:  time,
+        Interview_Time: $scope.interviewTime,
+        Interview_Location: $scope.location,
+        Interviewer_Name: 'BAD'
+      };
+      candidate.Interview = interviewInfo;
+      candidate.$update().then(values => {
+        console.log('INSERTING DATA');
+      });
     };
 
     //edit interview time
     $scope.getEditingForm = function(calendarEvent) {
+      $scope.editCandidate = calendarEvent.candidate;      
       $("#editingModal").modal(); //get edit modal
       var index = $scope.events.indexOf(calendarEvent); //get index of specified interview
       var titleString = $scope.events[index].title;
@@ -157,6 +195,7 @@ angular.module('amExHackathonApp')
       var location = titleString.substring(colonPos+2,titleString.length); //get location
 
       //load preexisting fields to text boxes in editing modal
+
       $scope.editCandidateName = name;
       $scope.editLocation = location;
       $scope.editInterviewTime = getEditTime($scope.events[index].startsAt);
@@ -164,7 +203,6 @@ angular.module('amExHackathonApp')
 
     $scope.editEvent = function(calendarEvent) {
       var index = $scope.events.indexOf(calendarEvent); //get index of specified interview
-
       //get edited info and add it to calendar
       var time = new Date($scope.editInterviewDate);
       getCorrectTime2($scope.editInterviewTime);
@@ -176,7 +214,20 @@ angular.module('amExHackathonApp')
       $scope.events.splice(index,1);
       $scope.events.push({
         title: $scope.editCandidateName + ": " + $scope.editLocation,
-        startsAt: time
+        startsAt: time,
+        candidate: $scope.editCandidate
+      });
+
+      //adds the interview information into the database
+      var interviewInfo = {
+        Interview_Date:  time,
+        Interview_Time: $scope.editInterviewTime,
+        Interview_Location: $scope.editLocation,
+        Interviewer_Name: 'BAD'
+      };
+      $scope.editCandidate.Interview = interviewInfo;
+      $scope.editCandidate.$update().then(values => {
+        console.log('INSERTING DATA');
       });
     };
 
@@ -184,19 +235,33 @@ angular.module('amExHackathonApp')
     $scope.deleteEvent = function(calendarEvent) {
       $("#deletingModal").modal();
       $scope.deleteCalendarEvent = calendarEvent;
+      $scope.deleteCandidate = calendarEvent.candidate;
     };
 
     $scope.deleteInterview = function() {
     	var index = $scope.events.indexOf($scope.deleteCalendarEvent);
+
 		var colonPos = $scope.events[index].title.search(':');
 		var name = $scope.events[index].title.substring(0,colonPos);
     	for(var i = 0; i<$scope.scheduledCandidates.length; i++){
-	      	if(name.includes($scope.scheduledCandidates[i].firstName) && name.includes($scope.scheduledCandidates[i].lastName)){
-	      		$scope.scheduledCandidates.splice(i,1);
-	      		break;
-	      	}
-        }
-        $scope.events.splice(index,1);
+      	if(name.includes($scope.scheduledCandidates[i].firstName) && name.includes($scope.scheduledCandidates[i].lastName)){
+      		$scope.scheduledCandidates.splice(i,1);
+      		break;
+      	}
+      }
+      $scope.events.splice(index,1);
+      //adds the interview information into the database
+      var interviewInfo = {
+        Interview_Date:  null,
+        Interview_Time: null,
+        Interview_Location: null,
+        Interviewer_Name: null
+      };
+      $scope.deleteCandidate.Interview = interviewInfo;
+      $scope.deleteCandidate.$update().then(values => {
+        console.log('Deleting interview information');
+      });
+      $scope.candidateQueue.push($scope.deleteCandidate);
     };
 
     $scope.updateQueue = function() {

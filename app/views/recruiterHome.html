@@ -57,7 +57,7 @@
             <div class="form-group">
               <label for="sel2">Select Candidate:</label><br>
               <select ng-model="editCandidateName" id ="sel2" class="select-box">
-                <option ng-repeat="candidate in scheduledCandidates" value="{{candidate.lastName}}, {{candidate.firstName}}">{{candidate.lastName}}, {{candidate.firstName}}</option>
+                <option ng-repeat="candidate in scheduledCandidates" ng-value="candidate">{{candidate.lastName}}, {{candidate.firstName}}</option>
               </select>
             </div>
             <!-- <div class="">

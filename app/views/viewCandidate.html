@@ -1,6 +1,6 @@
 <script type="text/ng-template" id="tabNotes.html">
 	<div id="notes-tab-content">
-		<img id="tab-resume-img" ng-src="{{candidate.image_uris[0].img_uri}}" alt="Resume" width="200" height="275" data-toggle="modal" data-target="#imageModal">
+		<img id="tab-resume-img" ng-src="{{candidate.Images[0].img_uri}}" alt="Resume" width="200" height="275" data-toggle="modal" data-target="#imageModal">
 	</div>
 </script>
 
@@ -74,7 +74,7 @@
 		<!-- The Modal -->
 		<div id="imageModal" class="modal" role="dialog" aria-labelledby="myModalLabel">
 			<span class="close" data-dismiss="modal" data-target="#imageModal">×</span>
-			<img class="modal-content" id="modalImage" role="document" ng-src="{{candidate.image_uris[0].img_uri}}" alt="{{candidate.firstName}} {{candidate.lastName}}'s Resume">
+			<img class="modal-content" id="modalImage" role="document" ng-src="{{candidate.Images[0].img_uri}}" alt="{{candidate.firstName}} {{candidate.lastName}}'s Resume">
 			<div id="imageCaption"></div>
 		</div>
   </div>
