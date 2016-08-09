@@ -33,7 +33,7 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     classMethods: {
       associate: function(models) {
-        Candidates.hasMany(models.Archives,{
+        Archives.belongsTo(models.Candidates,{
           foreignKey: 'id',
           targetKey: 'id'
         });

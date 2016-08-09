@@ -7,7 +7,7 @@ var interviewRoutes = require('./interviews');
 var questionsRoutes = require('./questions');
 var archivesRoutes = require('./archives');
 
-router.use('/candidates', candidateInfoRoutes);
+router.use('/candidates', candidateRoutes);
 router.use('/interviews', interviewRoutes);
 router.use('/questions', questionsRoutes);
 router.use('/archives', archivesRoutes);

@@ -11,7 +11,7 @@ const appDir = path.join(__dirname, '../../app');
 // Insert an archive form
 router.post('/', function(req, res) {
 	// create an instance
-	var intQuest = models.archives.build({
+	var archives = models.archives.build({
 		form: req.body.form,
 		round: req.body.round,
 		page_1: req.body.page_1,
@@ -22,9 +22,9 @@ router.post('/', function(req, res) {
 	});
 
 	// persist an instance
-  intQuest.save().then(() => {
+  archives.save().then(() => {
     // a slash goes before this in the database uri
-    const imgRelativePath = `uploads/${intQuest.id}.resume.png`;
+    const imgRelativePath = `uploads/${archives.id}.resume.png`;
     const imgAbsPath = path.join(appDir, imgRelativePath);
 
     let base64Png = req.body.resumeBase64.split(',')[1];
@@ -42,7 +42,7 @@ router.post('/', function(req, res) {
         //save image uri into database
         var image_type = 'resume';
         var image_table = models.image_uri.build({
-          id: intQuest.id,
+          id: archives.id,
 
           // add the preceding forwardslash
           img_uri: '/' + imgRelativePath,
@@ -50,7 +50,7 @@ router.post('/', function(req, res) {
         });
         image_table.save();
 
-        res.json(intQuest);
+        res.json(archives);
       }
     });
   });
