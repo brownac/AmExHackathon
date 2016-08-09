@@ -2,8 +2,6 @@
 
 var app = angular.module('amExHackathonApp');
 app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
-  $scope.src = '../../images/resume.png';
-
   $scope.next = function() {
     var canvas = $("#c")[0];
     var image = new Image();
@@ -14,6 +12,21 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
 
     // redirect to form, which uses softpenImage
     $location.path('screener/candidateForm');
+  };
+
+  $scope.readImage = function(event) {
+    var files = event.target.files;
+
+    if (files && files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $scope.$apply(function() {
+          $scope.resumeBase64 = e.target.result;
+          $scope.pictureAdded = true;
+        });
+      };
+      reader.readAsDataURL(files[0]);
+    }
   };
 
   loadFabric();
@@ -29,7 +42,7 @@ var loadFabric = function() {
     black: "rgba(0,0,0,1)",
     green: "rgba(51,255,120,1)"
   };
-  
+
   var defaultPenColor = "black";
   var defaultMarkerColor = "yellow";
   var penThickOptions = [1, 5, 10];
