@@ -9,18 +9,22 @@
  */
 angular.module('amExHackathonApp')
   .controller('InterviewerFormCtrl', function ($scope) {
-  $scope.questions = [
-    {id: 1, question: 'This is a sample question'},
-    {id: 2, question: 'This is another sample question'},
-    {id: 3, question: 'This is a line that is hopefully longer than twenty characters.'}
-  ];
+    $scope.events = [];
+    $scope.calendarView = 'month';
+    var calDate = new Date();
+    $scope.calendarDate = calDate;
+    $scope.calendarTitle = calDate.getMonth() + " " + calDate.getFullYear();
 
-  $scope.getAnsBoxSize = function(question) {
-    var lineSize = 20;
-    var res = 3;
-    if(question.length > lineSize) {
-      res += question.length / lineSize;
-    }
-    return res;
-  };
+    $scope.events.push({
+        title:"JUSTIN MACEDO",
+        startsAt: new Date(),
+        color: {
+          primary: '#e3bc08',
+          secondary: '#fdf1ba'
+        }
+      });
+    $scope.changeView = function(newView){
+      $scope.calendarView = newView;
+    };
+  
 });

@@ -1,8 +1,49 @@
-<div class="container" ng-controller="InterviewerFormCtrl">
-  <h1 class="text-center text-primary">Interview Form A<br/><small>Technical</small></h1>
-  <hr/>
-  <div class="row" ng-repeat="q in questions">
-    <label class="col-xs-12">Q{{q.id}}. {{q.question}}
-    <textarea class="col-xs-12" rows="{{getAnsBoxSize(q.question)}}"></textarea>
-  </div>
-</div>
+      <div class="row">
+        <div class = "col-md-6 calChangeDate">
+          <button
+            class="btn btn-primary"
+            mwl-date-modifier
+            date="calendarDate"
+            decrement="calendarView">
+            Previous
+          </button>
+
+
+          <button
+            class="btn btn-default"
+            mwl-date-modifier
+            date="calendarDate"
+            set-to-today>
+            Today
+          </button>
+
+
+          <button
+            class="btn btn-primary"
+            mwl-date-modifier
+            date="calendarDate"
+            increment="calendarView">
+            Next
+          </button>
+        </div>
+        <div class="btn-group pull-right calChangeView">
+            <label class="btn btn-primary" ng-click="changeView('year')">Year</label>
+            <label class="btn btn-primary" ng-click="changeView('month')">Month</label>
+            <label class="btn btn-primary" ng-click="changeView('week')">Week</label>
+            <label class="btn btn-primary" ng-click="changeView('day')">Day</label>
+        </div>
+      </div>
+      <div>
+        <mwl-calendar
+          view="calendarView"
+          view-date="calendarDate"
+          events="events"
+          view-title="calendarTitle"
+          on-event-click="eventClicked(calendarEvent)"
+          on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+          cell-is-open="true">
+        </mwl-calendar>
+      </div>
+      <div style="margin-bottom:20px;">
+      </div>
+
