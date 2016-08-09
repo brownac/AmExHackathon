@@ -8,26 +8,23 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('InterviewsCtrl', function ($scope, $routeParams, candidateService) {
-    $scope.interviews = [{
-      interview_Date: new Date("October 13, 2014 11:13:00"),
-      candidate: {firstName: 'Kinderley',
-      lastName: 'Charles',
-      email: 'kin@yahoo.com'}
-    },
-    {
-      interview_Date: new Date(),
-      candidate: {firstName: 'John',
-      lastName: 'Doe',
-      email: 'kin@yahoo.com'}
-    },
-    {
-      interview_Date: new Date(),
-      candidate: {firstName: 'Jane',
-      lastName: 'Doe',
-      email: 'kin@yahoo.com'}
-    }];
+  .controller('InterviewsCtrl', function ($scope) {
+    $scope.events = [];
+    $scope.calendarView = 'month';
+    var calDate = new Date();
+    $scope.calendarDate = calDate;
+    $scope.calendarTitle = calDate.getMonth() + " " + calDate.getFullYear();
 
-    $scope.date = new Date();
+    $scope.events.push({
+        title:"JUSTIN MACEDO",
+        startsAt: new Date(),
+        color: {
+          primary: '#e3bc08',
+          secondary: '#fdf1ba'
+        }
+      });
+    $scope.changeView = function(newView){
+      $scope.calendarView = newView;
+    };
 
 });

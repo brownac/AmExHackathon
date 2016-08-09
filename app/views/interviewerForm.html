@@ -1,8 +1,16 @@
-<div class="container" ng-controller="InterviewerFormCtrl">
-  <h1 class="text-center text-primary">Interview Form A<br/><small>Technical</small></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 input-group date" data-provide="datepicker">
+        <input type="date" class="form-control" ng-model="date">
+        <div class="input-group-addon">
+            <span class="glyphicon glyphicon-th"></span>
+        </div>
+    </div>
+  </div>
   <hr/>
-  <div class="row" ng-repeat="q in questions">
-    <label class="col-xs-12">Q{{q.id}}. {{q.question}}
-    <textarea class="col-xs-12" rows="{{getAnsBoxSize(q.question)}}"></textarea>
+  <div ng-repeat="i in interviews">
+    <div class="row interview-row-bottom-buffer">
+      <a class="col-xs-12 btn btn-block btn-info" href="#">{{i.candidate.firstName}}, {{i.candidate.lastName}}</a>
+    </div>
   </div>
 </div>
