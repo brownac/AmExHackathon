@@ -16,7 +16,10 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+
+    /* see below -- not using cdn's
+     * cdnify: 'grunt-google-cdn'
+     */
   });
 
   // Configurable paths for the application
@@ -90,7 +93,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/scripts/{,*/}*.js', 'api/**/*.js'],
         tasks: ['newer:jshint:all', 'newer:jscs:all'],
         options: {
           livereload: true
@@ -174,12 +177,18 @@ module.exports = function (grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish')
+        reporter: require('jshint-stylish'),
+
+        // don't kill the build process if linting errors
+        force: true
       },
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/{,*/}*.js',
+
+          // the node app should be linted as well
+          'api/**/*.js'
         ]
       },
       test: {
@@ -194,12 +203,16 @@ module.exports = function (grunt) {
     jscs: {
       options: {
         config: '.jscsrc',
-        verbose: true
+        verbose: true,
+
+        // don't kill the build process if linting errors
+        force: true
       },
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/{,*/}*.js',
+          'api/**/*.js'
         ]
       },
       test: {
@@ -327,6 +340,7 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care of
     // minification. These next options are pre-configured if you do not wish
     // to use the Usemin blocks.
+    // // request parsing
     // cssmin: {
     //   dist: {
     //     files: {
@@ -415,11 +429,13 @@ module.exports = function (grunt) {
     },
 
     // Replace Google CDN references
+    /* not using cdn's, see comment in build definition
     cdnify: {
       dist: {
         html: ['<%= yeoman.dist %>/*.html']
       }
     },
+    */
 
     // Copies remaining files to places other tasks can use
     copy: {
@@ -495,6 +511,8 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'newer:jshint',
+      'newer:jscs',
       'postcss:server',
       'concurrent:server'
     ]);
@@ -524,7 +542,11 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
+
+    /* don't use cdns since our code may be offline on raspi
     'cdnify',
+    */
+    
     'cssmin',
 
     // run babel before uglify
