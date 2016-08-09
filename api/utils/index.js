@@ -16,7 +16,7 @@ let distDir = path.join(__dirname, '../../dist');
 
 
 module.exports = {
-  /* 
+  /*
    * true if we are in development mode.
    * Checks arguments currently
    */
