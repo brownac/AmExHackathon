@@ -16,7 +16,7 @@ angular.module('amExHackathonApp')
     $scope.calendarTitle = calDate.getMonth() + " " + calDate.getFullYear();
 
     $scope.events.push({
-        title:"JUSTIN MACEDO",
+        title:"John Smith",
         startsAt: new Date(),
         color: {
           primary: '#e3bc08',
@@ -25,6 +25,10 @@ angular.module('amExHackathonApp')
       });
     $scope.changeView = function(newView){
       $scope.calendarView = newView;
+    };
+
+    $scope.eventClicked = function() {
+      console.log("something");
     };
   
 });
