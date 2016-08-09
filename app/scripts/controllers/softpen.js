@@ -169,9 +169,12 @@ var loadFabric = function() {
   //Event Listeners
   // --------------------------------------------------------------------------------
   $("#resume-image").on("load", function() {
-    console.log("ADWADW");
     imgObj.src = input.src;
     var image = new fabric.Image(imgObj);
+
+    image.height = 995;
+    image.width = 775;
+
     canvas.add(image);
     isPictureLoaded = 1;
   });
