@@ -2,6 +2,8 @@
 
 var app = angular.module('amExHackathonApp');
 app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
+  $scope.pictureAdded = false;
+
   $scope.next = function() {
     var canvas = $("#c")[0];
     var image = new Image();

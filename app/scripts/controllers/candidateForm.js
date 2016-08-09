@@ -44,7 +44,7 @@ angular.module('amExHackathonApp')
             $scope.pictureAdded = true;
           });
         };
-        reader.readAsDataURL(files[0]);
+        reader.readAsDatURL(files[0]);
       }
     };
 
@@ -72,8 +72,10 @@ angular.module('amExHackathonApp')
           $scope.submitBtnClasses = "btn btn-success";
 
           $timeout(() => {
-            // re-initialize the scope
-            init();
+            // re-direct to softpen
+            softpenImage.src = null;
+
+            $location.path('screener/softpen');
           }, 1000);
         });
       }

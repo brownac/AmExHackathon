@@ -25,6 +25,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'Home'
       })
+      .when('/screener/softpen', {
+        templateUrl: 'views/softpen.html',
+        controller: 'SoftPenCtrl',
+        controllerAs: 'softpen'
+      })
       .when('/screener/candidateForm', {
         templateUrl: 'views/candidateForm.html',
         controller: 'CandidateFormCtrl',
@@ -59,11 +64,6 @@ angular
         templateUrl: 'views/viewCandidate.html',
         controller: 'ViewCandidateCtrl',
         controllerAs: 'ViewCandidate'
-      })
-      .when('/softpen', {
-        templateUrl: 'views/softpen.html',
-        controller: 'SoftPenCtrl',
-        controllerAs: 'softpen'
       })
       .otherwise({
         redirectTo: '/'
