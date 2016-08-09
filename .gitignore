@@ -7,3 +7,4 @@
 .rebooted
 .DS_Store
 /api/images/*
+/app/uploads/*

@@ -41,6 +41,7 @@ module.exports = function (grunt) {
         options: {
           // pass dev arg
           args: ['dev'],
+          nodeArgs: ['--harmony'],
 
           callback: function(nodemon) {
             nodemon.on('log', function (event) {
@@ -546,7 +547,7 @@ module.exports = function (grunt) {
     /* don't use cdns since our code may be offline on raspi
     'cdnify',
     */
-    
+
     'cssmin',
 
     // run babel before uglify
