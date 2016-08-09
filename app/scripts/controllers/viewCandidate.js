@@ -43,7 +43,7 @@ angular.module('amExHackathonApp')
       }
 
       $scope.isActiveTab = function(tabUrl) {
-          return tabUrl == $scope.currentTab;
+          return tabUrl === $scope.currentTab;
       }
 
       // Make the call to init to get the candidate info
