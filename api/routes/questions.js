@@ -8,29 +8,24 @@ var path = require('path');
 
 const appDir = path.join(__dirname, '../../app');
 
-// Insert a candidate
+// Insert an interview form
 router.post('/', function(req, res) {
 	// create an instance
-	var candidate = models.candidateInfo.build({
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		email: req.body.email,
-		phoneNumber: req.body.phoneNumber,
-		school: req.body.school,
-		major: req.body.major,
-		graduationDate: req.body.graduationDate,
-		needSponsorship: req.body.needSponsorship,
-		internOrFull: req.body.internOrFull,
-		areaOfInterest: req.body.areaOfInterest,
-		preferredLanguages: req.body.preferredLanguages,
-		finalEvaluation: req.body.finalEvaluation,
-		screenerInitials: req.body.screenerInitials
+	var intQuest = models.questions.build({
+		form_type: req.body.form_type,
+		version: req.body.version,
+		page_1: req.body.page_1,
+		page_2: req.body.page_2,
+		page_3: req.body.page_3,
+		page_4: req.body.page_4,
+		page_5: req.body.page_5,
+		active: req.body.active
 	});
 
 	// persist an instance
-  candidate.save().then(() => {
+  intQuest.save().then(() => {
     // a slash goes before this in the database uri
-    const imgRelativePath = `uploads/${candidate.id}.resume.png`;
+    const imgRelativePath = `uploads/${intQuest.id}.resume.png`;
     const imgAbsPath = path.join(appDir, imgRelativePath);
 
     let base64Png = req.body.resumeBase64.split(',')[1];
@@ -47,8 +42,8 @@ router.post('/', function(req, res) {
       else {
         //save image uri into database
         var image_type = 'resume';
-        var image_table = models.image_uri.build({
-          id: candidate.id,
+        var image_table = models.Images.build({
+          id: intQuest.id,
 
           // add the preceding forwardslash
           img_uri: '/' + imgRelativePath,
@@ -56,29 +51,24 @@ router.post('/', function(req, res) {
         });
         image_table.save();
 
-        res.json(candidate);
+        res.json(intQuest);
       }
     });
   });
 });
 
-// Update a candidate by id
+// Update a question by id
 router.put('/', function(req, res) {
-	models.candidateInfo.update({
-		firstName: req.body.firstName,
-		lastName: req.body.lastName,
-		email: req.body.email,
-		phoneNumber: req.body.phoneNumber,
-		school: req.body.school,
-		major: req.body.major,
-		graduationDate: req.body.graduationDate,
-		needSponsorship: req.body.needSponsorship,
-		internOrFull: req.body.internOrFull,
-		areaOfInterest: req.body.areaOfInterest,
-		preferredLanguages: req.body.preferredLanguages,
-		finalEvaluation: req.body.finalEvaluation,
-		screenerInitials: req.body.screenerInitials
-	},
+	models.questions.update({
+		form_type: req.body.form_type,
+		version: req.body.version,
+		page_1: req.body.page_1,
+		page_2: req.body.page_2,
+		page_3: req.body.page_3,
+		page_4: req.body.page_4,
+		page_5: req.body.page_5,
+		active: req.body.active
+		},
 	{
 		where: { id : req.body.id }
 	})
@@ -87,35 +77,35 @@ router.put('/', function(req, res) {
 	}, function(rejectedPromiseError){
     res.status(404).json({
       errors: [
-        "Could not find candidate with id " + id
+        "Could not find question with id " + id
       ]
     });
 	});
 });
 
-// Get all candidates
+// Get all question
 router.get('/', function(req, res) {
 	var query = req.query;
 	var sql = {
 				include: [{
-					model: models.image_uri
+					model: models.Candidates
 				}],
 				where:
 				   query
 			  };
-	models.candidateInfo.findAll(sql)
+	models.questions.findAll(sql)
 	.then(function(result) {
 		res.json(result);
 	});
 });
 
-// Get candidate by id
+// Get question by id
 router.get('/:id', function(req, res) {
 	var id = req.params.id;
 
-	models.candidateInfo.findById(id, {
+	models.questions.findById(id, {
 		include: [{
-			model: models.image_uri
+			model: models.Candidates
 		}]
 	}).then(function(result) {
 		if (result !== null) {
@@ -124,7 +114,7 @@ router.get('/:id', function(req, res) {
 		else {
 			res.status(404).json({
 				errors: [
-					"Could not find candidate with id " + id
+					"Could not find question with id " + id
 				]
 			});
 		}
