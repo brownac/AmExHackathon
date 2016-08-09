@@ -8,7 +8,7 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('InterviewerFormCtrl', function ($scope) {
+  .controller('InterviewerFormCtrl', function ($scope,$routeParams, $timeout, candidateService) {
   $scope.questions = [
     {id: 1, question: 'This is a sample question'},
     {id: 2, question: 'This is another sample question'},
