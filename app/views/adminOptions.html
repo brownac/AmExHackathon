@@ -41,16 +41,16 @@
 
                   <div class="form-group">
                     <label class="col-xs-3">File</label>
-                    <input name="file1" type="file" class="col-xs-8 form-control-file" placeholder="Page 1" custom-on-change="readImage" required>
+                    <input data-ng-click="fileId=0" name="file1" type="file" class="col-xs-8 form-control-file" placeholder="Page 1" custom-on-change="readImage" required>
                     <span class="alert alert-danger alertMessage" ng-show="submitted && newQForms.file1.$error.required">One file is required at least!</span>
                   </div>
 
                   <div class="form-group">
-                    <input type="file" class="col-xs-8 col-xs-offset-3 form-control-file" placeholder="Page 2" custom-on-change="readImage">
+                    <input data-ng-click="fileId=1" type="file" class="col-xs-8 col-xs-offset-3 form-control-file" placeholder="Page 2" custom-on-change="readImage">
                   </div>
 
                   <div class="form-group">
-                    <input type="file" class="col-xs-8 col-xs-offset-3 form-control-file" placeholder="Page 3" custom-on-change="readImage">
+                    <input data-ng-click="fileId=2" type="file" class="col-xs-8 col-xs-offset-3 form-control-file" placeholder="Page 3" custom-on-change="readImage">
                   </div>
 
                   <div class="modal-footer">
