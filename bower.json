@@ -10,6 +10,7 @@
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
+    "fabric.js": "fabric#^1.6.3",
     "angular-bootstrap-calendar": "^0.19.6",
     "jquery-ui": "^1.12.0",
     "bootstrap-timepicker": "^0.5.2"

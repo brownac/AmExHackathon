@@ -4,7 +4,6 @@
 }
 
 .calChangeView{
-  /*float: right;*/
   padding-right: 2%;
 }
 
@@ -23,12 +22,12 @@ span[data-cal-date]{
   pointer-events: none;
 }
 
-.right-addon .glyphicon { 
+.right-addon .glyphicon {
   right: 0px;
 }
 
-.right-addon input { 
-  padding-right: 30px; 
+.right-addon input {
+  padding-right: 30px;
 }
 
 #ui-datepicker-div{
@@ -52,4 +51,38 @@ span.input-group-addon{
 
 .bootstrap-timepicker-widget{
   z-index: 9999 !important;
+}
+
+.select-box{
+  width: 30%;
+  height: 30px;
+}
+
+/* Recruiter form styles */
+#recruiter-form-container {
+    float: left;
+    display: block;
+    width: 70%;
+    right: 0px;
+    margin-left: 240px;
+}
+
+button.candidate-queue-person {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  border: 10px;
+}
+
+.button-link, .button-link:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.cal-modal{
+  background-color: rgba(0, 0, 0, 0.22);
+}
+
+.cal-select-candidate{
+  height: 32px;
+  width: 50%;
 }

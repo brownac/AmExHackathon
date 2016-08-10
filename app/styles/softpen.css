@@ -1,0 +1,26 @@
+.icon-flip{
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.btn-group{
+  margin-left: 10px;
+}
+
+.tools-bar{
+  position: absolute;
+  z-index: 2;
+  background-color: white;
+  margin-left: 30px;
+}
+
+.camera-pull-right {
+  margin-left: 30px;
+}
+
+.btn-next {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

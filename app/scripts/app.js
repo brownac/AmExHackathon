@@ -18,14 +18,24 @@ angular
     'ngTouch',
     'mwl.calendar'
   ])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/home.html',
         controller: 'MainCtrl',
         controllerAs: 'Home'
       })
+      .when('/screener/softpen', {
+        templateUrl: 'views/softpen.html',
+        controller: 'SoftPenCtrl',
+        controllerAs: 'softpen'
+      })
       .when('/screener/candidateForm', {
+        templateUrl: 'views/candidateForm.html',
+        controller: 'CandidateFormCtrl',
+        controllerAs: 'candidateForm'
+      })
+      .when('/screener/candidateForm/:candidateId', {
         templateUrl: 'views/candidateForm.html',
         controller: 'CandidateFormCtrl',
         controllerAs: 'candidateForm'
@@ -34,6 +44,11 @@ angular
         templateUrl: 'views/recruiterForm.html',
         controller: 'RecruiterFormCtrl',
         controllerAs: 'recruiterForm'
+      })
+      .when('/recruiter/recruiterHome', {
+        templateUrl: 'views/recruiterHome.html',
+        controller: 'RecruiterHomeCtrl',
+        controllerAs: 'recruiterHome'
       })
       .when('/interviewer/interviewerForm', {
         templateUrl: 'views/interviewerForm.html',
