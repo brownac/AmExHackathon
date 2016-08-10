@@ -39,7 +39,7 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
 
   $scope.newForm = {};
 
-  $scope.init() {
+  $scope.init = function() {
     questionsService.get({ id: candidateId }).$promise.then(value => {
       $scope.postCandidate = value;
     });
@@ -79,7 +79,7 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
 
   $scope.submit = function() {
     // Flag denoted that the form has been submitted
-    $scope.submitted = false;
+    $scope.submitted = true;
 
     // Save on the backend
     console.log($scope.newForm);
