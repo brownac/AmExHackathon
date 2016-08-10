@@ -8,7 +8,7 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('InterviewsCtrl', function ($scope, calendarService) {
+  .controller('InterviewsCtrl', function ($scope,$location, calendarService) {
     $scope.events = [];
     $scope.calendarView = 'month';
     var calDate = new Date();
@@ -27,8 +27,8 @@ angular.module('amExHackathonApp')
       $scope.scheduledCandidates = values;
       for (var i = $scope.scheduledCandidates.length - 1; i >= 0; i--) {
         $scope.events.push({
-          title:    $scope.scheduledCandidates[i].lastName + ', ' + 
-                    $scope.scheduledCandidates[i].firstName + ': ' +       
+          title:    $scope.scheduledCandidates[i].lastName + ', ' +
+                    $scope.scheduledCandidates[i].firstName + ': ' +
                     $scope.scheduledCandidates[i].Interview.interview_Location,
           startsAt: $scope.scheduledCandidates[i].Interview.interview_Date,
           color: {
@@ -39,6 +39,12 @@ angular.module('amExHackathonApp')
          });
      };
      });
+
+    $scope.eventClicked = function(calendarEvent){
+      console.log(calendarEvent.candidate.id);
+      var id = calendarEvent.candidate.id;
+      $location.path('/interviewer/'+id);
+    }
     $scope.changeView = function(newView){
       $scope.calendarView = newView;
     };
