@@ -44,6 +44,12 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     files: ['','','','','']
   };
 
+  $scope.init() {
+    questionsService.get({ id: candidateId }).$promise.then(value => {
+      $scope.postCandidate = value;
+    });
+  };
+
   $scope.toggleActive = function(form) {
     var i = $scope.forms.indexOf(form);
     $scope.forms[i].active = !form.active;
@@ -75,25 +81,23 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     }
   };
 
-  $scope.submit = function(form) {
+  $scope.submit = function() {
     // Flag denoted that the form has been subitted
-    $scope.submitted = true;
-
-    // If one of the input validation fails, reject submission
-    if (form.$invalid) {
-      return;
-    }
+    $scope.submitted = false;
+    console.log("HERE\n" + $scope.newForm);
 
     // Save on the backend
-    questionsService.save($scope.newForm).$promise.then(values => {
+    questionsService.save($scope.newForm).$promise.then(value => {
       // show success by changing submit button class and value
+      console.log("HERE 1");
       $scope.initNewForm();
       $scope.saved = true;
 
       $timeout(() => {
         // No redirection needed
+        // $location.path('viewCandidate/' + $routeParams.candidateId);
       }, 1000);
     });
-  };
+  }
 
 });

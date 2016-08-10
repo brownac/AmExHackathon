@@ -18,16 +18,16 @@
                   <div class="form-group">
                       <label class="col-xs-3">Type</label>
                       <div class="col-xs-8">
-                          <label ng-model="newForm.type" class="radio-inline"><input type="radio" name="type" value="Technical" required>Technical</label>
-                          <label ng-model="newForm.type" class="radio-inline"><input type="radio" name="type" value="Behavioral" required>Behavioral</label>
+                          <label class="radio-inline"><input ng-model="newForm.type" type="radio" name="type" value="Technical" required>Technical</label>
+                          <label class="radio-inline"><input ng-model="newForm.type" type="radio" name="type" value="Behavioral" required>Behavioral</label>
                           <span class="alert alert-danger alertMessage" ng-show="submitted && newQForms.type.$error.required">Form type is required!</span>
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-xs-3">Form</label>
                       <div class="col-xs-8">
-                          <label ng-model="newForm.form" class="radio-inline"><input type="radio" name="formL" value="A" required>A</label>
-                          <label ng-model="newForm.form" class="radio-inline"><input type="radio" name="formL" value="B" required>B</label>
+                          <label class="radio-inline"><input ng-model="newForm.form" type="radio" name="formL" value="A" required>A</label>
+                          <label class="radio-inline"><input ng-model="newForm.form" type="radio" name="formL" value="B" required>B</label>
                           <span class="alert alert-danger alertMessage" ng-show="submitted && newQForms.formL.$error.required">Form is required!</span>
                       </div>
                   </div>
@@ -54,8 +54,7 @@
                   </div>
 
                   <div class="modal-footer">
-                      <p class="pull-left">Saved</p>
-                      <button data-ng-click="submit(newQForms)" class="btn btn-primary" type="submit">Submit</button>
+                      <button data-ng-click="submit()" class="btn btn-primary" type="submit">Submit</button>
                   </div>
                 </div>
               </form>
