@@ -8,12 +8,19 @@
 .btn-group{
   margin-left: 10px;
 }
+
 .tools-bar{
   position: absolute;
   z-index: 2;
   background-color: white;
+  margin-left: 30px;
 }
 
-.center-toolbar {
+.camera-pull-right {
   margin-left: 30px;
+}
+
+.btn-next {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
