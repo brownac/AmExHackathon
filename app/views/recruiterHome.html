@@ -14,9 +14,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="sel1">Select Candidate:</label><br>
-              <select ng-model="selectedCandidate" id ="sel1" class="select-box">
-                <option ng-repeat="candidate in candidateQueue" value="{{candidate.lastName}}, {{candidate.firstName}}">{{candidate.lastName}}, {{candidate.firstName}}</option>
-              </select>
+              <select ng-options="candidate as candidate.fullName for candidate in candidateQueue" ng-model="selectedCandidate"> </select>
             </div>
             <p><strong>Select Interview Date: <strong></p>
             <div class="inner-addon right-addon" id="calendarSelectArrow">
@@ -56,14 +54,8 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="sel2">Select Candidate:</label><br>
-              <select ng-model="editCandidateName" id ="sel2" class="select-box">
-                <option ng-repeat="candidate in scheduledCandidates" ng-value="candidate">{{candidate.lastName}}, {{candidate.firstName}}</option>
-              </select>
+              <select ng-options="candidate as candidate.fullName for candidate in scheduledCandidates" ng-model="editedCandidate"> </select>
             </div>
-            <!-- <div class="">
-                <label for="myName">Candidate Name: </label><br>
-                <input ng-model="editCandidateName" type="text" id="myName"/>
-              </div> -->
             <p><strong>Select Interview Date: <strong></p>
             <div class="inner-addon right-addon" id="calendarSelectArrow2">
               <i class="glyphicon glyphicon-calendar"></i>

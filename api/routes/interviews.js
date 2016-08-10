@@ -4,6 +4,7 @@ var express = require('express');
 var router  = express.Router();
 var fs = require('fs');
 var path = require('path');
+var email = require('../email');
 
 const appDir = path.join(__dirname, '../../app');
 
@@ -14,18 +15,21 @@ router.put('/', function(req, res) {
 		interview_Time: req.body.Interview.Interview_Time,
 		interview_Location: req.body.Interview.Interview_Location,
 		interviewer_Name: req.body.Interview.Interviewer_Name
-	},
-	{
+	}, {
 		where: { id : req.body.id }
 	})
 	.then(function(result) {
-    res.send("Success");
+    	res.send("Success");
+			if (req.body.Interview.interview_Date !== null) {
+				console.log(email);
+				email.sendEmail( req.body.email,req.body.firstName,req.body.lastName);
+			};
 	}, function(rejectedPromiseError){
-    res.status(404).json({
-      errors: [
-        "Could not find candidate with id " + id
-      ]
-    });
+    	res.status(404).json({
+      	errors: [
+        	"Could not find candidate with id " + id
+      	]
+    	});
 	});
 });
 

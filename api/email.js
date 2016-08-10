@@ -1,4 +1,5 @@
 function sendEmail( email, first, last ){
+  console.log('Mail was sent');
   var nodemailer = require('nodemailer');
 
   // create reusable transporter object using the default SMTP transport
