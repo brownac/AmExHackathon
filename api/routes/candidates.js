@@ -111,7 +111,7 @@ router.get('/', function(req, res) {
 				include: [{
 					model: models.Images,
 					required: true
-				}],
+					}],
 				where: query
 			  };
 	models.Candidates.findAll(sql)
@@ -127,6 +127,9 @@ router.get('/:id', function(req, res) {
 	models.Candidates.findById(id, {
 		include: [{
 			model: models.Images,
+			required: true
+		}, {
+			model: models.Interviews,
 			required: true
 		}]
 	}).then(function(result) {

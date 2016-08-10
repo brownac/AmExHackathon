@@ -22,7 +22,7 @@ router.put('/', function(req, res) {
     	res.send("Success");
 			if (req.body.Interview.interview_Date !== null) {
 				console.log(email);
-				email.sendEmail( req.body.email,req.body.firstName,req.body.lastName);
+				email( req.body.email,req.body.firstName,req.body.lastName);
 			};
 	}, function(rejectedPromiseError){
     	res.status(404).json({
