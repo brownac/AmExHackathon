@@ -77,3 +77,12 @@ button.candidate-queue-person {
   text-decoration: none;
   color: white;
 }
+
+.cal-modal{
+  background-color: rgba(0, 0, 0, 0.22);
+}
+
+.cal-select-candidate{
+  height: 32px;
+  width: 50%;
+}

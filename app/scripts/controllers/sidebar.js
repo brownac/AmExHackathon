@@ -26,5 +26,9 @@ angular.module('amExHackathonApp')
       else {
         return "glyphicon glyphicon-minus yellow";
       }
-    };
+    }
+    $scope.turndownCandidate = function(candidate){
+      candidate.finalEvaluation = 'turndown';
+      
+    }
   });
