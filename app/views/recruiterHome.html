@@ -4,7 +4,7 @@
 
 <div id="recruiter-form-container" class="container">
     <!--Modal Info-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="schedulerModal">
+    <div class="modal fade cal-modal" tabindex="-1" role="dialog" id="schedulerModal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -15,9 +15,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="sel1">Select Candidate:</label><br>
-              <select ng-model="selectedCandidate" id ="sel1" class="select-box">
-                <option ng-repeat="candidate in candidateQueue" value="{{candidate.lastName}}, {{candidate.firstName}}">{{candidate.lastName}}, {{candidate.firstName}}</option>
-              </select>
+              <select ng-options="candidate as candidate.fullName for candidate in candidateQueue" ng-model="selectedCandidate" class="cal-select-candidate"> </select>
             </div>
 
             <p><strong>Select Interview Date: <strong></p>
@@ -36,6 +34,10 @@
               <label for="myLocation">Select Interview Location: </label><br>
               <input ng-model="location" type="text" id="myLocation"/>
             </div>
+            <div>
+              <label for="myInterviewer">Select Interviewer: </label><br>
+              <input ng-model="interviewer" type="text" id="myInterviewer"/>
+            </div>
           </div>
 
           <div class="modal-footer">
@@ -47,7 +49,7 @@
     </div><!-- /.modal -->
 
     <!--Modal Info: Pop-Up Menu for EDITING Interview Times-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="editingModal">
+    <div class="modal fade cal-modal" tabindex="-1" role="dialog" id="editingModal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -58,14 +60,8 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="sel2">Select Candidate:</label><br>
-              <select ng-model="editCandidateName" id ="sel2" class="select-box">
-                <option ng-repeat="candidate in scheduledCandidates" ng-value="candidate">{{candidate.lastName}}, {{candidate.firstName}}</option>
-              </select>
+              <select ng-options="candidate as candidate.fullName for candidate in scheduledCandidates" ng-model="editedCandidate" class="cal-select-candidate"> </select>
             </div>
-            <!-- <div class="">
-                <label for="myName">Candidate Name: </label><br>
-                <input ng-model="editCandidateName" type="text" id="myName"/>
-              </div> -->
             <p><strong>Select Interview Date: <strong></p>
             <div class="inner-addon right-addon" id="calendarSelectArrow2">
               <i class="glyphicon glyphicon-calendar"></i>
@@ -80,6 +76,10 @@
               <label for="myLocation">Select Interview Location: </label><br>
               <input ng-model="editLocation" type="text" id="myLocation"/>
             </div>
+            <div>
+              <label for="myInterviewer">Select Interviewer: </label><br>
+              <input ng-model="editInterviewer" type="text" id="myInterviewer"/>
+            </div>
 
           </div>
           <div class="modal-footer">
@@ -91,7 +91,7 @@
     </div><!-- /.modal -->
 
      <!--Modal Info: Pop-Up Menu for DELETING Interview Times-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="deletingModal">
+    <div class="modal fade cal-modal" tabindex="-1" role="dialog" id="deletingModal">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -161,7 +161,7 @@
         view-date="calendarDate"
         events="events"
         view-title="calendarTitle"
-        on-event-click="eventClicked(calendarEvent)"
+        on-event-click="getEditingForm(calendarEvent)"
         on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
         edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
         delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
