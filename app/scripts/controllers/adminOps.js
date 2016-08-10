@@ -9,7 +9,8 @@
  */
 
 
-angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scope) {
+angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scope, $timeout, questionsService) {
+  $scope.saved = false;         // Denoting that info has been saved to database
   $scope.forms = [{
     active: true,
     type: 'Technical',
@@ -43,13 +44,21 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
   };
 
   $scope.initNewForm = function(){
-    $scope.newForm = {
-      active: false,
-      type: '',
-      form: '',
-      version: 0,
-      files: []
-    };
+    $scope.newForm = null;
+  };
+
+  $scope.readImage = function(event) {
+    var files = event.target.files;
+
+    if (files && files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $scope.$apply(function() {
+          $scope.newForm.files.push(e.target.result);
+        });
+      };
+      reader.readAsDataURL(files[0]);
+    }
   };
 
   $scope.submit = function(form) {
@@ -61,6 +70,16 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
       return;
     }
 
+    // Save on the backend
+    questionsService.save($scope.newForm).$promise.then(values => {
+      // show success by changing submit button class and value
+      $scope.initNewForm();
+      $scope.saved = true;
+
+      $timeout(() => {
+        // No redirection needed
+      }, 1000);
+    });
   };
 
 });
