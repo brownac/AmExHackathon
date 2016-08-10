@@ -13,7 +13,7 @@
       </li>
       <ul id="candidate-list" ng-repeat="candidate in candidateQueue | filter:search as results">
         <li>
-          <a href="">{{ candidate.lastName }}, {{ candidate.firstName }} &nbsp;<span class="glyphicon glyphicon-envelope" ng-click="sendMail('mailOptions')"></span></a>
+          <a href="">{{ candidate.lastName }}, {{ candidate.firstName }} &nbsp;<span class="glyphicon glyphicon-envelope" ng-click="sendMail('mailOptions')"></span><span class="glyphicon glyphicon-remove" ng-click="turndownCandidate(candidate)"></span></a>
         </li>
       </ul>
       <div ng-if="results.length == 0">

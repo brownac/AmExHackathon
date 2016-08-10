@@ -2,11 +2,7 @@
 
 // things to do still:
 // add interviewer name,
-// edit prefilled date when editing an event,
-// fix bug where it shows previous time on clock when updating a diff event time
-// alter backend to do post and delete instead of just put
-// blacked out background with modal
-
+// add interview scheduling validation
 
 /**
  * @ngdoc function
@@ -74,40 +70,40 @@ angular.module('amExHackathonApp')
   	$scope.calendarDate = calDate;
   	$scope.calendarTitle = calDate.getMonth() + " " + calDate.getFullYear();
   	//$('#datetimepicker1').datepicker();
-  $('#datepicker').datepicker({
-    	todayHighlight: true
-	});
-	$('#datepicker2').datepicker({
-    	todayHighlight: true
-    });
-	$('#calendarSelectArrow').click(function(){
-		setTimeout(function(){
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
-      document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className= "glyphicon glyphicon-chevron-left select-arrow";
-			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
-    },200);
-	});
-	$('#calendarSelectArrow2').click(function(){
-		setTimeout(function(){
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
-      document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className= "glyphicon glyphicon-chevron-left select-arrow";
-			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
-    },200);
-	});
-	$('.ui-corner-all').click(function(){
-		setTimeout(function(){
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
-      document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className= "glyphicon glyphicon-chevron-left select-arrow";
-			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
-    },200);
-	});
-	$('#timepicker1').timepicker({
-		defaultTime: '8:00 AM'
-	});
-	$('#timepicker2').timepicker();
+    $('#datepicker').datepicker({
+      	todayHighlight: true
+  	});
+  	$('#datepicker2').datepicker({
+      	todayHighlight: true
+      });
+  	$('#calendarSelectArrow').click(function(){
+  		setTimeout(function(){
+  			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
+        document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
+  			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className= "glyphicon glyphicon-chevron-left select-arrow";
+  			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
+      },200);
+  	});
+  	$('#calendarSelectArrow2').click(function(){
+  		setTimeout(function(){
+  			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
+        document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
+  			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className= "glyphicon glyphicon-chevron-left select-arrow";
+  			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
+      },200);
+  	});
+  	$('.ui-corner-all').click(function(){
+  		setTimeout(function(){
+  			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
+        document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
+  			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className= "glyphicon glyphicon-chevron-left select-arrow";
+  			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
+      },200);
+  	});
+  	$('#timepicker1').timepicker({
+  		defaultTime: '8:00 AM'
+  	});
+  	$('#timepicker2').timepicker();
   	$scope.changeView = function(newView){
   		$scope.calendarView = newView;
   	};
