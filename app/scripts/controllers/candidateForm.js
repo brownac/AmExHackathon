@@ -79,7 +79,7 @@ angular.module('amExHackathonApp')
           }, 1000);
         });
       }
-    }
+    };
 
     init();
   });

@@ -8,279 +8,271 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('RecruiterHomeCtrl', function ($scope, calendarService) {
+    .controller('RecruiterHomeCtrl', function($scope, calendarService) {
 
-    var query = {
-      sequelize:{
-        interview_Date: null
-      }
-    };
-    calendarService.query(query).$promise.then(values => {
-      $scope.candidateQueue = values;
-    });
-
-    var query2 = {
-      sequelize:{
-        interview_Date:{
-          $not: null
-        }
-      }
-    };
-    calendarService.query(query2).$promise.then(values => {
-      $scope.scheduledCandidates = values;
-      for (var i = $scope.scheduledCandidates.length - 1; i >= 0; i--) {
-        $scope.events.push({
-          title:       $scope.scheduledCandidates[i].lastName + ', ' + 
-                        $scope.scheduledCandidates[i].firstName + ': ' +       
-                        $scope.scheduledCandidates[i].Interview.interview_Location,
-          startsAt:    $scope.scheduledCandidates[i].Interview.interview_Date,
-          color: {
-            primary: '#e3bc08',
-            secondary: '#fdf1ba'
-          },
-          candidate: $scope.scheduledCandidates[i]
+        var query = {
+            sequelize: {
+                interview_Date: null
+            }
+        };
+        calendarService.query(query).$promise.then(values => {
+            $scope.candidateQueue = values;
         });
-    };
-    });
 
-  	$scope.interviewTime = '9:00 AM';
-  	$scope.calendarView = 'month';
-  	var calDate = new Date();
-  	$scope.calendarDate = calDate;
-  	$scope.calendarTitle = calDate.getMonth() + " " + calDate.getFullYear();
-  	//$('#datetimepicker1').datepicker();
-  	$('#datepicker').datepicker({
-    	todayHighlight: true
-	});
-	$('#datepicker2').datepicker({
-    	todayHighlight: true
-    });
-	$('#calendarSelectArrow').click(function(){
-		setTimeout(function(){
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
-        	document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className= "glyphicon glyphicon-chevron-left select-arrow";
-			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
-        },200);
-	});
-	$('#calendarSelectArrow2').click(function(){
-		setTimeout(function(){
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
-        	document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className= "glyphicon glyphicon-chevron-left select-arrow";
-			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
-        },200);
-	});
-	$('.ui-corner-all').click(function(){
-		setTimeout(function(){
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML='';
-        	document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML='';
-			document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className= "glyphicon glyphicon-chevron-left select-arrow";
-			document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className= "glyphicon glyphicon-chevron-right select-arrow";
-        },200);
-	});
-	$('#timepicker1').timepicker({
-		defaultTime: '9:00 AM'
-	});
-	$('#timepicker2').timepicker();
-  	$scope.changeView = function(newView){
-  		$scope.calendarView = newView;
-  	};
-  	$scope.calendarModal = function(){
-      $("#schedulerModal").modal();
-  	};
+        var query2 = {
+            sequelize: {
+                interview_Date: {
+                    $not: null
+                }
+            }
+        };
+        calendarService.query(query2).$promise.then(values => {
+            $scope.scheduledCandidates = values;
+            for (var i = $scope.scheduledCandidates.length - 1; i >= 0; i--) {
+                $scope.events.push({
+                    title: $scope.scheduledCandidates[i].lastName + ', ' +
+                        $scope.scheduledCandidates[i].firstName + ': ' +
+                        $scope.scheduledCandidates[i].Interview.interview_Location,
+                    startsAt: $scope.scheduledCandidates[i].Interview.interview_Date,
+                    color: {
+                        primary: '#e3bc08',
+                        secondary: '#fdf1ba'
+                    },
+                    candidate: $scope.scheduledCandidates[i]
+                });
+            }
+        });
 
-  	function getCorrectTime (time){
-  		var offset = 1;
-  		if($scope.interviewTime.substring(0,2).includes(":")){
-  			offset = 0;
-  		}
-  		if($scope.interviewTime.includes("AM") && $scope.interviewTime.substring(0,2).includes("12")){
-  			$scope.hour = '0';
-  		}
-  		else{
-  			$scope.hour = $scope.interviewTime.substring(0,1+offset);
-  		}
-  		$scope.min = $scope.interviewTime.substring(2+offset,4+offset);
-  	}
+        $scope.interviewTime = '9:00 AM';
+        $scope.calendarView = 'month';
+        var calDate = new Date();
+        $scope.calendarDate = calDate;
+        $scope.calendarTitle = calDate.getMonth() + " " + calDate.getFullYear();
+        //$('#datetimepicker1').datepicker();
+        $('#datepicker').datepicker({
+            todayHighlight: true
+        });
+        $('#datepicker2').datepicker({
+            todayHighlight: true
+        });
+        $('#calendarSelectArrow').click(function() {
+            setTimeout(function() {
+                document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML = '';
+                document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML = '';
+                document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className = "glyphicon glyphicon-chevron-left select-arrow";
+                document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className = "glyphicon glyphicon-chevron-right select-arrow";
+            }, 200);
+        });
+        $('#calendarSelectArrow2').click(function() {
+            setTimeout(function() {
+                document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML = '';
+                document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML = '';
+                document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className = "glyphicon glyphicon-chevron-left select-arrow";
+                document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className = "glyphicon glyphicon-chevron-right select-arrow";
+            }, 200);
+        });
+        $('.ui-corner-all').click(function() {
+            setTimeout(function() {
+                document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].innerHTML = '';
+                document.getElementsByClassName('ui-icon ui-icon-circle-triangle-e')[0].innerHTML = '';
+                document.getElementsByClassName('ui-icon ui-icon-circle-triangle-w')[0].className = "glyphicon glyphicon-chevron-left select-arrow";
+                document.getElementsByClassName("ui-icon ui-icon-circle-triangle-e")[0].className = "glyphicon glyphicon-chevron-right select-arrow";
+            }, 200);
+        });
+        $('#timepicker1').timepicker({
+            defaultTime: '9:00 AM'
+        });
+        $('#timepicker2').timepicker();
+        $scope.changeView = function(newView) {
+            $scope.calendarView = newView;
+        };
+        $scope.calendarModal = function() {
+            $("#schedulerModal").modal();
+        };
 
-  	function getCorrectTime2 (time){
-  		var offset = 1;
-  		if($scope.editInterviewTime.substring(0,2).includes(":")){
-  			offset = 0;
-  		}
-  		if($scope.editInterviewTime.includes("AM") && $scope.editInterviewTime.substring(0,2).includes("12")){
-  			$scope.hour = '0';
-  		}
-  		else{
-  			$scope.hour = $scope.editInterviewTime.substring(0,1+offset);
-  		}
-  		$scope.min = $scope.editInterviewTime.substring(2+offset,4+offset);
-  	}
-
-  	function getEditTime (fullDate){
-  		console.log(fullDate.getHours());
-  		var beforeNoon = "AM";
-  		var offset = 0;
-  		if(fullDate.getHours() >= 12){
-  			beforeNoon = "PM";
-  			offset= 12;
-  		}
-  		if(fullDate.getHours() === 0){
-  			offset = -12;
-  		}
-  		if(fullDate.getHours() === 12){
-  			offset = 0;
-  		}
-  		var addZero = "";
-  		if(fullDate.getMinutes() < 10){
-  			addZero ="0";
-  		}
-  		return (fullDate.getHours() - offset).toString() + ":" + addZero + fullDate.getMinutes().toString() + " " + beforeNoon;
-  	}
-
-    $scope.addEvent = function() {
-      var time = new Date($scope.interviewDate);
-      getCorrectTime($scope.interviewTime);
-      if($scope.interviewTime.includes("PM") && $scope.hour !== "12"){
-      	var newHour = parseInt($scope.hour) + 12;
-      	$scope.hour = newHour;
-      }
-      time.setHours($scope.hour,$scope.min);
-
-      var candidate;
-      for(var i = 0; i<$scope.candidateQueue.length; i++){
-        if($scope.selectedCandidate.includes($scope.candidateQueue[i].firstName) && $scope.selectedCandidate.includes($scope.candidateQueue[i].lastName)){
-          $scope.scheduledCandidates.push($scope.candidateQueue[i]);
-          candidate = $scope.candidateQueue.splice(i)[0];
-          $scope.candidateQueue.splice(i,1);
-          break;
+        function getCorrectTime() {
+            var offset = 1;
+            if ($scope.interviewTime.substring(0, 2).includes(":")) {
+                offset = 0;
+            }
+            if ($scope.interviewTime.includes("AM") && $scope.interviewTime.substring(0, 2).includes("12")) {
+                $scope.hour = '0';
+            } else {
+                $scope.hour = $scope.interviewTime.substring(0, 1 + offset);
+            }
+            $scope.min = $scope.interviewTime.substring(2 + offset, 4 + offset);
         }
-      }
 
-      $scope.events.push({
-        title: $scope.selectedCandidate +": "+ $scope.location,
-        startsAt: time,
-        color: {
-          primary: '#e3bc08',
-          secondary: '#fdf1ba'
-        },
-        candidate: candidate
-      });
-
-      //adds the interview information into the database
-      var interviewInfo = {
-        Interview_Date:  time,
-        Interview_Time: $scope.interviewTime,
-        Interview_Location: $scope.location,
-        Interviewer_Name: 'BAD'
-      };
-      candidate.Interview = interviewInfo;
-      candidate.$update().then(values => {
-        console.log('INSERTING DATA');
-      });
-    };
-
-    //edit interview time
-    $scope.getEditingForm = function(calendarEvent) {
-      $scope.editCandidate = calendarEvent.candidate;      
-      $("#editingModal").modal(); //get edit modal
-      var index = $scope.events.indexOf(calendarEvent); //get index of specified interview
-      var titleString = $scope.events[index].title;
-      titleString.split(""); //split string chars into array values
-
-      //parse name and location
-      var colonPos = titleString.search(':');
-      var name = titleString.substring(0,colonPos); //get candidate name
-      var location = titleString.substring(colonPos+2,titleString.length); //get location
-
-      //load preexisting fields to text boxes in editing modal
-
-      $scope.editCandidateName = name;
-      $scope.editLocation = location;
-      $scope.editInterviewTime = getEditTime($scope.events[index].startsAt);
-    };
-
-    $scope.editEvent = function(calendarEvent) {
-      var index = $scope.events.indexOf(calendarEvent); //get index of specified interview
-      //get edited info and add it to calendar
-      var time = new Date($scope.editInterviewDate);
-      getCorrectTime2($scope.editInterviewTime);
-      if($scope.editInterviewTime.includes("PM") && $scope.hour !== "12"){
-      	var newHour = parseInt($scope.hour) + 12;
-      	$scope.hour = newHour;
-      }
-      time.setHours($scope.hour,$scope.min);
-      $scope.events.splice(index,1);
-      $scope.events.push({
-        title: $scope.editCandidateName + ": " + $scope.editLocation,
-        startsAt: time,
-        candidate: $scope.editCandidate
-      });
-
-      //adds the interview information into the database
-      var interviewInfo = {
-        Interview_Date:  time,
-        Interview_Time: $scope.editInterviewTime,
-        Interview_Location: $scope.editLocation,
-        Interviewer_Name: 'BAD'
-      };
-      $scope.editCandidate.Interview = interviewInfo;
-      $scope.editCandidate.$update().then(values => {
-        console.log('INSERTING DATA');
-      });
-    };
-
-    //delete interview time
-    $scope.deleteEvent = function(calendarEvent) {
-      $("#deletingModal").modal();
-      $scope.deleteCalendarEvent = calendarEvent;
-      $scope.deleteCandidate = calendarEvent.candidate;
-    };
-
-    $scope.deleteInterview = function() {
-    	var index = $scope.events.indexOf($scope.deleteCalendarEvent);
-
-		var colonPos = $scope.events[index].title.search(':');
-		var name = $scope.events[index].title.substring(0,colonPos);
-    	for(var i = 0; i<$scope.scheduledCandidates.length; i++){
-      	if(name.includes($scope.scheduledCandidates[i].firstName) && name.includes($scope.scheduledCandidates[i].lastName)){
-      		$scope.scheduledCandidates.splice(i,1);
-      		break;
-      	}
-      }
-      $scope.events.splice(index,1);
-      //adds the interview information into the database
-      var interviewInfo = {
-        Interview_Date:  null,
-        Interview_Time: null,
-        Interview_Location: null,
-        Interviewer_Name: null
-      };
-      $scope.deleteCandidate.Interview = interviewInfo;
-      $scope.deleteCandidate.$update().then(values => {
-        console.log('Deleting interview information');
-      });
-      $scope.candidateQueue.push($scope.deleteCandidate);
-    };
-
-    $scope.updateQueue = function() {
-    	var index = $scope.events.indexOf($scope.deleteCalendarEvent);
-		var colonPos = $scope.events[index].title.search(':');
-		var name = $scope.events[index].title.substring(0,colonPos);
-    	for(var i = 0; i<$scope.scheduledCandidates.length; i++){
-	      	if(name.includes($scope.scheduledCandidates[i].firstName) && name.includes($scope.scheduledCandidates[i].lastName)){
-	      		$scope.candidateQueue.push($scope.scheduledCandidates[i]);
-	      		$scope.scheduledCandidates.splice(i,1);
-	      		break;
-	      	}
+        function getCorrectTime2() {
+            var offset = 1;
+            if ($scope.editInterviewTime.substring(0, 2).includes(":")) {
+                offset = 0;
+            }
+            if ($scope.editInterviewTime.includes("AM") && $scope.editInterviewTime.substring(0, 2).includes("12")) {
+                $scope.hour = '0';
+            } else {
+                $scope.hour = $scope.editInterviewTime.substring(0, 1 + offset);
+            }
+            $scope.min = $scope.editInterviewTime.substring(2 + offset, 4 + offset);
         }
-        $scope.events.splice(index,1);
-    };
 
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+        function getEditTime(fullDate) {
+            console.log(fullDate.getHours());
+            var beforeNoon = "AM";
+            var offset = 0;
+            if (fullDate.getHours() >= 12) {
+                beforeNoon = "PM";
+                offset = 12;
+            }
+            if (fullDate.getHours() === 0) {
+                offset = -12;
+            }
+            if (fullDate.getHours() === 12) {
+                offset = 0;
+            }
+            var addZero = "";
+            if (fullDate.getMinutes() < 10) {
+                addZero = "0";
+            }
+            return (fullDate.getHours() - offset).toString() + ":" + addZero + fullDate.getMinutes().toString() + " " + beforeNoon;
+        }
+
+        $scope.addEvent = function() {
+            var time = new Date($scope.interviewDate);
+            getCorrectTime($scope.interviewTime);
+            if ($scope.interviewTime.includes("PM") && $scope.hour !== "12") {
+                var newHour = parseInt($scope.hour) + 12;
+                $scope.hour = newHour;
+            }
+            time.setHours($scope.hour, $scope.min);
+
+            var candidate;
+            for (var i = 0; i < $scope.candidateQueue.length; i++) {
+                if ($scope.selectedCandidate.includes($scope.candidateQueue[i].firstName) && $scope.selectedCandidate.includes($scope.candidateQueue[i].lastName)) {
+                    $scope.scheduledCandidates.push($scope.candidateQueue[i]);
+                    candidate = $scope.candidateQueue.splice(i)[0];
+                    $scope.candidateQueue.splice(i, 1);
+                    break;
+                }
+            }
+
+            $scope.events.push({
+                title: $scope.selectedCandidate + ": " + $scope.location,
+                startsAt: time,
+                color: {
+                    primary: '#e3bc08',
+                    secondary: '#fdf1ba'
+                },
+                candidate: candidate
+            });
+
+            //adds the interview information into the database
+            var interviewInfo = {
+                Interview_Date: time,
+                Interview_Time: $scope.interviewTime,
+                Interview_Location: $scope.location,
+                Interviewer_Name: 'BAD'
+            };
+            candidate.Interview = interviewInfo;
+            candidate.$update().then(values => {
+                console.log('INSERTING DATA');
+            });
+        };
+
+        //edit interview time
+        $scope.getEditingForm = function(calendarEvent) {
+            $scope.editCandidate = calendarEvent.candidate;
+            $("#editingModal").modal(); //get edit modal
+            var index = $scope.events.indexOf(calendarEvent); //get index of specified interview
+            var titleString = $scope.events[index].title;
+            titleString.split(""); //split string chars into array values
+
+            //parse name and location
+            var colonPos = titleString.search(':');
+            var name = titleString.substring(0, colonPos); //get candidate name
+            var location = titleString.substring(colonPos + 2, titleString.length); //get location
+
+            //load preexisting fields to text boxes in editing modal
+
+            $scope.editCandidateName = name;
+            $scope.editLocation = location;
+            $scope.editInterviewTime = getEditTime($scope.events[index].startsAt);
+        };
+
+        $scope.editEvent = function(calendarEvent) {
+            var index = $scope.events.indexOf(calendarEvent); //get index of specified interview
+            //get edited info and add it to calendar
+            var time = new Date($scope.editInterviewDate);
+            getCorrectTime2($scope.editInterviewTime);
+            if ($scope.editInterviewTime.includes("PM") && $scope.hour !== "12") {
+                var newHour = parseInt($scope.hour) + 12;
+                $scope.hour = newHour;
+            }
+            time.setHours($scope.hour, $scope.min);
+            $scope.events.splice(index, 1);
+            $scope.events.push({
+                title: $scope.editCandidateName + ": " + $scope.editLocation,
+                startsAt: time,
+                candidate: $scope.editCandidate
+            });
+
+            //adds the interview information into the database
+            var interviewInfo = {
+                Interview_Date: time,
+                Interview_Time: $scope.editInterviewTime,
+                Interview_Location: $scope.editLocation,
+                Interviewer_Name: 'BAD'
+            };
+            $scope.editCandidate.Interview = interviewInfo;
+            $scope.editCandidate.$update().then(values => {
+                console.log('INSERTING DATA');
+            });
+        };
+
+        //delete interview time
+        $scope.deleteEvent = function(calendarEvent) {
+            $("#deletingModal").modal();
+            $scope.deleteCalendarEvent = calendarEvent;
+            $scope.deleteCandidate = calendarEvent.candidate;
+        };
+
+        $scope.deleteInterview = function() {
+            var index = $scope.events.indexOf($scope.deleteCalendarEvent);
+
+            var colonPos = $scope.events[index].title.search(':');
+            var name = $scope.events[index].title.substring(0, colonPos);
+            for (var i = 0; i < $scope.scheduledCandidates.length; i++) {
+                if (name.includes($scope.scheduledCandidates[i].firstName) && name.includes($scope.scheduledCandidates[i].lastName)) {
+                    $scope.scheduledCandidates.splice(i, 1);
+                    break;
+                }
+            }
+            $scope.events.splice(index, 1);
+            //adds the interview information into the database
+            var interviewInfo = {
+                Interview_Date: null,
+                Interview_Time: null,
+                Interview_Location: null,
+                Interviewer_Name: null
+            };
+            $scope.deleteCandidate.Interview = interviewInfo;
+            $scope.deleteCandidate.$update().then(values => {
+                console.log('Deleting interview information');
+            });
+            $scope.candidateQueue.push($scope.deleteCandidate);
+        };
+
+        $scope.updateQueue = function() {
+            var index = $scope.events.indexOf($scope.deleteCalendarEvent);
+            var colonPos = $scope.events[index].title.search(':');
+            var name = $scope.events[index].title.substring(0, colonPos);
+            for (var i = 0; i < $scope.scheduledCandidates.length; i++) {
+                if (name.includes($scope.scheduledCandidates[i].firstName) && name.includes($scope.scheduledCandidates[i].lastName)) {
+                    $scope.candidateQueue.push($scope.scheduledCandidates[i]);
+                    $scope.scheduledCandidates.splice(i, 1);
+                    break;
+                }
+            }
+            $scope.events.splice(index, 1);
+        };
+    });
