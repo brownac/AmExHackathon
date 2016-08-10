@@ -1,32 +1,31 @@
 'use strict'
 
 var models  = require('../models');
+var utils  = require('../utils');
 var express = require('express');
 var router  = express.Router();
 var fs = require('fs');
 var path = require('path');
 
-const appDir = path.join(__dirname, '../../app');
-
-// Insert an interview form
+// Insert a question
 router.post('/', function(req, res) {
+	console.log("Posting: " + req);
 	// create an instance
-	var intQuest = models.questions.build({
-		form_type: req.body.form_type,
-		version: req.body.version,
-		page_1: req.body.page_1,
-		page_2: req.body.page_2,
-		page_3: req.body.page_3,
-		page_4: req.body.page_4,
-		page_5: req.body.page_5,
-		active: req.body.active
+	var question = models.Questions.build({
+		form_type:req.body.form_type,
+		version:req.body.version,
+		page_1:req.body.page_1,
+		page_2:req.body.page_2,
+		page_3:req.body.page_3,
+		page_4:req.body.page_4,
+		page_5:req.body.page_5
 	});
 
 	// persist an instance
-  intQuest.save().then(() => {
-    // a slash goes before this in the database uri
-    const imgRelativePath = `uploads/${intQuest.id}.resume.png`;
-    const imgAbsPath = path.join(appDir, imgRelativePath);
+  question.save().then(() => {
+    const imageName = `${question.id}.question_________(ADD QUESTION NUMBER).png`;
+    const imgUri = `/uploads/${imageName}`;
+    const imgAbsPath = path.join(utils.uploadsDir, imageName);
 
     let base64Png = req.body.resumeBase64.split(',')[1];
 
@@ -41,17 +40,17 @@ router.post('/', function(req, res) {
       }
       else {
         //save image uri into database
-        var image_type = 'resume';
-        var image_table = models.Images.build({
-          id: intQuest.id,
+        var image_type = 'question';
+        var image = models.Images.build({
+          id: question.id,
 
           // add the preceding forwardslash
-          img_uri: '/' + imgRelativePath,
+          img_uri: imgUri,
           type: image_type
         });
-        image_table.save();
+        image.save();
 
-        res.json(intQuest);
+        res.json(question);
       }
     });
   });
@@ -59,16 +58,15 @@ router.post('/', function(req, res) {
 
 // Update a question by id
 router.put('/', function(req, res) {
-	models.questions.update({
-		form_type: req.body.form_type,
-		version: req.body.version,
-		page_1: req.body.page_1,
-		page_2: req.body.page_2,
-		page_3: req.body.page_3,
-		page_4: req.body.page_4,
-		page_5: req.body.page_5,
-		active: req.body.active
-		},
+	models.Questions.update({
+		form_type:req.body.form_type,
+		version:req.body.version,
+		page_1:req.body.page_1,
+		page_2:req.body.page_2,
+		page_3:req.body.page_3,
+		page_4:req.body.page_4,
+		page_5:req.body.page_5
+	},
 	{
 		where: { id : req.body.id }
 	})
@@ -83,17 +81,21 @@ router.put('/', function(req, res) {
 	});
 });
 
-// Get all question
+// Get all questions
 router.get('/', function(req, res) {
-	var query = req.query;
+	var query = {};
+	if(req.query.sequelize !== undefined) {
+		query = JSON.parse(req.query.sequelize);
+	}
+	
 	var sql = {
 				include: [{
-					model: models.Candidates
+					model: models.Images,
+					required: true
 				}],
-				where:
-				   query
+				where: query
 			  };
-	models.questions.findAll(sql)
+	models.Questions.findAll(sql)
 	.then(function(result) {
 		res.json(result);
 	});
@@ -103,9 +105,10 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
 	var id = req.params.id;
 
-	models.questions.findById(id, {
+	models.Questions.findById(id, {
 		include: [{
-			model: models.Candidates
+			model: models.Images,
+			required: true
 		}]
 	}).then(function(result) {
 		if (result !== null) {

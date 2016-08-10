@@ -1,8 +1,8 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-  var questions = sequelize.define("questions", {
-    form_Id: {
+  var Questions = sequelize.define("Questions", {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
@@ -33,6 +33,14 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     timestamps: false,
+    classMethods: {
+      associate: function(models) {
+        Questions.hasMany(models.Images,{
+          foreignKey: 'id',
+          targetKey: 'id'
+        });
+      }
+    }
   });
-  return questions;
+  return Questions;
 };

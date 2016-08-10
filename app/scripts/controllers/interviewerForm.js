@@ -29,5 +29,4 @@ angular.module('amExHackathonApp')
     }];
 
     $scope.date = new Date();
-
 });

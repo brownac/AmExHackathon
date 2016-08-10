@@ -5,8 +5,6 @@
 /bower_components
 *.sqlite
 .rebooted
-<<<<<<< HEAD
-=======
 .DS_Store
 /api/images/*
->>>>>>> interviewerBranch
+/app/uploads/*
