@@ -21,9 +21,13 @@ router.put('/', function(req, res) {
 	.then(function(result) {
     	res.send("Success");
 			if (req.body.Interview.interview_Date !== null) {
-				console.log(email);
+				var edit = false;
+				console.log(req.query);
+				if (req.query.editing) {
+					edit = true;
+				};
 				email( req.body.email,req.body.firstName,req.body.lastName,req.body.Interview.Interview_Date,
-				req.body.Interview.Interview_Time,req.body.Interview.Interview_Location);
+				req.body.Interview.Interview_Time,req.body.Interview.Interview_Location,edit);
 			};
 	}, function(rejectedPromiseError){
     	res.status(404).json({

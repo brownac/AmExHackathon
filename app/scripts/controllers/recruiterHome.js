@@ -230,7 +230,10 @@ angular.module('amExHackathonApp')
         Interviewer_Name: 'BAD'
       };
       $scope.editedCandidate.Interview = interviewInfo;
-      $scope.editedCandidate.$update().then(values => {
+      var editing = {
+        editing:true
+      } 
+      $scope.editedCandidate.$update(editing).then(values => {
         console.log('INSERTING DATA');
       });
 
