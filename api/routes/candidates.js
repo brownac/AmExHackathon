@@ -61,8 +61,9 @@ router.post('/', function(req, res) {
 	        var interview = models.Interviews.build({
 	        	id: candidate.id
 	        });
+					interview.save();
         }
-        interview.save();
+
         res.json(candidate);
       }
     });
@@ -106,7 +107,7 @@ router.get('/', function(req, res) {
 	if(req.query.sequelize !== undefined) {
 		query = JSON.parse(req.query.sequelize);
 	}
-	
+
 	var sql = {
 				include: [{
 					model: models.Images,
