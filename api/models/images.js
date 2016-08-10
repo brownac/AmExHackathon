@@ -23,11 +23,11 @@ module.exports = function(sequelize, DataTypes) {
          Images.belongsTo(models.Archives, {
            foreignKey: 'id',
            targetKey: 'id'
-         });//,
-        // Images.belongsTo(models.Questions, {
-        //   foreignKey: 'id',
-        //   targetKey: 'id'
-        // });
+         }),
+         Images.belongsTo(models.Questions, {
+           foreignKey: 'id',
+           targetKey: 'id'
+         });
       }
     }
   });
