@@ -7,13 +7,13 @@
         </div>
     </div>
 
-    <h1 id="title">Add Candidate</h1>
+    <h1 id="title">Fill Out Information</h1>
   </div>
 
   <div id="candidate-form-container" class="container">
     <div class="row">
       <div class="col-md-12">
-        <form name="candidateForm" class="text-left">
+        <form name="candidateInput" class="text-left">
           <div class="form-group">
             <label class="control-label">First Name:</label>
             <input class="form-control" type="text" ng-model="postCandidate.firstName" required>
@@ -82,8 +82,8 @@
           <div class="form-group">
             <label class="control-label" for="areaOfInterest">Areas of Interest (i.e. front end, back end, iOS, Android, etc.)</label>
             <select class="form-control" id="areaOfInterest" ng-model="postCandidate.areaOfInterest" multiple required>
-              <option value="Front end">Front End</option>
-              <option value="Back end">Back End</option>
+              <option value="Front end">Front end</option>
+              <option value="Back end">Back end</option>
               <option value="Android">Android</option>
               <option value="iOS">iOS</option>
               <option value="Web Development">Web Development</option>
@@ -109,36 +109,10 @@
             </select>
           </div>
 
-          <div class="form-group">
-            <label class="control-label" for="finalEvaluation">Evaluation:</label>
-            <div class="radio">
-              <label class="radio-inline">
-              <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="invite" required>Invite to 1st Round Interviews</label>
-              <label class="radio-inline">
-              <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="tentative" required>Tentative</label>
-              <label class="radio-inline">
-              <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="turndown" required>Turndown</label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label">Notes</label>
-            <textarea class="form-control" rows="3" ng-model="postCandidate.notes" required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label class="control-label">Screener Initials</label>
-            <input class="form-control" type="text" ng-model="postCandidate.screenerInitials" required>
-          </div>
-
           <div class="text-center">
-            <div id="thumbnail-preview-area" ng-show="pictureAdded">
-              <img ng-src="{{postCandidate.resumeBase64}}" width="300" height="400" />
-            </div>
-
             <span class="glyphicon glyphicon-refresh" ng-show="sendingData" aria-hidden="true"></span>
             <span class="glyphicon-class" ng-show="sendingData"></span>
-            <button type="submit submitBtn" ng-class="submitBtnClasses" data-ng-click="submit()" ng-disabled="candidateForm.$invalid">{{buttonText}}</button>
+            <button type="submit submitBtn" ng-class="submitBtnClasses" data-ng-click="submit()">Submit</button>
             <button type="submit" class="btn btn-warning">Cancel</button>
           </div>
         </form>

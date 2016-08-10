@@ -43,6 +43,9 @@ module.exports = function(sequelize, DataTypes) {
     finalEvaluation: {
       type: DataTypes.STRING
     },
+    notes: {
+      type: DataTypes.TEXT
+    },
     screenerInitials: {
       type: DataTypes.STRING
     }

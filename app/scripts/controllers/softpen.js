@@ -206,7 +206,7 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
     softpenImage.src = image.src;
 
     // redirect to form, which uses softpenImage
-    $location.path('screener/candidateForm');
+    $location.path('screener/candidateInput');
   };
 
   $scope.readImage = function(event) {

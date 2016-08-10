@@ -23,6 +23,7 @@ router.post('/', function(req, res) {
 		areaOfInterest: req.body.areaOfInterest.join(', '),
 		preferredLanguages: req.body.preferredLanguages.join(', '),
 		finalEvaluation: req.body.finalEvaluation,
+		notes: req.body.notes,
 		screenerInitials: req.body.screenerInitials
 	});
 
@@ -85,6 +86,7 @@ router.put('/', function(req, res) {
 		areaOfInterest: req.body.areaOfInterest.join(', '),
 		preferredLanguages: req.body.preferredLanguages.join(', '),
 		finalEvaluation: req.body.finalEvaluation,
+		notes: req.body.notes,
 		screenerInitials: req.body.screenerInitials
 	},
 	{
