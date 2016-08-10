@@ -18,6 +18,7 @@ angular.module('amExHackathonApp')
         candidateService.get({ id: candidateId }).$promise.then(value => {
           $scope.candidate = value;
           $scope.hideResume = true;
+          console.log($scope.candidate);
         });
 
         candidateService.query().$promise.then(values => {
