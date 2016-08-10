@@ -73,6 +73,7 @@ router.post('/', function(req, res) {
 
 // Update a candidate by id
 router.put('/', function(req, res) {
+	console.log(req.body.id);
 	models.Candidates.update({
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
@@ -96,7 +97,7 @@ router.put('/', function(req, res) {
 	}, function(rejectedPromiseError){
     res.status(404).json({
       errors: [
-        "Could not find candidate with id " + id
+        "Could not find candidate with id " + req.body.id
       ]
     });
 	});

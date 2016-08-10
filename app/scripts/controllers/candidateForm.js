@@ -14,6 +14,7 @@ angular.module('amExHackathonApp')
       var candidateId = $routeParams.candidateId;
       candidateService.get({ id: candidateId }).$promise.then(value => {
         $scope.postCandidate = value;
+        $scope.postCandidate.graduationDate = new Date($scope.postCandidate.graduationDate);
       });
     }
 
