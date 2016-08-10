@@ -1,0 +1,117 @@
+<div class="text-center">
+  <div class="page-header">
+    <div class="pull-right">
+        <div class="camera-capture">
+          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" custom-on-change="readImage">
+          <label for="resume" class="resumeImageLabel"><span class="glyphicon glyphicon-camera camera-glyph"></span></label>
+        </div>
+    </div>
+
+    <h1 id="title">Fill Out Information</h1>
+  </div>
+
+  <div id="candidate-form-container" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form name="candidateInput" class="text-left">
+          <div class="form-group">
+            <label class="control-label">First Name:</label>
+            <input class="form-control" type="text" ng-model="postCandidate.firstName" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Last Name:</label>
+            <input class="form-control" type="text" ng-model="postCandidate.lastName" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="email">Email Address:</label>
+            <input class="form-control" id="email" type="email" ng-model="postCandidate.email" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="phoneNumber">Phone Number:</label>
+            <input class="form-control" id="phoneNumber" type="tel" ng-model="postCandidate.phoneNumber" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="school">School:</label>
+            <select class="form-control" id="school" ng-model="postCandidate.school" required>
+              <option value="University of Florida">University of Florida</option>
+              <option value="Georgia Tech">Georgia Tech</option>
+              <option value="Cornell">Cornell</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="major">Major:</label>
+            <select class="form-control" id="major" ng-model="postCandidate.major" required>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Computer Engineering">Computer Engineering</option>
+              <option value="Electrical Enginnering">Electrical Enginnering</option>
+              <option value="Industrial Enginnering">Industrial Enginnering</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Graduation Date:</label>
+            <input class="form-control" type="date" ng-model="postCandidate.graduationDate" required>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="needSponsorship">Needs Sponsorship?</label>
+            <div class="radio">
+              <label class="radio-inline">
+              <input type="radio" name="needSponsorship" ng-model="postCandidate.needSponsorship" value="yes" required>Yes</label>
+              <label class="radio-inline">
+              <input type="radio" name="needSponsorship" ng-model="postCandidate.needSponsorship" value="no" required>No</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="internOrFull">Seeking Internship or Full-Time?</label>
+            <div class="radio">
+              <label class="radio-inline">
+                <input type="radio" name="internOrFull" ng-model="postCandidate.internOrFull" value="internship" required>Internship</label>
+              <label class="radio-inline">
+                <input type="radio" name="internOrFull" ng-model="postCandidate.internOrFull" value="full-time" required>Full-Time</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="areaOfInterest">Areas of Interest (i.e. front end, back end, iOS, Android, etc.)</label>
+            <select class="form-control" id="areaOfInterest" ng-model="postCandidate.areaOfInterest" multiple required>
+              <option value="Front end">Front end</option>
+              <option value="Back end">Back end</option>
+              <option value="Android">Android</option>
+              <option value="iOS">iOS</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label" for="preferredLanguages">Preferred Language(s) (i.e. Java, C, C++, etc.)</label>
+            <select class="form-control" id="preferredLanguages" ng-model="postCandidate.preferredLanguages" multiple required>
+              <option value="Java">Java</option>
+              <option value="C">C</option>
+              <option value="C++">C++</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="control-label">Screener Initials</label>
+            <input class="form-control" type="text" ng-model="postCandidate.screenerInitials" required>
+          </div>
+
+          <div class="text-center">
+
+            <span class="glyphicon glyphicon-refresh" ng-show="sendingData" aria-hidden="true"></span>
+            <span class="glyphicon-class" ng-show="sendingData"></span>
+            <button type="submit submitBtn" ng-class="submitBtnClasses" data-ng-click="submit()">Submit</button>
+            <button type="submit" class="btn btn-warning">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
