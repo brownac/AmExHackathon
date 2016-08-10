@@ -9,7 +9,8 @@
  */
 
 
-angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scope, $timeout, questionsService) {
+angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scope, $q, $timeout, questionsService) {
+  $scope.fileId = 0;
   $scope.saved = false;         // Denoting that info has been saved to database
   $scope.forms = [{
     active: true,
@@ -36,13 +37,7 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     version: 2.0
   }];
 
-  $scope.newForm = {
-    active: false,
-    type: '',
-    form: '',
-    version: 0,
-    files: ['','','','','']
-  };
+  $scope.newForm = {};
 
   $scope.toggleActive = function(form) {
     var i = $scope.forms.indexOf(form);
@@ -52,42 +47,44 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
   };
 
   $scope.initNewForm = function(){
-    $scope.newForm = null;
+    $scope.fileId = 0;
+    $scope.newForm = {
+      active: false,
+      type: '',
+      form: '',
+      version: 0,
+      files: new Array(5)
+    };
   };
 
   $scope.readImage = function(event) {
     var files = event.target.files;
-    if($scope.newForm.files === undefined) {
-      $scope.newForm.files = new Array(5);
-    }
 
     if (files && files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
         $scope.$apply(function() {
-          // var i = 0;
-          $scope.newForm.files.forEach(function(file){
-            file = e.target.result;
-          });
+          $scope.newForm.files[$scope.fileId] = e.target.result;
         });
       };
       reader.readAsDataURL(files[0]);
     }
   };
 
-  $scope.submit = function(form) {
+  $scope.submit = function() {
     // Flag denoted that the form has been subitted
-    $scope.submitted = true;
-
+    console.log("Page: " + $scope.fileId);
+    $scope.submitted = false;
     // If one of the input validation fails, reject submission
-    if (form.$invalid) {
-      return;
-    }
-
+    // if (form.$invalid) {
+    //   return;
+    // }
     // Save on the backend
+    console.log($scope.newForm);
     questionsService.save($scope.newForm).$promise.then(values => {
       // show success by changing submit button class and value
-      $scope.initNewForm();
+      console.log("before reset: " + $scope.newForm);
+      // $scope.initNewForm();
       $scope.saved = true;
 
       $timeout(() => {
@@ -96,4 +93,5 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     });
   };
 
+  $scope.initNewForm();
 });

@@ -23,36 +23,39 @@ router.post('/', function(req, res) {
 
 	// persist an instance
   archive.save().then(() => {
-    const imageName = `${archive.id}.comments_____________(ADD PAGE NUMBER).png`;
-    const imgUri = `/uploads/${imageName}`;
-    const imgAbsPath = path.join(utils.uploadsDir, imageName);
+  	var i;
+  	for(i = 0; i < req.body.files.length; ++i) {
+	    const imageName = `${archive.id}.comments_image_` + i + `.png`;
+	    const imgUri = `/uploads/${imageName}`;
+	    const imgAbsPath = path.join(utils.uploadsDir, imageName);
 
-    let base64Png = req.body.resumeBase64.split(',')[1];
+		if(req.body.files[i] !== null) {
 
-    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
-      if (err) {
-        res.status(500).json({
-          errors: [
-            "Could not save image to disk! Node.js threw an error",
-            err
-          ]
-        });
-      }
-      else {
-        //save image uri into database
-        var image_type = 'comments';
-        var image = models.Images.build({
-          id: archive.id,
+		    let base64Png = req.body.files[i].split(',')[1];
 
-          // add the preceding forwardslash
-          img_uri: imgUri,
-          type: image_type
-        });
-        image.save();
-
-        res.json(archive);
-      }
-    });
+		    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
+		      if (err) {
+		        res.status(500).json({
+		          errors: [
+		            "Could not save image to disk! Node.js threw an error",
+		            err
+		          ]
+		        });
+		      }
+		      else {
+		        //save image uri into database
+		        var image_type = 'comments';
+		        var image = models.Images.build({
+		          // add the preceding forwardslash
+		          img_uri: imgUri,
+		          type: image_type
+		        });
+		        image.save();
+		      }
+		    });
+		}
+	}
+	res.json(archive);
   });
 });
 

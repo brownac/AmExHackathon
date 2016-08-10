@@ -20,39 +20,42 @@ router.post('/', function(req, res) {
 		page_4:req.body.page_4,
 		page_5:req.body.page_5
 	});
-
+	
 	// persist an instance
   question.save().then(() => {
-    const imageName = `${question.id}.question_________(ADD QUESTION NUMBER).png`;
-    const imgUri = `/uploads/${imageName}`;
-    const imgAbsPath = path.join(utils.uploadsDir, imageName);
+  	var i;
+  	for(i = 0; i < req.body.files.length; ++i) {
+	    const imageName = `${question.id}.question_image_` + i + `.png`;
+	    const imgUri = `/uploads/${imageName}`;
+	    const imgAbsPath = path.join(utils.uploadsDir, imageName);
 
-    let base64Png = req.body.resumeBase64.split(',')[1];
+	    if(req.body.files[i] !== null) {
 
-    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
-      if (err) {
-        res.status(500).json({
-          errors: [
-            "Could not save image to disk! Node.js threw an error",
-            err
-          ]
-        });
-      }
-      else {
-        //save image uri into database
-        var image_type = 'question';
-        var image = models.Images.build({
-          id: question.id,
+		    let base64Png = req.body.files[i].split(',')[1];
 
-          // add the preceding forwardslash
-          img_uri: imgUri,
-          type: image_type
-        });
-        image.save();
-
-        res.json(question);
-      }
-    });
+		    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
+		      if (err) {
+		        res.status(500).json({
+		          errors: [
+		            "Could not save image to disk! Node.js threw an error",
+		            err
+		          ]
+		        });
+		      }
+		      else {
+		        //save image uri into database
+		        var image_type = 'question';
+		        var image = models.Images.build({
+		          // add the preceding forwardslash
+		          img_uri: imgUri,
+		          type: image_type
+		        });
+		        image.save();
+		      }
+		    });
+		}
+	}
+	res.json(question);
   });
 });
 
