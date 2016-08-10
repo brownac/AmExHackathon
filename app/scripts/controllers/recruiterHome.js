@@ -184,7 +184,8 @@ angular.module('amExHackathonApp')
         Interview_Date:  time,
         Interview_Time: $scope.interviewTime,
         Interview_Location: $scope.location,
-        Interviewer_Name: 'BAD'
+        Interviewer_1: 'Karina',
+        Interviewer_2: 'David'
       };
       $scope.selectedCandidate.Interview = interviewInfo;
       $scope.selectedCandidate.$update().then(values => {
@@ -224,7 +225,8 @@ angular.module('amExHackathonApp')
         Interview_Date:  time,
         Interview_Time: $scope.editInterviewTime,
         Interview_Location: $scope.editLocation,
-        Interviewer_Name: 'BAD'
+        Interviewer_1: 'Karina',
+        Interviewer_2: 'David'
       };
       $scope.editedCandidate.Interview = interviewInfo;
       var editing = {
@@ -253,7 +255,8 @@ angular.module('amExHackathonApp')
         Interview_Date:  null,
         Interview_Time: null,
         Interview_Location: null,
-        Interviewer_Name: null
+        Interviewer_1: null,
+        Interviewer_2: null
       };
       $scope.deleteCandidate.Interview = interviewInfo;
       $scope.deleteCandidate.$update().then(values => {
