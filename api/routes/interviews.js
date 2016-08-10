@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
@@ -35,6 +35,13 @@ router.put('/', function(req, res) {
         	"Could not find candidate with id " + id
       	]
     	});
+    	res.send('Success');
+	}, function(rejectedPromiseError){
+	    res.status(404).json({
+	      	errors: [
+	        	'Could not find candidate with id ' + id
+	      	]
+	    });
 	});
 });
 

@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var Interviews = sequelize.define("Interviews", {
+  var Interviews = sequelize.define('Interviews', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true

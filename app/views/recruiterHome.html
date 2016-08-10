@@ -11,21 +11,25 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title">Schedule Interview</h4>
           </div>
+
           <div class="modal-body">
             <div class="form-group">
               <label for="sel1">Select Candidate:</label><br>
               <select ng-options="candidate as candidate.fullName for candidate in candidateQueue" ng-model="selectedCandidate" class="cal-select-candidate"> </select>
             </div>
+
             <p><strong>Select Interview Date: <strong></p>
             <div class="inner-addon right-addon" id="calendarSelectArrow">
               <i class="glyphicon glyphicon-calendar"></i>
               <input type="text" class="form-control" ng-model="interviewDate" id ="datepicker">
             </div>
+
             <p><strong>Select Interview Time: </strong></p>
             <div class="input-group bootstrap-timepicker timepicker">
               <input id="timepicker1" ng-model="interviewTime" type="text" class="form-control input-small input-group-addon">
               <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
             </div>
+
             <div>
               <label for="myLocation">Select Interview Location: </label><br>
               <input ng-model="location" type="text" id="myLocation"/>
@@ -35,6 +39,7 @@
               <input ng-model="interviewer" type="text" id="myInterviewer"/>
             </div>
           </div>
+
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             <button ng-click="addEvent()" type="submit" class="btn btn-primary" data-dismiss="modal" value="Submit">Set Up Interview</button>
@@ -42,9 +47,6 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-
-
 
     <!--Modal Info: Pop-Up Menu for EDITING Interview Times-->
     <div class="modal fade cal-modal" tabindex="-1" role="dialog" id="editingModal">
@@ -109,7 +111,6 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-
     <!-- Calendar -->
   <div class="">
     <h2 class="text-center">{{calendarTitle}}</h2>
@@ -129,7 +130,6 @@
           Previous
         </button>
 
-
         <button
           class="btn btn-default"
           mwl-date-modifier
@@ -137,7 +137,6 @@
           set-to-today>
           Today
         </button>
-
 
         <button
           class="btn btn-primary"
@@ -147,6 +146,7 @@
           Next
         </button>
       </div>
+
       <div class="btn-group pull-right calChangeView">
           <label class="btn btn-primary" ng-click="changeView('year')">Year</label>
           <label class="btn btn-primary" ng-click="changeView('month')">Month</label>
@@ -154,6 +154,7 @@
           <label class="btn btn-primary" ng-click="changeView('day')">Day</label>
       </div>
     </div>
+    
     <div>
       <mwl-calendar
         view="calendarView"
