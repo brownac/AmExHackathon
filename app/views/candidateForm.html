@@ -80,13 +80,22 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label">Areas of Interest (i.e. front end, back end, iOS, Android, etc.)</label>
-            <textarea ng-model="postCandidate.areaOfInterest" class="form-control" required></textarea>
+            <label class="control-label" for="areaOfInterest">Areas of Interest (i.e. front end, back end, iOS, Android, etc.)</label>
+            <select class="form-control" id="areaOfInterest" ng-model="postCandidate.areaOfInterest" multiple required>
+              <option value="Front end">Front end</option>
+              <option value="Back end">Back end</option>
+              <option value="Android">Android</option>
+              <option value="iOS">iOS</option>
+            </select>
           </div>
 
           <div class="form-group">
-            <label class="control-label">Preferred Language(s) (i.e. Java, C, C++, etc.)</label>
-            <textarea ng-model="postCandidate.preferredLanguages" class="form-control" required></textarea>
+            <label class="control-label" for="preferredLanguages">Preferred Language(s) (i.e. Java, C, C++, etc.)</label>
+            <select class="form-control" id="preferredLanguages" ng-model="postCandidate.preferredLanguages" multiple required>
+              <option value="Java">Java</option>
+              <option value="C">C</option>
+              <option value="C++">C++</option>
+            </select>
           </div>
 
           <div class="form-group">

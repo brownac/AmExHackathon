@@ -21,8 +21,8 @@ router.post('/', function(req, res) {
 		graduationDate: req.body.graduationDate,
 		needSponsorship: req.body.needSponsorship,
 		internOrFull: req.body.internOrFull,
-		areaOfInterest: req.body.areaOfInterest,
-		preferredLanguages: req.body.preferredLanguages,
+		areaOfInterest: req.body.areaOfInterest.join(', '),
+		preferredLanguages: req.body.preferredLanguages.join(', '),
 		finalEvaluation: req.body.finalEvaluation,
 		screenerInitials: req.body.screenerInitials
 	});
