@@ -188,6 +188,8 @@ var loadFabric = function() {
       activateTag(findTagByColor(defaultMarkerColor));
     }
   });
+
+  return canvas;
 };
 
 
@@ -196,7 +198,7 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
   $scope.pictureAdded = false;
 
   $scope.next = function() {
-    var canvas = $("#c")[0];
+    var canvas = $scope.canvas;
     var image = new Image();
     image.src = canvas.toDataURL("image/png");
 
@@ -214,13 +216,40 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
       var reader = new FileReader();
       reader.onload = function(e) {
         $scope.$apply(function() {
-          $scope.resumeBase64 = e.target.result;
-          $scope.pictureAdded = true;
+          // don't initialize the fabric canvas until the image is loaded!
+          var canvas = loadFabric();
+
+          fabric.Image.fromURL(e.target.result, function(oImg) {
+            var isLandscape = oImg.width > oImg.height;
+
+            // use these to scale the image
+            var hRatio = null;
+            var wRatio = null;
+            if (isLandscape) {
+              // 90 degree rotation matrix
+              oImg.transformMatrix = [0, 1, -1, 0, 0, 0];
+
+              // use oImg.width since it is landscape
+              hRatio = canvas.getHeight() / oImg.width;
+              wRatio = canvas.getWidth() / oImg.height;
+            }
+            else {
+              hRatio = canvas.getHeight() / oImg.height;
+              wRatio = canvas.getWidth() / oImg.width;
+            }
+
+            // scale by the smaller ratio
+            oImg.scale(Math.min(hRatio, wRatio));
+
+            canvas.add(oImg);
+            canvas.centerObject(oImg);
+
+            $scope.canvas = canvas;
+            $scope.pictureAdded = true;
+          });
         });
       };
       reader.readAsDataURL(files[0]);
     }
   };
-
-  loadFabric();
 });
