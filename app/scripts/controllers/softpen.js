@@ -224,4 +224,3 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
 
   loadFabric();
 });
-
