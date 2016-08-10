@@ -12,6 +12,7 @@ router.post('/', function(req, res) {
 	console.log("Posting: " + req);
 	// create an instance
 	var question = models.Questions.build({
+		id:req.body.id,
 		form_type:req.body.form_type,
 		version:req.body.version,
 		page_1:req.body.page_1,
@@ -87,7 +88,7 @@ router.get('/', function(req, res) {
 	if(req.query.sequelize !== undefined) {
 		query = JSON.parse(req.query.sequelize);
 	}
-	
+
 	var sql = {
 				include: [{
 					model: models.Images,

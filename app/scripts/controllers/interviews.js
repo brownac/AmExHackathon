@@ -23,12 +23,13 @@ angular.module('amExHackathonApp')
         }
       }
     };
+    
     calendarService.query(query).$promise.then(values => {
       $scope.scheduledCandidates = values;
       for (var i = $scope.scheduledCandidates.length - 1; i >= 0; i--) {
         $scope.events.push({
-          title:    $scope.scheduledCandidates[i].lastName + ', ' + 
-                    $scope.scheduledCandidates[i].firstName + ': ' +       
+          title:    $scope.scheduledCandidates[i].lastName + ', ' +
+                    $scope.scheduledCandidates[i].firstName + ': ' +
                     $scope.scheduledCandidates[i].Interview.interview_Location,
           startsAt: $scope.scheduledCandidates[i].Interview.interview_Date,
           color: {
