@@ -36,6 +36,14 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     version: 2.0
   }];
 
+  $scope.newForm = {
+    active: false,
+    type: '',
+    form: '',
+    version: 0,
+    files: ['','','','','']
+  };
+
   $scope.toggleActive = function(form) {
     var i = $scope.forms.indexOf(form);
     $scope.forms[i].active = !form.active;
@@ -49,12 +57,18 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
 
   $scope.readImage = function(event) {
     var files = event.target.files;
+    if($scope.newForm.files === undefined) {
+      $scope.newForm.files = new Array(5);
+    }
 
     if (files && files[0]) {
       var reader = new FileReader();
       reader.onload = function (e) {
         $scope.$apply(function() {
-          $scope.newForm.files.push(e.target.result);
+          // var i = 0;
+          $scope.newForm.files.forEach(function(file){
+            file = e.target.result;
+          });
         });
       };
       reader.readAsDataURL(files[0]);
