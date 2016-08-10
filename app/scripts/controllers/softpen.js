@@ -23,11 +23,23 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
       var reader = new FileReader();
       reader.onload = function(e) {
         $scope.$apply(function() {
-          $scope.resumeBase64 = e.target.result;
-          $scope.pictureAdded = true;
+          // $scope.resumeBase64 = e.target.result;
+          // $scope.pictureAdded = true;
+          loadImage(event.target.files[0], function (img) {
+            $scope.resumeBase64 = img;
+            $scope.pictureAdded = true;
+            },
+            {orientation: 6}
+          );
         });
       };
       reader.readAsDataURL(files[0]);
+
+
+
+      // loadImage.parseMetaData(event.target.files[0], function (img) {
+      //   console.log(img.exif.get('Orientation'));
+      // });
     }
   };
 
@@ -199,6 +211,12 @@ var loadFabric = function() {
     isPictureLoaded = 1;
   });
 
+  // document.getElementById('resume').onchange = function (e) {
+  //     loadImage(e.target.files[0], function (img) {
+  //             console.log(img.exif.get('Orientation'));
+  //     });
+  // };
+
   $("#undo").on("click", function() {
     if(drawingMode)
       undo();
@@ -237,7 +255,7 @@ var loadFabric = function() {
       activateTag(findTagByColor(defaultPenColor));
       if(!drawingMode)
         switchDrawingMode();
-    } 
+    }
     else if(this.id == 'marker'){
       $(".color-button").removeClass("active");
       canvas.freeDrawingBrush.width = markerThickOptions[markerSelectedThickness];
