@@ -36,12 +36,22 @@
 
           <div class="form-group">
             <label class="control-label" for="school">School:</label>
-            <input class="form-control" id="school" type="text" ng-model="postCandidate.school" required>
+            <select class="form-control" id="school" ng-model="postCandidate.school" required>
+              <option value="University of Florida">University of Florida</option>
+              <option value="Georgia Tech">Georgia Tech</option>
+              <option value="Cornell">Cornell</option>
+            </select>
           </div>
 
           <div class="form-group">
             <label class="control-label" for="major">Major:</label>
-            <input class="form-control" id="major" type="text" ng-model="postCandidate.major" required>
+            <select class="form-control" id="major" ng-model="postCandidate.major" required>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Computer Engineering">Computer Engineering</option>
+              <option value="Electrical Enginnering">Electrical Enginnering</option>
+              <option value="Industrial Enginnering">Industrial Enginnering</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
 
           <div class="form-group">
@@ -83,11 +93,11 @@
             <label class="control-label" for="finalEvaluation">Final Evaluation:</label>
             <div class="radio">
               <label class="radio-inline">
-                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="invite" required>Invite to 1st Round Interviews</label>
+              <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="invite" required>Invite to 1st Round Interviews</label>
               <label class="radio-inline">
-                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="tentative" required>Tentative</label>
+              <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="tentative" required>Tentative</label>
               <label class="radio-inline">
-                <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="turndown" required>Turndown</label>
+              <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="turndown" required>Turndown</label>
             </div>
           </div>
 
