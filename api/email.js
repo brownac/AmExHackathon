@@ -1,4 +1,4 @@
-function sendEmail( email, first, last, date, time, location ){
+function sendEmail( email, first, last, date, time, location, changed ){
   console.log('Mail was sent');
   var nodemailer = require('nodemailer');
 
@@ -7,6 +7,7 @@ function sendEmail( email, first, last, date, time, location ){
     var newDate = new Date(date).toDateString();
   // setup e-mail data
   var content;
+  var subj;
   if( date === null || time === null || location === null ){
     content =
             `<p>
@@ -16,23 +17,37 @@ function sendEmail( email, first, last, date, time, location ){
             Please contact your recruiter if you have any concerns.<br><br>
             Best,<br>
             Amex Recruiting Team
-            </p>`
+            </p>`;
+    subj = 'AMEX Interview changed';
+  }
+  else if( changed ){
+    content =
+            `<p>
+            Hello, ${first} ${last}:<br><br>
+            This message was delivered to ${email}.<br>
+            Your first round interview had been rescheduled. Your new interview is scheduled for ${newDate} at ${time}.<br>
+            It will be located in ${location}.<br><br>
+            Best,<br>
+            Amex Recruiting Team
+            </p>`;
+    subj = 'AMEX Interview changed';
   }
   else{
     content =
             `<p>
             Hello, ${first} ${last}:<br><br>
             This message was delivered to ${email}.<br>
-            Your second round interview is scheduled for ${newDate} at ${time}.<br>
+            Your first round interview is scheduled for ${newDate} at ${time}.<br>
             It will be located in ${location}.<br><br>
             Best,<br>
             Amex Recruiting Team
-            </p>`
+            </p>`;
+    subj = 'AMEX Interview';
   }
   var mailOptions = {
       from: 'recruitingapp427@gmail.com' , // sender address
       to: 'recruitingapp427@gmail.com', // list of receivers
-      subject: `AMEX Interview`, // Subject line
+      subject: subj, // Subject line
       generateTextFromHTML: true,
       html: content
   };
