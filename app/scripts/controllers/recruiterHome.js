@@ -191,6 +191,7 @@ angular.module('amExHackathonApp')
         console.log('INSERTING DATA');
       });
       //requerys the database the initializes the arrays again
+      $("#schedulerModal").modal("hide");
       $scope.init();
     };
 
@@ -233,6 +234,7 @@ angular.module('amExHackathonApp')
         console.log('INSERTING DATA');
       });
 
+      $("#editingModal").modal("hide");
       //requerys the database and initializes the arrays again
       $scope.init();
     };
@@ -260,6 +262,7 @@ angular.module('amExHackathonApp')
 
       //requerys the database and initializes the arrays again
       $scope.init();
+      $("#deletingModal").modal("hide");
     };
 
   //initializes the calendar
