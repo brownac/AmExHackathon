@@ -57,11 +57,7 @@ module.exports = function(sequelize, DataTypes) {
         Candidates.hasOne(models.Interviews,{
           foreignKey: 'id',
           targetKey: 'id'
-        });//,
-        // Candidates.hasOne(models.Archives,{
-        //   foreignKey: 'id',
-        //   targetKey: 'id'
-        // });
+        });
       }
     }
   });
