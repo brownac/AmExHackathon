@@ -75,6 +75,12 @@ var loadFabric = function() {
   var isPictureLoaded = 0;
   canvas.isDrawingMode = true;
 
+  var canvasWidth = $("#canvasContainer").width();
+  var canvasHeight = $("#canvasContainer").height();
+
+
+  $("#c").width(canvasWidth).height(canvasHeight);
+
   var imgObj = new Image();
   var input = document.getElementById('resume-image');
 
@@ -172,8 +178,8 @@ var loadFabric = function() {
     imgObj.src = input.src;
     var image = new fabric.Image(imgObj);
 
-    image.height = 995;
-    image.width = 775;
+    image.height = $("#canvasContainer").width();
+    image.width = $("#canvasContainer").height();
 
     canvas.add(image);
     isPictureLoaded = 1;

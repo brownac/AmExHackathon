@@ -1,15 +1,36 @@
-.icon-flip{
+.softpenPage {
+	position: absolute;
+	width: 95%;
+	height: 100%;
+}
+
+.icon-flip {
   -moz-transform: scale(-1, 1);
   -webkit-transform: scale(-1, 1);
   -o-transform: scale(-1, 1);
   -ms-transform: scale(-1, 1);
   transform: scale(-1, 1);
 }
-.btn-group{
+
+.btn-group {
   margin-left: 10px;
 }
-.tools-bar{
-  position: fixed;
+
+.tools-bar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   z-index: 2;
   background-color: white;
+}
+
+
+
+#canvasContainer {
+	border: 1px solid black;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	height: 75%;
 }
