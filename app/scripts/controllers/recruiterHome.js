@@ -18,7 +18,8 @@ angular.module('amExHackathonApp')
       $scope.interviewDate = '';
       $scope.interviewTime = '9:00 AM';
       $scope.location = '';
-      $scope.interviewer = '';
+      $scope.interviewer1 = '';
+      $scope.interviewer2 = '';
       //initializes the array
       $scope.candidateQueue = [];
       $scope.scheduledCandidates = [];
@@ -193,7 +194,8 @@ angular.module('amExHackathonApp')
         Interview_Date:  time,
         Interview_Time: $scope.interviewTime,
         Interview_Location: $scope.location,
-        Interviewer_Name: $scope.interviewer
+        Interviewer_1: $scope.interviewer1,
+        Interviewer_2: $scope.interviewer2
       };
       $scope.selectedCandidate.Interview = interviewInfo;
       $scope.selectedCandidate.$update().then(values => {
@@ -214,7 +216,8 @@ angular.module('amExHackathonApp')
       $scope.editInterviewDate = $scope.events[index].startsAt;
       $scope.editLocation = $scope.events[index].candidate.Interview.interview_Location;
       $scope.editInterviewTime = getEditTime($scope.events[index].startsAt);
-      $scope.editInterviewer = $scope.events[index].candidate.Interview.interviewer_Name;
+      $scope.editInterviewer1 = $scope.events[index].candidate.Interview.interviewer_1;
+      $scope.editInterviewer2 = $scope.events[index].candidate.Interview.interviewer_2;
     };
 
     $scope.editEvent = function(calendarEvent) {
@@ -234,7 +237,8 @@ angular.module('amExHackathonApp')
         Interview_Date:  time,
         Interview_Time: $scope.editInterviewTime,
         Interview_Location: $scope.editLocation,
-        Interviewer_Name: $scope.editInterviewer
+        Interviewer_1: $scope.editInterviewer1,
+        Interviewer_2: $scope.editInterviewer2
       };
       $scope.editedCandidate.Interview = interviewInfo;
       var editing = {
@@ -263,7 +267,8 @@ angular.module('amExHackathonApp')
         Interview_Date:  null,
         Interview_Time: null,
         Interview_Location: null,
-        Interviewer_Name: null
+        Interviewer_1: null,
+        Interviewer_2: null
       };
       $scope.deleteCandidate.Interview = interviewInfo;
       $scope.deleteCandidate.$update().then(values => {

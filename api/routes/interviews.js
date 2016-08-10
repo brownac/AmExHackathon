@@ -14,7 +14,8 @@ router.put('/', function(req, res) {
 		interview_Date: req.body.Interview.Interview_Date,
 		interview_Time: req.body.Interview.Interview_Time,
 		interview_Location: req.body.Interview.Interview_Location,
-		interviewer_Name: req.body.Interview.Interviewer_Name
+		interviewer_1: req.body.Interview.Interviewer_1,
+		interviewer_2: req.body.Interview.Interviewer_2
 	}, {
 		where: { id : req.body.id }
 	})
