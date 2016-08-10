@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var models  = require('../models');
 var utils  = require('../utils');
@@ -28,47 +28,48 @@ router.post('/', function(req, res) {
 	});
 
 	// persist an instance
-  candidate.save().then(() => {
-    const imageName = `${candidate.id}.resume.png`;
-    const imgUri = `/uploads/${imageName}`;
-    const imgAbsPath = path.join(utils.uploadsDir, imageName);
+	candidate.save().then(() => {
+	    const imageName = `${candidate.id}.resume.png`;
+	    const imgUri = `/uploads/${imageName}`;
+	    const imgAbsPath = path.join(utils.uploadsDir, imageName);
 
-    let base64Png = req.body.resumeBase64.split(',')[1];
+	    let base64Png = req.body.resumeBase64.split(',')[1];
 
-    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
-      if (err) {
-        res.status(500).json({
-          errors: [
-            "Could not save image to disk! Node.js threw an error",
-            err
-          ]
-        });
-      }
-      else {
-        //save image uri into database
-        var image_type = 'resume';
-        var image = models.Images.build({
-          id: candidate.id,
+	    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
+		    if (err) {
+		        res.status(500).json({
+			        errors: [
+			          "Could not save image to disk! Node.js threw an error",
+			          err
+			        ]
+		        });
+		    }
+		    else {
+		        //save image uri into database
+		        var image_type = 'resume';
+		        var image = models.Images.build({
+		          id: candidate.id,
 
-          // add the preceding forwardslash
-          img_uri: imgUri,
-          type: image_type
-        });
-        image.save();
+		          // add the preceding forwardslash
+		          img_uri: imgUri,
+		          type: image_type
+		        });
+		        image.save();
 
-        //creates an interview spot for the candidate
-        if(req.body.finalEvaluation !== 'turndown'){
-	        var interview = models.Interviews.build({
-	        	id: candidate.id
-	        });
-					interview.save();
-        }
+		        //creates an interview spot for the candidate
+		        if(req.body.finalEvaluation !== 'turndown'){
+			        var interview = models.Interviews.build({
+			        	id: candidate.id
+			        });
+							interview.save();
+		        }
 
-        res.json(candidate);
-      }
-    });
-  });
+		        res.json(candidate);
+		    }
+	    });
+	});
 });
+
 
 // Update a candidate by id
 router.put('/', function(req, res) {

@@ -1,11 +1,7 @@
-'use strict'
+'use strict';
 var models  = require('../models');
 var express = require('express');
 var router  = express.Router();
-var fs = require('fs');
-var path = require('path');
-
-const appDir = path.join(__dirname, '../../app');
 
 // Update a candidate by id
 router.put('/', function(req, res) {
@@ -19,13 +15,13 @@ router.put('/', function(req, res) {
 		where: { id : req.body.id }
 	})
 	.then(function(result) {
-    res.send("Success");
+    	res.send('Success');
 	}, function(rejectedPromiseError){
-    res.status(404).json({
-      errors: [
-        "Could not find candidate with id " + id
-      ]
-    });
+	    res.status(404).json({
+	      	errors: [
+	        	'Could not find candidate with id ' + id
+	      	]
+	    });
 	});
 });
 
@@ -47,5 +43,6 @@ router.get('/', function(req, res) {
 		res.json(result);
 	});
 });
+
 
 module.exports = router;
