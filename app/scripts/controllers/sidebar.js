@@ -14,11 +14,11 @@ angular.module('amExHackathonApp')
 
     $scope.clear = function() {
       $scope.search = "";
-    }
+    };
 
     $scope.statusIconClass = function(status){
       if(status === "invite") {
-        return "glyphicon glyphicon-ok green"
+        return "glyphicon glyphicon-ok green";
       }
       else if(status === "turndown") {
         return "glyphicon glyphicon-remove red";
@@ -26,5 +26,5 @@ angular.module('amExHackathonApp')
       else {
         return "glyphicon glyphicon-minus yellow";
       }
-    }
+    };
   });
