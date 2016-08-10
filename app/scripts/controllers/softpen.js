@@ -1,39 +1,5 @@
 'use strict';
 
-var app = angular.module('amExHackathonApp');
-app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
-  $scope.pictureAdded = false;
-
-  $scope.next = function() {
-    var canvas = $("#c")[0];
-    var image = new Image();
-    image.src = canvas.toDataURL("image/png");
-
-    // set the softpenImage.src to the base64 image from canvas
-    softpenImage.src = image.src;
-
-    // redirect to form, which uses softpenImage
-    $location.path('screener/candidateForm');
-  };
-
-  $scope.readImage = function(event) {
-    var files = event.target.files;
-
-    if (files && files[0]) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        $scope.$apply(function() {
-          $scope.resumeBase64 = e.target.result;
-          $scope.pictureAdded = true;
-        });
-      };
-      reader.readAsDataURL(files[0]);
-    }
-  };
-
-  loadFabric();
-});
-
 var loadFabric = function() {
   //Module Fields
   //-------------------------------------------------------------------------------------
@@ -129,8 +95,9 @@ var loadFabric = function() {
 
   function findTagByColor(color) {
     for (var i = 0; i < colorButtons.length; i++) {
-      if (colorButtons[i].value == color)
+      if (colorButtons[i].value === color){
         return colorButtons[i];
+      }
     }
     return {
       class: "",
@@ -194,7 +161,7 @@ var loadFabric = function() {
   });
 
   $(".thinknessChanger").on("click", function() {
-    if (this.value == "plus") {
+    if (this.value === "plus") {
       console.log("increase");
       increaseWidth();
     } else {
@@ -207,7 +174,7 @@ var loadFabric = function() {
     $(".tool-button").removeClass("active");
     this.className += " active";
 
-    if (this.id == 'pen') {
+    if (this.id === 'pen') {
       $(".color-button").removeClass("active");
       canvas.freeDrawingBrush.width = penThickOptions[penSelectedThickness];
       updateThicknessDisplay(penSelectedThickness);
@@ -222,3 +189,39 @@ var loadFabric = function() {
     }
   });
 };
+
+
+var app = angular.module('amExHackathonApp');
+app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
+  $scope.pictureAdded = false;
+
+  $scope.next = function() {
+    var canvas = $("#c")[0];
+    var image = new Image();
+    image.src = canvas.toDataURL("image/png");
+
+    // set the softpenImage.src to the base64 image from canvas
+    softpenImage.src = image.src;
+
+    // redirect to form, which uses softpenImage
+    $location.path('screener/candidateForm');
+  };
+
+  $scope.readImage = function(event) {
+    var files = event.target.files;
+
+    if (files && files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $scope.$apply(function() {
+          $scope.resumeBase64 = e.target.result;
+          $scope.pictureAdded = true;
+        });
+      };
+      reader.readAsDataURL(files[0]);
+    }
+  };
+
+  loadFabric();
+});
+
