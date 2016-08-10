@@ -52,6 +52,7 @@ var loadFabric = function() {
   var markerOppacity = 0.2;
   var penSelectedThickness = 0;
   var markerSelectedThickness = 0;
+  var drawingMode = true;
 
 
   var colorButtons = $(".color-button");
@@ -172,6 +173,19 @@ var loadFabric = function() {
     }
   }
 
+  function switchDrawingMode(){
+    if(drawingMode){
+      $(".canvas-container").addClass("hide");
+      $("#inactive").removeClass("hide");
+      drawingMode = false;
+    }
+    else{
+      $(".canvas-container").removeClass("hide");
+      $("#inactive").addClass("hide");
+      drawingMode = true;
+    }
+  }
+
   //Event Listeners
   // --------------------------------------------------------------------------------
   $("#resume-image").on("load", function() {
@@ -186,11 +200,13 @@ var loadFabric = function() {
   });
 
   $("#undo").on("click", function() {
-    undo();
+    if(drawingMode)
+      undo();
   });
 
   $("#redo").on("click", function() {
-    redo();
+    if(drawingMode)
+      redo();
   });
 
   $(".color-button").on("click", function() {
@@ -219,12 +235,26 @@ var loadFabric = function() {
       updateThicknessDisplay(penSelectedThickness);
       changeColor(defaultPenColor);
       activateTag(findTagByColor(defaultPenColor));
-    } else {
+      if(!drawingMode)
+        switchDrawingMode();
+    } 
+    else if(this.id == 'marker'){
       $(".color-button").removeClass("active");
       canvas.freeDrawingBrush.width = markerThickOptions[markerSelectedThickness];
       updateThicknessDisplay(markerSelectedThickness);
       changeColor(defaultMarkerColor);
       activateTag(findTagByColor(defaultMarkerColor));
+      if(!drawingMode)
+        switchDrawingMode();
+    }
+  });
+
+  $("#stopDrawingMode").on("click", function(){
+    var canvas = $("#c")[0];
+    $("#inactive").attr("src", canvas.toDataURL("image/png"));
+    if(drawingMode){
+      switchDrawingMode();
+      console.log("inside here");
     }
   });
 };
