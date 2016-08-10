@@ -4,14 +4,7 @@ module.exports = function(sequelize, DataTypes) {
   var Interviews = sequelize.define("Interviews", {
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement: true,
       primaryKey: true
-    },
-    first_name: {
-      type: DataTypes.STRING
-    },
-    last_name: {
-      type: DataTypes.STRING
     },
     interview_Date: {
       type: DataTypes.DATE

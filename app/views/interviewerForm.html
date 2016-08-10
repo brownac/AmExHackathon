@@ -5,12 +5,24 @@
         <div class="input-group-addon">
             <span class="glyphicon glyphicon-th"></span>
         </div>
-    </div>
-  </div>
-  <hr/>
-  <div ng-repeat="i in interviews">
-    <div class="row interview-row-bottom-buffer">
-      <a class="col-xs-12 btn btn-block btn-info" href="#">{{i.candidate.firstName}}, {{i.candidate.lastName}}</a>
-    </div>
-  </div>
-</div>
+        <div class="btn-group pull-right calChangeView">
+            <label class="btn btn-primary" ng-click="changeView('year')">Year</label>
+            <label class="btn btn-primary" ng-click="changeView('month')">Month</label>
+            <label class="btn btn-primary" ng-click="changeView('week')">Week</label>
+            <label class="btn btn-primary" ng-click="changeView('day')">Day</label>
+        </div>
+      </div>
+      <div>
+        <mwl-calendar
+          view="calendarView"
+          view-date="calendarDate"
+          events="events"
+          view-title="calendarTitle"
+          on-event-click="eventClicked()"
+          on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+          cell-is-open="true">
+        </mwl-calendar>
+      </div>
+      <div style="margin-bottom:20px;">
+      </div>
+

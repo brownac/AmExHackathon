@@ -8,7 +8,7 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('CandidateFormCtrl', function ($scope, $q, $timeout, $routeParams, $location, candidateService) {
+  .controller('CandidateFormCtrl', function ($scope, $q, $timeout, $routeParams, $location, candidateService, softpenImage) {
     if($routeParams.candidateId) {
       // Get the candidate id from the url
       var candidateId = $routeParams.candidateId;
@@ -20,6 +20,12 @@ angular.module('amExHackathonApp')
     const init = function() {
       $scope.postCandidate = {};
       $scope.pictureAdded = false;
+
+      if (softpenImage.src !== null) {
+        $scope.pictureAdded = true;
+        $scope.postCandidate.resumeBase64 = softpenImage.src;
+      }
+
       $scope.buttonText = "Submit";
       $scope.submitBtnClasses = "btn btn-primary";
 
@@ -38,7 +44,7 @@ angular.module('amExHackathonApp')
             $scope.pictureAdded = true;
           });
         };
-        reader.readAsDataURL(files[0]);
+        reader.readAsDatURL(files[0]);
       }
     };
 
@@ -60,13 +66,16 @@ angular.module('amExHackathonApp')
         candidateService.save($scope.postCandidate).$promise.then(values => {
           // show success by changing submit button class and value
           $scope.postCandidate = {};
+          $scope.pictureAdded = false;
           $scope.sendingData = false;
           $scope.buttonText = "Successfully Submitted";
           $scope.submitBtnClasses = "btn btn-success";
 
           $timeout(() => {
-            // re-initialize the scope
-            init();
+            // re-direct to softpen
+            softpenImage.src = null;
+
+            $location.path('screener/softpen');
           }, 1000);
         });
       }

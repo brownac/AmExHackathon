@@ -7,31 +7,13 @@ var path = require('path');
 
 const appDir = path.join(__dirname, '../../app');
 
-// Insert an interview
-router.post('/', function(req, res) {
-	// create an instance
-	var interview = models.Interviews.build({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
-    interviewDate: req.body.interviewDate,
-    interviewTime: req.body.interviewTime,
-    interviewLocation: req.body.location,
-    interviewerName: req.body.interviewer
-  });
-	
-	// persist an instance
-  interview.save();
-});
-
-// Update an interview by id
+// Update a candidate by id
 router.put('/', function(req, res) {
 	models.Interviews.update({
-	first_name: req.body.firstName,
-	last_name: req.body.lastName,
-    interviewDate: req.body.interviewDate,
-    interviewTime: req.body.interviewTime,
-    interviewLocation: req.body.location,
-    interviewerName: req.body.interviewer
+		interview_Date: req.body.Interview.Interview_Date,
+		interview_Time: req.body.Interview.Interview_Time,
+		interview_Location: req.body.Interview.Interview_Location,
+		interviewer_Name: req.body.Interview.Interviewer_Name
 	},
 	{
 		where: { id : req.body.id }
@@ -41,7 +23,7 @@ router.put('/', function(req, res) {
 	}, function(rejectedPromiseError){
     res.status(404).json({
       errors: [
-        "Could not find interview with id " + id
+        "Could not find candidate with id " + id
       ]
     });
 	});
@@ -49,39 +31,20 @@ router.put('/', function(req, res) {
 
 // Get all interviews
 router.get('/', function(req, res) {
-	var query = req.query;
+	var query = {};
+	if(req.query.sequelize !== undefined) {
+		query = JSON.parse(req.query.sequelize);
+	}
 	var sql = {
 				include: [{
-					model: models.Candidates
-				}],
-				where:
-				   query
-			  };
-	models.Interviews.findAll(sql)
+					model: models.Interviews,
+					where: query,
+					required: true
+				}]
+			};
+	models.Candidates.findAll(sql)
 	.then(function(result) {
 		res.json(result);
-	});
-});
-
-// Get interview by id
-router.get('/:id', function(req, res) {
-	var id = req.params.id;
-
-	models.Interviews.findById(id, {
-		include: [{
-			model: models.Candidates
-		}]
-	}).then(function(result) {
-		if (result !== null) {
-			res.json(result);
-		}
-		else {
-			res.status(404).json({
-				errors: [
-					"Could not find interview with id " + id
-				]
-			});
-		}
 	});
 });
 

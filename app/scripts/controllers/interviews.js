@@ -15,6 +15,7 @@ angular.module('amExHackathonApp')
     $scope.calendarDate = calDate;
     $scope.calendarTitle = calDate.getMonth() + " " + calDate.getFullYear();
 
+//backend query for scheduled candidates
     var query = {
       sequelize:{
         interview_Date:{
@@ -22,7 +23,6 @@ angular.module('amExHackathonApp')
         }
       }
     };
-
     calendarService.query(query).$promise.then(values => {
       $scope.scheduledCandidates = values;
       for (var i = $scope.scheduledCandidates.length - 1; i >= 0; i--) {
@@ -39,7 +39,6 @@ angular.module('amExHackathonApp')
          });
      };
      });
-
     $scope.changeView = function(newView){
       $scope.calendarView = newView;
     };
