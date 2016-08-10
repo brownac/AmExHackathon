@@ -9,7 +9,11 @@
   margin-left: 10px;
 }
 .tools-bar{
-  position: fixed;
+  position: absolute;
   z-index: 2;
   background-color: white;
+}
+
+.center-toolbar {
+  margin-left: 30px;
 }
