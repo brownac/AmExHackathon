@@ -53,12 +53,12 @@ module.exports = function(sequelize, DataTypes) {
         Candidates.hasMany(models.Images,{
           foreignKey: 'id',
           targetKey: 'id'
+        }),
+        Candidates.hasOne(models.Interviews,{
+          foreignKey: 'id',
+          targetKey: 'id'
         });//,
-        // Candidates.hasOne(models.Interviews,{
-        //   foreignKey: 'id',
-        //   targetKey: 'id'
-        // }),
-        // Candidates.hasMany(models.Archives,{
+        // Candidates.hasOne(models.Archives,{
         //   foreignKey: 'id',
         //   targetKey: 'id'
         // });

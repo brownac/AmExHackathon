@@ -1,9 +1,8 @@
 "use strict";
 
-// Stores all 
 module.exports = function(sequelize, DataTypes) {
   var Archives = sequelize.define("Archives", {
-    archive_Id: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
@@ -34,6 +33,10 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Archives.hasMany(models.Images,{
+          foreignKey: 'id',
+          targetKey: 'id'
+        }),
+        Archives.hasOne(models.Candidates,{
           foreignKey: 'id',
           targetKey: 'id'
         });

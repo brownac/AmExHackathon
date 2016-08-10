@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
   var Questions = sequelize.define("Questions", {
-    form_Id: {
+    id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true
