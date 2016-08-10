@@ -22,12 +22,12 @@ span[data-cal-date]{
   pointer-events: none;
 }
 
-.right-addon .glyphicon { 
+.right-addon .glyphicon {
   right: 0px;
 }
 
-.right-addon input { 
-  padding-right: 30px; 
+.right-addon input {
+  padding-right: 30px;
 }
 
 #ui-datepicker-div{
@@ -78,4 +78,9 @@ button.candidate-queue-person {
 .button-link, .button-link:hover {
   text-decoration: none;
   color: white;
+}
+
+/*Calendar Styling in Interviewer Landing Page*/
+.interview-row-spacing {
+  margin-bottom: 20px;
 }
