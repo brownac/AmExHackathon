@@ -88,6 +88,12 @@
     background: #007BAA;
 }
 
+.cal-sidebar li a:hover{
+    cursor: default;
+    color: #777;
+    background: transparent;
+}
+
 .form-control:focus {
     border: 1px #C1C1C1 solid;
     box-shadow: 0 0 10px #F1F1F1;
@@ -183,4 +189,9 @@ select {
 
 .green {
   color: #3c763d;
+}
+
+.remove-candidate:hover{
+    opacity: 0.8;
+    cursor: pointer;
 }
