@@ -8,7 +8,7 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('InterviewsCtrl', function ($scope, calendarService) {
+  .controller('InterviewsCtrl', function ($scope,$location, calendarService) {
     $scope.events = [];
     $scope.calendarView = 'month';
     var calDate = new Date();
@@ -40,6 +40,12 @@ angular.module('amExHackathonApp')
          });
      };
      });
+
+    $scope.eventClicked = function(calendarEvent){
+      console.log(calendarEvent.candidate.id);
+      var id = calendarEvent.candidate.id;
+      $location.path('/interviewer/'+id);
+    }
     $scope.changeView = function(newView){
       $scope.calendarView = newView;
     };
