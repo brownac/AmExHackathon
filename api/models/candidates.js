@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     graduationDate: {
-      type: DataTypes.STRING
+      type: DataTypes.DATE
     },
     needSponsorship: {
       type: DataTypes.BOOLEAN
@@ -35,10 +35,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     areaOfInterest: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     preferredLanguages: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     finalEvaluation: {
       type: DataTypes.STRING
@@ -63,4 +63,3 @@ module.exports = function(sequelize, DataTypes) {
   });
   return Candidates;
 };
-

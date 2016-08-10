@@ -56,7 +56,7 @@
 
           <div class="form-group">
             <label class="control-label">Graduation Date:</label>
-            <input class="form-control" type="text" ng-model="postCandidate.graduationDate" required>
+            <input class="form-control" type="date" ng-model="postCandidate.graduationDate" required>
           </div>
 
           <div class="form-group">
@@ -80,17 +80,37 @@
           </div>
 
           <div class="form-group">
-            <label class="control-label">Areas of Interest (i.e. front end, back end, iOS, Android, etc.)</label>
-            <textarea ng-model="postCandidate.areaOfInterest" class="form-control" required></textarea>
+            <label class="control-label" for="areaOfInterest">Areas of Interest (i.e. front end, back end, iOS, Android, etc.)</label>
+            <select class="form-control" id="areaOfInterest" ng-model="postCandidate.areaOfInterest" multiple required>
+              <option value="Front end">Front End</option>
+              <option value="Back end">Back End</option>
+              <option value="Android">Android</option>
+              <option value="iOS">iOS</option>
+              <option value="Web Development">Web Development</option>
+              <option value="Enterprise Java">Enterprise Java</option>
+              <option value="Mobile Development">Mobile Development</option>
+              <option value="Big Data">Big Data</option>
+              <option value="SQL Database">SQL Database</option>
+              <option value="Database Engineer">Database Engineer</option>
+              <option value="quality engineer">Quality Engineer</option>
+              <option value="Info Security">Info Security</option>
+            </select>
           </div>
 
           <div class="form-group">
-            <label class="control-label">Preferred Language(s) (i.e. Java, C, C++, etc.)</label>
-            <textarea ng-model="postCandidate.preferredLanguages" class="form-control" required></textarea>
+            <label class="control-label" for="preferredLanguages">Preferred Language(s) (i.e. Java, C, C++, etc.)</label>
+            <select class="form-control" id="preferredLanguages" ng-model="postCandidate.preferredLanguages" multiple required>
+              <option value="Java">Java</option>
+              <option value="C">C</option>
+              <option value="C++">C++</option>
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+              <option value="Oracle">Oracle</option>
+            </select>
           </div>
 
           <div class="form-group">
-            <label class="control-label" for="finalEvaluation">Final Evaluation:</label>
+            <label class="control-label" for="finalEvaluation">Evaluation:</label>
             <div class="radio">
               <label class="radio-inline">
               <input type="radio" name="finalEvaluation" ng-model="postCandidate.finalEvaluation" value="invite" required>Invite to 1st Round Interviews</label>

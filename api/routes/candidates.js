@@ -9,7 +9,6 @@ var path = require('path');
 
 // Insert a candidate
 router.post('/', function(req, res) {
-	console.log("Posting: " + req);
 	// create an instance
 	var candidate = models.Candidates.build({
 		firstName: req.body.firstName,
@@ -21,8 +20,8 @@ router.post('/', function(req, res) {
 		graduationDate: req.body.graduationDate,
 		needSponsorship: req.body.needSponsorship,
 		internOrFull: req.body.internOrFull,
-		areaOfInterest: req.body.areaOfInterest,
-		preferredLanguages: req.body.preferredLanguages,
+		areaOfInterest: req.body.areaOfInterest.join(', '),
+		preferredLanguages: req.body.preferredLanguages.join(', '),
 		finalEvaluation: req.body.finalEvaluation,
 		screenerInitials: req.body.screenerInitials
 	});
@@ -83,8 +82,8 @@ router.put('/', function(req, res) {
 		graduationDate: req.body.graduationDate,
 		needSponsorship: req.body.needSponsorship,
 		internOrFull: req.body.internOrFull,
-		areaOfInterest: req.body.areaOfInterest,
-		preferredLanguages: req.body.preferredLanguages,
+		areaOfInterest: req.body.areaOfInterest.join(', '),
+		preferredLanguages: req.body.preferredLanguages.join(', '),
 		finalEvaluation: req.body.finalEvaluation,
 		screenerInitials: req.body.screenerInitials
 	},
@@ -96,7 +95,7 @@ router.put('/', function(req, res) {
 	}, function(rejectedPromiseError){
     res.status(404).json({
       errors: [
-        "Could not find candidate with id " + id
+        "Could not find candidate with id " + req.body.id + " " + rejectedPromiseError
       ]
     });
 	});
