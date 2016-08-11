@@ -17,13 +17,13 @@ angular.module('amExHackathonApp')
 
 //backend query for scheduled candidates
     var query = {
-      sequelize:{
+      interviewQuery:{
         interview_Date:{
+          //queries the db for those who have interviews scheduled
           $not: null
         }
       }
     };
-    
     calendarService.query(query).$promise.then(values => {
       $scope.scheduledCandidates = values;
       for (var i = $scope.scheduledCandidates.length - 1; i >= 0; i--) {
@@ -43,7 +43,7 @@ angular.module('amExHackathonApp')
            },
            candidate: $scope.scheduledCandidates[i]
          });
-     };
+      };
      });
 
     $scope.eventClicked = function(calendarEvent){
