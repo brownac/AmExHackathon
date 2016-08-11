@@ -13,12 +13,7 @@ router.post('/', function(req, res) {
 	// create an instance
 	var archive = models.Archives.build({
 		form: req.body.form,
-		round: req.body.round,
-		page_1: req.body.page_1,
-		page_2: req.body.page_2,
-		page_3: req.body.page_3,
-		page_4: req.body.page_4,
-		page_5: req.body.page_5
+		round: req.body.round
 	});
 
 	// persist an instance
@@ -63,12 +58,7 @@ router.post('/', function(req, res) {
 router.put('/', function(req, res) {
 	models.Candidates.update({
 		form: req.body.form,
-		round: req.body.round,
-		page_1: req.body.page_1,
-		page_2: req.body.page_2,
-		page_3: req.body.page_3,
-		page_4: req.body.page_4,
-		page_5: req.body.page_5
+		round: req.body.round
 	},
 	{
 		where: { id : req.body.id }
