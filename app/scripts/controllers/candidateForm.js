@@ -62,7 +62,7 @@ angular.module('amExHackathonApp')
 
           $timeout(() => {
             $location.path('viewCandidate/' + $routeParams.candidateId);
-          }, 1500);
+          }, 1000);
         });
       }
       else {
