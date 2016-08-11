@@ -242,3 +242,7 @@ button.candidate-queue-person {
 .interview-row-bottom-buffer {
   margin-bottom: 5px;
 }
+
+.admin-option-top-margin {
+  margin-top: 50px;
+}

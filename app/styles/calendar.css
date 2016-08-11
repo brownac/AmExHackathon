@@ -78,6 +78,10 @@ button.candidate-queue-person {
   color: white;
 }
 
+/*Calendar Styling in Interviewer Landing Page*/
+.interview-row-spacing {
+  margin-bottom: 20px;
+}
 .cal-modal{
   background-color: rgba(0, 0, 0, 0.22);
 }
@@ -87,3 +91,4 @@ button.candidate-queue-person {
   margin: 0;
   width: 43%;
 }
+>>>>>>> Development-Unstable

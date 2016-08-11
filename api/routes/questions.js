@@ -1,74 +1,80 @@
 'use strict'
 
 var models  = require('../models');
+var utils  = require('../utils');
 var express = require('express');
 var router  = express.Router();
 var fs = require('fs');
 var path = require('path');
 
-const appDir = path.join(__dirname, '../../app');
-
-// Insert an interview form
+// Insert a question
 router.post('/', function(req, res) {
+	console.log("Posting: " + req);
 	// create an instance
-	var intQuest = models.questions.build({
-		form_type: req.body.form_type,
-		version: req.body.version,
-		page_1: req.body.page_1,
-		page_2: req.body.page_2,
-		page_3: req.body.page_3,
-		page_4: req.body.page_4,
-		page_5: req.body.page_5,
-		active: req.body.active
+	var question = models.Questions.build({
+		id:req.body.id,
+		can_id:req.body.can_id,
+		que_id:req.body.que_id,
+		arc_Id:req.body.arc_id,
+		form_type:req.body.form_type,
+		version:req.body.version,
+		active: req.body.active,
+		form_model: req.body.form_model
 	});
 
 	// persist an instance
-  intQuest.save().then(() => {
-    // a slash goes before this in the database uri
-    const imgRelativePath = `uploads/${intQuest.id}.resume.png`;
-    const imgAbsPath = path.join(appDir, imgRelativePath);
+  question.save().then(() => {
+  	var i;
+  	var question_id = `${question.id}`;
+  	for(i = 0; i < req.body.files.length; ++i) {
+	    const imageName = `${question.id}.question_image_` + i + `.png`;
+	    const imgUri = `/uploads/${imageName}`;
+	    const imgAbsPath = path.join(utils.uploadsDir, imageName);
 
-    let base64Png = req.body.resumeBase64.split(',')[1];
+	    if(req.body.files[i] !== null) {
 
-    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
-      if (err) {
-        res.status(500).json({
-          errors: [
-            "Could not save image to disk! Node.js threw an error",
-            err
-          ]
-        });
-      }
-      else {
-        //save image uri into database
-        var image_type = 'resume';
-        var image_table = models.Images.build({
-          id: intQuest.id,
+		    let base64Png = req.body.files[i].split(',')[1];
 
-          // add the preceding forwardslash
-          img_uri: '/' + imgRelativePath,
-          type: image_type
-        });
-        image_table.save();
+		    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
+		      if (err) {
+		        res.status(500).json({
+		          errors: [
+		            "Could not save image to disk! Node.js threw an error",
+		            err
+		          ]
+		        });
+		      }
+		      else {
+		        //save image uri into database
+		        var image_type = 'question';
+		        var image = models.Images.build({
+		          // add the preceding forwardslash
+		          que_id:question_id,
+		          img_uri: imgUri,
+		          type: image_type,
 
-        res.json(intQuest);
-      }
-    });
+		        });
+		        image.save();
+		      }
+		    });
+			}
+		}
+		res.json(question);
   });
 });
 
 // Update a question by id
 router.put('/', function(req, res) {
-	models.questions.update({
-		form_type: req.body.form_type,
-		version: req.body.version,
-		page_1: req.body.page_1,
-		page_2: req.body.page_2,
-		page_3: req.body.page_3,
-		page_4: req.body.page_4,
-		page_5: req.body.page_5,
-		active: req.body.active
-		},
+	models.Questions.update({
+		id:req.body.id,
+		can_id:req.body.can_id,
+		que_id:req.body.que_id,
+		arc_Id:req.body.arc_id,
+		form_type:req.body.form_type,
+		version:req.body.version,
+		active: req.body.active,
+		form_model: req.body.form_model
+	},
 	{
 		where: { id : req.body.id }
 	})
@@ -83,17 +89,22 @@ router.put('/', function(req, res) {
 	});
 });
 
-// Get all question
+// Get all questions
 router.get('/', function(req, res) {
-	var query = req.query;
+	console.log("WE ARE IN GET");
+	var query = {};
+	if(req.query.sequelize !== undefined) {
+		query = JSON.parse(req.query.sequelize);
+	}
+
 	var sql = {
 				include: [{
-					model: models.Candidates
+					model: models.Images,
+					required: true
 				}],
-				where:
-				   query
+				where: query
 			  };
-	models.questions.findAll(sql)
+	models.Questions.findAll(sql)
 	.then(function(result) {
 		res.json(result);
 	});
@@ -103,9 +114,10 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
 	var id = req.params.id;
 
-	models.questions.findById(id, {
+	models.Questions.findById(id, {
 		include: [{
-			model: models.Candidates
+			model: models.Images,
+			required: true
 		}]
 	}).then(function(result) {
 		if (result !== null) {
