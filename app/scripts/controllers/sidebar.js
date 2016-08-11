@@ -34,8 +34,11 @@ angular.module('amExHackathonApp')
         tempCandidate = value;
         console.log(tempCandidate);
         tempCandidate.finalEvaluation = 'turndown';
+        tempCandidate.areaOfInterest = tempCandidate.areaOfInterest.split(", ");
+        tempCandidate.preferredLanguages = tempCandidate.preferredLanguages.split(", ");
         tempCandidate.$update().then(values => {
         console.log('Turning down the candidate: ' + candidate.lastName);
+        $scope.init();
       }); 
       });     
     }
