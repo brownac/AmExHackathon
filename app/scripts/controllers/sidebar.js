@@ -8,7 +8,7 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('SidebarCtrl', function ($scope) {
+  .controller('SidebarCtrl', function ($scope, candidateService) {
     $scope.property = "firstName";
     $scope.order = "firstName";
 
@@ -28,7 +28,15 @@ angular.module('amExHackathonApp')
       }
     }
     $scope.turndownCandidate = function(candidate){
-      candidate.finalEvaluation = 'turndown';
-      
+      console.log('It is the beginning');
+      var tempCandidate;
+      candidateService.get({ id: candidate.id }).$promise.then(value => {
+        tempCandidate = value;
+        console.log(tempCandidate);
+        tempCandidate.finalEvaluation = 'turndown';
+        tempCandidate.$update().then(values => {
+        console.log('Turning down the candidate: ' + candidate.lastName);
+      }); 
+      });     
     }
   });

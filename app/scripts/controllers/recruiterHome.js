@@ -27,9 +27,15 @@ angular.module('amExHackathonApp')
       $scope.events = [];
       //creates the array of candidates to be scheduled
       var query = {
-        sequelize:{
+        interviewQuery:{
           //searches the db where there are no interview Dates
           interview_Date: null
+        },
+        sequelize: {
+            finalEvaluation:{
+            //queries the db for those who have not been turned down 
+            $not: 'turndown'
+          }
         }
       };
       calendarService.query(query).$promise.then(values => {
@@ -41,7 +47,7 @@ angular.module('amExHackathonApp')
 
       //creates the array of candidates already scheduled, to populate the calendar
       var query2 = {
-        sequelize:{
+        interviewQuery:{
           interview_Date:{
             //queries the db for those who have interviews scheduled
             $not: null
