@@ -56,11 +56,11 @@
 
           <div class="form-group">
             <label class="control-label">Graduation Date:</label>
-            <input class="form-control" type="date" ng-model="postCandidate.graduationDate" required>
+            <input class="form-control" type="month" ng-model="postCandidate.graduationDate" required>
           </div>
 
           <div class="form-group">
-            <label class="control-label" for="needSponsorship">Needs Sponsorship?</label>
+            <label class="control-label" for="needSponsorship">Are you legally authorized to work in the United States and in the future not require employment sponsorship in the United States?</label>
             <div class="radio">
               <label class="radio-inline">
               <input type="radio" name="needSponsorship" ng-model="postCandidate.needSponsorship" value="yes" required>Yes</label>
@@ -88,7 +88,6 @@
               <option value="iOS">iOS</option>
               <option value="Web Development">Web Development</option>
               <option value="Enterprise Java">Enterprise Java</option>
-              <option value="Mobile Development">Mobile Development</option>
               <option value="Big Data">Big Data</option>
               <option value="SQL Database">SQL Database</option>
               <option value="Database Engineer">Database Engineer</option>
@@ -100,7 +99,6 @@
           <div class="form-group">
             <label class="control-label" for="preferredLanguages">Preferred Language(s) (i.e. Java, C, C++, etc.)</label>
             <select class="form-control" id="preferredLanguages" ng-model="postCandidate.preferredLanguages" multiple required>
-              <option value="Java">Java</option>
               <option value="C">C</option>
               <option value="C++">C++</option>
               <option value="HTML">HTML</option>
