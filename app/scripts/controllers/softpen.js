@@ -1,39 +1,5 @@
 'use strict';
 
-var app = angular.module('amExHackathonApp');
-app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
-  $scope.pictureAdded = false;
-
-  $scope.next = function() {
-    var canvas = $("#c")[0];
-    var image = new Image();
-    image.src = canvas.toDataURL("image/png");
-
-    // set the softpenImage.src to the base64 image from canvas
-    softpenImage.src = image.src;
-
-    // redirect to form, which uses softpenImage
-    $location.path('screener/candidateForm');
-  };
-
-  $scope.readImage = function(event) {
-    var files = event.target.files;
-
-    if (files && files[0]) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        $scope.$apply(function() {
-          $scope.resumeBase64 = e.target.result;
-          $scope.pictureAdded = true;
-        });
-      };
-      reader.readAsDataURL(files[0]);
-    }
-  };
-
-  loadFabric();
-});
-
 var loadFabric = function() {
   //Module Fields
   //-------------------------------------------------------------------------------------
@@ -129,8 +95,9 @@ var loadFabric = function() {
 
   function findTagByColor(color) {
     for (var i = 0; i < colorButtons.length; i++) {
-      if (colorButtons[i].value == color)
+      if (colorButtons[i].value === color){
         return colorButtons[i];
+      }
     }
     return {
       class: "",
@@ -194,7 +161,7 @@ var loadFabric = function() {
   });
 
   $(".thinknessChanger").on("click", function() {
-    if (this.value == "plus") {
+    if (this.value === "plus") {
       console.log("increase");
       increaseWidth();
     } else {
@@ -207,7 +174,7 @@ var loadFabric = function() {
     $(".tool-button").removeClass("active");
     this.className += " active";
 
-    if (this.id == 'pen') {
+    if (this.id === 'pen') {
       $(".color-button").removeClass("active");
       canvas.freeDrawingBrush.width = penThickOptions[penSelectedThickness];
       updateThicknessDisplay(penSelectedThickness);
@@ -221,4 +188,68 @@ var loadFabric = function() {
       activateTag(findTagByColor(defaultMarkerColor));
     }
   });
+
+  return canvas;
 };
+
+
+var app = angular.module('amExHackathonApp');
+app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
+  $scope.pictureAdded = false;
+
+  $scope.next = function() {
+    var canvas = $scope.canvas;
+    var image = new Image();
+    image.src = canvas.toDataURL("image/png");
+
+    // set the softpenImage.src to the base64 image from canvas
+    softpenImage.src = image.src;
+
+    // redirect to form, which uses softpenImage
+    $location.path('screener/candidateInput');
+  };
+
+  $scope.readImage = function(event) {
+    var files = event.target.files;
+
+    if (files && files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $scope.$apply(function() {
+          // don't initialize the fabric canvas until the image is loaded!
+          var canvas = loadFabric();
+
+          fabric.Image.fromURL(e.target.result, function(oImg) {
+            var isLandscape = oImg.width > oImg.height;
+
+            // use these to scale the image
+            var hRatio = null;
+            var wRatio = null;
+            if (isLandscape) {
+              // 90 degree rotation matrix
+              oImg.transformMatrix = [0, 1, -1, 0, 0, 0];
+
+              // use oImg.width since it is landscape
+              hRatio = canvas.getHeight() / oImg.width;
+              wRatio = canvas.getWidth() / oImg.height;
+            }
+            else {
+              hRatio = canvas.getHeight() / oImg.height;
+              wRatio = canvas.getWidth() / oImg.width;
+            }
+
+            // scale by the smaller ratio
+            oImg.scale(Math.min(hRatio, wRatio));
+
+            canvas.add(oImg);
+            canvas.centerObject(oImg);
+
+            $scope.canvas = canvas;
+            $scope.pictureAdded = true;
+          });
+        });
+      };
+      reader.readAsDataURL(files[0]);
+    }
+  };
+});
