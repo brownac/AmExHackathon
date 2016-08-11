@@ -14,38 +14,63 @@
 
           <div class="modal-body">
             <form name = "scheduleInterview">
-              <div class="form-group">
-                <label for="sel1">Select Candidate:</label><br>
-                <select ng-options="candidate as candidate.fullName for candidate in candidateQueue" ng-model="selectedCandidate" class="cal-select-candidate" required> </select>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div>
+                    <label for="sel1">Select Candidate:</label><br>
+                    <select ng-options="candidate as candidate.fullName for candidate in candidateQueue" ng-model="selectedCandidate" class="cal-select-candidate" required> </select>
+                  </div>
+                </div>
               </div>
-              <p><strong>Select Interview Date: <strong></p>
-              <div class="inner-addon right-addon" id="calendarSelectArrow">
-                <i class="glyphicon glyphicon-calendar"></i>
-                <input type="text" class="form-control" ng-model="interviewDate" id ="datepicker" required>
+              <div class="row">
+                <div class="col-xs-6">
+                  <div>
+                    <label for="myInterviewer1">Select Interviewer 1: </label><br>
+                    <input ng-model="interviewer1" type="text" id="myInterviewer1" required />
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <div>
+                    <label for="myInterviewer2">Select Interviewer 2: </label><br>
+                    <input ng-model="interviewer2" type="text" id="myInterviewer2" required />
+                  </div> 
+                </div>
               </div>
-              <p><strong>Select Interview Time: </strong></p>
-              <div class="input-group bootstrap-timepicker timepicker">
-                <input id="timepicker1" ng-model="interviewTime" type="text" class="form-control input-small input-group-addon" required>
-                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+              <div class="row" ng-show="interviewConflict">
+                <div class="col-xs-12">
+                  <p class="red">{{invalidInterviewer}} a conflicting schedule</p>
+                </div>
               </div>
-              <div>
-                <label for="myLocation">Select Interview Location: </label><br>
-                <input ng-model="location" type="text" id="myLocation" required />
+              <div class="row">
+                <div class="col-xs-6">
+                  <p><strong>Select Interview Date: <strong></p>
+                  <div class="inner-addon right-addon" id="calendarSelectArrow">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    <input type="text" class="form-control" ng-model="interviewDate" id ="datepicker" required>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <p><strong>Select Interview Time: </strong></p>
+                  <div class="input-group bootstrap-timepicker timepicker">
+                    <input id="timepicker1" ng-model="interviewTime" type="text" class="form-control input-small input-group-addon" required>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                  </div>
+                </div>
               </div>
-              <div>
-                <label for="myInterviewer1">Select Interviewer 1: </label><br>
-                <input ng-model="interviewer1" type="text" id="myInterviewer1" required />
-              </div>
-              <div>
-                <label for="myInterviewer2">Select Interviewer 2: </label><br>
-                <input ng-model="interviewer2" type="text" id="myInterviewer2" required />
+              <div class="row">
+                <div class="col-xs-12">
+                  <div>
+                    <label for="myLocation">Select Interview Location: </label><br>
+                    <input ng-model="location" type="text" id="myLocation" required />
+                  </div>
+                </div>
               </div>
             </form>
           </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button ng-click="addEvent()" ng-disabled="scheduleInterview.$invalid" type="submit" class="btn btn-primary" data-dismiss="modal" value="Submit">Set Up Interview</button>
+            <button ng-click="addEvent()" ng-disabled="scheduleInterview.$invalid" type="submit" class="btn btn-primary" value="Submit">Set Up Interview</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
@@ -62,37 +87,62 @@
 
           <div class="modal-body">
             <form name ="editInterview">
-              <div class="form-group">
-                <label for="sel2">Select Candidate:</label><br>
-                <select ng-options="candidate as candidate.fullName for candidate in scheduledCandidates" ng-model="editedCandidate" class="cal-select-candidate" required> </select>
+            <div class="row">
+                <div class="col-xs-12">
+                  <div>
+                    <label for="sel2">Select Candidate:</label><br>
+                    <select ng-options="candidate as candidate.fullName for candidate in scheduledCandidates" ng-model="editedCandidate" class="cal-select-candidate" required> </select>
+                  </div>
+                </div>
               </div>
-              <p><strong>Select Interview Date: <strong></p>
-              <div class="inner-addon right-addon" id="calendarSelectArrow2">
-                <i class="glyphicon glyphicon-calendar"></i>
-                <input type="text" class="form-control" ng-model="editInterviewDate" id ="datepicker2" required>
+              <div class="row">
+                <div class="col-xs-6">
+                  <div>
+                    <label for="myInterviewer1">Select Interviewer 1: </label><br>
+                    <input ng-model="editInterviewer1" type="text" id="myInterviewer1" required />
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                 <div>
+                    <label for="myInterviewer2">Select Interviewer 2: </label><br>
+                    <input ng-model="editInterviewer2" type="text" id="myInterviewer2" required />
+                  </div>
+                </div>
               </div>
-              <p><strong>Select Interview Time: </strong></p>
-              <div class="input-group bootstrap-timepicker timepicker">
-                <input id="timepicker2" ng-model="editInterviewTime" type="text" class="form-control input-small input-group-addon" required>
-                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+              <div class="row" ng-show="interviewConflict">
+                <div class="col-xs-12">
+                  <p class="red">{{invalidInterviewer}} a conflicting schedule</p>
+                </div>
               </div>
-              <div>
-                <label for="myLocation">Select Interview Location: </label><br>
-                <input ng-model="editLocation" type="text" id="myLocation" required/>
+              <div class="row">
+                <div class="col-xs-6">
+                  <p><strong>Select Interview Date: <strong></p>
+                  <div class="inner-addon right-addon" id="calendarSelectArrow2">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    <input type="text" class="form-control" ng-model="editInterviewDate" id ="datepicker2" required>
+                  </div>
+                </div>
+                <div class="col-xs-6">
+                  <p><strong>Select Interview Time: </strong></p>
+                  <div class="input-group bootstrap-timepicker timepicker">
+                    <input id="timepicker2" ng-model="editInterviewTime" type="text" class="form-control input-small input-group-addon" required>
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                  </div>
+                </div>
               </div>
-              <div>
-                <label for="myInterviewer1">Select Interviewer 1: </label><br>
-                <input ng-model="editInterviewer1" type="text" id="myInterviewer1" required />
-              </div>
-              <div>
-                <label for="myInterviewer2">Select Interviewer 2: </label><br>
-                <input ng-model="editInterviewer2" type="text" id="myInterviewer2" required />
-              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div>
+                    <label for="myLocation">Select Interview Location: </label><br>
+                    <input ng-model="editLocation" type="text" id="myLocation" required/>
+                  </div>
+                </div>
+              </div> 
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button ng-click="editEvent(calendarEvent)" ng-disabled="editInterview.$invalid" type="submit" class="btn btn-primary" value="Submit" data-dismiss="modal">Update Interview</button>
+            <button ng-click="editEvent(calendarEvent)" ng-disabled="editInterview.$invalid" type="submit" class="btn btn-primary" value="Submit">Update Interview</button>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->

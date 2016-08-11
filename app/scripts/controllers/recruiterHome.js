@@ -15,6 +15,7 @@ angular.module('amExHackathonApp')
   .controller('RecruiterHomeCtrl', function ($scope, calendarService) {
     $scope.init = function() {
       //initializes the fields
+      $scope.interviewConflict = false;
       $scope.interviewDate = '';
       $scope.interviewTime = '9:00 AM';
       $scope.location = '';
@@ -174,7 +175,26 @@ angular.module('amExHackathonApp')
       time.setHours($scope.hour,$scope.min);
       var endTime = new Date(time);
       endTime.setHours(endTime.getHours() + 1, $scope.min);
-
+      for(var i = 0; i<$scope.events.length; i++){
+        if($scope.events[i].startsAt.getTime() === time.getTime()){
+          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.interviewer1 && $scope.events[i].candidate.Interview.interviewer_2 === $scope.interviewer2){
+            $scope.interviewConflict = true;
+            $scope.invalidInterviewer = $scope.interviewer1+ " and " + $scope.interviewer2 + " have";
+            return;
+          }
+          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.interviewer1){
+            $scope.interviewConflict = true;
+            $scope.invalidInterviewer = $scope.interviewer1 + " has";
+            return;
+          }
+          if($scope.events[i].candidate.Interview.interviewer_2 === $scope.interviewer2){
+            $scope.interviewConflict = true;
+            $scope.invalidInterviewer = $scope.interviewer2 + " has";
+            return;
+          }
+        }
+      }
+      $scope.interviewConflict = false;
       //adds the candidates interview to the calendar
       $scope.events.push({
         title: $scope.selectedCandidate +": "+ $scope.location,
@@ -186,8 +206,6 @@ angular.module('amExHackathonApp')
         },
         candidate: $scope.selectedCandidate
       });
-      console.log('Starts: '+$scope.events[$scope.events.length - 1].startsAt);
-      console.log('Ends: '+$scope.events[$scope.events.length - 1].endsAt);
 
       //adds the interview information into the database
       var interviewInfo = {
@@ -231,7 +249,26 @@ angular.module('amExHackathonApp')
         $scope.hour = newHour;
       }
       time.setHours($scope.hour,$scope.min);
-
+      for(var i = 0; i<$scope.events.length; i++){
+        if($scope.events[i].startsAt.getTime() === time.getTime() && $scope.events[i].candidate.id !== $scope.editedCandidate.id){
+          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.editInterviewer1 && $scope.events[i].candidate.Interview.interviewer_2 === $scope.editInterviewer2){
+            $scope.interviewConflict = true;
+            $scope.invalidInterviewer = $scope.editInterviewer1+ " and " + $scope.editInterviewer2 + " have";
+            return;
+          }
+          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.editInterviewer1){
+            $scope.interviewConflict = true;
+            $scope.invalidInterviewer = $scope.editInterviewer1 + " has";
+            return;
+          }
+          if($scope.events[i].candidate.Interview.interviewer_2 === $scope.editInterviewer2){
+            $scope.interviewConflict = true;
+            $scope.invalidInterviewer = $scope.editInterviewer2 + " has";
+            return;
+          }
+        }
+      }
+      $scope.interviewConflict = false;
       //adds the interview information into the database
       var interviewInfo = {
         Interview_Date:  time,
