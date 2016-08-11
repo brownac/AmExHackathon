@@ -22,12 +22,12 @@ span[data-cal-date]{
   pointer-events: none;
 }
 
-.right-addon .glyphicon { 
+.right-addon .glyphicon {
   right: 0px;
 }
 
-.right-addon input { 
-  padding-right: 30px; 
+.right-addon input {
+  padding-right: 30px;
 }
 
 #ui-datepicker-div{
@@ -59,14 +59,12 @@ span.input-group-addon{
 }
 
 /* Recruiter form styles */
-
 #recruiter-form-container {
-  float: right;
-  display: block;
-  width: 67%;
-  right: 0px;
-  margin-left: auto;
-  margin-right: auto;
+    float: left;
+    display: block;
+    width: 70%;
+    right: 0px;
+    margin-left: 240px;
 }
 
 button.candidate-queue-person {
@@ -78,4 +76,14 @@ button.candidate-queue-person {
 .button-link, .button-link:hover {
   text-decoration: none;
   color: white;
+}
+
+.cal-modal{
+  background-color: rgba(0, 0, 0, 0.22);
+}
+
+.cal-select-candidate{
+  height: 26px;
+  margin: 0;
+  width: 43%;
 }

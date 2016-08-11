@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button</p>
+
+<button onclick="myFunction()">Click me</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+    document.getElementById("demo").innerHTML = "Hello World";
+    var nodemailer = require("nodemailer");
+
+    //console.log("here");
+
+    // create reusable transport method (opens pool of SMTP connections)
+    var smtpTransport = nodemailer.createTransport("SMTP",{
+        service: "Gmail",
+        auth: {
+            // gmail account for testing. Should be replaced with Michelle's email
+            user: "recruitingapp427@gmail.com",
+            pass: "AEXP65219!"
+        }
+    });
+
+    var mailOptions = {
+        from: "Fred Foo ✔ <foo@blurdybloop.com>", // sender address
+        to: "bar@blurdybloop.com, baz@blurdybloop.com", // list of receivers
+        subject: "Hello ✔", // Subject line
+        text: "Hello world ✔", // plaintext body
+        html: "<b>Hello world ✔</b>" // html body
+    }
+
+    // send mail with defined transport object
+    smtpTransport.sendMail(mailOptions, function(error, response){
+        if(error){
+            console.log(error);
+        }else{
+            console.log("Message sent: " + response.message);
+        }
+
+        // if you don't want to use this transport object anymore, uncomment following line
+        smtpTransport.close(); // shut down the connection pool, no more messages
+    });
+
+}
+</script>
+
+
+<script src="../controllers/Template.js"></script>
+
+
+</body>
+</html>

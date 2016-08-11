@@ -215,7 +215,7 @@ button.candidate-queue-person {
 }
 
 /* The Close Button */
-.close {
+#imageModalClose {
     position: fixed;
     top: 15px;
     right: 35px;
@@ -225,8 +225,8 @@ button.candidate-queue-person {
     transition: 0.3s;
 }
 
-.close:hover,
-.close:focus {
+#imageModalClose :hover,
+#imageModalClose :focus {
     color: #bbb;
     text-decoration: none;
     cursor: pointer;

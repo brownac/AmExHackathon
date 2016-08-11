@@ -36,11 +36,14 @@
     <div class="info-group">
       <label>Status:</label> {{candidate.finalEvaluation}}
     </div>
+		<div class="info-group">
+      <label>Notes:</label> {{candidate.notes}}
+    </div>
     <div class="info-group">
       <label>Screener:</label> {{candidate.screenerInitials}}
     </div>
     <div class="info-group">
-      <label>Interviewers:</label>
+      <label>Interviewers:</label> {{candidate.Interview.interviewer_1}}, {{candidate.Interview.interviewer_2}}
     </div>
 	</div>
 </script>
@@ -73,7 +76,7 @@
 
 		<!-- The Modal -->
 		<div id="imageModal" class="modal" role="dialog" aria-labelledby="myModalLabel">
-			<span class="close" data-dismiss="modal" data-target="#imageModal">×</span>
+			<span id="imageModalClose" class="close" data-dismiss="modal" data-target="#imageModal">×</span>
 			<img class="modal-content" id="modalImage" role="document" ng-src="{{candidate.Images[0].img_uri}}" alt="{{candidate.firstName}} {{candidate.lastName}}'s Resume">
 			<div id="imageCaption"></div>
 		</div>
