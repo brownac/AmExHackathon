@@ -51,9 +51,7 @@ angular.module('amExHackathonApp')
         $scope.buttonText = "Successfully Submitted";
         $scope.submitBtnClasses = "btn btn-success";
 
-        $timeout(() => {
-          $location.path('screener/screenerSplash');
-        }, 1000);
+        $location.path('screener/screenerSplash');
     };
 
     init();
