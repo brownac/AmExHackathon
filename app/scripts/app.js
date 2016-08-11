@@ -35,6 +35,11 @@ angular
         controller: 'CandidateInputCtrl',
         controllerAs: 'candidateInput'
       })
+      .when('/screener/screenerSplash', {
+        templateUrl: 'views/screenerSplash.html',
+        controller: 'ScreenerSplashCtrl',
+        controllerAs: 'screenerSplash'
+      })
       .when('/screener/candidateForm', {
         templateUrl: 'views/candidateForm.html',
         controller: 'CandidateFormCtrl',
