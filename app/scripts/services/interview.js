@@ -16,6 +16,7 @@ angular.module('amExHackathonApp')
     });
   });
 
+
 angular.module('amExHackathonApp')
   .factory('linkFTService', function($resource) {
     return $resource('/api/interviews/interview_FT_Link', null, {

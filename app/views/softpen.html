@@ -1,6 +1,6 @@
 <div>
-  <div class="container">
-    <div class="row tools-bar" id="options" >
+  <div class="container  col-md-10 col-md-offset-1">
+    <div class="row tools-bar center-toolbar" id="options" >
       <div class="btn-group" role="group" aria-label="...">
         <button value="black" type="button" class="btn btn-default color-button active">
           <span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
@@ -53,7 +53,7 @@
           <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
         </button>
       </div>
-      <div class="pull-right">
+      <div class="pull-right camera-pull-right">
         <div class="camera-capture">
           <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" custom-on-change="readImage">
           <label for="resume" class="resumeImageLabel"><span class="glyphicon glyphicon-camera camera-glyph"></span></label>
@@ -61,12 +61,15 @@
       </div>
       <!-- <button class="btn btn-info" style="margin-left: 50px">Stop</button> -->
     </div>
-    <div class="row" style="margin-top: 50px">
+
+    <div class="row" style="margin-top: 65px">
       <div>
-        <img class="mustLoad" id="resume-image" ng-src="{{resumeBase64}}" style="display: none;" />
         <canvas class="" id="c" height="995" width="775" style="border: 1px solid black"></canvas>
       </div>
     </div>
-    <button ng-click="next()" id="next" class="btn btn-danger" style="margin-left: 50px">Next</button>
+
+    <div class="row col-md-2 col-md-offset-5 btn-next">
+      <button ng-click="next()" id="next" class="btn btn-danger">Next</button>
+    </div>
   </div>
 </div>

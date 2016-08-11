@@ -98,6 +98,7 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
 
     $scope.sendingData = true;
 
+
     linkFTService.save($scope.postLinkFT).$promise.then(values => {
     // show success by changing submit button class and value
     $scope.pictureAdded = false;
