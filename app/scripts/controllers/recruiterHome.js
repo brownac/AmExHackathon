@@ -173,6 +173,7 @@ angular.module('amExHackathonApp')
 
     $scope.addEvent = function() {
       var time = new Date($scope.interviewDate);
+      $scope.interviewConflict = false;
       getCorrectTime($scope.interviewTime);
       if($scope.interviewTime.includes("PM") && $scope.hour !== "12"){
         var newHour = parseInt($scope.hour) + 12;
@@ -233,6 +234,7 @@ angular.module('amExHackathonApp')
     //edit interview time
     $scope.getEditingForm = function(calendarEvent) {
       $("#editingModal").modal(); //get edit modal
+      $scope.interviewConflict = false;
       var index = $scope.events.indexOf(calendarEvent); //get index of specified interview
       $scope.editedCandidate = calendarEvent.candidate;
 
