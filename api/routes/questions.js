@@ -15,11 +15,6 @@ router.post('/', function(req, res) {
 		id:req.body.id,
 		form_type:req.body.form_type,
 		version:req.body.version,
-		page_1: '',
-		page_2: '',
-		page_3: '',
-		page_4: '',
-		page_5: '',
 		active: req.body.active,
 		form_model: req.body.form_model
 	});
@@ -68,11 +63,6 @@ router.put('/', function(req, res) {
 		id:req.body.id,
 		form_type:req.body.form_type,
 		version:req.body.version,
-		page_1: '',
-		page_2: '',
-		page_3: '',
-		page_4: '',
-		page_5: '',
 		active: req.body.active,
 		form_model: req.body.form_model
 	},
