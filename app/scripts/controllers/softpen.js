@@ -209,6 +209,64 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
     $location.path('screener/candidateInput');
   };
 
+  var img = null;
+  var angle = 0;
+
+  var rotationMatrix = function(degrees) {
+    if (!img) {
+      return;
+    }
+
+    var radians = Math.PI * degrees / 180;
+
+    /* see https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform */
+    return [
+      Math.cos(radians),
+      Math.sin(radians),
+      -Math.sin(radians),
+      Math.cos(radians),
+      0,
+      0
+    ];
+  };
+
+  var centerAndScaleImage = function() {
+    if (!img) {
+      return
+    }
+
+    // use these to scale the image
+    var hRatio = null;
+    var wRatio = null;
+
+    // if rotated
+    if (angle == 90 || angle == 270) {
+
+      // use img.width since it is rotated
+      hRatio = $scope.canvas.getHeight() / img.width;
+      wRatio = $scope.canvas.getWidth() / img.height;
+    }
+    else {
+      hRatio = $scope.canvas.getHeight() / img.height;
+      wRatio = $scope.canvas.getWidth() / img.width;
+    }
+
+    // scale by the smaller ratio
+    img.scale(Math.min(hRatio, wRatio));
+
+    $scope.canvas.centerObject(img);
+  }
+
+  $scope.rotateBy = function(degrees) {
+    if (!img) {
+      return;
+    }
+
+    angle += degrees;
+    img.transformMatrix = rotationMatrix(angle);
+    centerAndScaleImage();
+  };
+
   $scope.readImage = function(event) {
     var files = event.target.files;
 
@@ -220,32 +278,19 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
           var canvas = loadFabric();
 
           fabric.Image.fromURL(e.target.result, function(oImg) {
-            var isLandscape = oImg.width > oImg.height;
-
-            // use these to scale the image
-            var hRatio = null;
-            var wRatio = null;
-            if (isLandscape) {
-              // 90 degree rotation matrix
-              oImg.transformMatrix = [0, 1, -1, 0, 0, 0];
-
-              // use oImg.width since it is landscape
-              hRatio = canvas.getHeight() / oImg.width;
-              wRatio = canvas.getWidth() / oImg.height;
-            }
-            else {
-              hRatio = canvas.getHeight() / oImg.height;
-              wRatio = canvas.getWidth() / oImg.width;
-            }
-
-            // scale by the smaller ratio
-            oImg.scale(Math.min(hRatio, wRatio));
-
-            canvas.add(oImg);
-            canvas.centerObject(oImg);
-
+            img = oImg;
             $scope.canvas = canvas;
             $scope.pictureAdded = true;
+
+            // if landscape, rotate 90 degrees right
+            var isLandscape = oImg.width > oImg.height;
+
+            if (isLandscape) {
+              $scope.rotateBy(90);
+            }
+
+            centerAndScaleImage();
+            $scope.canvas.add(img);
           });
         });
       };
