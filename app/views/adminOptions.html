@@ -113,18 +113,18 @@
         <form name="linkForm" class="text-left">
           <div class="form-group">
             <label class="control-label">Internship Link:</label>
-            <input class="form-control" type="text" ng-model="postCandidate.firstName" required>
+            <input class="form-control" type="text" ng-model="interview_Int_Link" required>
           </div>
 
           <div class="form-group">
             <label class="control-label">Full-Time Link:</label>
-            <input class="form-control" type="text" ng-model="postCandidate.lastName" required>
+            <input class="form-control" type="text" ng-model="interview_FT_Link" required>
           </div>
 
           <div class="text-center">
             <span class="glyphicon glyphicon-refresh" ng-show="sendingData" aria-hidden="true"></span>
             <span class="glyphicon-class" ng-show="sendingData"></span>
-            <button type="submit submitBtn" ng-class="submitBtnClasses" data-ng-click="submit()" >{{buttonText}}</button>
+            <button type="submit submitBtn" ng-class="submitBtnClasses" ng-disabled="linkForm.$invalid" data-ng-click="submitLink()" >{{buttonText}}</button>
             <button type="submit" class="btn btn-warning">Cancel</button>
           </div>
         </form>

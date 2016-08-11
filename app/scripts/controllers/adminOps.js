@@ -9,13 +9,17 @@
  */
 
 
-angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scope, $q, $timeout, $routeParams, $location, candidateService, questionsService) {
+angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scope, $q, $timeout, $routeParams, $location, linkService, calendarService, questionsService) {
 
   $scope.submitted = false;
   $scope.saved = false;
   $scope.fileId = 0;
   $scope.newForm = {};
   $scope.forms = [];
+  $scope.interviews = [];
+  $scope.interview_FT_Link;
+  $scope.interview_Int_Link;
+
 
   $scope.init = function() {
     $scope.submitted = false;
@@ -32,6 +36,16 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     $scope.forms = values;
     console.log("IMAGES: " + values.Images);
     });
+
+    calendarService.query().$promise.then(values => {
+    $scope.interviews = values;
+    var i;
+    for (i = 0; i < $scope.interviews.length; i++) {
+      $scope.interviews[i].Interview.interview_FT_Link = '';
+      $scope.interviews[i].Interview.interview_Int_Link = '';
+    }
+    });
+
   };
 
   $scope.toggleActive = function(form) {
@@ -94,20 +108,17 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
   };
 
   $scope.submitLink = function() {
-
-
     $scope.sendingData = true;
+    console.log("WE MADE IT TO HERE");
+    var i;
+    for (i = 0; i < $scope.interviews.length; i++) {
+      $scope.interviews[i].Interview.interview_FT_Link = $scope.interview_FT_Link;
+      $scope.interviews[i].Interview.interview_Int_Link = $scope.interview_Int_Link;
 
-
-    linkFTService.save($scope.postLinkFT).$promise.then(values => {
-    // show success by changing submit button class and value
-    $scope.pictureAdded = false;
-    $scope.sendingData = false;
-    $scope.buttonText = "Successfully Submitted";
-    $scope.submitBtnClasses = "btn btn-success";
-    });
-
-
+      linkService.update($scope.interviews[i]).$promise.then(values => {
+      console.log("WHY NOT");
+      });
+    }
   };
 
   $scope.tabs = [{

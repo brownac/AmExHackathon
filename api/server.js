@@ -15,8 +15,12 @@ var app = express();
 app.use(morgan('dev'));
 
 // request parsing
-app.use(bodyParser.json({ limit: "30mb" })); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json({
+  limit: "30mb"
+})); // for parsing application/json
+app.use(bodyParser.urlencoded({
+  extended: true
+})); // for parsing application/x-www-form-urlencoded
 
 // uploads directory
 app.use('/uploads', express.static(utils.uploadsDir));
@@ -38,7 +42,9 @@ app.use('/api', routes);
 //sync the models with the data, will creat the schemas if not present
 //starts the server
 let port = 4500;
-models.sequelize.sync().then(function () {
+models.sequelize.sync({
+  force: true
+}).then(function() {
   var server = app.listen(port, function() {
     console.log('Express server listening on port ' + port);
   });
