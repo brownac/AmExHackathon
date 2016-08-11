@@ -57,12 +57,10 @@ router.post('/', function(req, res) {
 		        image.save();
 
 		        //creates an interview spot for the candidate
-		        if(req.body.finalEvaluation !== 'turndown'){
-			        var interview = models.Interviews.build({
-			        	id: candidate.id
-			        });
-							interview.save();
-		        }
+		        var interview = models.Interviews.build({
+		        	id: candidate.id
+		        });
+				interview.save();
 
 		        res.json(candidate);
 		    }
@@ -133,7 +131,7 @@ router.get('/:id', function(req, res) {
 			required: true
 		}, {
 			model: models.Interviews,
-			required: true
+			required: false
 		}]
 	}).then(function(result) {
 		if (result !== null) {
