@@ -240,7 +240,7 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
     var wRatio = null;
 
     // if rotated
-    if (angle == 90 || angle == 270) {
+    if (Math.abs(angle) === 90 || Math.abs(angle) === 270) {
 
       // use img.width since it is rotated
       hRatio = $scope.canvas.getHeight() / img.width;
@@ -255,7 +255,7 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
     img.scale(Math.min(hRatio, wRatio));
 
     $scope.canvas.centerObject(img);
-  }
+  };
 
   $scope.rotateBy = function(degrees) {
     if (!img) {
@@ -263,6 +263,7 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
     }
 
     angle += degrees;
+    angle %= 360;
     img.transformMatrix = rotationMatrix(angle);
     centerAndScaleImage();
   };
