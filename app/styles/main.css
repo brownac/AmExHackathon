@@ -239,6 +239,10 @@ button.candidate-queue-person {
     }
 }
 
+.unicode-icon {
+  font-size: 1.5em;
+}
+
 .interview-row-bottom-buffer {
   margin-bottom: 5px;
 }
