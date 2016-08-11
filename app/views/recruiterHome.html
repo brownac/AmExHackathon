@@ -25,14 +25,14 @@
               <div class="row">
                 <div class="col-xs-6">
                   <div>
-                    <label for="myInterviewer1">Select Interviewer 1: </label><br>
-                    <input ng-model="interviewer1" type="text" id="myInterviewer1" required />
+                    <label for="selInterview1">Select Interviewer 1:</label><br>
+                    <select ng-options="interviewer for interviewer in interviewerDropdown" ng-model="interviewer1" class="cal-select-interviewer" required> </select>
                   </div>
                 </div>
                 <div class="col-xs-6">
                   <div>
-                    <label for="myInterviewer2">Select Interviewer 2: </label><br>
-                    <input ng-model="interviewer2" type="text" id="myInterviewer2" required />
+                    <label for="selInterview2">Select Interviewer 2:</label><br>
+                    <select ng-options="interviewer for interviewer in interviewerDropdown" ng-model="interviewer2" class="cal-select-interviewer" required> </select>
                   </div> 
                 </div>
               </div>

@@ -24,6 +24,7 @@ angular.module('amExHackathonApp')
       //initializes the array
       $scope.candidateQueue = [];
       $scope.scheduledCandidates = [];
+      $scope.interviewerDropdown = ["David", "Katrina", "Jules", "Justin", "GOD"];
       $scope.events = [];
       //creates the array of candidates to be scheduled
       var query = {
