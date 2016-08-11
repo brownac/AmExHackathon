@@ -22,11 +22,16 @@ angular.module('amExHackathonApp')
 
     const init = function() {
       $scope.postCandidate = candidateToScreenerService.get();
-      $scope.pictureAdded = false;
+      $scope.resumeAdded = false;
+      $scope.puzzleAdded = false;
 
-      if (softpenImage.src !== null && puzzleImage.src !== null) {
-        $scope.pictureAdded = true;
+      if (softpenImage.src !== null) {
+        $scope.resumeAdded = true;
         $scope.postCandidate.resumeBase64 = softpenImage.src;
+      }
+
+      if (puzzleImage.src !== null) {
+        $scope.puzzleAdded = true;
         $scope.postCandidate.puzzleBase64 = puzzleImage.src
       }
 
