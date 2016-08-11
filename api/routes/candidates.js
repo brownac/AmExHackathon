@@ -30,10 +30,14 @@ router.post('/', function(req, res) {
 	// persist an instance
 	candidate.save().then(() => {
 	    const imageName = `${candidate.id}.resume.png`;
+	    const puzzleName = `${candidate.id}.puzzle.png`;
 	    const imgUri = `/uploads/${imageName}`;
+	    const puzzleUri = `/uploads/${puzzleName}`;
 	    const imgAbsPath = path.join(utils.uploadsDir, imageName);
+	    const puzzleAbsPath = path.join(utils.uploadsDir, puzzleName);
 
 	    let base64Png = req.body.resumeBase64.split(',')[1];
+		let puzzleBase64Png = req.body.puzzleBase64.split(',')[1];
 
 	    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
 		    if (err) {
@@ -61,7 +65,26 @@ router.post('/', function(req, res) {
 		        	id: candidate.id
 		        });
 				interview.save();
-
+		    }
+	    });
+	    fs.writeFile(puzzleAbsPath, puzzleBase64Png, {encoding: 'base64'} , err => {
+		    if (err) {
+		        res.status(500).json({
+			        errors: [
+			          "Could not save image to disk! Node.js threw an error",
+			          err
+			        ]
+		        });
+		    }
+		    else {
+		        //save image uri into database
+		        var image_type = 'puzzle';
+		        var image = models.Images.build({
+		          id: candidate.id,
+		          img_uri: puzzleUri,
+		          type: image_type
+		        });
+		        image.save();
 		        res.json(candidate);
 		    }
 	    });
