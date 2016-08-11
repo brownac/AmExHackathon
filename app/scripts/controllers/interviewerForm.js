@@ -11,10 +11,21 @@ angular.module('amExHackathonApp')
   .controller('InterviewerFormCtrl', function ($scope, $routeParams, candidateService, questionsService) {
 
   var candidateId = $routeParams.candidateId;
-  $scope.currentPage = '';
+  $scope.pages = [];
+  $scope.currentInterview = '';
   $scope.candidate = {};
   $scope.activeForms = [];
   $scope.pictureAdded = false;
+  $scope.endInterview = false;
+  $scope.interviewQId = 0;
+
+  $scope.setInterview = function() {
+    $scope.currentInterview = $scope.activeForms[$scope.interviewQId];
+    $scope.pages = $scope.currentInterview.Images;
+    if($scope.interviewQId + 1 === $scope.activeForms.length) {
+      $scope.endInterview = true;
+    }
+  };
 
   $scope.init = function() {
     // Get selected Candidate information
@@ -34,7 +45,8 @@ angular.module('amExHackathonApp')
 
       // Set the canvas current page
       if($scope.activeForms !== undefined) {
-        $scope.currentPage = $scope.activeForms[0].Images[0].img_uri;
+        $scope.interviewQId = 0;
+        $scope.setInterview();
       }
     });
 
@@ -42,6 +54,8 @@ angular.module('amExHackathonApp')
   };
 
   $scope.next = function() {
+
+    // SAVE THE IMAGE
     var canvas = $("#c")[0];
     var image = new Image();
     image.src = canvas.toDataURL("image/png");
@@ -51,6 +65,16 @@ angular.module('amExHackathonApp')
 
     // redirect to form, which uses softpenImage
     $location.path('screener/candidateForm');
+
+    // SET THE NEXT page
+    if($scope.endInterview) {
+        $timeout(() => {
+          $location.path('interviewer/interviews');
+        }, 1000);
+    } else {
+      interviewQId++;
+      setInterview();
+    }
   };
 
   $scope.readImage = function(event) {
