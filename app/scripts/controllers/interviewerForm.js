@@ -8,9 +8,38 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('InterviewerFormCtrl', function ($scope, $routeParams, candidateService) {
+  .controller('InterviewerFormCtrl', function ($scope, $routeParams, candidateService, questionsService) {
 
+  var candidateId = $routeParams.candidateId;
+  $scope.currentPage = '';
+  $scope.candidate = {};
+  $scope.activeForms = [];
   $scope.pictureAdded = false;
+
+  $scope.init = function() {
+    // Get selected Candidate information
+    candidateService.get({ id: candidateId }).$promise.then(value => {
+      $scope.candidate = value;
+    });
+
+    // Get the active form
+    questionsService.query().$promise.then(values => {
+      console.log("THIS IS WORKING");
+      var i;
+      for(i = 0; i < values.length; i++) {
+        if(values[i].active === true) {
+          $scope.activeForms.push(values[i]);
+        }
+      }
+
+      // Set the canvas current page
+      if($scope.activeForms !== undefined) {
+        $scope.currentPage = $scope.activeForms[0].Images[0].img_uri;
+      }
+    });
+
+
+  };
 
   $scope.next = function() {
     var canvas = $("#c")[0];
@@ -31,7 +60,7 @@ angular.module('amExHackathonApp')
       var reader = new FileReader();
       reader.onload = function(e) {
         $scope.$apply(function() {
-          $scope.resumeBase64 = e.target.result;
+          $scope.QuestionBase64 = e.target.result;
           $scope.pictureAdded = true;
         });
       };
@@ -40,6 +69,8 @@ angular.module('amExHackathonApp')
   };
 
   loadFabric();
+
+  $scope.init();
 });
 
 

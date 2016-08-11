@@ -106,7 +106,7 @@ router.get('/', function(req, res) {
 	if(req.query.sequelize !== undefined) {
 		query = JSON.parse(req.query.sequelize);
 	}
-	
+
 	var sql = {
 				include: [{
 					model: models.Images,

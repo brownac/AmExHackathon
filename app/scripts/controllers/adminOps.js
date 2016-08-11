@@ -27,6 +27,7 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     questionsService.query().$promise.then(values => {
       console.log("INIT CALLED");
       $scope.forms = values;
+      console.log("IMAGES: " + values.Images);
     });
   };
 
