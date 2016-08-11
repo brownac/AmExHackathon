@@ -15,7 +15,10 @@ module.exports = function(sequelize, DataTypes) {
     interview_Location: {
       type: DataTypes.STRING
     },
-    interviewer_Name: {
+    interviewer_1: {
+      type: DataTypes.STRING
+    },
+    interviewer_2: {
       type: DataTypes.STRING
     }
   }, {
