@@ -65,6 +65,11 @@ angular
         controller: 'ViewCandidateCtrl',
         controllerAs: 'ViewCandidate'
       })
+      .when('/interviewer/interviewerTable', {
+        templateUrl: 'views/interviewerTable.html',
+        controller: 'InterviewerTableCtrl',
+        controllerAs: 'InterviewerTable'
+      })
       .otherwise({
         redirectTo: '/'
       });
