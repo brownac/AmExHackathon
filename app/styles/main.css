@@ -118,7 +118,7 @@
 
 /* viewCandidate.html */
 .candidate-name {
-  color:#494949;  
+  color:#494949;
 }
 
 .tab-content {
@@ -237,4 +237,12 @@ button.candidate-queue-person {
     .modal-content {
         width: 100%;
     }
+}
+
+.interview-row-bottom-buffer {
+  margin-bottom: 5px;
+}
+
+.admin-option-top-margin {
+  margin-top: 50px;
 }
