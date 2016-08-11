@@ -19,6 +19,7 @@ router.post('/', function(req, res) {
 	// persist an instance
   archive.save().then(() => {
   	var i;
+  	var archive_id = `${archive.id}`;
   	for(i = 0; i < req.body.files.length; ++i) {
 	    const imageName = `${archive.id}.comments_image_` + i + `.png`;
 	    const imgUri = `/uploads/${imageName}`;
@@ -42,6 +43,7 @@ router.post('/', function(req, res) {
 		        var image_type = 'comments';
 		        var image = models.Images.build({
 		          // add the preceding forwardslash
+		          arc_id:archive_id,
 		          img_uri: imgUri,
 		          type: image_type
 		        });
@@ -74,25 +76,26 @@ router.put('/', function(req, res) {
 	});
 });
 
-// // Get all archives
-// router.get('/', function(req, res) {
-// 	var query = {};
-// 	if(req.query.sequelize !== undefined) {
-// 		query = JSON.parse(req.query.sequelize);
-// 	}
+// Get all archives
+router.get('/', function(req, res) {
+	console.log("WE ARE IN GET FOR ARCHIVES");
+	var query = {};
+	if(req.query.sequelize !== undefined) {
+		query = JSON.parse(req.query.sequelize);
+	}
 	
-// 	var sql = {
-// 				include: [{
-// 					model: models.Images,
-// 					required: true
-// 				}],
-// 				where: query
-// 			  };
-// 	models.Archives.findAll(sql)
-// 	.then(function(result) {
-// 		res.json(result);
-// 	});
-// });
+	var sql = {
+				include: [{
+					model: models.Images,
+					required: true
+				}],
+				where: query
+			  };
+	models.Archives.findAll(sql)
+	.then(function(result) {
+		res.json(result);
+	});
+});
 
 // Get archive by id
 router.get('/:id', function(req, res) {
