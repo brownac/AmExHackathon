@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="tabNotes.html">
 	<div id="notes-tab-content">
     <img id="tab-resume-img" ng-src="{{candidate.Images[0].img_uri}}" alt="Resume" width="200" height="275" data-toggle="modal" data-target="#imageModal">
-    <img id="tab-puzzle-img" ng-src="{{candidate.Images[1].img_uri}}" alt="Puzzle" width="200" height="275" data-toggle="modal" data-target="#imageModal">
+    <img id="tab-puzzle-img" ng-src="{{candidate.Images[1].img_uri}}" alt="Puzzle" width="200" height="275" data-toggle="modal" data-target="#puzzleModal">
 	</div>
 </script>
 
@@ -81,5 +81,12 @@
 			<img class="modal-content" id="modalImage" role="document" ng-src="{{candidate.Images[0].img_uri}}" alt="{{candidate.firstName}} {{candidate.lastName}}'s Resume">
 			<div id="imageCaption"></div>
 		</div>
+
+		<div id="puzzleModal" class="modal" role="dialog" aria-labelledby="myModalLabel">
+			<span id="puzzleModalClose" class="close" data-dismiss="modal" data-target="#puzzleModal">×</span>
+			<img class="modal-content" id="modalImage" role="document" ng-src="{{candidate.Images[1].img_uri}}" alt="{{candidate.firstName}} {{candidate.lastName}}'s Puzzle">
+			<div id="puzzleCaption"></div>
+		</div>
+
   </div>
 </div>
