@@ -90,5 +90,11 @@ button.candidate-queue-person {
   height: 26px;
   margin: 0;
   width: 43%;
+  color: #333 !important;
 }
->>>>>>> Development-Unstable
+.cal-select-interviewer{
+  height: 26px;
+  margin: 0;
+  width: 100%;
+  color: #333 !important;
+}

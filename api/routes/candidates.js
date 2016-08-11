@@ -58,7 +58,7 @@ router.post('/', function(req, res) {
 
 	        //creates an interview spot for the candidate
 	        var interview = models.Interviews.build({
-	        	id: candidate.id
+	        	can_id: candidate.id
 	        });
 			interview.save();
 		  }
