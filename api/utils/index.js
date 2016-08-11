@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var path = require('path');
 var process = require('process');
 
@@ -21,7 +21,6 @@ module.exports = {
    * Checks arguments currently
    */
   dev,
-
   /*
    * the full paths to several important directories
    */
