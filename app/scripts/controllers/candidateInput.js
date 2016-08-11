@@ -52,7 +52,7 @@ angular.module('amExHackathonApp')
         $scope.submitBtnClasses = "btn btn-success";
 
         $timeout(() => {
-          $location.path('screener/candidateForm');
+          $location.path('screener/screenerSplash');
         }, 1000);
     };
 
