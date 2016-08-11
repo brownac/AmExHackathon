@@ -35,6 +35,11 @@ angular
         controller: 'CandidateInputCtrl',
         controllerAs: 'candidateInput'
       })
+      .when('/screener/puzzle', {
+        templateUrl: 'views/puzzleCanvas.html',
+        controller: 'PuzzleCtrl',
+        controllerAs: 'puzzle'
+      })
       .when('/screener/screenerSplash', {
         templateUrl: 'views/screenerSplash.html',
         controller: 'ScreenerSplashCtrl',
