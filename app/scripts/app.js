@@ -60,7 +60,12 @@ angular
         controller: 'RecruiterHomeCtrl',
         controllerAs: 'recruiterHome'
       })
-      .when('/interviewer/interviewerForm', {
+      .when('/interviewer/interviews', {
+        templateUrl: 'views/interviews.html',
+        controller: 'InterviewsCtrl',
+        controllerAs: 'Interviews'
+      })
+      .when('/interviewer/:candidateId', {
         templateUrl: 'views/interviewerForm.html',
         controller: 'InterviewerFormCtrl',
         controllerAs: 'InterviewerForm'
@@ -74,6 +79,11 @@ angular
         templateUrl: 'views/viewCandidate.html',
         controller: 'ViewCandidateCtrl',
         controllerAs: 'ViewCandidate'
+      })
+      .when('/admin/adminOptions', {
+        templateUrl: 'views/adminOptions.html',
+        controller: 'adminOptionsCtrl',
+        controllerAs: 'adminOps'
       })
       .otherwise({
         redirectTo: '/'
