@@ -48,7 +48,7 @@ router.post('/', function(req, res) {
         //save image uri into database
         var image_type = 'resume';
         var image = models.Images.build({
-          id: candidate.id,
+          can_id: candidate.id,
 
           // add the preceding forwardslash
           img_uri: imgUri,
@@ -59,7 +59,7 @@ router.post('/', function(req, res) {
         //creates an interview spot for the candidate
         if(req.body.finalEvaluation !== 'turndown'){
 	        var interview = models.Interviews.build({
-	        	id: candidate.id
+	        	can_id: candidate.id
 	        });
         }
         interview.save();

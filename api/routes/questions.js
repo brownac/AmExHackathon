@@ -13,6 +13,9 @@ router.post('/', function(req, res) {
 	// create an instance
 	var question = models.Questions.build({
 		id:req.body.id,
+		can_id:req.body.can_id,
+		que_id:req.body.que_id,
+		arc_Id:req.body.arc_id,
 		form_type:req.body.form_type,
 		version:req.body.version,
 		active: req.body.active,
@@ -22,6 +25,7 @@ router.post('/', function(req, res) {
 	// persist an instance
   question.save().then(() => {
   	var i;
+  	var question_id = `${question.id}`;
   	for(i = 0; i < req.body.files.length; ++i) {
 	    const imageName = `${question.id}.question_image_` + i + `.png`;
 	    const imgUri = `/uploads/${imageName}`;
@@ -45,8 +49,10 @@ router.post('/', function(req, res) {
 		        var image_type = 'question';
 		        var image = models.Images.build({
 		          // add the preceding forwardslash
+		          que_id:question_id,
 		          img_uri: imgUri,
-		          type: image_type
+		          type: image_type,
+
 		        });
 		        image.save();
 		      }
@@ -61,6 +67,9 @@ router.post('/', function(req, res) {
 router.put('/', function(req, res) {
 	models.Questions.update({
 		id:req.body.id,
+		can_id:req.body.can_id,
+		que_id:req.body.que_id,
+		arc_Id:req.body.arc_id,
 		form_type:req.body.form_type,
 		version:req.body.version,
 		active: req.body.active,
@@ -87,8 +96,6 @@ router.get('/', function(req, res) {
 	if(req.query.sequelize !== undefined) {
 		query = JSON.parse(req.query.sequelize);
 	}
-
-	console.log("QUERy: " + req.query.sequelize);
 
 	var sql = {
 				include: [{
