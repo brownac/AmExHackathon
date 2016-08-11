@@ -30,6 +30,9 @@ module.exports = function(sequelize, DataTypes) {
     },
     active: {
       type: DataTypes.BOOLEAN
+    },
+    form_model: {
+      type: DataTypes.CHAR
     }
   }, {
     timestamps: false,

@@ -15,13 +15,15 @@ router.post('/', function(req, res) {
 		id:req.body.id,
 		form_type:req.body.form_type,
 		version:req.body.version,
-		page_1:req.body.page_1,
-		page_2:req.body.page_2,
-		page_3:req.body.page_3,
-		page_4:req.body.page_4,
-		page_5:req.body.page_5
+		page_1: '',
+		page_2: '',
+		page_3: '',
+		page_4: '',
+		page_5: '',
+		active: req.body.active,
+		form_model: req.body.form_model
 	});
-	
+
 	// persist an instance
   question.save().then(() => {
   	var i;
@@ -54,22 +56,25 @@ router.post('/', function(req, res) {
 		        image.save();
 		      }
 		    });
+			}
 		}
-	}
-	res.json(question);
+		res.json(question);
   });
 });
 
 // Update a question by id
 router.put('/', function(req, res) {
 	models.Questions.update({
+		id:req.body.id,
 		form_type:req.body.form_type,
 		version:req.body.version,
-		page_1:req.body.page_1,
-		page_2:req.body.page_2,
-		page_3:req.body.page_3,
-		page_4:req.body.page_4,
-		page_5:req.body.page_5
+		page_1: '',
+		page_2: '',
+		page_3: '',
+		page_4: '',
+		page_5: '',
+		active: req.body.active,
+		form_model: req.body.form_model
 	},
 	{
 		where: { id : req.body.id }
@@ -87,6 +92,7 @@ router.put('/', function(req, res) {
 
 // Get all questions
 router.get('/', function(req, res) {
+	console.log("WE ARE IN GET");
 	var query = {};
 	if(req.query.sequelize !== undefined) {
 		query = JSON.parse(req.query.sequelize);

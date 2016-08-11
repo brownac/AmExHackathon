@@ -18,16 +18,16 @@
                   <div class="form-group">
                       <label class="col-xs-3">Type</label>
                       <div class="col-xs-8">
-                          <label class="radio-inline"><input ng-model="newForm.type" type="radio" name="type" value="Technical" required>Technical</label>
-                          <label class="radio-inline"><input ng-model="newForm.type" type="radio" name="type" value="Behavioral" required>Behavioral</label>
+                          <label class="radio-inline"><input ng-model="newForm.form_type" type="radio" name="type" value="Technical" required>Technical</label>
+                          <label class="radio-inline"><input ng-model="newForm.form_type" type="radio" name="type" value="Behavioral" required>Behavioral</label>
                           <span class="alert alert-danger alertMessage" ng-show="submitted && newQForms.type.$error.required">Form type is required!</span>
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-xs-3">Form</label>
                       <div class="col-xs-8">
-                          <label class="radio-inline"><input ng-model="newForm.form" type="radio" name="formL" value="A" required>A</label>
-                          <label class="radio-inline"><input ng-model="newForm.form" type="radio" name="formL" value="B" required>B</label>
+                          <label class="radio-inline"><input ng-model="newForm.form_model" type="radio" name="formL" value="A" required>A</label>
+                          <label class="radio-inline"><input ng-model="newForm.form_model" type="radio" name="formL" value="B" required>B</label>
                           <span class="alert alert-danger alertMessage" ng-show="submitted && newQForms.formL.$error.required">Form is required!</span>
                       </div>
                   </div>
@@ -55,6 +55,8 @@
 
                   <div class="modal-footer">
                       <button data-ng-click="submit()" class="btn btn-primary" type="submit">Submit</button>
+                      <h5 class="pull-left text-success" ng-show="(submitted && saved)">Saved</h5>
+                      <h5 class="pull-left text-danger" ng-show="(submitted && !saved)">Failed</h5>
                   </div>
                 </div>
               </form>
@@ -83,8 +85,8 @@
             <i ng-click="toggleActive(form)" ng-show="form.active" class="btn btn-success glyphicon glyphicon-ok-circle"></i>
             <i ng-click="toggleActive(form)" ng-show="!form.active" class="btn btn-outline-warning glyphicon glyphicon-ban-circle"></i>
           </td>
-          <td>{{form.type}}</td>
-          <td>{{form.form}}</td>
+          <td>{{form.form_type}}</td>
+          <td>{{form.form_model}}</td>
           <td>{{form.version}}</td>
           <td><i class="btn btn-warning glyphicon glyphicon-file"></i></td>
           <td><i class="btn btn-danger glyphicon glyphicon-trash"></i></td>

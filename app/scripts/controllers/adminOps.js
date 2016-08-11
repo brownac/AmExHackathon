@@ -10,54 +10,47 @@
 
 
 angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scope, $q, $timeout, questionsService) {
-  $scope.fileId = 0;
-  $scope.saved = false;         // Denoting that info has been saved to database
-  $scope.forms = [{
-    active: true,
-    type: 'Technical',
-    form: 'A',
-    version: 1.0
-  },
-  {
-    active: false,
-    type: 'Technical',
-    form: 'B',
-    version: 1.0
-  },
-  {
-    active: false,
-    type: 'Behavioral',
-    form: 'A',
-    version: 2.0
-  },
-  {
-    active: true,
-    type: 'Behavioral',
-    form: 'B',
-    version: 2.0
-  }];
 
+  $scope.submitted = false;
+  $scope.saved = false;
+  $scope.fileId = 0;
   $scope.newForm = {};
+  $scope.forms = [];
 
   $scope.init = function() {
-    questionsService.get({ id: candidateId }).$promise.then(value => {
-      $scope.postCandidate = value;
+    $scope.submitted = false;
+    $scope.saved = false;
+    $scope.initNewForm();
+    console.log("INIT CALLED 0");
+
+    // Get all the interview questions in the database
+    questionsService.query().$promise.then(values => {
+      console.log("INIT CALLED");
+      $scope.forms = values;
     });
   };
 
   $scope.toggleActive = function(form) {
     var i = $scope.forms.indexOf(form);
-    $scope.forms[i].active = !form.active;
+    $scope.forms[i].active = !$scope.forms[i].active;
 
+    console.log(form);
     // Call server size function to make server-side update
+    $scope.forms[i].$update().then(values => {
+      console.log("UPDATE BACK END ACTIVE");
+      $timeout(() => {
+      }, 1500);
+    });
+
+    $scope.init();
   };
 
   $scope.initNewForm = function(){
     $scope.fileId = 0;
     $scope.newForm = {
       active: false,
-      type: '',
-      form: '',
+      form_type: '',
+      form_model: '',
       version: 0,
       files: new Array(5)
     };
@@ -86,15 +79,15 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     questionsService.save($scope.newForm).$promise.then(values => {
       // show success by changing submit button class and value
       console.log("before reset: " + $scope.newForm);
-      // $scope.initNewForm();
       $scope.saved = true;
 
       $timeout(() => {
         // No redirection needed
-        // $location.path('viewCandidate/' + $routeParams.candidateId);
+        $('#imageModal').modal('toggle');
+        $scope.init();
       }, 1000);
     });
-  }
+  };
 
-  $scope.initNewForm();
+  $scope.init();
 });
