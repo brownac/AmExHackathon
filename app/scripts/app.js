@@ -85,6 +85,11 @@ angular
         controller: 'adminOptionsCtrl',
         controllerAs: 'adminOps'
       })
+      .when('/calendar/interviewerTable', {
+        templateUrl: 'views/interviewerTable.html',
+        controller: 'InterviewerTableCtrl',
+        controllerAs: 'InterviewerTable'
+      })
       .otherwise({
         redirectTo: '/'
       });
