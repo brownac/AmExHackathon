@@ -12,7 +12,8 @@
           <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
         </div>
 
-        <div class="input-group">
+        <div class="form-group sidebar-div">
+          <label>Sort By:</label>
           <select class="form-control" aria-describedby="sizing-addon2" ng-model="property" ng-click="clear()">
             <option selected disabled>Sort By</option>
             <option value="firstName">First Name</option>
@@ -21,10 +22,10 @@
             <option value="major">Major</option>
             <option value="finalEvaluation">Status</option>
           </select>
-          <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-filter"></span></span>
         </div>
 
-        <div class="input-group">
+        <div class="form-group sidebar-div">
+          <label>Order By:</label>
           <select class="form-control" aria-describedby="sizing-addon2" ng-model="order">
             <option selected disabled>Order By</option>
             <option value="firstName">First Name</option>
@@ -33,7 +34,6 @@
             <option value="major">Major</option>
             <option value="finalEvaluation">Status</option>
           </select>
-          <span class="input-group-addon" id="sizing-addon2"><span class="glyphicon glyphicon-sort-by-order"></span></span>
         </div>
       </li>
       <ul id="candidate-list" data-ng-repeat="row in candidates | filter:search | orderBy: order">

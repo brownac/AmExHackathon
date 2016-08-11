@@ -197,3 +197,7 @@ select {
     opacity: 0.8;
     cursor: pointer;
 }
+
+.sidebar-div {
+  padding: 0px 12px;
+}
