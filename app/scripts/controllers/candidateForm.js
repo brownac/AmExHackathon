@@ -8,7 +8,7 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('CandidateFormCtrl', function ($scope, $q, $timeout, $routeParams, $location, candidateService, candidateToScreenerService, softpenImage) {
+  .controller('CandidateFormCtrl', function ($scope, $q, $timeout, $routeParams, $location, candidateService, candidateToScreenerService, softpenImage, puzzleImage) {
     if($routeParams.candidateId) {
       // Get the candidate id from the url
       var candidateId = $routeParams.candidateId;
@@ -22,11 +22,17 @@ angular.module('amExHackathonApp')
 
     const init = function() {
       $scope.postCandidate = candidateToScreenerService.get();
-      $scope.pictureAdded = false;
+      $scope.resumeAdded = false;
+      $scope.puzzleAdded = false;
 
       if (softpenImage.src !== null) {
-        $scope.pictureAdded = true;
+        $scope.resumeAdded = true;
         $scope.postCandidate.resumeBase64 = softpenImage.src;
+      }
+
+      if (puzzleImage.src !== null) {
+        $scope.puzzleAdded = true;
+        $scope.postCandidate.puzzleBase64 = puzzleImage.src
       }
 
       $scope.buttonText = "Submit";

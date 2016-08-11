@@ -54,12 +54,13 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Candidates.hasMany(models.Images,{
-          foreignKey: 'id',
-          targetKey: 'id'
+          foreignKey: 'can_id'
         }),
         Candidates.hasOne(models.Interviews,{
-          foreignKey: 'id',
-          targetKey: 'id'
+          foreignKey: 'can_id'
+        }),
+        Candidates.hasMany(models.Questions,{
+          foreignKey: 'que_id'
         });
       }
     }

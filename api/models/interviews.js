@@ -26,8 +26,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Interviews.belongsTo(models.Candidates,{
-          foreignkey: 'id',
-          targetkey: 'id'
+          foreignkey: 'id'
         });
       }
     }
