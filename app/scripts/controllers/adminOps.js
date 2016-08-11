@@ -9,7 +9,7 @@
  */
 
 
-angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scope, $q, $timeout, questionsService) {
+angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scope, $q, $timeout, $routeParams, $location, candidateService, questionsService) {
 
   $scope.submitted = false;
   $scope.saved = false;
@@ -21,13 +21,16 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     $scope.submitted = false;
     $scope.saved = false;
     $scope.initNewForm();
+    $scope.buttonText = "Submit";
+    $scope.sendingData = false;
+    $scope.submitBtnClasses = "btn btn-primary";
     console.log("INIT CALLED 0");
 
     // Get all the interview questions in the database
     questionsService.query().$promise.then(values => {
-      console.log("INIT CALLED");
-      $scope.forms = values;
-      console.log("IMAGES: " + values.Images);
+    console.log("INIT CALLED");
+    $scope.forms = values;
+    console.log("IMAGES: " + values.Images);
     });
   };
 
@@ -38,15 +41,15 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     console.log(form);
     // Call server size function to make server-side update
     $scope.forms[i].$update().then(values => {
-      console.log("UPDATE BACK END ACTIVE");
-      $timeout(() => {
-      }, 1500);
+    console.log("UPDATE BACK END ACTIVE");
+    $timeout(() => {
+    }, 1500);
     });
 
     $scope.init();
   };
 
-  $scope.initNewForm = function(){
+  $scope.initNewForm = function() {
     $scope.fileId = 0;
     $scope.newForm = {
       active: false,
@@ -62,7 +65,7 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
 
     if (files && files[0]) {
       var reader = new FileReader();
-      reader.onload = function (e) {
+      reader.onload = function(e) {
         $scope.$apply(function() {
           $scope.newForm.files[$scope.fileId] = e.target.result;
         });
@@ -78,17 +81,54 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     // Save on the backend
     console.log($scope.newForm);
     questionsService.save($scope.newForm).$promise.then(values => {
-      // show success by changing submit button class and value
-      console.log("before reset: " + $scope.newForm);
-      $scope.saved = true;
+    // show success by changing submit button class and value
+    console.log("before reset: " + $scope.newForm);
+    $scope.saved = true;
 
-      $timeout(() => {
-        // No redirection needed
-        $('#imageModal').modal('toggle');
-        $scope.init();
-      }, 1000);
+    $timeout(() => {
+    // No redirection needed
+    $('#imageModal').modal('toggle');
+    $scope.init();
+    }, 1000);
     });
   };
+
+  $scope.submitLink = function() {
+
+
+    $scope.sendingData = true;
+
+    linkFTService.save($scope.postLinkFT).$promise.then(values => {
+    // show success by changing submit button class and value
+    $scope.pictureAdded = false;
+    $scope.sendingData = false;
+    $scope.buttonText = "Successfully Submitted";
+    $scope.submitBtnClasses = "btn btn-success";
+    });
+
+
+  };
+
+  $scope.tabs = [{
+    title: 'Questions',
+    url: 'tabQuestions.html'
+  }, {
+    //title: 'Notes',
+    //temporary. Just to show image
+    title: 'Email',
+    url: 'tabEmail.html'
+  }];
+
+  $scope.currentTab = 'tabQuestions.html';
+
+  $scope.onClickTab = function(tab) {
+    $scope.currentTab = tab.url;
+  }
+
+  $scope.isActiveTab = function(tabUrl) {
+    return tabUrl == $scope.currentTab;
+  }
+
 
   $scope.init();
 });
