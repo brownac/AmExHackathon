@@ -41,12 +41,6 @@
       <button id="redo" type="button" class="btn btn-default">
         <span class="glyphicon glyphicon-share-alt " aria-hidden="true"></span>
       </button>
-      <button id="undo" type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
-      </button>
-      <button id="redo" type="button" class="btn btn-default">
-        <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
-      </button>
     </div>
     <!-- <button class="btn btn-info" style="margin-left: 50px">Stop</button> -->
   </div>
@@ -54,9 +48,10 @@
 
   <div class="row" style="margin-left: 50px">
     <div>
-      <img class="mustLoad" id="resume-image" ng-src="{{page.img_uri}}" style="display: none;" />
+      <img class="mustLoad" id="resume-image" ng-src="{{currentPage}}" style="display: none;" />
       <canvas class="" id="c" height="995" width="775" style="border: 1px solid black"></canvas>
     </div>
   </div>
-  <button ng-click="next()" id="next" class="btn btn-danger" style="margin-left: 50px">Next</button>
+  <button ng-show="!endInterview" ng-click="next();" id="next" class="btn btn-danger" style="margin-left: 50px">Next</button>
+  <button ng-show="endInterview" ng-click="next();" id="next" class="btn btn-primary" style="margin-left: 50px">Submit</button>
 </div>
