@@ -8,10 +8,12 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('InterviewerFormCtrl', function ($scope, $routeParams, candidateService, questionsService) {
+  .controller('InterviewerFormCtrl', function ($scope, $routeParams, candidateService, questionsService, archiveService) {
 
   var candidateId = $routeParams.candidateId;
+  $scope.pageNum;
   $scope.pages = [];
+  $scope.currentPage;
   $scope.currentInterview = '';
   $scope.candidate = {};
   $scope.activeForms = [];
@@ -21,9 +23,21 @@ angular.module('amExHackathonApp')
 
   $scope.setInterview = function() {
     $scope.currentInterview = $scope.activeForms[$scope.interviewQId];
+    $scope.pageNum = 0;
     $scope.pages = $scope.currentInterview.Images;
-    if($scope.interviewQId + 1 === $scope.activeForms.length) {
-      $scope.endInterview = true;
+    $scope.currentPage = $scope.pages[$scope.pageNum].img_uri;
+  };
+
+  var nextPage = function() {
+    if(($scope.interviewQId + 1 === $scope.activeForms.length) &&
+      ($scope.pageNum+1 === $scope.pages.length)) {
+        $scope.endInterview = true;
+    } else if($scope.pageNum+1 === $scope.pages.length) {
+      interviewQId++;
+      $scope.setInterview();
+    } else {
+      $scope.pageNum++;
+      $scope.currentPage = $scope.pages[$scope.pageNum].img_uri;
     }
   };
 
@@ -31,6 +45,12 @@ angular.module('amExHackathonApp')
     // Get selected Candidate information
     candidateService.get({ id: candidateId }).$promise.then(value => {
       $scope.candidate = value;
+      console.log("BEFORE archiving");
+      // Get candidate question archive
+      archiveService.query({ id: candidateId }).$promise.then(value => {
+        console.log("Archiving");
+        $scope.candidate.questions = value;
+      });
     });
 
     // Get the active form
@@ -49,22 +69,20 @@ angular.module('amExHackathonApp')
         $scope.setInterview();
       }
     });
-
-
   };
 
   $scope.next = function() {
 
     // SAVE THE IMAGE
-    var canvas = $("#c")[0];
-    var image = new Image();
-    image.src = canvas.toDataURL("image/png");
+    // var canvas = $("#c")[0];
+    // var image = new Image();
+    // image.src = canvas.toDataURL("image/png");
 
     // set the softpenImage.src to the base64 image from canvas
-    softpenImage.src = image.src;
+    // softpenImage.src = image.src;
 
     // redirect to form, which uses softpenImage
-    $location.path('screener/candidateForm');
+    // $location.path('screener/candidateForm');
 
     // SET THE NEXT page
     if($scope.endInterview) {
@@ -72,8 +90,8 @@ angular.module('amExHackathonApp')
           $location.path('interviewer/interviews');
         }, 1000);
     } else {
-      interviewQId++;
-      setInterview();
+      console.log("Next Page reached");
+      nextPage();
     }
   };
 

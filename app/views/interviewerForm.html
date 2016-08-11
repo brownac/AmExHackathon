@@ -52,9 +52,9 @@
   </div>
 
 
-  <div ng-repeat="img in pages" class="row" style="margin-left: 50px">
+  <div class="row" style="margin-left: 50px">
     <div>
-      <img class="mustLoad" id="resume-image" ng-src="img.img_uri" style="display: none;" />
+      <img class="mustLoad" id="resume-image" ng-src="{{page.img_uri}}" style="display: none;" />
       <canvas class="" id="c" height="995" width="775" style="border: 1px solid black"></canvas>
     </div>
   </div>
