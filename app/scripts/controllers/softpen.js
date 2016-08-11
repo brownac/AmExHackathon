@@ -25,9 +25,9 @@ var loadFabric = function() {
 
   $(document).ready(function() {
     var buttons = $(".color-button");
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].style = "color: " + colors[buttons[i].value];
-    }
+    buttons.each(function(index) {
+      $(this).css("color", colors[buttons[index].value]);
+    });
   });
 
 
