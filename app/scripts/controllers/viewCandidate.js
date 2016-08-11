@@ -17,6 +17,9 @@ angular.module('amExHackathonApp')
       $scope.init = function() {
         candidateService.get({ id: candidateId }).$promise.then(value => {
           $scope.candidate = value;
+          var gradDate = new Date($scope.candidate.graduationDate);
+          var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+          $scope.candidate.graduationDate = monthNames[gradDate.getMonth()] + " " + gradDate.getFullYear();
           $scope.hideResume = true;
           console.log($scope.candidate);
         });

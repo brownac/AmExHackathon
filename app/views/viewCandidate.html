@@ -36,11 +36,14 @@
     <div class="info-group">
       <label>Status:</label> {{candidate.finalEvaluation}}
     </div>
+		<div class="info-group">
+      <label>Notes:</label> {{candidate.notes}}
+    </div>
     <div class="info-group">
       <label>Screener:</label> {{candidate.screenerInitials}}
     </div>
     <div class="info-group">
-      <label>Interviewers:</label>
+      <label>Interviewers:</label> {{candidate.Interview.interviewer_1}}, {{candidate.Interview.interviewer_2}}
     </div>
 	</div>
 </script>

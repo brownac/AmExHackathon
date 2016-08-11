@@ -8,17 +8,20 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('CandidateFormCtrl', function ($scope, $q, $timeout, $routeParams, $location, candidateService, softpenImage) {
+  .controller('CandidateFormCtrl', function ($scope, $q, $timeout, $routeParams, $location, candidateService, candidateToScreenerService, softpenImage) {
     if($routeParams.candidateId) {
       // Get the candidate id from the url
       var candidateId = $routeParams.candidateId;
       candidateService.get({ id: candidateId }).$promise.then(value => {
         $scope.postCandidate = value;
+        $scope.postCandidate.graduationDate = new Date($scope.postCandidate.graduationDate);
+        $scope.postCandidate.areaOfInterest = $scope.postCandidate.areaOfInterest.split(", ");
+        $scope.postCandidate.preferredLanguages = $scope.postCandidate.preferredLanguages.split(", ");
       });
     }
 
     const init = function() {
-      $scope.postCandidate = {};
+      $scope.postCandidate = candidateToScreenerService.get();
       $scope.pictureAdded = false;
 
       if (softpenImage.src !== null) {
