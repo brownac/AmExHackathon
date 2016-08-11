@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
 module.exports = function(sequelize, DataTypes) {
-  var Candidates = sequelize.define("Candidates", {
+  var Candidates = sequelize.define('Candidates', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     graduationDate: {
-      type: DataTypes.STRING
+      type: DataTypes.DATE
     },
     needSponsorship: {
       type: DataTypes.BOOLEAN
@@ -35,13 +35,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     areaOfInterest: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     preferredLanguages: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     finalEvaluation: {
       type: DataTypes.STRING
+    },
+    notes: {
+      type: DataTypes.TEXT
     },
     screenerInitials: {
       type: DataTypes.STRING
@@ -51,16 +54,13 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Candidates.hasMany(models.Images,{
-          foreignKey: 'id',
-          targetKey: 'id'
+          foreignKey: 'can_id'
         }),
         Candidates.hasOne(models.Interviews,{
-          foreignKey: 'id',
-          targetKey: 'id'
+          foreignKey: 'can_id'
         }),
         Candidates.hasMany(models.Questions,{
-          foreignKey: 'id',
-          targetKey: 'id'
+          foreignKey: 'que_id'
         });
       }
     }

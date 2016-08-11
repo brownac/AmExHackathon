@@ -9,7 +9,7 @@
  */
 angular.module('amExHackathonApp')
   .factory('archiveService', function ($resource) {
-    return $resource('/api/archives/:id', null, {
+    return $resource('/api/archives/', null, {
       update: { method: 'PUT'}
     });
   });

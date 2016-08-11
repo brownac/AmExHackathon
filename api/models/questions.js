@@ -24,8 +24,7 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         Questions.hasMany(models.Images,{
-          foreignKey: 'id',
-          targetKey: 'id'
+          foreignKey: 'que_id'
         });
       }
     }
