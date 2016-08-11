@@ -37,7 +37,7 @@ router.post('/', function(req, res) {
 	    const puzzleAbsPath = path.join(utils.uploadsDir, puzzleName);
 
 	    let base64Png = req.body.resumeBase64.split(',')[1];
-		let puzzleBase64Png = req.body.puzzleBase64.split(',')[1];
+			let puzzleBase64Png = req.body.puzzleBase64.split(',')[1];
 
     fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
       if (err) {
