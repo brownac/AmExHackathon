@@ -1,7 +1,10 @@
-/node_modules
+*node_modules
 /dist
 /.tmp
 /.sass-cache
 /bower_components
 *.sqlite
 .rebooted
+.DS_Store
+/api/images/*
+/app/uploads/*

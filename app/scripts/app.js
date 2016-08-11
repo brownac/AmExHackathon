@@ -18,14 +18,34 @@ angular
     'ngTouch',
     'mwl.calendar'
   ])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/home.html',
         controller: 'MainCtrl',
         controllerAs: 'Home'
       })
+      .when('/screener/softpen', {
+        templateUrl: 'views/softpen.html',
+        controller: 'SoftPenCtrl',
+        controllerAs: 'softpen'
+      })
+      .when('/screener/candidateInput', {
+        templateUrl: 'views/candidateInput.html',
+        controller: 'CandidateInputCtrl',
+        controllerAs: 'candidateInput'
+      })
+      .when('/screener/screenerSplash', {
+        templateUrl: 'views/screenerSplash.html',
+        controller: 'ScreenerSplashCtrl',
+        controllerAs: 'screenerSplash'
+      })
       .when('/screener/candidateForm', {
+        templateUrl: 'views/candidateForm.html',
+        controller: 'CandidateFormCtrl',
+        controllerAs: 'candidateForm'
+      })
+      .when('/screener/candidateForm/:candidateId', {
         templateUrl: 'views/candidateForm.html',
         controller: 'CandidateFormCtrl',
         controllerAs: 'candidateForm'
@@ -35,7 +55,17 @@ angular
         controller: 'RecruiterFormCtrl',
         controllerAs: 'recruiterForm'
       })
-      .when('/interviewer/interviewerForm', {
+      .when('/recruiter/recruiterHome', {
+        templateUrl: 'views/recruiterHome.html',
+        controller: 'RecruiterHomeCtrl',
+        controllerAs: 'recruiterHome'
+      })
+      .when('/interviewer/interviews', {
+        templateUrl: 'views/interviews.html',
+        controller: 'InterviewsCtrl',
+        controllerAs: 'Interviews'
+      })
+      .when('/interviewer/:candidateId', {
         templateUrl: 'views/interviewerForm.html',
         controller: 'InterviewerFormCtrl',
         controllerAs: 'InterviewerForm'
@@ -49,6 +79,11 @@ angular
         templateUrl: 'views/viewCandidate.html',
         controller: 'ViewCandidateCtrl',
         controllerAs: 'ViewCandidate'
+      })
+      .when('/admin/adminOptions', {
+        templateUrl: 'views/adminOptions.html',
+        controller: 'adminOptionsCtrl',
+        controllerAs: 'adminOps'
       })
       .otherwise({
         redirectTo: '/'

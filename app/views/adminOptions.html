@@ -1,0 +1,100 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1 class="text-center">Administrative Options</h1>
+    <hr/>
+  </div>
+
+  <div class="row">
+      <button data-ng-click="initNewForm()" type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#imageModal">Add new</span></button>
+      <div id="imageModal" class="modal" role="dialog" aria-labelledby="myModalLabel">
+          <span class="close" data-dismiss="modal" data-target="#imageModal">×</span>
+          <div class="modal-content" id="modalImage" role="document">
+            <div class="modal-header">
+              <h4 class="modal-title">New Interview Form</h4>
+            </div>
+            <div class="modal-body">
+              <form name="newQForms">
+                <div class="form-horizontal">
+                  <div class="form-group">
+                      <label class="col-xs-3">Type</label>
+                      <div class="col-xs-8">
+                          <label class="radio-inline"><input ng-model="newForm.form_type" type="radio" name="type" value="Technical" required>Technical</label>
+                          <label class="radio-inline"><input ng-model="newForm.form_type" type="radio" name="type" value="Behavioral" required>Behavioral</label>
+                          <span class="alert alert-danger alertMessage" ng-show="submitted && newQForms.type.$error.required">Form type is required!</span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-xs-3">Form</label>
+                      <div class="col-xs-8">
+                          <label class="radio-inline"><input ng-model="newForm.form_model" type="radio" name="formL" value="A" required>A</label>
+                          <label class="radio-inline"><input ng-model="newForm.form_model" type="radio" name="formL" value="B" required>B</label>
+                          <span class="alert alert-danger alertMessage" ng-show="submitted && newQForms.formL.$error.required">Form is required!</span>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-xs-3">Version</label>
+                    <div class="col-xs-8">
+                      <input class="form-control" name="version" type="number" ng-model="newForm.version" required>
+                      <span class="alert alert-danger alertMessage" ng-show="submitted && newQForms.version.$error.required">A version is required!</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="col-xs-3">File</label>
+                    <input data-ng-click="fileId=0" name="file1" type="file" class="col-xs-8 form-control-file" placeholder="Page 1" custom-on-change="readImage" required>
+                    <span class="alert alert-danger alertMessage" ng-show="submitted && newQForms.file1.$error.required">One file is required at least!</span>
+                  </div>
+
+                  <div class="form-group">
+                    <input data-ng-click="fileId=1" type="file" class="col-xs-8 col-xs-offset-3 form-control-file" placeholder="Page 2" custom-on-change="readImage">
+                  </div>
+
+                  <div class="form-group">
+                    <input data-ng-click="fileId=2" type="file" class="col-xs-8 col-xs-offset-3 form-control-file" placeholder="Page 3" custom-on-change="readImage">
+                  </div>
+
+                  <div class="modal-footer">
+                      <button data-ng-click="submit()" class="btn btn-primary" type="submit">Submit</button>
+                      <h5 class="pull-left text-success" ng-show="(submitted && saved)">Saved</h5>
+                      <h5 class="pull-left text-danger" ng-show="(submitted && !saved)">Failed</h5>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="row admin-option-top-margin">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Active</th>
+          <th>Type</th>
+          <th>Form</th>
+          <th>Version</th>
+          <th>View</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="form in forms">
+          <th scope="row">1</th>
+          <td>
+            <i ng-click="toggleActive(form)" ng-show="form.active" class="btn btn-success glyphicon glyphicon-ok-circle"></i>
+            <i ng-click="toggleActive(form)" ng-show="!form.active" class="btn btn-outline-warning glyphicon glyphicon-ban-circle"></i>
+          </td>
+          <td>{{form.form_type}}</td>
+          <td>{{form.form_model}}</td>
+          <td>{{form.version}}</td>
+          <td><i class="btn btn-warning glyphicon glyphicon-file"></i></td>
+          <td><i class="btn btn-danger glyphicon glyphicon-trash"></i></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+
+</div>

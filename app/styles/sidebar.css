@@ -13,13 +13,15 @@
 #sidebar-wrapper {
     margin-top: -20px;
     z-index: 1000;
-    position: fixed;
+    position: absolute;
     left: 250px;
     width: 0;
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
     background: #F8F8F8;
+    margin-bottom: -5000px;
+    padding-bottom: 5000px;
     border-right: 1px solid #F1F1F1;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -85,7 +87,13 @@
 .sidebar-nav li a:hover {
     text-decoration: none;
     color: #F1F1F1;
-    background: #fff;
+    background: #007BAA;
+}
+
+.cal-sidebar li a:hover{
+    cursor: default;
+    color: #777;
+    background: transparent;
 }
 
 .form-control:focus {
@@ -167,3 +175,29 @@ select {
     margin-left: -5px;
 }
 
+.align-glyphicon {
+  float: right !important;
+  margin-right: 70px;
+  margin-top: 12.5px;
+}
+
+.yellow {
+  color: #8a6d3b;
+}
+
+.red {
+  color: #a94442;
+}
+
+.green {
+  color: #3c763d;
+}
+
+.remove-candidate:hover{
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.sidebar-div {
+  padding: 0px 12px;
+}
