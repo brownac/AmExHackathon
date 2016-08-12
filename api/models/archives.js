@@ -19,9 +19,6 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         Archives.hasMany(models.Images,{
           foreignKey: 'arc_id'
-        }),
-        Archives.hasOne(models.Candidates,{
-          foreignKey: 'id'
         });
       }
     }

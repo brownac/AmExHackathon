@@ -61,6 +61,9 @@ module.exports = function(sequelize, DataTypes) {
         }),
         Candidates.hasMany(models.Questions,{
           foreignKey: 'que_id'
+        })
+        Candidates.hasMany(models.Archives,{
+          foreignKey: 'arc_id'
         });
       }
     }

@@ -54,7 +54,7 @@ router.post('/', function(req, res) {
 		          img_uri: imgUri,
 		          type: image_type
 		        });
-		        image.save();
+		image.save();
 
         //creates an interview spot for the candidate
         if(req.body.finalEvaluation !== 'turndown'){
@@ -63,6 +63,12 @@ router.post('/', function(req, res) {
 	        });
         }
         interview.save();
+
+        var archive = models.Archives.build({
+        	arc_id: candidate.id
+        });
+       	archive.save();
+
         res.json(candidate);
       }
     });

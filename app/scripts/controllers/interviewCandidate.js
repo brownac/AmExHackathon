@@ -22,7 +22,7 @@ angular.module('amExHackathonApp')
     var candidateId = $routeParams.candidateId;
     var init = function() {
       candidateService.get({ id: candidateId }).$promise.then(value => {
-        $scope.selCandidate = value;
+        $scope.selCandidate = value; console.log($scope.selCandidate);
       });
 
       questionsService.query().$promise.then(values => {
