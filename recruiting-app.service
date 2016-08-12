@@ -1,4 +1,5 @@
 # put this service file into /etc/systemd/system/recruiting-app.service
+# then run # systemctl daemon-reload
 [Service]
 ExecStart=/usr/local/bin/node /home/pi/AmExHackathon/api/server.js
 Restart=always
