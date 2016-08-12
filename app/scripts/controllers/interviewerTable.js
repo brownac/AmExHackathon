@@ -8,8 +8,10 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('InterviewerTableCtrl',function ($scope, $location) {
-
+  .controller('InterviewerTableCtrl',function ($scope, $location, interviewerService) {
+    interviewerService.query().$promise.then(values => {
+      $scope.interviewers = values;
+    });
     //redirect from "Add Interviewer" button on Recruiter page to Add Interviewer/Table page
     $scope.interviewerLink = function() {
       $location.path('/calendar/interviewerTable');
@@ -20,17 +22,17 @@ angular.module('amExHackathonApp')
     };
 
     $scope.addInterviewer = function() {
-      $scope.interviewers.push ({
-        firstName: $scope.firstName,
-        lastName:  $scope.lastName
-      })
+      interviewerService.save({name: $scope.name}).$promise.then(values => {
+        $scope.interviewers.push (values);
+      });
+      $scope.name = '';
     };
 
     $scope.deleteInterviewer = function(index) {
-      console.log(index);
+      console.log('Deleting an interviewer');
+      var interviewer = $scope.interviewers[index];
+      interviewer.$delete({id: interviewer.id});
       $scope.interviewers.splice(index,1);
     };
-
-    $scope.interviewers = [];
 
 });

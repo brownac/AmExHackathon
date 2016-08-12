@@ -196,10 +196,17 @@ var loadFabric = function() {
 var app = angular.module('amExHackathonApp');
 app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
   $scope.pictureAdded = false;
+  $scope.nextButtonMessage = "";
 
   $scope.next = function() {
     var canvas = $scope.canvas;
     var image = new Image();
+
+    if(!canvas) {
+      $scope.nextButtonMessage = "Add a resume before proceeding";
+      return;
+    }
+
     image.src = canvas.toDataURL("image/png");
 
     // set the softpenImage.src to the base64 image from canvas
