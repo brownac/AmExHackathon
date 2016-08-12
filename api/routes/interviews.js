@@ -14,39 +14,27 @@ router.post('/', function(req, res) {
 
 // Update a candidate by id
 router.put('/', function(req, res) {
+	//grabs info to update interview
 	models.Interviews.update({
 		interview_Date: req.body.Interview.Interview_Date,
 		interview_Time: req.body.Interview.Interview_Time,
 		interview_Location: req.body.Interview.Interview_Location,
-		interviewer_1: req.body.Interview.Interviewer_1,
-		interviewer_2: req.body.Interview.Interviewer_2
+		interviewer_1: req.body.Interview.Interviewer_1.name,
+		interviewer_2: req.body.Interview.Interviewer_2.name
 	}, {
-		where: { id : req.body.id }
+		where: { can_id : req.body.id }
 	})
 	.then(function(result) {
     	res.send("Success");
-			if (req.body.Interview.interview_Date !== null) {
-				var edit = false;
-				console.log(req.query);
-				if (req.query.editing) {
-					edit = true;
-				};
-				email( req.body.email,req.body.firstName,req.body.lastName,req.body.Interview.Interview_Date,
-				req.body.Interview.Interview_Time,req.body.Interview.Interview_Location,edit);
+		//checks tosee if an interview was scheduled
+		if (req.body.Interview.interview_Date !== null) {
+			var edit = false;
+			if (req.query.editing) {
+				edit = true;
 			};
-	}, function(rejectedPromiseError){
-    	res.status(404).json({
-      	errors: [
-        	"Could not find candidate with id " + id
-      	]
-    	});
-    	res.send('Success');
-	}, function(rejectedPromiseError){
-	    res.status(404).json({
-	      	errors: [
-	        	'Could not find candidate with id ' + id
-	      	]
-	    });
+			email( req.body.email,req.body.firstName,req.body.lastName,req.body.Interview.Interview_Date,
+			req.body.Interview.Interview_Time,req.body.Interview.Interview_Location,edit);
+		};
 	});
 });
 

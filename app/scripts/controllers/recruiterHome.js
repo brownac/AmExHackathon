@@ -323,8 +323,8 @@ angular.module('amExHackathonApp')
         Interview_Date:  null,
         Interview_Time: null,
         Interview_Location: null,
-        Interviewer_1: null,
-        Interviewer_2: null
+        Interviewer_1: {name: null},
+        Interviewer_2: {name: null}
       };
       $scope.deleteCandidate.Interview = interviewInfo;
       $scope.deleteCandidate.$update().then(values => {
