@@ -19,7 +19,9 @@ router.put('/', function(req, res) {
 		interview_Time: req.body.Interview.Interview_Time,
 		interview_Location: req.body.Interview.Interview_Location,
 		interviewer_1: req.body.Interview.Interviewer_1,
-		interviewer_2: req.body.Interview.Interviewer_2
+		interviewer_2: req.body.Interview.Interviewer_2,
+		interview_FT_Link:req.body.Interview.Interview_FT_Link,
+		interview_Int_Link:req.body.Interview.Interview_Int_Link
 	}, {
 		where: { id : req.body.id }
 	})
@@ -32,7 +34,8 @@ router.put('/', function(req, res) {
 					edit = true;
 				};
 				email( req.body.email,req.body.firstName,req.body.lastName,req.body.Interview.Interview_Date,
-				req.body.Interview.Interview_Time,req.body.Interview.Interview_Location,edit);
+				req.body.Interview.Interview_Time,req.body.Interview.Interview_Location,req.body.Interview_FT_link,
+				req.body.Interview.Interview_Int_Link,edit);
 			};
 	}, function(rejectedPromiseError){
     	res.status(404).json({

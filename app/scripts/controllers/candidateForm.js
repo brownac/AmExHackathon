@@ -83,6 +83,7 @@ angular.module('amExHackathonApp')
           $timeout(() => {
             // re-direct to softpen
             softpenImage.src = null;
+            puzzleImage.src = null;
 
             $location.path('screener/softpen');
           }, 1000);
