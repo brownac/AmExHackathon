@@ -26,8 +26,9 @@ router.post('/', function(req, res) {
 	    const imgUri = `/uploads/${imageName}`;
 	    const imgAbsPath = path.join(utils.uploadsDir, imageName);
 
-		if(req.body.files[i] !== null) {
+		if(req.body.files[i] !== undefined) {
 
+				console.log("***** " + req.body.files[i].img_uri);
 		    let base64Png = req.body.files[i].split(',')[1];
 
 		    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {

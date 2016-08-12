@@ -65,7 +65,12 @@ angular
         controller: 'InterviewsCtrl',
         controllerAs: 'Interviews'
       })
-      .when('/interviewer/:candidateId', {
+      .when('/interviewer/candidate/:candidateId', {
+        templateUrl: 'views/interviewCandidate.html',
+        controller: 'InterviewsCandidateCtrl',
+        controllerAs: 'InterviewCandidate'
+      })
+      .when('/interviewer/:candidateId/:techQID/:behavQID', {
         templateUrl: 'views/interviewerForm.html',
         controller: 'InterviewerFormCtrl',
         controllerAs: 'InterviewerForm'

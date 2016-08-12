@@ -49,7 +49,7 @@ angular.module('amExHackathonApp')
     $scope.eventClicked = function(calendarEvent){
       console.log(calendarEvent.candidate.id);
       var id = calendarEvent.candidate.id;
-      $location.path('/interviewer/'+id);
+      $location.path('/interviewer/candidate/'+id);
     }
     $scope.changeView = function(newView){
       $scope.calendarView = newView;

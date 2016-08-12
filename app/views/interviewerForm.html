@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h1 class="col-xs-12">{{candidate.firstName}}, {{candidate.lastName}} <small>- Interview {{interviewQId + 1}}</small></h1>
+    <h1 class="col-xs-12">{{selCandidate.firstName}}, {{selCandidate.lastName}} <small>- Interview {{questionId + 1}}</small></h1>
   </div>
   <hr/>
   <div class="row tools-bar" id="options">
@@ -48,7 +48,7 @@
 
   <div class="row" style="margin-left: 50px">
     <div>
-      <img class="mustLoad" id="resume-image" ng-src="{{currentPage}}" style="display: none;" />
+      <img class="mustLoad" id="resume-image" src="{{currentPage}}" style="display: none;" />
       <canvas class="" id="c" height="995" width="775" style="border: 1px solid black"></canvas>
     </div>
   </div>

@@ -8,98 +8,85 @@
  * Controller of the amExHackathonApp
  */
  var canvas;
+ var sharedArchive;
 angular.module('amExHackathonApp')
   .controller('InterviewerFormCtrl', function ($scope, $timeout, $routeParams, candidateService, $location, questionsService, archiveService, softpenImage) {
 
-  var candidateId = $routeParams.candidateId;
-  $scope.pageNum;
-  $scope.pages = [];
+  $scope.Questions = [];
+  $scope.question;
+  $scope.questionId = 0;
+  $scope.imgNum = 0;
   $scope.currentPage;
-  $scope.currentInterview = '';
-  $scope.candidate = {};
-  $scope.activeForms = [];
-  $scope.pictureAdded = false;
-  $scope.endInterview = false;
-  $scope.interviewQId = 0;
   $scope.newArchive = {};
+  $scope.newArchive.files = [];
+  var techQID = $routeParams.techQID;
+  var behavQID = $routeParams.behavQID;
+  var candidateId = $routeParams.candidateId;
+  var init = function() {
+    candidateService.get({ id: candidateId }).$promise.then(cValue => {
+      console.log("CANDIDATE SERVICE INIT");
+      $scope.selCandidate = cValue;
 
-  $scope.setInterview = function() {
-    $scope.currentInterview = $scope.activeForms[$scope.interviewQId];
-    $scope.pageNum = 0;
-    $scope.pages = $scope.currentInterview.Images;
-    $scope.currentPage = $scope.pages[$scope.pageNum].img_uri;
-  };
-
-  var nextPage = function() {
-    if(($scope.interviewQId + 1 === $scope.activeForms.length) &&
-      ($scope.pageNum+1 === $scope.pages.length)) {
-        $scope.endInterview = true;
-    } else if($scope.pageNum+1 === $scope.pages.length) {
-      interviewQId++;
-      $scope.setInterview();
-    } else {
-      $scope.pageNum++;
-      $scope.currentPage = $scope.pages[$scope.pageNum].img_uri;
-    }
-  };
-
-  $scope.init = function() {
-    // Get selected Candidate information
-    candidateService.get({ id: candidateId }).$promise.then(value => {
-      $scope.candidate = value;
-      console.log("BEFORE archiving");
-      // Get candidate question archive
-
+      // GET Candidate already completed interview forms
       archiveService.query({ id: candidateId }).$promise.then(value => {
-        console.log("Archiving");
-        $scope.candidate.questions = value;
+        console.log("ARCHIVE SERVICE INIT");
+        $scope.selCandidate.questions = value;
       });
     });
 
-    // Get the active form
     questionsService.query().$promise.then(values => {
-      console.log("THIS IS WORKING");
+      // Redirect to add new form if the system does not have interview forms yet
+      console.log("QUESTION SERVICE TECHID INIT");
       var i;
       for(i = 0; i < values.length; i++) {
-        if(values[i].active === true) {
-          $scope.activeForms.push(values[i]);
+        if((values[i].id == techQID) || (values[i].id == behavQID)) {
+          $scope.Questions.push(values[i]);
+          $scope.newArchive.form = values[1].form_model;
         }
       }
-
-      // Set the canvas current page
-      if($scope.activeForms !== undefined) {
-        $scope.interviewQId = 0;
-        $scope.setInterview();
-      }
+      setInterview();
     });
+  }
+
+  var setInterview = function() {
+    $scope.imgNum = 0;
+    $scope.question = $scope.Questions[$scope.questionId].Images[$scope.imgNum];
+    $scope.currentPage = $scope.Questions[$scope.questionId].Images[$scope.imgNum].img_uri;
+
+    if( ($scope.questionId + 1 === $scope.Questions.length) &&
+      ($scope.imgNum+1 === $scope.Questions[$scope.questionId].Images.length) ) {
+        $scope.endInterview = true;
+    }
+  };
+
+  var nextPage = function() {
+    if(($scope.questionId + 1 === $scope.Questions.length) &&
+      ($scope.imgNum+1 === $scope.Questions[$scope.questionId].Images.length)) {
+        $scope.endInterview = true;
+    } else if($scope.imgNum+1 === $scope.Questions[$scope.questionId].Images.length) {
+      $scope.questionId++;
+      $scope.imgNum = 0;
+      setInterview();
+    } else {
+      $scope.imgNum++;
+      $scope.currentPage = $scope.Questions[$scope.questionId].Images[$scope.imgNum].img_uri;
+    }
   };
 
   $scope.next = function() {
 
     // SAVE THE IMAGE
-    if(!$scope.endInterview) {
-      var htmlCanvas = $("#c")[0];
-      var image = new Image();
-      image.src = htmlCanvas.toDataURL($scope.currentPage);
+    var htmlCanvas = $("#c")[0];
+    var image = new Image();
+    image.src = htmlCanvas.toDataURL($scope.currentPage);
 
-      // set the softpenImage.src to the base64 image from canvas
-      // softpenImage.src = image.src;
-      if($scope.newArchive.files === undefined) {
-        $scope.newArchive.files = new Array(1);
-      }
-      $scope.newArchive.files.push(image.src);
-    }
-
-    // redirect to form, which uses softpenImage
-    // $location.path('screener/candidateForm');
+    $scope.newArchive.files.push(image.src);
 
     // SET THE NEXT page
     if($scope.endInterview) {
       console.log("INTERVIEW ENDED");
       archiveService.save($scope.newArchive).$promise.then(value => {
         // show success by changing submit button class and value
-        $scope.newArchive = {};
-
         console.log("INTERVIEW ENDED - REROUTING");
 
         $timeout(() => {
@@ -114,24 +101,9 @@ angular.module('amExHackathonApp')
     }
   };
 
-  $scope.readImage = function(event) {
-    var files = event.target.files;
-
-    if (files && files[0]) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        $scope.$apply(function() {
-          $scope.QuestionBase64 = e.target.result;
-          $scope.pictureAdded = true;
-        });
-      };
-      reader.readAsDataURL(files[0]);
-    }
-  };
-
   loadFabric1();
 
-  $scope.init();
+  init();
 });
 
 

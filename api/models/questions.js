@@ -7,6 +7,9 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
+    form_name: {
+      type: DataTypes.STRING
+    },
     form_type: {
       type: DataTypes.STRING
     },

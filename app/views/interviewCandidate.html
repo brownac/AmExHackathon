@@ -1,0 +1,121 @@
+<div class="row">
+  <h1 class="col-xs-12">{{selCandidate.firstName}} {{selCandidate.lastName}}</h1>
+</div>
+<hr/>
+
+<!-- Candidate Information -->
+<div class="row">
+  <b class="col-xs-12 col-sm-4">School</b>
+  <p class="col-xs-12 col-sm-6">{{selCandidate.school}}</p>
+</div>
+<div class="row">
+  <b class="col-xs-12 col-sm-4">Major</b>
+  <p class="col-xs-12 col-sm-6">{{selCandidate.major}}</p>
+</div>
+<div class="row">
+  <b class="col-xs-12 col-sm-4">Graduation</b>
+  <p class="col-xs-12 col-sm-6">{{toDate(selCandidate.graduationDate).getMonth()}}, {{toDate(selCandidate.graduationDate).getYear()}}</p>
+</div>
+<div class="row">
+  <b class="col-xs-12 col-sm-4">Seeking</b>
+  <p class="col-xs-12 col-sm-6">{{selCandidate.internOrFull}}</p>
+</div>
+<div class="row">
+  <b class="col-xs-12 col-sm-4">Area of Interest</b>
+  <p class="col-xs-12 col-sm-6">{{selCandidate.areaOfInterest}}</p>
+</div>
+<div class="row">
+  <b class="col-xs-12 col-sm-4">Preferred Languages</b>
+  <p class="col-xs-12 col-sm-6">{{selCandidate.preferredLanguages}}</p>
+</div>
+<hr/>
+
+<!-- Buttons -->
+<div class="row">
+  <div class="col-xs-12">
+    <button ng-click="viewResumeFunc()" data-toggle="modal" data-target="#imageModal" data-ng-click="viewResume=true" class="col-xs-12 col-sm-3 btn btn-lg btn-primary interview-row-bottom-buffer">
+      <span>
+      <p class="text-center lead">Resume <span class="glyphicon glyphicon-file"></span></p>
+      <small><br/></small>
+    </span></button>
+    <!-- Interview 1 Locked -->
+    <button ng-click="viewInterviewIdFunc(0)" data-toggle="modal" data-target="#imageModal" data-ng-show="interviewsStatus[0].locked" class="col-xs-12 col-sm-3 col-sm-offset-1 btn btn-lg btn-primary interview-row-bottom-buffer">
+      <span>
+      <p class="text-center lead">Interview 1 <span class="glyphicon glyphicon-lock"></span></p>
+      <small>Interview form: {{selCandidate.questions[0].form}}</small>
+    </span></button>
+    <!-- Interview 1 Enabled -->
+    <button ng-click="editInterviewIdFunc(0)" data-toggle="modal" data-target="#imageModal" data-ng-show="!interviewsStatus[0].locked" class="col-xs-12 col-sm-3 col-sm-offset-1 btn btn-lg btn-primary interview-row-bottom-buffer">
+      <span>
+      <p class="text-center lead">Interview 1</p>
+      <small class="text-hide">Sample</small>
+    </span></button>
+
+    <!-- INTERVIEW 2 -->
+    <!-- Interview 2 Disabled -->
+    <button data-ng-show="(!interviewsStatus[1].enabled) "data-ng-disabled="!interviewsStatus[1].enabled" class="col-xs-12 col-sm-4 col-sm-offset-1 btn btn-lg btn-primary interview-row-bottom-buffer">
+      <span>
+      <p class="text-center lead">Interview 2</p>
+      <small class="text-hide">Interview form: A</small>
+    </span></button>
+    <!-- Interview 2 Locked -->
+    <button data-ng-click="viewInterviewIdFunc(1)" data-ng-show="(interviewsStatus[1].locked && interviewsStatus[1].enabled)" data-toggle="modal" data-target="#imageModal" class="col-xs-12 col-sm-4 col-sm-offset-1 btn btn-lg btn-primary interview-row-bottom-buffer">
+      <span>
+      <p class="text-center lead">Interview 2 <span class="glyphicon glyphicon-lock"></p>
+      <small>Interview form: {{selCandidate.questions[1].form}}</small>
+    </span></button>
+    <!-- Interview Not Locked -->
+    <button data-ng-click="editInterviewIdFunc(1)" data-ng-show="(!interviewsStatus[1].locked && interviewsStatus[1].enabled)" data-toggle="modal" data-target="#imageModal" class="col-xs-12 col-sm-4 col-sm-offset-1 btn btn-lg btn-primary interview-row-bottom-buffer">
+      <span>
+      <p class="text-center lead">Interview 2</p>
+      <small class="text-hide">Interview form: A</small>
+    </span></button>
+  </div>
+</div>
+
+<!-- Modal input -->
+<div class="row">
+    <div id="imageModal" class="modal" role="dialog" aria-labelledby="myModalLabel">
+        <span class="close" data-dismiss="modal" data-target="#imageModal">×</span>
+
+        <!-- View Resume content -->
+        <img data-ng-show="viewResume" class="modal-content" id="modalImage" role="document" ng-src="{{selCandidate.Images[0].img_uri}}" alt="{{candidate.firstName}} {{candidate.lastName}}'s Resume">
+
+        <!-- View completed interview -->
+        <div data-ng-show="viewInt" class="modal-content" id="modalImage" role="document">
+          <div ng-repeat="img in selCandidate.questions[intId].Images">
+            <img ng-src="{{img.img_uri}}" alt="{{candidate.firstName}} {{candidate.lastName}}'s Resume">
+          </div>
+        </div>
+        <!-- Interview Button -->
+        <div data-ng-show="editInt"  class="modal-content" id="modalImage" role="document">
+          <div class="modal-header">
+            <h4 class="modal-title">Select interview form</h4>
+          </div>
+          <div class="modal-body">
+            <p class="lead">Select a behavioral and a technical form for the candiate interview</p>
+            <form name="newQForms">
+              <!-- Technical form-->
+              <div class="form-group">
+                <label for="techFormSel">Technical form</label>
+                <select data-ng-model="techQ" class="form-control" id="techFormSel" data-ng-options="item.form_type for item in techQuestions">
+                </select>
+              </div>
+
+              <!-- Behavioral Form -->
+              <div class="form-group">
+                <label for="bFormSel">Behavioral form</label>
+                <select data-ng-model="behavQ" class="form-control" id="bFormSel" data-ng-options="item.form_type for item in behavQuestions">
+                </select>
+              </div>
+
+              <div class="modal-footer">
+                  <button data-ng-click="setCandidateIForm()" class="btn btn-primary"  data-dismiss="modal" data-target="#imageModal" type="submit">Use Selected Forms</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+    </div>
+</div>

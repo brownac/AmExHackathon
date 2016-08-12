@@ -16,6 +16,13 @@
               <form name="newQForms">
                 <div class="form-horizontal">
                   <div class="form-group">
+                      <label class="col-xs-3">Form Name</label>
+                      <div class="col-xs-8">
+                          <input class="form-control" ng-model="newForm.form_name" type="text" name="name" required>
+                          <span class="alert alert-danger alertMessage" ng-show="submitted && newQForms.name.$error.required">A form name is required!</span>
+                      </div>
+                  </div>
+                  <div class="form-group">
                       <label class="col-xs-3">Type</label>
                       <div class="col-xs-8">
                           <label class="radio-inline"><input ng-model="newForm.form_type" type="radio" name="type" value="Technical" required>Technical</label>
@@ -69,8 +76,9 @@
     <table class="table">
       <thead>
         <tr>
-          <th>#</th>
+          <th>ID</th>
           <th>Active</th>
+          <th>Form Name</th>
           <th>Type</th>
           <th>Form</th>
           <th>Version</th>
@@ -80,11 +88,12 @@
       </thead>
       <tbody>
         <tr ng-repeat="form in forms">
-          <th scope="row">1</th>
+          <th scope="row">{{form.id}}</th>
           <td>
             <i ng-click="toggleActive(form)" ng-show="form.active" class="btn btn-success glyphicon glyphicon-ok-circle"></i>
             <i ng-click="toggleActive(form)" ng-show="!form.active" class="btn btn-outline-warning glyphicon glyphicon-ban-circle"></i>
           </td>
+          <td>{{form.form_name}}</td>
           <td>{{form.form_type}}</td>
           <td>{{form.form_model}}</td>
           <td>{{form.version}}</td>
