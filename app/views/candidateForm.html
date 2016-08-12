@@ -1,12 +1,5 @@
 <div class="text-center">
   <div class="page-header">
-    <div class="pull-right">
-        <div class="camera-capture">
-          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" custom-on-change="readImage">
-          <label for="resume" class="resumeImageLabel"><span class="glyphicon glyphicon-camera camera-glyph"></span></label>
-        </div>
-    </div>
-
     <h1 id="title">Add Candidate</h1>
   </div>
 
@@ -39,16 +32,23 @@
             <input class="form-control" type="text" ng-model="postCandidate.screenerInitials" required>
           </div>
 
-          <div class="text-center">
-            <div id="thumbnail-preview-area" ng-show="pictureAdded">
+          <div id="image-preview-div" class="text-center">
+            <div id="thumbnail-preview-area" ng-show="resumeAdded">
               <img ng-src="{{postCandidate.resumeBase64}}" width="300" height="400" />
             </div>
 
+            <div id="puzzle-preview-area" ng-show="puzzleAdded">
+              <img style="border: 1px solid black;" ng-src="{{postCandidate.puzzleBase64}}" width="300" height="400" />
+            </div>
+          </div>
+
+          <div class="text-center">
             <span class="glyphicon glyphicon-refresh" ng-show="sendingData" aria-hidden="true"></span>
             <span class="glyphicon-class" ng-show="sendingData"></span>
             <button type="submit submitBtn" ng-class="submitBtnClasses" data-ng-click="submit()" ng-disabled="candidateForm.$invalid">{{buttonText}}</button>
             <button type="submit" class="btn btn-warning">Cancel</button>
           </div>
+
         </form>
       </div>
     </div>

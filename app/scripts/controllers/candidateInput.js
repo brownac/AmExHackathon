@@ -44,6 +44,7 @@ angular.module('amExHackathonApp')
     $scope.submit = function() {
       $scope.sendingData = true;
       candidateToScreenerService.set($scope.postCandidate)
+<<<<<<< HEAD
       // show success by changing submit button class and value
       $scope.postCandidate = {};
       $scope.pictureAdded = false;
@@ -54,6 +55,16 @@ angular.module('amExHackathonApp')
       $timeout(() => {
       $location.path('screener/screenerSplash');
       }, 1000);
+=======
+        // show success by changing submit button class and value
+        $scope.postCandidate = {};
+        $scope.pictureAdded = false;
+        $scope.sendingData = false;
+        $scope.buttonText = "Successfully Submitted";
+        $scope.submitBtnClasses = "btn btn-success";
+
+        $location.path('screener/screenerSplash');
+>>>>>>> 3c818dcd88a7e82f8e8e6af1c399455108ae214e
     };
 
     init();

@@ -25,24 +25,20 @@ var loadFabric = function() {
 
   $(document).ready(function() {
     var buttons = $(".color-button");
-    buttons.each(function(index) {
-      $(this).css("color", colors[buttons[index].value]);
-    });
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].style = "color: " + colors[buttons[i].value];
+    }
   });
 
 
 
-  //Fabric setup and image load
+  //Fabric setup
   //-------------------------------------------------------------------------------------
   var canvas = new fabric.Canvas("c");
   var h;
   var eventStack = [];
   var isRedoing = false;
-  var isPictureLoaded = 0;
   canvas.isDrawingMode = true;
-
-  var imgObj = new Image();
-  var input = document.getElementById('resume-image');
 
   canvas.on('object:added', function() {
     if (!isRedoing) {
@@ -55,13 +51,13 @@ var loadFabric = function() {
 
   //Tool functions
   //----------------------------------------------------------------------------------
-  function undo() {
-    if (canvas._objects.length > isPictureLoaded) {
-      console.log(h);
-      h.push(canvas._objects.pop());
-      canvas.renderAll();
-    }
-  }
+  // function undo() {
+  //   if (canvas._objects.length > isPictureLoaded) {
+  //     console.log(h);
+  //     h.push(canvas._objects.pop());
+  //     canvas.renderAll();
+  //   }
+  // }
 
   function redo() {
     if (h.length > 0) {
@@ -135,17 +131,6 @@ var loadFabric = function() {
 
   //Event Listeners
   // --------------------------------------------------------------------------------
-  $("#resume-image").on("load", function() {
-    imgObj.src = input.src;
-    var image = new fabric.Image(imgObj);
-
-    image.height = 995;
-    image.width = 775;
-
-    canvas.add(image);
-    isPictureLoaded = 1;
-  });
-
   $("#undo").on("click", function() {
     undo();
   });
@@ -193,116 +178,21 @@ var loadFabric = function() {
 };
 
 
-var app = angular.module('amExHackathonApp');
-app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
-  $scope.pictureAdded = false;
-  $scope.nextButtonMessage = "";
+angular.module('amExHackathonApp')
+  .controller('PuzzleCtrl', function ($scope, $q, $timeout, $routeParams, $location, candidateService, candidateToScreenerService, softpenImage, puzzleImage) {
+
+  var canvas = loadFabric();
+  $scope.canvas = canvas;
 
   $scope.next = function() {
     var canvas = $scope.canvas;
     var image = new Image();
-
-    if(!canvas) {
-      $scope.nextButtonMessage = "Add a resume before proceeding";
-      return;
-    }
-
     image.src = canvas.toDataURL("image/png");
 
     // set the softpenImage.src to the base64 image from canvas
-    softpenImage.src = image.src;
+    puzzleImage.src = image.src;
 
-    // redirect to form, which uses softpenImage
-    $location.path('screener/candidateInput');
-  };
-
-  var img = null;
-  var angle = 0;
-
-  var rotationMatrix = function(degrees) {
-    if (!img) {
-      return;
-    }
-
-    var radians = Math.PI * degrees / 180;
-
-    /* see https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform */
-    return [
-      Math.cos(radians),
-      Math.sin(radians),
-      -Math.sin(radians),
-      Math.cos(radians),
-      0,
-      0
-    ];
-  };
-
-  var centerAndScaleImage = function() {
-    if (!img) {
-      return;
-    }
-
-    // use these to scale the image
-    var hRatio = null;
-    var wRatio = null;
-
-    // if rotated
-    if (Math.abs(angle) === 90 || Math.abs(angle) === 270) {
-
-      // use img.width since it is rotated
-      hRatio = $scope.canvas.getHeight() / img.width;
-      wRatio = $scope.canvas.getWidth() / img.height;
-    }
-    else {
-      hRatio = $scope.canvas.getHeight() / img.height;
-      wRatio = $scope.canvas.getWidth() / img.width;
-    }
-
-    // scale by the smaller ratio
-    img.scale(Math.min(hRatio, wRatio));
-
-    $scope.canvas.centerObject(img);
-  };
-
-  $scope.rotateBy = function(degrees) {
-    if (!img) {
-      return;
-    }
-
-    angle += degrees;
-    angle %= 360;
-    img.transformMatrix = rotationMatrix(angle);
-    centerAndScaleImage();
-  };
-
-  $scope.readImage = function(event) {
-    var files = event.target.files;
-
-    if (files && files[0]) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        $scope.$apply(function() {
-          // don't initialize the fabric canvas until the image is loaded!
-          var canvas = loadFabric();
-
-          fabric.Image.fromURL(e.target.result, function(oImg) {
-            img = oImg;
-            $scope.canvas = canvas;
-            $scope.pictureAdded = true;
-
-            // if landscape, rotate 90 degrees right
-            var isLandscape = oImg.width > oImg.height;
-
-            if (isLandscape) {
-              $scope.rotateBy(90);
-            }
-
-            centerAndScaleImage();
-            $scope.canvas.add(img);
-          });
-        });
-      };
-      reader.readAsDataURL(files[0]);
-    }
+    // redirect to screenerForm
+    $location.path('screener/candidateForm');
   };
 });

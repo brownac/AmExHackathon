@@ -7,19 +7,53 @@
  * # InterviewerFormCtrl
  * Controller of the amExHackathonApp
  */
+ var canvas;
 angular.module('amExHackathonApp')
-  .controller('InterviewerFormCtrl', function ($scope, $routeParams, candidateService, questionsService) {
+  .controller('InterviewerFormCtrl', function ($scope, $timeout, $routeParams, candidateService, $location, questionsService, archiveService, softpenImage) {
 
   var candidateId = $routeParams.candidateId;
-  $scope.currentPage = '';
+  $scope.pageNum;
+  $scope.pages = [];
+  $scope.currentPage;
+  $scope.currentInterview = '';
   $scope.candidate = {};
   $scope.activeForms = [];
   $scope.pictureAdded = false;
+  $scope.endInterview = false;
+  $scope.interviewQId = 0;
+  $scope.newArchive = {};
+
+  $scope.setInterview = function() {
+    $scope.currentInterview = $scope.activeForms[$scope.interviewQId];
+    $scope.pageNum = 0;
+    $scope.pages = $scope.currentInterview.Images;
+    $scope.currentPage = $scope.pages[$scope.pageNum].img_uri;
+  };
+
+  var nextPage = function() {
+    if(($scope.interviewQId + 1 === $scope.activeForms.length) &&
+      ($scope.pageNum+1 === $scope.pages.length)) {
+        $scope.endInterview = true;
+    } else if($scope.pageNum+1 === $scope.pages.length) {
+      interviewQId++;
+      $scope.setInterview();
+    } else {
+      $scope.pageNum++;
+      $scope.currentPage = $scope.pages[$scope.pageNum].img_uri;
+    }
+  };
 
   $scope.init = function() {
     // Get selected Candidate information
     candidateService.get({ id: candidateId }).$promise.then(value => {
       $scope.candidate = value;
+      console.log("BEFORE archiving");
+      // Get candidate question archive
+
+      archiveService.query({ id: candidateId }).$promise.then(value => {
+        console.log("Archiving");
+        $scope.candidate.questions = value;
+      });
     });
 
     // Get the active form
@@ -34,23 +68,50 @@ angular.module('amExHackathonApp')
 
       // Set the canvas current page
       if($scope.activeForms !== undefined) {
-        $scope.currentPage = $scope.activeForms[0].Images[0].img_uri;
+        $scope.interviewQId = 0;
+        $scope.setInterview();
       }
     });
-
-
   };
 
   $scope.next = function() {
-    var canvas = $("#c")[0];
-    var image = new Image();
-    image.src = canvas.toDataURL("image/png");
 
-    // set the softpenImage.src to the base64 image from canvas
-    softpenImage.src = image.src;
+    // SAVE THE IMAGE
+    if(!$scope.endInterview) {
+      var htmlCanvas = $("#c")[0];
+      var image = new Image();
+      image.src = htmlCanvas.toDataURL($scope.currentPage);
+
+      // set the softpenImage.src to the base64 image from canvas
+      // softpenImage.src = image.src;
+      if($scope.newArchive.files === undefined) {
+        $scope.newArchive.files = new Array(1);
+      }
+      $scope.newArchive.files.push(image.src);
+    }
 
     // redirect to form, which uses softpenImage
-    $location.path('screener/candidateForm');
+    // $location.path('screener/candidateForm');
+
+    // SET THE NEXT page
+    if($scope.endInterview) {
+      console.log("INTERVIEW ENDED");
+      archiveService.save($scope.newArchive).$promise.then(value => {
+        // show success by changing submit button class and value
+        $scope.newArchive = {};
+
+        console.log("INTERVIEW ENDED - REROUTING");
+
+        $timeout(() => {
+          image = null;
+          $location.path('interviewer/interviews');
+        }, 1000);
+      });
+    } else {
+      console.log("Next Page reached");
+      canvas.clear();
+      nextPage();
+    }
   };
 
   $scope.readImage = function(event) {
@@ -68,13 +129,13 @@ angular.module('amExHackathonApp')
     }
   };
 
-  loadFabric();
+  loadFabric1();
 
   $scope.init();
 });
 
 
-var loadFabric = function() {
+var loadFabric1 = function() {
   //Module Fields
   //-------------------------------------------------------------------------------------
   var colors = {
@@ -108,7 +169,7 @@ var loadFabric = function() {
 
   //Fabric setup and image load
   //-------------------------------------------------------------------------------------
-  var canvas = new fabric.Canvas("c");
+  canvas = new fabric.Canvas("c");
   var h;
   var eventStack = [];
   var isRedoing = false;
@@ -169,8 +230,9 @@ var loadFabric = function() {
 
   function findTagByColor(color) {
     for (var i = 0; i < colorButtons.length; i++) {
-      if (colorButtons[i].value == color)
+      if (colorButtons[i].value === color) {
         return colorButtons[i];
+      }
     }
     return {
       class: "",
@@ -228,13 +290,14 @@ var loadFabric = function() {
   });
 
   $(".color-button").on("click", function() {
+    console.log("changeColor");
     $(".color-button").removeClass("active");
     changeColor(this.value);
     activateTag(this);
   });
 
   $(".thinknessChanger").on("click", function() {
-    if (this.value == "plus") {
+    if (this.value === "plus") {
       console.log("increase");
       increaseWidth();
     } else {
@@ -247,7 +310,7 @@ var loadFabric = function() {
     $(".tool-button").removeClass("active");
     this.className += " active";
 
-    if (this.id == 'pen') {
+    if (this.id === 'pen') {
       $(".color-button").removeClass("active");
       canvas.freeDrawingBrush.width = penThickOptions[penSelectedThickness];
       updateThicknessDisplay(penSelectedThickness);
@@ -261,4 +324,10 @@ var loadFabric = function() {
       activateTag(findTagByColor(defaultMarkerColor));
     }
   });
+
+
+  // $("#next").on("click", function(){
+  //   console.log("YEAHHHH");
+  //   canvas.clear();
+  // });
 };

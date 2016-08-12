@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var models  = require('../models');
 var utils  = require('../utils');
@@ -18,6 +18,7 @@ router.post('/', function(req, res) {
 
 	// persist an instance
   archive.save().then(() => {
+		console.log("WE ARE IN SAVE FOR ARCHIVES");
   	var i;
   	var archive_id = `${archive.id}`;
   	for(i = 0; i < req.body.files.length; ++i) {
@@ -83,7 +84,7 @@ router.get('/', function(req, res) {
 	if(req.query.sequelize !== undefined) {
 		query = JSON.parse(req.query.sequelize);
 	}
-	
+
 	var sql = {
 				include: [{
 					model: models.Images,
