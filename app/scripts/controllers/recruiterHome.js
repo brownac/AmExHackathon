@@ -33,7 +33,7 @@ angular.module('amExHackathonApp')
         },
         sequelize: {
             finalEvaluation:{
-            //queries the db for those who have not been turned down 
+            //queries the db for those who have not been turned down
             $not: 'turndown'
           }
         }
@@ -288,7 +288,7 @@ angular.module('amExHackathonApp')
       $scope.editedCandidate.Interview = interviewInfo;
       var editing = {
         editing:true
-      } 
+      }
       $scope.editedCandidate.$update(editing).then(values => {
         console.log('INSERTING DATA');
       });
