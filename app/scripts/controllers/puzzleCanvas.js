@@ -25,24 +25,20 @@ var loadFabric = function() {
 
   $(document).ready(function() {
     var buttons = $(".color-button");
-    buttons.each(function(index) {
-      $(this).css("color", colors[buttons[index].value]);
-    });
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].style = "color: " + colors[buttons[i].value];
+    }
   });
 
 
 
-  //Fabric setup and image load
+  //Fabric setup
   //-------------------------------------------------------------------------------------
   var canvas = new fabric.Canvas("c");
   var h;
   var eventStack = [];
   var isRedoing = false;
-  var isPictureLoaded = 0;
   canvas.isDrawingMode = true;
-
-  var imgObj = new Image();
-  var input = document.getElementById('resume-image');
 
   canvas.on('object:added', function() {
     if (!isRedoing) {
@@ -55,13 +51,13 @@ var loadFabric = function() {
 
   //Tool functions
   //----------------------------------------------------------------------------------
-  function undo() {
-    if (canvas._objects.length > isPictureLoaded) {
-      console.log(h);
-      h.push(canvas._objects.pop());
-      canvas.renderAll();
-    }
-  }
+  // function undo() {
+  //   if (canvas._objects.length > isPictureLoaded) {
+  //     console.log(h);
+  //     h.push(canvas._objects.pop());
+  //     canvas.renderAll();
+  //   }
+  // }
 
   function redo() {
     if (h.length > 0) {
@@ -135,17 +131,6 @@ var loadFabric = function() {
 
   //Event Listeners
   // --------------------------------------------------------------------------------
-  $("#resume-image").on("load", function() {
-    imgObj.src = input.src;
-    var image = new fabric.Image(imgObj);
-
-    image.height = 995;
-    image.width = 775;
-
-    canvas.add(image);
-    isPictureLoaded = 1;
-  });
-
   $("#undo").on("click", function() {
     undo();
   });
@@ -193,9 +178,11 @@ var loadFabric = function() {
 };
 
 
-var app = angular.module('amExHackathonApp');
-app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
-  $scope.pictureAdded = false;
+angular.module('amExHackathonApp')
+  .controller('PuzzleCtrl', function ($scope, $q, $timeout, $routeParams, $location, candidateService, candidateToScreenerService, softpenImage, puzzleImage) {
+
+  var canvas = loadFabric();
+  $scope.canvas = canvas;
 
   $scope.next = function() {
     var canvas = $scope.canvas;
@@ -203,53 +190,9 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
     image.src = canvas.toDataURL("image/png");
 
     // set the softpenImage.src to the base64 image from canvas
-    softpenImage.src = image.src;
+    puzzleImage.src = image.src;
 
-    // redirect to form, which uses softpenImage
-    $location.path('screener/candidateInput');
-  };
-
-  $scope.readImage = function(event) {
-    var files = event.target.files;
-
-    if (files && files[0]) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        $scope.$apply(function() {
-          // don't initialize the fabric canvas until the image is loaded!
-          var canvas = loadFabric();
-
-          fabric.Image.fromURL(e.target.result, function(oImg) {
-            var isLandscape = oImg.width > oImg.height;
-
-            // use these to scale the image
-            var hRatio = null;
-            var wRatio = null;
-            if (isLandscape) {
-              // 90 degree rotation matrix
-              oImg.transformMatrix = [0, 1, -1, 0, 0, 0];
-
-              // use oImg.width since it is landscape
-              hRatio = canvas.getHeight() / oImg.width;
-              wRatio = canvas.getWidth() / oImg.height;
-            }
-            else {
-              hRatio = canvas.getHeight() / oImg.height;
-              wRatio = canvas.getWidth() / oImg.width;
-            }
-
-            // scale by the smaller ratio
-            oImg.scale(Math.min(hRatio, wRatio));
-
-            canvas.add(oImg);
-            canvas.centerObject(oImg);
-
-            $scope.canvas = canvas;
-            $scope.pictureAdded = true;
-          });
-        });
-      };
-      reader.readAsDataURL(files[0]);
-    }
+    // redirect to screenerForm
+    $location.path('screener/candidateForm');
   };
 });
