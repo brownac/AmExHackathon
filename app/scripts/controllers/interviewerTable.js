@@ -22,13 +22,14 @@ angular.module('amExHackathonApp')
     };
 
     $scope.addInterviewer = function() {
-      $scope.interviewers.push ({
-        name:     $scope.name
+      interviewerService.save({name: $scope.name}).$promise.then(values => {
+        $scope.interviewers.push (values);
       });
-      interviewerService.save({name: $scope.name});
+      $scope.name = '';
     };
 
     $scope.deleteInterviewer = function(index) {
+      console.log('Deleting an interviewer');
       var interviewer = $scope.interviewers[index];
       interviewer.$delete({id: interviewer.id});
       $scope.interviewers.splice(index,1);
