@@ -20,20 +20,23 @@ router.put('/', function(req, res) {
 		interview_Time: req.body.Interview.Interview_Time,
 		interview_Location: req.body.Interview.Interview_Location,
 		interviewer_1: req.body.Interview.Interviewer_1.name,
-		interviewer_2: req.body.Interview.Interviewer_2.name
+		interviewer_2: req.body.Interview.Interviewer_2.name,
+		interview_FT_Link:req.body.Interview.Interview_FT_Link,
+		interview_Int_Link:req.body.Interview.Interview_Int_Link
 	}, {
 		where: { can_id : req.body.id }
 	})
 	.then(function(result) {
     	res.send("Success");
-		//checks tosee if an interview was scheduled
 		if (req.body.Interview.interview_Date !== null) {
 			var edit = false;
+			console.log(req.query);
 			if (req.query.editing) {
 				edit = true;
 			};
 			email( req.body.email,req.body.firstName,req.body.lastName,req.body.Interview.Interview_Date,
-			req.body.Interview.Interview_Time,req.body.Interview.Interview_Location,edit);
+			req.body.Interview.Interview_Time,req.body.Interview.Interview_Location,req.body.Interview_FT_link,
+			req.body.Interview.Interview_Int_Link,edit);
 		};
 	});
 });
