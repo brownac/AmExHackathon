@@ -35,6 +35,11 @@ angular
         controller: 'CandidateInputCtrl',
         controllerAs: 'candidateInput'
       })
+      .when('/screener/puzzle', {
+        templateUrl: 'views/puzzleCanvas.html',
+        controller: 'PuzzleCtrl',
+        controllerAs: 'puzzle'
+      })
       .when('/screener/screenerSplash', {
         templateUrl: 'views/screenerSplash.html',
         controller: 'ScreenerSplashCtrl',
@@ -84,6 +89,11 @@ angular
         templateUrl: 'views/adminOptions.html',
         controller: 'adminOptionsCtrl',
         controllerAs: 'adminOps'
+      })
+      .when('/calendar/interviewerTable', {
+        templateUrl: 'views/interviewerTable.html',
+        controller: 'InterviewerTableCtrl',
+        controllerAs: 'InterviewerTable'
       })
       .otherwise({
         redirectTo: '/'

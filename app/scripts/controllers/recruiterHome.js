@@ -24,6 +24,7 @@ angular.module('amExHackathonApp')
       //initializes the array
       $scope.candidateQueue = [];
       $scope.scheduledCandidates = [];
+      $scope.interviewerDropdown = ["David", "Katrina", "Jules", "Justin", "GOD"];
       $scope.events = [];
       //creates the array of candidates to be scheduled
       var query = {
@@ -51,6 +52,12 @@ angular.module('amExHackathonApp')
           interview_Date:{
             //queries the db for those who have interviews scheduled
             $not: null
+          }
+        },
+        sequelize: {
+            finalEvaluation:{
+            //queries the db for those who have not been turned down 
+            $not: 'turndown'
           }
         }
       };

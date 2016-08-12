@@ -1,0 +1,35 @@
+<div>
+  <div class="row page-header text-center">
+    <h1 style="padding-right:10%"id="title">Add Interviewer</h1>
+    <button style="margin-left:77%"type="button" class="btn btn-warning" ng-click="recruiterLink()">Back to Recruiter Calendar</button>
+  </div>
+
+<form name="candidateForm" class="text-left">
+  <div class="form-group">
+    <label class="control-label">Enter First Name:</label>
+    <input class="form-control" type="text" ng-model="firstName" required>
+  </div>
+  <div class="form-group">
+    <label class="control-label">Enter Last Name:</label>
+    <input class="form-control" type="text" ng-model="lastName" required>
+  </div>
+  <button style="margin-left:auto; margin-right:auto; display:block"id="interviewerSubmit" ng-click="addInterviewer()" type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<h1 class="text-center" style="margin-top:5%; color:black">Interviewer List</h1>
+<table table="interviewers" class="table table-hover">
+	<thead>
+	<tr>
+		<th>Last Name</th>
+    <th>First Name</th>
+    <th></th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="row in interviewers track by $index">
+		<td>{{row.lastName}}</td>
+    <td>{{row.firstName}}</td>
+    <td><button type="button" class="btn btn-danger" data-ng-click="deleteInterviewer($index)">Delete Interviewer</button></td>
+	</tr>
+	</tbody>
+</table>
