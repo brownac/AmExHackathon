@@ -1,19 +1,26 @@
-.icon-flip{
+.icon-flip {
   -moz-transform: scale(-1, 1);
   -webkit-transform: scale(-1, 1);
   -o-transform: scale(-1, 1);
   -ms-transform: scale(-1, 1);
   transform: scale(-1, 1);
 }
-.btn-group{
+.btn-group {
   margin-left: 10px;
 }
 
-.tools-bar{
+.tools-bar {
   position: absolute;
   z-index: 2;
   background-color: white;
-  margin-left: 30px;
+  margin-left: 55px;
+}
+
+.tools-bar-puzzle {
+  position: absolute;
+  z-index: 2;
+  background-color: white;
+  margin-left: 110px;
 }
 
 .camera-pull-right {
@@ -23,4 +30,18 @@
 .btn-next {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait)
+and (-webkit-min-device-pixel-ratio: 1)  {
+  .tools-bar {
+    margin-left: 0px;
+  }
+
+  .tools-bar-puzzle {
+    margin-left: 25px;
+  }
 }

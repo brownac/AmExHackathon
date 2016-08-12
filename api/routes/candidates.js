@@ -36,35 +36,62 @@ router.post('/', function(req, res) {
 	    let base64Png = req.body.resumeBase64.split(',')[1];
 
 	    fs.writeFile(imgAbsPath, base64Png, {encoding: 'base64'} , err => {
-		    if (err) {
-		        res.status(500).json({
-			        errors: [
-			          "Could not save image to disk! Node.js threw an error",
-			          err
-			        ]
-		        });
-		    }
-		    else {
-		        //save image uri into database
-		        var image_type = 'resume';
-		        var image = models.Images.build({
-		          id: candidate.id,
+	      if (err) {
+	        res.status(500).json({
+	          errors: [
+	            "Could not save image to disk! Node.js threw an error",
+	            err
+	          ]
+	        });
+	      }
+	      else {
+	        //save image uri into database
+	        var image_type = 'resume';
+	        var image = models.Images.build({
+	          can_id: candidate.id,
 
-		          // add the preceding forwardslash
-		          img_uri: imgUri,
-		          type: image_type
-		        });
-		        image.save();
+	          // add the preceding forwardslash
+	          img_uri: imgUri,
+	          type: image_type
+	        });
+	        image.save();
 
-		        //creates an interview spot for the candidate
-		        var interview = models.Interviews.build({
-		        	id: candidate.id
-		        });
-				interview.save();
+	        //creates an interview spot for the candidate
+	        var interview = models.Interviews.build({
+	        	can_id: candidate.id
+	        });
+			interview.save();
+		  }
+		});
 
-		        res.json(candidate);
-		    }
-	    });
+	    if (req.body.puzzleBase64 !== undefined) {
+		    const puzzleName = `${candidate.id}.puzzle.png`;
+		    const puzzleUri = `/uploads/${puzzleName}`;
+		    const puzzleAbsPath = path.join(utils.uploadsDir, puzzleName);
+
+				let puzzleBase64Png = req.body.puzzleBase64.split(',')[1];
+		    fs.writeFile(puzzleAbsPath, puzzleBase64Png, {encoding: 'base64'} , err => {
+			    if (err) {
+			        res.status(500).json({
+				        errors: [
+				          "Could not save image to disk! Node.js threw an error",
+				          err
+				        ]
+			        });
+			    }
+			    else {
+			        //save image uri into database
+			      	var image_type = 'puzzle';
+				    var image = models.Images.build({
+				      can_id: candidate.id,
+				      img_uri: puzzleUri,
+				      type: image_type
+				    });
+			        image.save();
+			    }
+		    });
+		}
+		res.json(candidate);
 	});
 });
 

@@ -1,0 +1,34 @@
+  <div class="row">
+    <h1 class="col-xs-12" >Select Candidate</h1>
+  </div>
+  <hr/>
+  <div class="row">
+    <div class="col-xs-12 col-sm-5 col-md-4">
+      <div class="row btn-group btn-block interview-row-spacing">
+        <label class="col-xs-3 btn btn-primary" ng-click="changeView('year')">Year</label>
+        <label class="col-xs-3 btn btn-primary" ng-click="changeView('month')">Month</label>
+        <label class="col-xs-3 btn btn-primary" ng-click="changeView('week')">Week</label>
+        <label class="col-xs-3 btn btn-primary" ng-click="changeView('day')">Day</label>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-4">
+      <div class="row btn-group btn-block interview-row-spacing">
+        <label class="col-xs-4 btn btn-primary" mwl-date-modifier date="calendarDate" decrement="calendarView">Previous</label>
+        <label class="col-xs-4 btn btn-default" mwl-date-modifier date="calendarDate" set-to-today>Today</label>
+        <label class="col-xs-4 btn btn-primary" mwl-date-modifier date="calendarDate" increment="calendarView">Next</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <mwl-calendar class="col-xs-12"
+        view="calendarView"
+        view-date="calendarDate"
+        events="events"
+        view-title="calendarTitle"
+        on-event-click="eventClicked(calendarEvent)"
+        on-event-times-changed="calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+        cell-is-open="true">
+      </mwl-calendar>
+  </div>
+  <div style="margin-bottom:20px;">

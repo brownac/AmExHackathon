@@ -28,7 +28,7 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
-      <div class="navbar navbar-default" role="navigation">
+      <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
 
@@ -48,8 +48,9 @@
               <li><a href="#/">Home</a></li>
               <li><a ng-href="#/screener/softpen">Screener</a></li>
               <li><a ng-href="#/recruiter/recruiterHome">Recruiter</a></li>
-              <li><a ng-href="#/interviewer/interviewerForm">Interviewer</a></li>
+              <li><a ng-href="#/interviewer/interviews">Interviewer</a></li>
               <li><a ng-href="#/viewCandidates">Candidates</a></li>
+              <li><a ng-href="#/admin/adminOptions">Admin</a>
             </ul>
           </div>
         </div>
@@ -83,22 +84,31 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/interviews.js"></script>
+        <script src="scripts/controllers/interviewerForm.js"></script>
         <script src="scripts/controllers/softpen.js"></script>
         <script src="scripts/services/softpenimage.js"></script>
+        <script src="scripts/services/puzzleImage.js"></script>
         <script src="scripts/controllers/viewCandidate.js"></script>
         <script src="scripts/controllers/viewCandidates.js"></script>
         <script src="scripts/controllers/sidebar.js"></script>
         <script src="scripts/services/candidate.js"></script>
         <script src="scripts/services/interview.js"></script>
+        <script src="scripts/services/archive.js"></script>
+        <script src="scripts/services/question.js"></script>
+        <script src="scripts/services/interviewer.js"></script>
         <script src="scripts/services/candidateToScreener.js"></script>
         <script src="scripts/controllers/recruiterHome.js"></script>
         <script src="scripts/controllers/candidateInput.js"></script>
         <script src="scripts/controllers/candidateForm.js"></script>
+        <script src="scripts/controllers/adminOps.js"></script>
         <script src="scripts/controllers/screenerSplash.js"></script>
+        <script src="scripts/controllers/puzzleCanvas.js"></script>
+        <script src="scripts/controllers/interviewerTable.js"></script>
         <script src="scripts/directives/customonchange.js"></script>
 
-          <!-- leave this here, livereload will be removed during a real build -->
-        <script src="//localhost:35729/livereload.js"></script>
+        <!-- leave this here, livereload will be removed during a real build -->
+        <script src="//localhost:35728/livereload.js"></script>
         <!-- endbuild -->
 </body>
 </html>

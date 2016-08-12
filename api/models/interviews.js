@@ -20,14 +20,19 @@ module.exports = function(sequelize, DataTypes) {
     },
     interviewer_2: {
       type: DataTypes.STRING
+    },
+    interview_FT_Link: {
+      type: DataTypes.STRING
+    },
+    interview_Int_Link: {
+      type: DataTypes.STRING
     }
   }, {
     timestamps: false,
     classMethods: {
       associate: function(models) {
         Interviews.belongsTo(models.Candidates,{
-          foreignkey: 'id',
-          targetkey: 'id'
+          foreignkey: 'id'
         });
       }
     }

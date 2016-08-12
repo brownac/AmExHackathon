@@ -34,12 +34,23 @@
 }
 
 /* candidateForm.html */
+#image-preview-div {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
 #candidate-form-container {
   margin-bottom: 5%;
 }
 
 #thumbnail-preview-area {
   margin: 20px auto;
+  display: inline;
+}
+
+#puzzle-preview-area {
+  margin: 20px auto;
+  display: inline;
 }
 
 .camera-capture {
@@ -98,8 +109,8 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
-  height: 50%;
+  width: 40%;
+  height: 40%;
 }
 
 #slogan {
@@ -118,7 +129,7 @@
 
 /* viewCandidate.html */
 .candidate-name {
-  color:#494949;  
+  color:#494949;
 }
 
 .tab-content {
@@ -237,4 +248,16 @@ button.candidate-queue-person {
     .modal-content {
         width: 100%;
     }
+}
+
+.unicode-icon {
+  font-size: 1.5em;
+}
+
+.interview-row-bottom-buffer {
+  margin-bottom: 5px;
+}
+
+.admin-option-top-margin {
+  margin-top: 50px;
 }

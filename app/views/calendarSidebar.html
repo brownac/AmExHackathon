@@ -16,7 +16,7 @@
           <a href="">{{ candidate.lastName }}, {{ candidate.firstName }} &nbsp;<span class="glyphicon glyphicon-remove red remove-candidate" ng-click="turndownCandidate(candidate)"></span></a>
         </li>
       </ul>
-      <div ng-if="results.length == 0">
+      <div ng-if="results.length == 0" class="text-center">
         <strong>No candidates found... Queue Empty</strong>
       </div>
   </ul>

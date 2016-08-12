@@ -1,6 +1,6 @@
 <div>
   <div class="container  col-md-10 col-md-offset-1">
-    <div class="row tools-bar center-toolbar" id="options" >
+    <div class="row tools-bar-puzzle center-toolbar" id="options" >
       <div class="btn-group" role="group" aria-label="...">
         <button value="black" type="button" class="btn btn-default color-button active">
           <span class="glyphicon glyphicon-tint" aria-hidden="true"></span>
@@ -46,30 +46,18 @@
         </button>
       </div>
       <div class="btn-group" role="group" aria-label="...">
-        <!-- rotate left -->
-        <button type="button" class="btn btn-default" ng-click="rotateBy(-90)">
-          <span class="unicode-icon" aria-hidden="true">&#x21ba;</span>
+        <button id="undo" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
         </button>
-        <!-- rotate right -->
-        <button type="button" class="btn btn-default" ng-click="rotateBy(90)">
-          <span class="unicode-icon" aria-hidden="true">&#x21bb;</span>
+        <button id="redo" type="button" class="btn btn-default">
+          <span class="glyphicon glyphicon-zoom-out" aria-hidden="true"></span>
         </button>
-      </div>
-      <div class="pull-right camera-pull-right">
-        <div class="camera-capture">
-          <input type="file" name="resume" id="resume" class="resumeImage" accept="image/*" capture="camera" custom-on-change="readImage">
-          <label for="resume" class="resumeImageLabel"><span class="glyphicon glyphicon-camera camera-glyph"></span></label>
-        </div>
       </div>
       <!-- <button class="btn btn-info" style="margin-left: 50px">Stop</button> -->
     </div>
 
     <div class="row col-md-12 col-md-offset-1" style="margin-top: 65px">
       <canvas class="" id="c" height="950" width="650" style="border: 1px solid black"></canvas>
-    </div>
-
-    <div class="text-center">
-      {{nextButtonMessage}}
     </div>
 
     <div class="row text-center col-md-2 col-md-offset-5 btn-next">

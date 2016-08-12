@@ -1,6 +1,141 @@
 'use strict';
 
-var loadFabric = function() {
+/**
+ * @ngdoc function
+ * @name amExHackathonApp.controller:InterviewerFormCtrl
+ * @description
+ * # InterviewerFormCtrl
+ * Controller of the amExHackathonApp
+ */
+ var canvas;
+angular.module('amExHackathonApp')
+  .controller('InterviewerFormCtrl', function ($scope, $timeout, $routeParams, candidateService, $location, questionsService, archiveService, softpenImage) {
+
+  var candidateId = $routeParams.candidateId;
+  $scope.pageNum;
+  $scope.pages = [];
+  $scope.currentPage;
+  $scope.currentInterview = '';
+  $scope.candidate = {};
+  $scope.activeForms = [];
+  $scope.pictureAdded = false;
+  $scope.endInterview = false;
+  $scope.interviewQId = 0;
+  $scope.newArchive = {};
+
+  $scope.setInterview = function() {
+    $scope.currentInterview = $scope.activeForms[$scope.interviewQId];
+    $scope.pageNum = 0;
+    $scope.pages = $scope.currentInterview.Images;
+    $scope.currentPage = $scope.pages[$scope.pageNum].img_uri;
+  };
+
+  var nextPage = function() {
+    if(($scope.interviewQId + 1 === $scope.activeForms.length) &&
+      ($scope.pageNum+1 === $scope.pages.length)) {
+        $scope.endInterview = true;
+    } else if($scope.pageNum+1 === $scope.pages.length) {
+      interviewQId++;
+      $scope.setInterview();
+    } else {
+      $scope.pageNum++;
+      $scope.currentPage = $scope.pages[$scope.pageNum].img_uri;
+    }
+  };
+
+  $scope.init = function() {
+    // Get selected Candidate information
+    candidateService.get({ id: candidateId }).$promise.then(value => {
+      $scope.candidate = value;
+      console.log("BEFORE archiving");
+      // Get candidate question archive
+
+      archiveService.query({ id: candidateId }).$promise.then(value => {
+        console.log("Archiving");
+        $scope.candidate.questions = value;
+      });
+    });
+
+    // Get the active form
+    questionsService.query().$promise.then(values => {
+      console.log("THIS IS WORKING");
+      var i;
+      for(i = 0; i < values.length; i++) {
+        if(values[i].active === true) {
+          $scope.activeForms.push(values[i]);
+        }
+      }
+
+      // Set the canvas current page
+      if($scope.activeForms !== undefined) {
+        $scope.interviewQId = 0;
+        $scope.setInterview();
+      }
+    });
+  };
+
+  $scope.next = function() {
+
+    // SAVE THE IMAGE
+    if(!$scope.endInterview) {
+      var htmlCanvas = $("#c")[0];
+      var image = new Image();
+      image.src = htmlCanvas.toDataURL($scope.currentPage);
+
+      // set the softpenImage.src to the base64 image from canvas
+      // softpenImage.src = image.src;
+      if($scope.newArchive.files === undefined) {
+        $scope.newArchive.files = new Array(1);
+      }
+      $scope.newArchive.files.push(image.src);
+    }
+
+    // redirect to form, which uses softpenImage
+    // $location.path('screener/candidateForm');
+
+    // SET THE NEXT page
+    if($scope.endInterview) {
+      console.log("INTERVIEW ENDED");
+      archiveService.save($scope.newArchive).$promise.then(value => {
+        // show success by changing submit button class and value
+        $scope.newArchive = {};
+
+        console.log("INTERVIEW ENDED - REROUTING");
+
+        $timeout(() => {
+          image = null;
+          $location.path('interviewer/interviews');
+        }, 1000);
+      });
+    } else {
+      console.log("Next Page reached");
+      canvas.clear();
+      nextPage();
+    }
+  };
+
+  $scope.readImage = function(event) {
+    var files = event.target.files;
+
+    if (files && files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $scope.$apply(function() {
+          $scope.QuestionBase64 = e.target.result;
+          $scope.pictureAdded = true;
+        });
+      };
+      reader.readAsDataURL(files[0]);
+    }
+  };
+
+  loadFabric1();
+
+  $scope.init();
+});
+
+
+var loadFabric1 = function() {
   //Module Fields
   //-------------------------------------------------------------------------------------
   var colors = {
@@ -25,16 +160,16 @@ var loadFabric = function() {
 
   $(document).ready(function() {
     var buttons = $(".color-button");
-    buttons.each(function(index) {
-      $(this).css("color", colors[buttons[index].value]);
-    });
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].style = "color: " + colors[buttons[i].value];
+    }
   });
 
 
 
   //Fabric setup and image load
   //-------------------------------------------------------------------------------------
-  var canvas = new fabric.Canvas("c");
+  canvas = new fabric.Canvas("c");
   var h;
   var eventStack = [];
   var isRedoing = false;
@@ -95,7 +230,7 @@ var loadFabric = function() {
 
   function findTagByColor(color) {
     for (var i = 0; i < colorButtons.length; i++) {
-      if (colorButtons[i].value === color){
+      if (colorButtons[i].value === color) {
         return colorButtons[i];
       }
     }
@@ -155,6 +290,7 @@ var loadFabric = function() {
   });
 
   $(".color-button").on("click", function() {
+    console.log("changeColor");
     $(".color-button").removeClass("active");
     changeColor(this.value);
     activateTag(this);
@@ -189,120 +325,9 @@ var loadFabric = function() {
     }
   });
 
-  return canvas;
+
+  // $("#next").on("click", function(){
+  //   console.log("YEAHHHH");
+  //   canvas.clear();
+  // });
 };
-
-
-var app = angular.module('amExHackathonApp');
-app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
-  $scope.pictureAdded = false;
-  $scope.nextButtonMessage = "";
-
-  $scope.next = function() {
-    var canvas = $scope.canvas;
-    var image = new Image();
-
-    if(!canvas) {
-      $scope.nextButtonMessage = "Add a resume before proceeding";
-      return;
-    }
-
-    image.src = canvas.toDataURL("image/png");
-
-    // set the softpenImage.src to the base64 image from canvas
-    softpenImage.src = image.src;
-
-    // redirect to form, which uses softpenImage
-    $location.path('screener/candidateInput');
-  };
-
-  var img = null;
-  var angle = 0;
-
-  var rotationMatrix = function(degrees) {
-    if (!img) {
-      return;
-    }
-
-    var radians = Math.PI * degrees / 180;
-
-    /* see https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/transform */
-    return [
-      Math.cos(radians),
-      Math.sin(radians),
-      -Math.sin(radians),
-      Math.cos(radians),
-      0,
-      0
-    ];
-  };
-
-  var centerAndScaleImage = function() {
-    if (!img) {
-      return;
-    }
-
-    // use these to scale the image
-    var hRatio = null;
-    var wRatio = null;
-
-    // if rotated
-    if (Math.abs(angle) === 90 || Math.abs(angle) === 270) {
-
-      // use img.width since it is rotated
-      hRatio = $scope.canvas.getHeight() / img.width;
-      wRatio = $scope.canvas.getWidth() / img.height;
-    }
-    else {
-      hRatio = $scope.canvas.getHeight() / img.height;
-      wRatio = $scope.canvas.getWidth() / img.width;
-    }
-
-    // scale by the smaller ratio
-    img.scale(Math.min(hRatio, wRatio));
-
-    $scope.canvas.centerObject(img);
-  };
-
-  $scope.rotateBy = function(degrees) {
-    if (!img) {
-      return;
-    }
-
-    angle += degrees;
-    angle %= 360;
-    img.transformMatrix = rotationMatrix(angle);
-    centerAndScaleImage();
-  };
-
-  $scope.readImage = function(event) {
-    var files = event.target.files;
-
-    if (files && files[0]) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        $scope.$apply(function() {
-          // don't initialize the fabric canvas until the image is loaded!
-          var canvas = loadFabric();
-
-          fabric.Image.fromURL(e.target.result, function(oImg) {
-            img = oImg;
-            $scope.canvas = canvas;
-            $scope.pictureAdded = true;
-
-            // if landscape, rotate 90 degrees right
-            var isLandscape = oImg.width > oImg.height;
-
-            if (isLandscape) {
-              $scope.rotateBy(90);
-            }
-
-            centerAndScaleImage();
-            $scope.canvas.add(img);
-          });
-        });
-      };
-      reader.readAsDataURL(files[0]);
-    }
-  };
-});
