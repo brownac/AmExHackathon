@@ -38,14 +38,14 @@ angular.module('amExHackathonApp')
         },
         sequelize: {
             finalEvaluation:{
-            //queries the db for those who have not been turned down 
+            //queries the db for those who have not been turned down
             $not: 'turndown'
           }
         }
       };
       calendarService.query(query).$promise.then(values => {
         for (var i = values.length - 1; i >= 0; i--) {
-          values[i].fullName =  values[i].lastName + ', ' + values[i].firstName
+          values[i].fullName =  values[i].lastName + ', ' + values[i].firstName;
         }
         $scope.candidateQueue = values;
       });
@@ -60,7 +60,7 @@ angular.module('amExHackathonApp')
         },
         sequelize: {
             finalEvaluation:{
-            //queries the db for those who have not been turned down 
+            //queries the db for those who have not been turned down
             $not: 'turndown'
           }
         }
@@ -68,7 +68,7 @@ angular.module('amExHackathonApp')
       calendarService.query(query2).$promise.then(values => {
         //loops through all the scheduled candidates to add them to the calendar
         for (var i = values.length - 1; i >= 0; i--) {
-          values[i].fullName =  values[i].lastName + ', ' + values[i].firstName
+          values[i].fullName =  values[i].lastName + ', ' + values[i].firstName;
           //sets the interview to a js Date object
           values[i].Interview.interview_Date = new Date(values[i].Interview.interview_Date);
           var endDate = new Date(values[i].Interview.interview_Date);
@@ -83,10 +83,10 @@ angular.module('amExHackathonApp')
             },
             candidate: values[i]
           });
-        };
+        }
         $scope.scheduledCandidates = values;
       });
-    }
+    };
 
     $scope.calendarView = 'month';
     var calDate = new Date();
@@ -299,7 +299,7 @@ angular.module('amExHackathonApp')
       $scope.editedCandidate.Interview = interviewInfo;
       var editing = {
         editing:true
-      } 
+      };
       $scope.editedCandidate.$update(editing).then(values => {
         console.log('INSERTING DATA');
       });

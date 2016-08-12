@@ -33,6 +33,6 @@ angular.module('amExHackathonApp')
       var interviewer = $scope.interviewers[index];
       interviewer.$delete({id: interviewer.id});
       $scope.interviewers.splice(index,1);
-    }
+    };
 
 });

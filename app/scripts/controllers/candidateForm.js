@@ -32,7 +32,7 @@ angular.module('amExHackathonApp')
 
       if (puzzleImage.src !== null) {
         $scope.puzzleAdded = true;
-        $scope.postCandidate.puzzleBase64 = puzzleImage.src
+        $scope.postCandidate.puzzleBase64 = puzzleImage.src;
       }
 
       $scope.buttonText = "Submit";

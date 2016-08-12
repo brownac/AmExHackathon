@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('amExHackathonApp')
   .controller('ScreenerSplashCtrl', function ($scope, $q, $timeout, $routeParams, $location, candidateService, candidateToScreenerService, softpenImage, puzzleImage) {
 
@@ -6,10 +8,10 @@ angular.module('amExHackathonApp')
 
     $scope.goToScreenerForm = function() {
       $location.path('/screener/candidateForm');
-    }
+    };
 
     $scope.goToPuzzleCanvas = function() {
       $location.path('/screener/puzzle');
-    }
+    };
 
   });

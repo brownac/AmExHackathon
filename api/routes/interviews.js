@@ -27,7 +27,8 @@ router.put('/', function(req, res) {
 		where: { can_id : req.body.id }
 	})
 	.then(function(result) {
-    	res.send("Success");
+  	res.send("Success");
+
 		if (req.body.Interview.interview_Date !== null) {
 			var edit = false;
 			console.log(req.query);
