@@ -1,0 +1,16 @@
+# put this service file into /etc/systemd/system/recruiting-app.service
+# then run # systemctl daemon-reload
+[Service]
+ExecStart=/usr/local/bin/node /home/pi/AmExHackathon/api/server.js
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=recruiting-app
+User=pi
+Group=pi
+
+# Add envars here
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target

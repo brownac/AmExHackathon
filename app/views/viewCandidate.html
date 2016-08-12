@@ -1,3 +1,54 @@
+<script type="text/ng-template" id="tabNotes.html">
+	<div id="notes-tab-content">
+    <img id="tab-resume-img" ng-src="{{candidate.Images[0].img_uri}}" alt="Resume" width="200" height="275" data-toggle="modal" data-target="#imageModal">
+    <img id="tab-puzzle-img" ng-src="{{candidate.Images[1].img_uri}}" alt="Puzzle" width="200" height="275" data-toggle="modal" data-target="#puzzleModal">
+	</div>
+</script>
+
+<script type="text/ng-template" id="tabInfo.html">
+	<div id="info-tab-content">
+    <div class="info-group">
+      <label>Email Address:</label> {{candidate.email}}
+    </div>
+    <div class="info-group">
+      <label>Phone Number:</label> {{candidate.phoneNumber}}
+    </div>
+    <div class="info-group">
+      <label>School:</label> {{candidate.school}}
+    </div>
+    <div class="info-group">
+      <label>Major:</label> {{candidate.major}}
+    </div>
+    <div class="info-group">
+      <label>Graduation Date:</label> {{candidate.graduationDate}}
+    </div>
+    <div class="info-group">
+      <label>Sponsorship:</label> {{candidate.needSponsorship}}
+    </div>
+    <div class="info-group">
+      <label>Internship/Full-Time:</label> {{candidate.internOrFull}}
+    </div>
+    <div class="info-group">
+      <label>Areas of Interest:</label> {{candidate.areaOfInterest}}
+    </div>
+    <div class="info-group">
+      <label>Preferred Languages:</label> {{candidate.preferredLanguages}}
+    </div>
+    <div class="info-group">
+      <label>Status:</label> {{candidate.finalEvaluation}}
+    </div>
+		<div class="info-group">
+      <label>Notes:</label> {{candidate.notes}}
+    </div>
+    <div class="info-group">
+      <label>Screener:</label> {{candidate.screenerInitials}}
+    </div>
+    <div class="info-group">
+      <label>Interviewers:</label> {{interviewers}}
+    </div>
+	</div>
+</script>
+
 <div id="wrapper">
 
   <!-- Sidebar -->
@@ -5,54 +56,37 @@
 
   <!-- Candidate info -->
   <div id="page-content-wrapper">
-    <div class="page-header" data>
-      <h1>{{candidate.name}}</h1>
+    <div class="page-header">
+      <h1 class="candidate-name">{{candidate.firstName}} {{candidate.lastName}}</h1>
+      <div class="pull-right" style="margin-top:-42px;">
+        <button class="btn btn-primary">
+          <a class="button-link" href="#/screener/candidateForm/{{candidate.id}}">Edit Info</a>
+        </button>
+      </div>
     </div>
 
     <div class="container-fluid">
       <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#">Information</a></li>
-        <li role="presentation"><a href="#">Notes</a></li>
+        <li role="presentation" ng-repeat="tab in tabs">
+          <a ng-class="{active:isActiveTab(tab.url)}" ng-click="onClickTab(tab)" href="#/viewCandidate/{{candidate.id}}">{{tab.title}}</a>
+        </li>
       </ul>
 
-      <div class="info-tab-content" ng-model="selectedCandidate">
-        <div class="info-group">
-          <label>Email Address:</label> {{candidate.email}}
-        </div>
-        <div class="info-group">
-          <label>Phone Number:</label> {{candidate.phoneNumber}}
-        </div>
-        <div class="info-group">
-          <label>School:</label> {{candidate.school}}
-        </div>
-        <div class="info-group">
-          <label>Major:</label> {{candidate.major}}
-        </div>
-        <div class="info-group">
-          <label>Graduation Date:</label> {{candidate.graduationDate}}
-        </div>
-        <div class="info-group">
-          <label>Sponsorship:</label> {{candidate.needSponsorship}}
-        </div>
-        <div class="info-group">
-          <label>Internship/Full-Time:</label> {{candidate.internOrFull}}
-        </div>
-        <div class="info-group">
-          <label>Areas of Interest:</label> {{candidate.areaOfInterest}}
-        </div>
-        <div class="info-group">
-          <label>Preferred Languages:</label> {{candidate.preferredLanguages}}
-        </div>
-        <div class="info-group">
-          <label>Status:</label> {{candidate.finalEvaluation}}
-        </div>
-        <div class="info-group">
-          <label>Screener:</label>
-        </div>
-        <div class="info-group">
-          <label>Interviewers:</label>
-        </div>
-      </div>
+      <div id="tab-content-div" class="tab-content" ng-include="currentTab"></div>
     </div>
+
+		<!-- The Modal -->
+		<div id="imageModal" class="modal" role="dialog" aria-labelledby="myModalLabel">
+			<span id="imageModalClose" class="close" data-dismiss="modal" data-target="#imageModal">×</span>
+			<img class="modal-content" id="modalImage" role="document" ng-src="{{candidate.Images[0].img_uri}}" alt="{{candidate.firstName}} {{candidate.lastName}}'s Resume">
+			<div id="imageCaption"></div>
+		</div>
+
+		<div id="puzzleModal" class="modal" role="dialog" aria-labelledby="myModalLabel">
+			<span id="puzzleModalClose" class="close" data-dismiss="modal" data-target="#puzzleModal">×</span>
+			<img class="modal-content" id="modalImage" role="document" ng-src="{{candidate.Images[1].img_uri}}" alt="{{candidate.firstName}} {{candidate.lastName}}'s Puzzle">
+			<div id="puzzleCaption"></div>
+		</div>
+
   </div>
 </div>

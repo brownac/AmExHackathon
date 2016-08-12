@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/sidebar.css">
     <link rel="stylesheet" href="styles/calendar.css">
+    <link rel="stylesheet" href="styles/softpen.css">
     <!-- endbuild -->
   </head>
   <body ng-app="amExHackathonApp">
@@ -27,7 +28,7 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
-      <div class="navbar navbar-default" role="navigation">
+      <div class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
 
@@ -45,10 +46,11 @@
 
             <ul class="nav navbar-nav">
               <li><a href="#/">Home</a></li>
-              <li><a ng-href="#/screener/candidateForm">Screener</a></li>
-              <li><a ng-href="#/recruiter/recruiterForm">Recruiter</a></li>
-              <li><a ng-href="#/interviewer/interviewerForm">Interviewer</a></li>
+              <li><a ng-href="#/screener/softpen">Screener</a></li>
+              <li><a ng-href="#/recruiter/recruiterHome">Recruiter</a></li>
+              <li><a ng-href="#/interviewer/interviews">Interviewer</a></li>
               <li><a ng-href="#/viewCandidates">Candidates</a></li>
+              <li><a ng-href="#/admin/adminOptions">Admin</a>
             </ul>
           </div>
         </div>
@@ -71,6 +73,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/fabric.js/dist/fabric.min.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.js"></script>
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
@@ -81,12 +84,31 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/interviews.js"></script>
+        <script src="scripts/controllers/interviewerForm.js"></script>
+        <script src="scripts/controllers/softpen.js"></script>
+        <script src="scripts/services/softpenimage.js"></script>
+        <script src="scripts/services/puzzleImage.js"></script>
         <script src="scripts/controllers/viewCandidate.js"></script>
         <script src="scripts/controllers/viewCandidates.js"></script>
+        <script src="scripts/controllers/sidebar.js"></script>
         <script src="scripts/services/candidate.js"></script>
-        <script src="scripts/controllers/RecruiterForm.js"></script>
+        <script src="scripts/services/interview.js"></script>
+        <script src="scripts/services/archive.js"></script>
+        <script src="scripts/services/question.js"></script>
+        <script src="scripts/services/interviewer.js"></script>
+        <script src="scripts/services/candidateToScreener.js"></script>
+        <script src="scripts/controllers/recruiterHome.js"></script>
+        <script src="scripts/controllers/candidateInput.js"></script>
         <script src="scripts/controllers/candidateForm.js"></script>
-        <script src="scripts/controllers/calendar.js"></script>
+        <script src="scripts/controllers/adminOps.js"></script>
+        <script src="scripts/controllers/screenerSplash.js"></script>
+        <script src="scripts/controllers/puzzleCanvas.js"></script>
+        <script src="scripts/controllers/interviewerTable.js"></script>
+        <script src="scripts/directives/customonchange.js"></script>
+
+        <!-- leave this here, livereload will be removed during a real build -->
+        <script src="//localhost:35728/livereload.js"></script>
         <!-- endbuild -->
 </body>
 </html>

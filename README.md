@@ -36,6 +36,22 @@ To just build the full production ready app, just run grunt:
 $ grunt           # you may need --force if there are linting errors
 ```
 
+## Production
+Use the `systemd` service. It has instructions within `recruiting-app.service`. When cloning the app on the pi, there is a bug with the `sqlite3` npm package where it takes forever to install. So to clone the app, do:
+```sh
+git clone ...
+cd AmExHackathon
+npm install --only=production         # only install the production deps
+bower install
+npm link sqlite3                      # is already installed globably to fix bug
+npm link sequelize
+
+# install the service
+sudo cp recruiting-app.service /etc/systemd/system/.
+sudo systemctl enable recruiting-app   # will start automagically on reboot
+sudo systemctl start recruiting-app    # start it now semi-magically
+```
+
 ### Code Generators
 The frontend was generated with [Yeoman's generator angular](https://github.com/yeoman/generator-angular). It has a few generators if you `npm install -g` `yo` and `generator-angular`.
 
