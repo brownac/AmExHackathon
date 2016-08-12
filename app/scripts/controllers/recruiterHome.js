@@ -195,19 +195,19 @@ angular.module('amExHackathonApp')
       endTime.setHours(endTime.getHours() + 1, $scope.min);
       for(var i = 0; i<$scope.events.length; i++){
         if($scope.events[i].startsAt.getTime() === time.getTime()){
-          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.interviewer1 && $scope.events[i].candidate.Interview.interviewer_2 === $scope.interviewer2){
+          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.interviewer1.name && $scope.events[i].candidate.Interview.interviewer_2 === $scope.interviewer2.name){
             $scope.interviewConflict = true;
-            $scope.invalidInterviewer = $scope.interviewer1+ " and " + $scope.interviewer2 + " have";
+            $scope.invalidInterviewer = $scope.interviewer1.name+ " and " + $scope.interviewer2.name + " have";
             return;
           }
-          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.interviewer1){
+          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.interviewer1.name){
             $scope.interviewConflict = true;
-            $scope.invalidInterviewer = $scope.interviewer1 + " has";
+            $scope.invalidInterviewer = $scope.interviewer1.name + " has";
             return;
           }
-          if($scope.events[i].candidate.Interview.interviewer_2 === $scope.interviewer2){
+          if($scope.events[i].candidate.Interview.interviewer_2 === $scope.interviewer2.name){
             $scope.interviewConflict = true;
-            $scope.invalidInterviewer = $scope.interviewer2 + " has";
+            $scope.invalidInterviewer = $scope.interviewer2.name + " has";
             return;
           }
         }
@@ -222,7 +222,7 @@ angular.module('amExHackathonApp')
           primary: '#e3bc08',
           secondary: '#fdf1ba'
         },
-        candidate: $scope.selectedCandidate
+        candidate: $scope.selectedCandidate,
       });
 
       //adds the interview information into the database
@@ -249,12 +249,26 @@ angular.module('amExHackathonApp')
       var index = $scope.events.indexOf(calendarEvent); //get index of specified interview
       $scope.editedCandidate = calendarEvent.candidate;
 
+
       //load preexisting fields to text boxes in editing modal
       $scope.editInterviewDate = $scope.events[index].startsAt;
       $scope.editLocation = $scope.events[index].candidate.Interview.interview_Location;
       $scope.editInterviewTime = getEditTime($scope.events[index].startsAt);
-      $scope.editInterviewer1 = $scope.events[index].candidate.Interview.interviewer_1;
-      $scope.editInterviewer2 = $scope.events[index].candidate.Interview.interviewer_2;
+      var gotInterviewer1 = false;
+      var gotInterviewer2 = false;
+      for(var i = 0; i<$scope.interviewerDropdown.length; i++){
+        if(calendarEvent.candidate.Interview.interviewer_1 === $scope.interviewerDropdown[i].name){
+          $scope.editInterviewer1 = $scope.interviewerDropdown[i];
+          gotInterviewer1 = true;
+        }
+        else if(calendarEvent.candidate.Interview.interviewer_2 === $scope.interviewerDropdown[i].name){
+          $scope.editInterviewer2 = $scope.interviewerDropdown[i];
+          gotInterviewer2 = true;
+        }
+        if(gotInterviewer1 && gotInterviewer2){
+          break;
+        }
+      }
     };
 
     $scope.editEvent = function(calendarEvent) {
@@ -270,19 +284,19 @@ angular.module('amExHackathonApp')
       time.setHours($scope.hour,$scope.min);
       for(var i = 0; i<$scope.events.length; i++){
         if($scope.events[i].startsAt.getTime() === time.getTime() && $scope.events[i].candidate.id !== $scope.editedCandidate.id){
-          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.editInterviewer1 && $scope.events[i].candidate.Interview.interviewer_2 === $scope.editInterviewer2){
+          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.editInterviewer1.name && $scope.events[i].candidate.Interview.interviewer_2 === $scope.editInterviewer2.name){
             $scope.interviewConflict = true;
-            $scope.invalidInterviewer = $scope.editInterviewer1+ " and " + $scope.editInterviewer2 + " have";
+            $scope.invalidInterviewer = $scope.editInterviewer1.name+ " and " + $scope.editInterviewer2.name + " have";
             return;
           }
-          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.editInterviewer1){
+          if($scope.events[i].candidate.Interview.interviewer_1 === $scope.editInterviewer1.name){
             $scope.interviewConflict = true;
-            $scope.invalidInterviewer = $scope.editInterviewer1 + " has";
+            $scope.invalidInterviewer = $scope.editInterviewer1.name + " has";
             return;
           }
-          if($scope.events[i].candidate.Interview.interviewer_2 === $scope.editInterviewer2){
+          if($scope.events[i].candidate.Interview.interviewer_2 === $scope.editInterviewer2.name){
             $scope.interviewConflict = true;
-            $scope.invalidInterviewer = $scope.editInterviewer2 + " has";
+            $scope.invalidInterviewer = $scope.editInterviewer2.name + " has";
             return;
           }
         }
