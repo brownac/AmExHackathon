@@ -1,8 +1,12 @@
+<h1 class="text-center">Administrative Options</h1>
+
 <script type="text/ng-template" id="tabQuestions.html">
+
 	<div id="notes-tab-content">
     <div class="container-fluid">
+      <h2 class="text-center">Question Form</h1>
+
   <div class="row">
-    <h1 class="text-center">Administrative Options</h1>
     <hr/>
   </div>
 
@@ -124,7 +128,7 @@
           <div class="text-center">
             <span class="glyphicon glyphicon-refresh" ng-show="sendingData" aria-hidden="true"></span>
             <span class="glyphicon-class" ng-show="sendingData"></span>
-            <button type="submit submitBtn" ng-class="submitBtnClasses" ng-disabled="linkForm.$invalid" data-ng-click="submitLink()" >{{buttonText}}</button>
+            <button type="submit submitBtn" ng-class="submitBtnClasses" ng-disabled="linkForm.$invalid" data-ng-click="submitLink(interview_FT_Link, interview_Int_Link)" >{{buttonText}}</button>
             <button type="submit" class="btn btn-warning">Cancel</button>
           </div>
         </form>

@@ -17,8 +17,9 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
   $scope.newForm = {};
   $scope.forms = [];
   $scope.interviews = [];
-  $scope.interview_FT_Link;
-  $scope.interview_Int_Link;
+
+
+
 
 
   $scope.init = function() {
@@ -39,11 +40,8 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
 
     calendarService.query().$promise.then(values => {
     $scope.interviews = values;
-    var i;
-    for (i = 0; i < $scope.interviews.length; i++) {
-      $scope.interviews[i].Interview.interview_FT_Link = '';
-      $scope.interviews[i].Interview.interview_Int_Link = '';
-    }
+
+
     });
 
   };
@@ -107,18 +105,24 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     });
   };
 
-  $scope.submitLink = function() {
+  $scope.submitLink = function(interview_FT_Link, interview_Int_Link) {
+    //  console.log(cool);
     $scope.sendingData = true;
     console.log("WE MADE IT TO HERE");
-    var i;
-    for (i = 0; i < $scope.interviews.length; i++) {
-      $scope.interviews[i].Interview.interview_FT_Link = $scope.interview_FT_Link;
-      $scope.interviews[i].Interview.interview_Int_Link = $scope.interview_Int_Link;
+    var i = 0;
+    for (; i < $scope.interviews.length; i++) {
+      console.log("updated");
+      $scope.interviews[i].Interview.Interview_FT_Link = interview_FT_Link;
+      $scope.interviews[i].Interview.Interview_Int_Link = interview_Int_Link;
 
-      linkService.update($scope.interviews[i]).$promise.then(values => {
+      $scope.linkService.$update($scope.interviews[i]).$promise.then(values => {
       console.log("WHY NOT");
       });
+
     }
+
+
+
   };
 
   $scope.tabs = [{

@@ -8,7 +8,7 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('CandidateInputCtrl', function ($scope, $q, $timeout, $routeParams, $location, candidateService, candidateToScreenerService, softpenImage) {
+  .controller('CandidateInputCtrl', function($scope, $q, $timeout, $routeParams, $location, candidateService, candidateToScreenerService, softpenImage) {
 
     const init = function() {
       $scope.postCandidate = {};
@@ -31,7 +31,7 @@ angular.module('amExHackathonApp')
 
       if (files && files[0]) {
         var reader = new FileReader();
-        reader.onload = function (e) {
+        reader.onload = function(e) {
           $scope.$apply(function() {
             $scope.postCandidate.resumeBase64 = e.target.result;
             $scope.pictureAdded = true;
@@ -44,16 +44,16 @@ angular.module('amExHackathonApp')
     $scope.submit = function() {
       $scope.sendingData = true;
       candidateToScreenerService.set($scope.postCandidate)
-        // show success by changing submit button class and value
-        $scope.postCandidate = {};
-        $scope.pictureAdded = false;
-        $scope.sendingData = false;
-        $scope.buttonText = "Successfully Submitted";
-        $scope.submitBtnClasses = "btn btn-success";
+      // show success by changing submit button class and value
+      $scope.postCandidate = {};
+      $scope.pictureAdded = false;
+      $scope.sendingData = false;
+      $scope.buttonText = "Successfully Submitted";
+      $scope.submitBtnClasses = "btn btn-success";
 
-        $timeout(() => {
-          $location.path('screener/screenerSplash');
-        }, 1000);
+      $timeout(() => {
+      $location.path('screener/screenerSplash');
+      }, 1000);
     };
 
     init();
