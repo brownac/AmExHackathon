@@ -29,7 +29,7 @@ angular.module('amExHackathonApp')
     $scope.deleteInterviewer = function(index) {
       console.log(index);
       $scope.interviewers.splice(index,1);
-    }
+    };
 
     $scope.interviewers = [];
 

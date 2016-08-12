@@ -32,11 +32,11 @@ router.put('/', function(req, res) {
 				console.log(req.query);
 				if (req.query.editing) {
 					edit = true;
-				};
+				}
 				email( req.body.email,req.body.firstName,req.body.lastName,req.body.Interview.Interview_Date,
 				req.body.Interview.Interview_Time,req.body.Interview.Interview_Location,req.body.Interview_FT_link,
 				req.body.Interview.Interview_Int_Link,edit);
-			};
+			}
 	}, function(rejectedPromiseError){
     	res.status(404).json({
       	errors: [

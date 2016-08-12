@@ -232,7 +232,7 @@ app.controller('SoftPenCtrl', function($scope, $location, softpenImage) {
 
   var centerAndScaleImage = function() {
     if (!img) {
-      return
+      return;
     }
 
     // use these to scale the image

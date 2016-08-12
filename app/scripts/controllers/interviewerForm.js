@@ -230,8 +230,9 @@ var loadFabric1 = function() {
 
   function findTagByColor(color) {
     for (var i = 0; i < colorButtons.length; i++) {
-      if (colorButtons[i].value == color)
+      if (colorButtons[i].value === color) {
         return colorButtons[i];
+      }
     }
     return {
       class: "",
@@ -296,7 +297,7 @@ var loadFabric1 = function() {
   });
 
   $(".thinknessChanger").on("click", function() {
-    if (this.value == "plus") {
+    if (this.value === "plus") {
       console.log("increase");
       increaseWidth();
     } else {
@@ -309,7 +310,7 @@ var loadFabric1 = function() {
     $(".tool-button").removeClass("active");
     this.className += " active";
 
-    if (this.id == 'pen') {
+    if (this.id === 'pen') {
       $(".color-button").removeClass("active");
       canvas.freeDrawingBrush.width = penThickOptions[penSelectedThickness];
       updateThicknessDisplay(penSelectedThickness);
