@@ -12,7 +12,12 @@
  * Controller of the amExHackathonApp
  */
 angular.module('amExHackathonApp')
-  .controller('RecruiterHomeCtrl', function ($scope, calendarService) {
+  .controller('RecruiterHomeCtrl', function ($scope, calendarService, interviewerService) {
+    interviewerService.query().$promise.then(values => {
+      $scope.interviewerDropdown = values;
+    });
+
+
     $scope.init = function() {
       //initializes the fields
       $scope.interviewConflict = false;
@@ -24,7 +29,6 @@ angular.module('amExHackathonApp')
       //initializes the array
       $scope.candidateQueue = [];
       $scope.scheduledCandidates = [];
-      $scope.interviewerDropdown = ["David", "Katrina", "Jules", "Justin", "GOD"];
       $scope.events = [];
       //creates the array of candidates to be scheduled
       var query = {
@@ -319,8 +323,8 @@ angular.module('amExHackathonApp')
         Interview_Date:  null,
         Interview_Time: null,
         Interview_Location: null,
-        Interviewer_1: null,
-        Interviewer_2: null
+        Interviewer_1: {name: null},
+        Interviewer_2: {name: null}
       };
       $scope.deleteCandidate.Interview = interviewInfo;
       $scope.deleteCandidate.$update().then(values => {
