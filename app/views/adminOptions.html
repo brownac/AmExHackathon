@@ -5,9 +5,23 @@
   </div>
 
   <div class="row">
+    <div id="imageModal1" class="modal" role="dialog" aria-labelledby="myModalLabel">
+        <span class="close" data-dismiss="modal" data-target="#imageModal">×</span>
+        <!-- View form -->
+        <div class="modal-content" id="modalImage" role="document">
+            <div ng-repeat="form in viewingForm.Images">
+              <img ng-src="{{form.img_uri}}">
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="row">
       <button data-ng-click="initNewForm()" type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#imageModal">Add new</span></button>
       <div id="imageModal" class="modal" role="dialog" aria-labelledby="myModalLabel">
           <span class="close" data-dismiss="modal" data-target="#imageModal">×</span>
+
+          <!-- New Form Content -->
           <div class="modal-content" id="modalImage" role="document">
             <div class="modal-header">
               <h4 class="modal-title">New Interview Form</h4>
@@ -75,7 +89,6 @@
           <th>Form</th>
           <th>Version</th>
           <th>View</th>
-          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -88,8 +101,7 @@
           <td>{{form.form_type}}</td>
           <td>{{form.form_model}}</td>
           <td>{{form.version}}</td>
-          <td><i class="btn btn-warning glyphicon glyphicon-file"></i></td>
-          <td><i class="btn btn-danger glyphicon glyphicon-trash"></i></td>
+          <td><i data-toggle="modal" data-target="#imageModal1" ng-click="viewingForm = viewFormFunc(form)" class="btn btn-warning glyphicon glyphicon-file"></i></td>
         </tr>
       </tbody>
     </table>

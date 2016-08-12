@@ -16,8 +16,17 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
   $scope.fileId = 0;
   $scope.newForm = {};
   $scope.forms = [];
+  $scope.viewForm = false;
+
+  $scope.viewFormFunc = function(form) {
+    console.log("Forom --> " + form.Images);
+    $scope.viewingForm = form;
+    $scope.viewForm = false;
+    return $scope.viewForm;
+  }
 
   $scope.init = function() {
+    $scope.viewingForm = {};
     $scope.submitted = false;
     $scope.saved = false;
     $scope.initNewForm();
@@ -40,7 +49,7 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
     $scope.forms[i].$update().then(values => {
       console.log("UPDATE BACK END ACTIVE");
       $timeout(() => {
-      }, 1500);
+      }, 1000);
     });
 
     $scope.init();
@@ -74,6 +83,7 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
   $scope.submit = function() {
     // Flag denoted that the form has been submitted
     $scope.submitted = true;
+    $scope.viewForm = false;
 
     // Save on the backend
     console.log($scope.newForm);
@@ -86,7 +96,7 @@ angular.module('amExHackathonApp').controller('adminOptionsCtrl', function($scop
         // No redirection needed
         $('#imageModal').modal('toggle');
         $scope.init();
-      }, 1000);
+      }, 500);
     });
   };
 
