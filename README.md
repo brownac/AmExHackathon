@@ -1,5 +1,19 @@
 # AET Intern Hackathon 2016
 
+## Purpose
+
+The main purpose of this application is to automate the intern recruitment process for AmEx Technology.  It is meant to be used on a tablet or phone.  The flow works as follows:
+
+1. The Screener takes a picture of the prospective intern's resume.  Screener can write notes on the image using a soft pen or other tablet writing device.
+2. The prospective intern fills out their information in the following form.  This information is saved along with the image of their resume to the database.
+3. The tablet is handed back to the Screener.  They decide on the spot whether to accept them to the on-campus interview.
+4. If the prospective intern is accepted, they are passed to the Recruiter.  They are scheduled for an interview slot using the calendar interface.
+5. The Interviewer can use the canvas functionality to draw up interview questions, or there is an Admin tab where they can upload documents for the interviewee to examine.
+
+This app also has
+* The ability to filter candidates by name, school, major, etc.
+* An Admin tab where documents can be uploaded and viewed
+* Flexibility to be installed on any server - it has been tested and runs on Raspberry Pi's that are configured for DHCP protocall
 
 ## Prerequisites
 
